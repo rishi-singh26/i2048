@@ -9,115 +9,365 @@ import SwiftUI
 import SwiftData
 
 struct GameView: View {
-    @Environment(\.colorScheme) var colorScheme
-    
     @Bindable var game: Game
+    @Binding var selectedGame: Game?
+    @State private var animationValues: [[Double]] = []
+    @Environment(\.modelContext) var modelContext
     
-    @ObservedObject var viewModel = GameViewModel()
-    
-    @State private var showingGameOver = false
-    @State private var showingWinAlert = false
-    
+//    @FocusState private var isGameViewFocused: Bool // Focus state to capture keyboard input
+
     var body: some View {
         VStack {
-            Spacer(minLength: 20)
+            Text("Score: \(game.score)")
+                .font(.title)
             
-            VStack {
-                VStack {
-                    Text("Score: \(viewModel.score)")
-                        .font(.title)
-                        .bold()
-                    Text("High Score: \(viewModel.highScore)")
-                        .font(.title2)
+            gridView
+            
+            HStack {
+                Button("Reset") {
+                    resetGame()
                 }
-                .padding()
-
-                VStack(spacing: 6) {
-                    ForEach(0..<viewModel.gridSize, id: \.self) { row in
-                        HStack(spacing: 6) {
-                            ForEach(0..<viewModel.gridSize, id: \.self) { column in
-                                CellView(number: viewModel.grid[row][column])
-                                    .animation(.easeInOut, value: viewModel.grid[row][column])
-                            }
-                        }
-                    }
+                .buttonStyle(.bordered)
+                
+                if game.hasWon {
+                    Text("You Won!")
+                        .foregroundColor(.green)
                 }
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray)))
-                .shadow(radius: 1)
+                
+                if isGameOver() {
+                    Text("Game Over")
+                        .foregroundColor(.red)
+                }
             }
-
-            Spacer()
-            Spacer()
+            .padding()
+            
+#if os(macOS)
+            HStack {
+                Button(action: moveLeft) {
+                    Image(systemName: "arrow.left")
+                }
+                .buttonStyle(.bordered)
+//                .keyboardShortcut(.leftArrow)
+                
+                Button(action: moveRight) {
+                    Image(systemName: "arrow.right")
+                }
+                .buttonStyle(.bordered)
+//                .keyboardShortcut(.rightArrow)
+                
+                Button(action: moveDown) {
+                    Image(systemName: "arrow.down")
+                }
+                .buttonStyle(.bordered)
+//                .keyboardShortcut(.downArrow)
+                
+                Button(action: moveUp) {
+                    Image(systemName: "arrow.up")
+                }
+                .buttonStyle(.bordered)
+//                .keyboardShortcut(.upArrow)
+                
+//                game.hasWon
+            }
+            .padding()
+#endif
+        }
+        .onAppear {
+            initializeAnimationValues()
+            if game.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
+                addInitialTiles()
+            }
         }
         .gesture(
             DragGesture()
-                .onEnded { gesture in
-                    let horizontalAmount = gesture.translation.width as CGFloat
-                    let verticalAmount = gesture.translation.height as CGFloat
-                    if abs(horizontalAmount) > abs(verticalAmount) {
-                        viewModel.swipe(direction: horizontalAmount > 0 ? .right : .left)
-                    }
-                    else {
-                        viewModel.swipe(direction: verticalAmount > 0 ? .down : .up)
-                    }
-                    if viewModel.isGameOver() {
-                        showingGameOver = true
-                    }
-                    if viewModel.grid.contains(where: { $0.contains(2048) }) {
-                        showingWinAlert = true
-                    }
+                .onEnded { value in
+                    handleSwipe(translation: value.translation)
                 }
         )
-        .alert(isPresented: $showingGameOver) {
-            Alert(
-                title: Text("Game Over"),
-                message: Text("Your score: \(viewModel.score)"),
-                dismissButton: .default(Text("Done"))
-            )
-        }
-        .alert("Congratulations!", isPresented: $showingWinAlert) {
-           Button("Continue", role: .cancel) { showingWinAlert = false }
-       } message: {
-           Text("You've reached 2048!")
-       }
-#if os(iOS)
-        .background(LinearGradient(gradient: Gradient(colors: getGradienColors()), startPoint: UnitPoint(x: 0, y: -0.2), endPoint: UnitPoint(x: 0, y: 0.7)))
-        .scrollContentBackground(.hidden)
-#endif
+        .onKeyPress(action: { KeyPress in
+            switch KeyPress.key {
+            case KeyEquivalent("s"):
+                moveDown()
+                return .handled
+            case KeyEquivalent("w"):
+                moveUp()
+                return .handled
+            case KeyEquivalent("d"):
+                moveRight()
+                return .handled
+            case KeyEquivalent("a"):
+                moveLeft()
+                return .handled
+            default:
+                return .ignored
+            }
+        })
+//        .focusable(true)
+//        .focused($isGameViewFocused) // Connect the focus state
+//        .onAppear {
+//            isGameViewFocused = true // Focus the game view on load
+//        }
+//        .onDisappear {
+//            isGameViewFocused = false // Remove focus when view disappears
+//        }
     }
     
-#if os(iOS)
-    func getGradienColors() -> [Color] {
-        if colorScheme == .dark {
-            return [
-                Color(red: 0.57, green: 0.21, blue: 0.07, opacity: 1.00),
-                .black,
-                .black,
-            ]
-        } else {
-            return [
-                Color(red: 1.00, green: 0.69, blue: 0.53, opacity: 1.00),
-                Color(uiColor: UIColor.secondarySystemBackground),
-                Color(uiColor: UIColor.secondarySystemBackground),
-            ]
+    private var gridView: some View {
+        VStack(spacing: 10) {
+            ForEach(0..<game.gridSize, id: \.self) { row in
+                HStack(spacing: 10) {
+                    ForEach(0..<game.gridSize, id: \.self) { col in
+                        let value = game.grid[row][col]
+                        TileView(value: value,
+                                 scale: animationValues.isEmpty ? 1.0 : animationValues[row][col])
+                    }
+                }
+            }
+        }
+        .padding()
+        .background(Color.gray.opacity(0.2))
+        .cornerRadius(10)
+    }
+    
+    private func initializeAnimationValues() {
+        animationValues = Array(repeating:
+            Array(repeating: 1.0, count: game.gridSize),
+            count: game.gridSize)
+    }
+    
+    private func addInitialTiles() {
+        addRandomTile()
+        addRandomTile()
+        updateModifiedAt()
+    }
+    
+    private func addRandomTile() {
+        var emptyCells = [(Int, Int)]()
+        for row in 0..<game.gridSize {
+            for col in 0..<game.gridSize {
+                if game.grid[row][col] == 0 {
+                    emptyCells.append((row, col))
+                }
+            }
+        }
+        
+        guard !emptyCells.isEmpty else { return }
+        
+        let (row, col) = emptyCells.randomElement()!
+        let initialValue = Bool.random() ? 2 : 4
+        
+        game.grid[row][col] = initialValue
+        animationValues[row][col] = 0.5 // Add pop animation
+        
+        withAnimation(.spring()) {
+            animationValues[row][col] = 1.0
         }
     }
-#endif
+    
+    private func handleSwipe(translation: CGSize) {
+        let horizontalDirection = abs(translation.width) > abs(translation.height)
+        
+        if horizontalDirection {
+            if translation.width > 50 {
+                moveRight()
+            } else if translation.width < -50 {
+                moveLeft()
+            }
+        } else {
+            if translation.height > 50 {
+                moveDown()
+            } else if translation.height < -50 {
+                moveUp()
+            }
+        }
+    }
+    
+    private func moveLeft() {
+        print("🔍 moveLeft() called")
+        var moved = false
+        var newGrid = game.grid
+        
+        for row in 0..<game.gridSize {
+            let rowItem = game.grid[row]
+            let (newRow, rowMoved) = compressRow(row: rowItem)
+            newGrid[row] = newRow
+            moved = moved || (rowItem != newRow)
+        }
+        
+        if moved {
+            game.grid = newGrid
+            addRandomTile()
+            updateScore()
+            updateModifiedAt()
+        } else {
+            print("❌ No movement occurred")
+        }
+    }
+    
+    private func moveRight() {
+        print("🔍 moveRight() called")
+        var moved = false
+        var newGrid = game.grid
+        
+        for row in 0..<game.gridSize {
+            let rowItem = game.grid[row]
+            let reversedRow = rowItem.reversed()
+            let (compressedRow, rowMoved) = compressRow(row: Array(reversedRow))
+            newGrid[row] = Array(compressedRow.reversed())
+            moved = moved || (rowItem != compressedRow)
+        }
+        
+        if moved {
+            game.grid = newGrid
+            addRandomTile()
+            updateScore()
+            updateModifiedAt()
+        } else {
+            print("❌ No movement occurred")
+        }
+    }
+    
+    private func moveUp() {
+        print("🔍 moveUp() called")
+        var moved = false
+        var newGrid = game.grid
+        
+        for col in 0..<game.gridSize {
+            let column = (0..<game.gridSize).map { game.grid[$0][col] }
+            let (newColumn, colMoved) = compressRow(row: column)
+            
+            for row in 0..<game.gridSize {
+                newGrid[row][col] = newColumn[row]
+            }
+            moved = moved || (column != newColumn)
+        }
+        
+        if moved {
+            game.grid = newGrid
+            addRandomTile()
+            updateScore()
+            updateModifiedAt()
+        } else {
+            print("❌ No movement occurred")
+        }
+    }
+    
+    private func moveDown() {
+        print("🔍 moveDown() called")
+        
+        var moved = false
+        var newGrid = game.grid
+        
+        for col in 0..<game.gridSize {
+            let column = (0..<game.gridSize).map { game.grid[$0][col] }
+            let (compressedColumn, colMoved) = compressRow(row: Array(column.reversed()))
+            let finalColumn = Array(compressedColumn.reversed())
+            let columnChanged = column != finalColumn
+            // Update the grid
+            for row in 0..<game.gridSize {
+                newGrid[row][col] = finalColumn[row]
+            }
+            // Update moved flag
+            moved = moved || colMoved || columnChanged
+        }
+        
+        if moved {
+            game.grid = newGrid
+            addRandomTile()
+            updateScore()
+            updateModifiedAt()
+        } else {
+            print("❌ No movement occurred")
+        }
+    }
+    
+    private func compressRow(row: [Int]) -> ([Int], Bool) {
+        // Remove zeros
+        var newRow = row.filter { $0 != 0 }
+        var moved = newRow.count != row.filter { $0 != 0 }.count
+        
+        var i = 0
+        while i < newRow.count - 1 {
+            // Check if adjacent elements are the same
+            if newRow[i] == newRow[i + 1] {
+                newRow[i] *= 2
+                game.score += newRow[i]
+                newRow.remove(at: i + 1)
+                moved = true
+                
+                // Check for win condition
+                if newRow[i] == 2048 {
+                    game.hasWon = true
+                }
+            }
+            i += 1
+        }
+        
+        // Pad with zeros to maintain grid size
+        while newRow.count < game.gridSize {
+            newRow.append(0)
+        }
+        
+        return (newRow, moved)
+    }
+    
+    private func updateScore() {
+        // Additional score tracking logic if needed
+    }
+    
+    private func updateModifiedAt() {
+        game.modifiedAt = .now
+    }
+    
+    private func resetGame() {
+        game.grid = Array(repeating: Array(repeating: 0, count: game.gridSize), count: game.gridSize)
+        game.score = 0
+        game.hasWon = false
+        addInitialTiles()
+    }
+    
+    private func isGameOver() -> Bool {
+        // Check if no moves are possible
+        for row in 0..<game.gridSize {
+            for col in 0..<game.gridSize {
+                if game.grid[row][col] == 0 {
+                    return false
+                }
+                
+                // Check adjacent cells for possible merges
+                let currentValue = game.grid[row][col]
+                
+                // Right
+                if col < game.gridSize - 1 && game.grid[row][col + 1] == currentValue {
+                    return false
+                }
+                
+                // Down
+                if row < game.gridSize - 1 && game.grid[row + 1][col] == currentValue {
+                    return false
+                }
+            }
+        }
+        
+        return true
+    }
 }
 
-struct CellView: View {
-    let number: Int
 
+struct TileView: View {
+    let value: Int
+    var scale: Double = 1.0
+    
     var body: some View {
-        Text(number == 0 ? "" : "\(number)")
+        Text(value == 0 ? "" : "\(value)")
             .frame(width: 70, height: 70)
-            .background(colorForValue(number))
+            .background(colorForValue(value))
             .foregroundColor(.white)
             .font(.title.bold())
             .cornerRadius(10)
-            .scaleEffect(number > 0 ? 1.0 : 0.8)
-            .opacity(number > 0 ? 1 : 0.5)
+//            .scaleEffect(number > 0 ? 1.0 : 0.8)
+            .scaleEffect(scale)
+            .opacity(value > 0 ? 1 : 0.5)
     }
 
     private func colorForValue(_ value: Int) -> Color {
@@ -152,21 +402,16 @@ struct CellView: View {
             return Color.gray.opacity(0.3)
         }
     }
-
 }
 
-extension Color {
-    static let gold = Color(red: 1, green: 215/255, blue: 0)
-}
-
-#Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Game.self, configurations: config)
-        let example = Game(name: "Preview Game", gridSize: 4)
-        return GameView(game: example)
-            .modelContainer(container)
-    } catch {
-        fatalError("Failed to created model container")
-    }
-}
+//#Preview {
+//    do {
+//        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+//        let container = try ModelContainer(for: Game.self, configurations: config)
+//        let example = Game(name: "Preview Game", gridSize: 4)
+//        return GameView(game: example)
+//            .modelContainer(container)
+//    } catch {
+//        fatalError("Failed to created model container")
+//    }
+//}
