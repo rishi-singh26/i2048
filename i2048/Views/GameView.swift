@@ -14,8 +14,8 @@ struct GameView: View {
     @Bindable var game: Game
     @Bindable var userPreference: UserPreferences
     
-    @State private var animationValues: [[Double]] = []
-
+    @Binding var gameController: GameController
+    
     var body: some View {
         ZStack {
             Image("Camping-on-the-beach")
@@ -23,7 +23,6 @@ struct GameView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
             VStack {
-//                Spacer()
                 if game.hasWon {
                     Text("You Won!")
                         .font(.title)
@@ -48,49 +47,46 @@ struct GameView: View {
                 .cornerRadius(10)
                 
                 gridView
-                
-                // MARK: - MacOS game controlls
 #if os(macOS)
-                HStack {
-                    Button(action: moveLeft) {
-                        Image(systemName: "arrow.left")
-                    }
-                    .keyboardShortcut(.leftArrow, modifiers: .command)
-                    
-                    Button(action: moveRight) {
-                        Image(systemName: "arrow.right")
-                    }
-                    .keyboardShortcut(.rightArrow, modifiers: .command)
-                    
-                    Button(action: moveDown) {
-                        Image(systemName: "arrow.down")
-                    }
-                    .keyboardShortcut(.downArrow, modifiers: .command)
-                    
-                    Button(action: moveUp) {
-                        Image(systemName: "arrow.up")
-                    }
-                    .keyboardShortcut(.upArrow, modifiers: .command)
-                }
-                .padding()
+                macOSGameControlls
 #endif
             }
         }
         .onAppear {
-            initializeAnimationValues()
             if game.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
-                addInitialTiles()
+                gameController.addInitialTiles()
             }
         }
 #if os(macOS)
         .onChange(of: game, { oldValue, newValue in
             print(newValue.name)
-            initializeAnimationValues()
             if newValue.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
-                addInitialTiles()
+                gameController.addInitialTiles()
             }
         })
 #endif
+    }
+    
+    // MARK: - MacOS game controlls
+    private var macOSGameControlls: some View {
+        HStack {
+            Button(action: gameController.moveLeft) {
+                Image(systemName: "arrow.left")
+            }
+            
+            Button(action: gameController.moveRight) {
+                Image(systemName: "arrow.right")
+            }
+            
+            Button(action: gameController.moveDown) {
+                Image(systemName: "arrow.down")
+            }
+            
+            Button(action: gameController.moveUp) {
+                Image(systemName: "arrow.up")
+            }
+        }
+        .padding()
     }
     
     private var gridView: some View {
@@ -99,8 +95,7 @@ struct GameView: View {
                 HStack(spacing: 10) {
                     ForEach(0..<game.gridSize, id: \.self) { col in
                         let value = game.grid[row][col]
-                        TileView(userPreference: userPreference, value: value,
-                                 scale: animationValues.isEmpty ? 1.0 : animationValues[row][col])
+                        TileView(userPreference: userPreference, value: value, scale: 1.0)
                     }
                 }
             }
@@ -111,189 +106,9 @@ struct GameView: View {
         .gesture(
             DragGesture()
                 .onEnded { value in
-                    handleSwipe(translation: value.translation)
+                    gameController.handleSwipe(translation: value.translation)
                 }
         )
-    }
-    
-    private func initializeAnimationValues() {
-        animationValues = Array(repeating: Array(repeating: 1.0, count: game.gridSize), count: game.gridSize)
-    }
-    
-    private func addInitialTiles() {
-        addRandomTile()
-        addRandomTile()
-        updateModifiedAt()
-    }
-    
-    private func addRandomTile() {
-        var emptyCells = [(Int, Int)]()
-        for row in 0..<game.gridSize {
-            for col in 0..<game.gridSize {
-                if game.grid[row][col] == 0 {
-                    emptyCells.append((row, col))
-                }
-            }
-        }
-        
-        guard !emptyCells.isEmpty else { return }
-        
-        let (row, col) = emptyCells.randomElement()!
-        let initialValue = Bool.random() ? 2 : 4
-        
-        game.grid[row][col] = initialValue
-        animationValues[row][col] = 0.5 // Add pop animation
-        
-        withAnimation(.spring()) {
-            animationValues[row][col] = 1.0
-        }
-    }
-    
-    private func handleSwipe(translation: CGSize) {
-        let horizontalDirection = abs(translation.width) > abs(translation.height)
-        
-        if horizontalDirection {
-            if translation.width > 50 {
-                moveRight()
-            } else if translation.width < -50 {
-                moveLeft()
-            }
-        } else {
-            if translation.height > 50 {
-                moveDown()
-            } else if translation.height < -50 {
-                moveUp()
-            }
-        }
-    }
-    
-    private func moveLeft() {
-        print("🔍 moveLeft() called")
-        var moved = false
-        var newGrid = game.grid
-        
-        for row in 0..<game.gridSize {
-            let rowItem = game.grid[row]
-            let (newRow, rowMoved) = compressRow(row: rowItem)
-            newGrid[row] = newRow
-            moved = moved || rowMoved || (rowItem != newRow)
-        }
-        
-        if moved {
-            game.grid = newGrid
-            addRandomTile()
-            updateScore()
-            updateModifiedAt()
-        } else {
-            print("❌ No movement occurred")
-        }
-    }
-    
-    private func moveRight() {
-        print("🔍 moveRight() called")
-        var moved = false
-        var newGrid = game.grid
-        
-        for row in 0..<game.gridSize {
-            let rowItem = game.grid[row]
-            let reversedRow = rowItem.reversed()
-            let (compressedRow, rowMoved) = compressRow(row: Array(reversedRow))
-            let compressionResult = Array(compressedRow.reversed())
-            newGrid[row] = compressionResult
-            moved = moved || rowMoved || (rowItem != compressionResult)
-        }
-        
-        if moved {
-            game.grid = newGrid
-            addRandomTile()
-            updateScore()
-            updateModifiedAt()
-        } else {
-            print("❌ No movement occurred")
-        }
-    }
-    
-    private func moveUp() {
-        print("🔍 moveUp() called")
-        var moved = false
-        var newGrid = game.grid
-        
-        for col in 0..<game.gridSize {
-            let column = (0..<game.gridSize).map { game.grid[$0][col] }
-            let (newColumn, colMoved) = compressRow(row: column)
-            
-            for row in 0..<game.gridSize {
-                newGrid[row][col] = newColumn[row]
-            }
-            moved = moved || colMoved || (column != newColumn)
-        }
-        
-        if moved {
-            game.grid = newGrid
-            addRandomTile()
-            updateScore()
-            updateModifiedAt()
-        } else {
-            print("❌ No movement occurred")
-        }
-    }
-    
-    private func moveDown() {
-        print("🔍 moveDown() called")
-        
-        var moved = false
-        var newGrid = game.grid
-        
-        for col in 0..<game.gridSize {
-            let column = (0..<game.gridSize).map { game.grid[$0][col] }
-            let (compressedColumn, colMoved) = compressRow(row: Array(column.reversed()))
-            let finalColumn = Array(compressedColumn.reversed())
-            // Update the grid
-            for row in 0..<game.gridSize {
-                newGrid[row][col] = finalColumn[row]
-            }
-            // Update moved flag
-            moved = moved || colMoved || column != finalColumn
-        }
-        
-        if moved {
-            game.grid = newGrid
-            addRandomTile()
-            updateScore()
-            updateModifiedAt()
-        } else {
-            print("❌ No movement occurred")
-        }
-    }
-    
-    private func compressRow(row: [Int]) -> ([Int], Bool) {
-        // Remove zeros
-        var newRow = row.filter { $0 != 0 }
-        var moved = newRow.count != row.filter { $0 != 0 }.count
-        
-        var i = 0
-        while i < newRow.count - 1 {
-            // Check if adjacent elements are the same
-            if newRow[i] == newRow[i + 1] {
-                newRow[i] *= 2
-                game.score += newRow[i]
-                newRow.remove(at: i + 1)
-                moved = true
-                
-                // Check for win condition
-                if newRow[i] == 2048 {
-                    game.hasWon = true
-                }
-            }
-            i += 1
-        }
-        
-        // Pad with zeros to maintain grid size
-        while newRow.count < game.gridSize {
-            newRow.append(0)
-        }
-        
-        return (newRow, moved)
     }
     
     private func updateScore() {
@@ -346,8 +161,8 @@ struct TileView: View {
             .foregroundColor(.white)
             .font(.title.bold())
             .cornerRadius(10)
-//            .scaleEffect(number > 0 ? 1.0 : 0.8)
-            .scaleEffect(scale)
+            .scaleEffect(value > 0 ? 1.0 : 0.8)
+//            .scaleEffect(scale)
             .opacity(value > 0 ? 1 : 0.5)
     }
 
@@ -424,7 +239,9 @@ struct TileView: View {
         
         let userPreferenceContainer = try ModelContainer(for: UserPreferences.self, configurations: config)
         let userPreferenceExample = UserPreferences()
-        return GameView(game: example, userPreference: userPreferenceExample)
+        
+        @State var gameController = GameController(game: example, userPreference: userPreferenceExample)
+        return GameView(game: example, userPreference: userPreferenceExample, gameController: $gameController)
             .modelContainer(container)
             .modelContainer(userPreferenceContainer)
     } catch {
