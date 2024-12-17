@@ -13,6 +13,7 @@ struct i2048App: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Game.self,
+            UserPreferences.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

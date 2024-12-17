@@ -12,7 +12,9 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.modelContext) var modelContext
     @Query var games: [Game]
+    @Query var preferences: [UserPreferences]
     @State private var path = [Game]()
+    @State private var userPreference: UserPreferences?
     
     @State private var selectedGame: Game?
     
@@ -72,10 +74,26 @@ struct ContentView: View {
                         .scrollContentBackground(.hidden)
                 #endif
             } detail: {
-                if let selectedGame = selectedGame {
-                    GameViewTwo(game: selectedGame, selectedGame: $selectedGame)
+                if let selectedGame = selectedGame, let userPreference = userPreference {
+                    GameView(game: selectedGame, userPreference: userPreference)
                 } else {
-                    Text("Select a game")
+                    if let userPreference = userPreference {
+                        Image(userPreference.imageName)
+                            .resizable()
+                            .scaledToFill()
+                            .ignoresSafeArea()
+                    } else {
+                        Text("Select a game")
+                    }
+                }
+            }
+            .onAppear {
+                if let preference = preferences.first {
+                    userPreference = preference
+                } else {
+                    let preference = UserPreferences()
+                    userPreference = preference
+                    modelContext.insert(preference)
                 }
             }
         }

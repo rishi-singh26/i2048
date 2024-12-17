@@ -9,68 +9,72 @@ import SwiftUI
 import SwiftData
 
 struct GameView: View {
-    @Bindable var game: Game
-    @Binding var selectedGame: Game?
-    @State private var animationValues: [[Double]] = []
     @Environment(\.modelContext) var modelContext
     
-//    @FocusState private var isGameViewFocused: Bool // Focus state to capture keyboard input
+    @Bindable var game: Game
+    @Bindable var userPreference: UserPreferences
+    
+    @State private var animationValues: [[Double]] = []
 
     var body: some View {
-        VStack {
-            Text("Score: \(game.score)")
-                .font(.title)
-            
-            gridView
-            
-            HStack {
-                Button("Reset") {
-                    resetGame()
-                }
-                .buttonStyle(.bordered)
-                
+        ZStack {
+            Image("Camping-on-the-beach")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+            VStack {
+//                Spacer()
                 if game.hasWon {
                     Text("You Won!")
-                        .foregroundColor(.green)
+                        .font(.title)
+                        .fontWeight(.bold)
                 }
-                
                 if isGameOver() {
                     Text("Game Over")
                         .foregroundColor(.red)
+                        .font(.title)
+                        .fontWeight(.bold)
                 }
-            }
-            .padding()
-            
+                HStack {
+                    Text("High Score: \(userPreference.highScore)")
+                        .font(.headline)
+                    Divider().frame(height: 20)
+                    Text("Score: \(game.score)")
+                        .font(.headline)
+                }
+                .padding()
+                .frame(minWidth: 300)
+                .background(.thinMaterial)
+                .cornerRadius(10)
+                
+                gridView
+                
+                // MARK: - MacOS game controlls
 #if os(macOS)
-            HStack {
-                Button(action: moveLeft) {
-                    Image(systemName: "arrow.left")
+                HStack {
+                    Button(action: moveLeft) {
+                        Image(systemName: "arrow.left")
+                    }
+                    .keyboardShortcut(.leftArrow, modifiers: .command)
+                    
+                    Button(action: moveRight) {
+                        Image(systemName: "arrow.right")
+                    }
+                    .keyboardShortcut(.rightArrow, modifiers: .command)
+                    
+                    Button(action: moveDown) {
+                        Image(systemName: "arrow.down")
+                    }
+                    .keyboardShortcut(.downArrow, modifiers: .command)
+                    
+                    Button(action: moveUp) {
+                        Image(systemName: "arrow.up")
+                    }
+                    .keyboardShortcut(.upArrow, modifiers: .command)
                 }
-                .buttonStyle(.bordered)
-//                .keyboardShortcut(.leftArrow)
-                
-                Button(action: moveRight) {
-                    Image(systemName: "arrow.right")
-                }
-                .buttonStyle(.bordered)
-//                .keyboardShortcut(.rightArrow)
-                
-                Button(action: moveDown) {
-                    Image(systemName: "arrow.down")
-                }
-                .buttonStyle(.bordered)
-//                .keyboardShortcut(.downArrow)
-                
-                Button(action: moveUp) {
-                    Image(systemName: "arrow.up")
-                }
-                .buttonStyle(.bordered)
-//                .keyboardShortcut(.upArrow)
-                
-//                game.hasWon
-            }
-            .padding()
+                .padding()
 #endif
+            }
         }
         .onAppear {
             initializeAnimationValues()
@@ -78,38 +82,15 @@ struct GameView: View {
                 addInitialTiles()
             }
         }
-        .gesture(
-            DragGesture()
-                .onEnded { value in
-                    handleSwipe(translation: value.translation)
-                }
-        )
-        .onKeyPress(action: { KeyPress in
-            switch KeyPress.key {
-            case KeyEquivalent("s"):
-                moveDown()
-                return .handled
-            case KeyEquivalent("w"):
-                moveUp()
-                return .handled
-            case KeyEquivalent("d"):
-                moveRight()
-                return .handled
-            case KeyEquivalent("a"):
-                moveLeft()
-                return .handled
-            default:
-                return .ignored
+#if os(macOS)
+        .onChange(of: game, { oldValue, newValue in
+            print(newValue.name)
+            initializeAnimationValues()
+            if newValue.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
+                addInitialTiles()
             }
         })
-//        .focusable(true)
-//        .focused($isGameViewFocused) // Connect the focus state
-//        .onAppear {
-//            isGameViewFocused = true // Focus the game view on load
-//        }
-//        .onDisappear {
-//            isGameViewFocused = false // Remove focus when view disappears
-//        }
+#endif
     }
     
     private var gridView: some View {
@@ -118,21 +99,25 @@ struct GameView: View {
                 HStack(spacing: 10) {
                     ForEach(0..<game.gridSize, id: \.self) { col in
                         let value = game.grid[row][col]
-                        TileView(value: value,
+                        TileView(userPreference: userPreference, value: value,
                                  scale: animationValues.isEmpty ? 1.0 : animationValues[row][col])
                     }
                 }
             }
         }
         .padding()
-        .background(Color.gray.opacity(0.2))
+        .background(.thinMaterial)
         .cornerRadius(10)
+        .gesture(
+            DragGesture()
+                .onEnded { value in
+                    handleSwipe(translation: value.translation)
+                }
+        )
     }
     
     private func initializeAnimationValues() {
-        animationValues = Array(repeating:
-            Array(repeating: 1.0, count: game.gridSize),
-            count: game.gridSize)
+        animationValues = Array(repeating: Array(repeating: 1.0, count: game.gridSize), count: game.gridSize)
     }
     
     private func addInitialTiles() {
@@ -191,7 +176,7 @@ struct GameView: View {
             let rowItem = game.grid[row]
             let (newRow, rowMoved) = compressRow(row: rowItem)
             newGrid[row] = newRow
-            moved = moved || (rowItem != newRow)
+            moved = moved || rowMoved || (rowItem != newRow)
         }
         
         if moved {
@@ -213,8 +198,9 @@ struct GameView: View {
             let rowItem = game.grid[row]
             let reversedRow = rowItem.reversed()
             let (compressedRow, rowMoved) = compressRow(row: Array(reversedRow))
-            newGrid[row] = Array(compressedRow.reversed())
-            moved = moved || (rowItem != compressedRow)
+            let compressionResult = Array(compressedRow.reversed())
+            newGrid[row] = compressionResult
+            moved = moved || rowMoved || (rowItem != compressionResult)
         }
         
         if moved {
@@ -239,7 +225,7 @@ struct GameView: View {
             for row in 0..<game.gridSize {
                 newGrid[row][col] = newColumn[row]
             }
-            moved = moved || (column != newColumn)
+            moved = moved || colMoved || (column != newColumn)
         }
         
         if moved {
@@ -262,13 +248,12 @@ struct GameView: View {
             let column = (0..<game.gridSize).map { game.grid[$0][col] }
             let (compressedColumn, colMoved) = compressRow(row: Array(column.reversed()))
             let finalColumn = Array(compressedColumn.reversed())
-            let columnChanged = column != finalColumn
             // Update the grid
             for row in 0..<game.gridSize {
                 newGrid[row][col] = finalColumn[row]
             }
             // Update moved flag
-            moved = moved || colMoved || columnChanged
+            moved = moved || colMoved || column != finalColumn
         }
         
         if moved {
@@ -312,18 +297,13 @@ struct GameView: View {
     }
     
     private func updateScore() {
-        // Additional score tracking logic if needed
+        if game.score > userPreference.highScore {
+            userPreference.highScore = game.score
+        }
     }
     
     private func updateModifiedAt() {
         game.modifiedAt = .now
-    }
-    
-    private func resetGame() {
-        game.grid = Array(repeating: Array(repeating: 0, count: game.gridSize), count: game.gridSize)
-        game.score = 0
-        game.hasWon = false
-        addInitialTiles()
     }
     
     private func isGameOver() -> Bool {
@@ -355,6 +335,7 @@ struct GameView: View {
 
 
 struct TileView: View {
+    @Bindable var userPreference: UserPreferences
     let value: Int
     var scale: Double = 1.0
     
@@ -371,9 +352,40 @@ struct TileView: View {
     }
 
     private func colorForValue(_ value: Int) -> Color {
+//        switch value {
+//        case 2:
+//            return Color(hex: userPreference.color2)
+//        case 4:
+//            return Color(hex: userPreference.color4)
+//        case 8:
+//            return Color(hex: userPreference.color8)
+//        case 16:
+//            return Color(hex: userPreference.color16)
+//        case 32:
+//            return Color(hex: userPreference.color32)
+//        case 64:
+//            return Color(hex: userPreference.color64)
+//        case 128:
+//            return Color(hex: userPreference.color128)
+//        case 256:
+//            return Color(hex: userPreference.color256)
+//        case 512:
+//            return Color(hex: userPreference.color512)
+//        case 1024:
+//            return Color(hex: userPreference.color1024)
+//        case 2048:
+//            return Color(hex: userPreference.color2048)
+//            // Color(red: 1.0, green: 0.84, blue: 0.0) // RGB for gold
+//        case 4096:
+//            return Color(hex: userPreference.color4096)
+//        case 8192:
+//            return Color(hex: userPreference.color8192)
+//        default:
+//            return Color(hex: userPreference.color16384)
+//        }
         switch value {
         case 2:
-            return Color.yellow
+            return .yellow
         case 4:
             return Color.orange
         case 8:
@@ -393,7 +405,7 @@ struct TileView: View {
         case 1024:
             return Color.green.opacity(0.8)
         case 2048:
-            return Color.gold
+            return Color(red: 1.0, green: 0.84, blue: 0.0) // RGB for gold
         case 4096:
             return Color.indigo
         case 8192:
@@ -404,14 +416,18 @@ struct TileView: View {
     }
 }
 
-//#Preview {
-//    do {
-//        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-//        let container = try ModelContainer(for: Game.self, configurations: config)
-//        let example = Game(name: "Preview Game", gridSize: 4)
-//        return GameView(game: example)
-//            .modelContainer(container)
-//    } catch {
-//        fatalError("Failed to created model container")
-//    }
-//}
+#Preview {
+    do {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Game.self, configurations: config)
+        let example = Game(name: "Preview Game", gridSize: 4)
+        
+        let userPreferenceContainer = try ModelContainer(for: UserPreferences.self, configurations: config)
+        let userPreferenceExample = UserPreferences()
+        return GameView(game: example, userPreference: userPreferenceExample)
+            .modelContainer(container)
+            .modelContainer(userPreferenceContainer)
+    } catch {
+        fatalError("Failed to created model container")
+    }
+}
