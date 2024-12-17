@@ -11,10 +11,12 @@ import SwiftData
 struct GameView: View {
     @Environment(\.modelContext) var modelContext
     
-    @Bindable var game: Game
-    @Bindable var userPreference: UserPreferences
+//    @Bindable var game: Game
+//    @Bindable var userPreference: UserPreferences
     
     @Binding var gameController: GameController
+    
+//    @State private var animationValues: [[Double]]
     
     var body: some View {
         ZStack {
@@ -23,22 +25,22 @@ struct GameView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
             VStack {
-                if game.hasWon {
+                if gameController.game.hasWon {
                     Text("You Won!")
                         .font(.title)
                         .fontWeight(.bold)
                 }
-                if isGameOver() {
+                if gameController.isGameOver() {
                     Text("Game Over")
                         .foregroundColor(.red)
                         .font(.title)
                         .fontWeight(.bold)
                 }
                 HStack {
-                    Text("High Score: \(userPreference.highScore)")
+                    Text("High Score: \(gameController.userPreference.highScore)")
                         .font(.headline)
                     Divider().frame(height: 20)
-                    Text("Score: \(game.score)")
+                    Text("Score: \(gameController.game.score)")
                         .font(.headline)
                 }
                 .padding()
@@ -53,12 +55,12 @@ struct GameView: View {
             }
         }
         .onAppear {
-            if game.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
+            if gameController.game.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
                 gameController.addInitialTiles()
             }
         }
 #if os(macOS)
-        .onChange(of: game, { oldValue, newValue in
+        .onChange(of: gameController.game, { oldValue, newValue in
             print(newValue.name)
             if newValue.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
                 gameController.addInitialTiles()
@@ -91,11 +93,11 @@ struct GameView: View {
     
     private var gridView: some View {
         VStack(spacing: 10) {
-            ForEach(0..<game.gridSize, id: \.self) { row in
+            ForEach(0..<gameController.game.gridSize, id: \.self) { row in
                 HStack(spacing: 10) {
-                    ForEach(0..<game.gridSize, id: \.self) { col in
-                        let value = game.grid[row][col]
-                        TileView(userPreference: userPreference, value: value, scale: 1.0)
+                    ForEach(0..<gameController.game.gridSize, id: \.self) { col in
+                        let value = gameController.game.grid[row][col]
+                        TileView(userPreference: gameController.userPreference, value: value, scale: 1.0)
                     }
                 }
             }
@@ -112,39 +114,13 @@ struct GameView: View {
     }
     
     private func updateScore() {
-        if game.score > userPreference.highScore {
-            userPreference.highScore = game.score
+        if gameController.game.score > gameController.userPreference.highScore {
+            gameController.userPreference.highScore = gameController.game.score
         }
     }
     
     private func updateModifiedAt() {
-        game.modifiedAt = .now
-    }
-    
-    private func isGameOver() -> Bool {
-        // Check if no moves are possible
-        for row in 0..<game.gridSize {
-            for col in 0..<game.gridSize {
-                if game.grid[row][col] == 0 {
-                    return false
-                }
-                
-                // Check adjacent cells for possible merges
-                let currentValue = game.grid[row][col]
-                
-                // Right
-                if col < game.gridSize - 1 && game.grid[row][col + 1] == currentValue {
-                    return false
-                }
-                
-                // Down
-                if row < game.gridSize - 1 && game.grid[row + 1][col] == currentValue {
-                    return false
-                }
-            }
-        }
-        
-        return true
+        gameController.game.modifiedAt = .now
     }
 }
 
@@ -241,7 +217,7 @@ struct TileView: View {
         let userPreferenceExample = UserPreferences()
         
         @State var gameController = GameController(game: example, userPreference: userPreferenceExample)
-        return GameView(game: example, userPreference: userPreferenceExample, gameController: $gameController)
+        return GameView(gameController: $gameController)
             .modelContainer(container)
             .modelContainer(userPreferenceContainer)
     } catch {

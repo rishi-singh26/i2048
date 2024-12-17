@@ -88,8 +88,8 @@ struct ContentView: View {
 
     var detailView: some View {
         Group {
-            if let selectedGame = selectedGame, let userPreference = userPreference, let gameController = gameController {
-                GameView(game: selectedGame, userPreference: userPreference, gameController: .constant(gameController))
+            if let _ = selectedGame, let _ = userPreference, let gameController = gameController {
+                GameView(gameController: .constant(gameController))
             } else {
                 placeholderView
             }
