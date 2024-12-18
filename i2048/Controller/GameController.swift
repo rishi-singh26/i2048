@@ -36,7 +36,7 @@ class GameController {
     }
     
     func moveLeft(_ animationValues: Binding<[[Double]]>) {
-        print("🔍 moveLeft() called")
+//        print("🔍 moveLeft() called")
         var moved = false
         var newGrid = game.grid
         
@@ -53,12 +53,12 @@ class GameController {
             updateScore()
             updateModifiedAt()
         } else {
-            print("❌ No movement occurred")
+//            print("❌ No movement occurred")
         }
     }
     
     func moveRight(_ animationValues: Binding<[[Double]]>) {
-        print("🔍 moveRight() called")
+//        print("🔍 moveRight() called")
         var moved = false
         var newGrid = game.grid
         
@@ -77,12 +77,12 @@ class GameController {
             updateScore()
             updateModifiedAt()
         } else {
-            print("❌ No movement occurred")
+//            print("❌ No movement occurred")
         }
     }
     
     func moveUp(_ animationValues: Binding<[[Double]]>) {
-        print("🔍 moveUp() called")
+//        print("🔍 moveUp() called")
         var moved = false
         var newGrid = game.grid
         
@@ -102,12 +102,12 @@ class GameController {
             updateScore()
             updateModifiedAt()
         } else {
-            print("❌ No movement occurred")
+//            print("❌ No movement occurred")
         }
     }
     
     func moveDown(_ animationValues: Binding<[[Double]]>) {
-        print("🔍 moveDown() called")
+//        print("🔍 moveDown() called")
         
         var moved = false
         var newGrid = game.grid
@@ -130,7 +130,7 @@ class GameController {
             updateScore()
             updateModifiedAt()
         } else {
-            print("❌ No movement occurred")
+//            print("❌ No movement occurred")
         }
     }
     
