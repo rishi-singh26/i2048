@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.colorScheme) var colorScheme
     @Environment(\.modelContext) var modelContext
     
     @Query var games: [Game]
@@ -68,7 +67,7 @@ struct ContentView: View {
         List(selection: $selectedGame) {
             ForEach(games) {game in
                 NavigationLink(value: game) {
-                    GameTileView(game: game, selectedGame: $selectedGame)
+                    GameCardView(game: game, selectedGame: $selectedGame)
                 }
             }
             .onDelete(perform: deleteGames)
@@ -117,7 +116,7 @@ struct ContentView: View {
         let game = Game(name: "Game #\(games.count + 1)", gridSize: 4)
         modelContext.insert(game)
 #if os(iOS)
-        selectedGame = game
+        game = game
 #endif
     }
     

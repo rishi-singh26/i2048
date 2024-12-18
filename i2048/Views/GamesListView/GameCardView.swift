@@ -1,5 +1,5 @@
 //
-//  GameTileView.swift
+//  GameCardView.swift
 //  i2048
 //
 //  Created by Rishi Singh on 17/12/24.
@@ -8,9 +8,9 @@
 import SwiftUI
 import SwiftData
 
-struct GameTileView: View {
+struct GameCardView: View {
     @Environment(\.modelContext) var modelContext
-    
+        
     @Bindable var game: Game
     @Binding var selectedGame: Game?
     
@@ -44,9 +44,9 @@ struct GameTileView: View {
     }
     
     func editGame(_ gameId: UUID) {
-//        if let game = games.first(where: { $0.id == gameId }) {
-//            modelContext.delete(game)
-//        }
+    //        if let game = games.first(where: { $0.id == gameId }) {
+    //            modelContext.delete(game)
+    //        }
     }
     
     func deleteGame(_ gameId: UUID) {
@@ -64,7 +64,7 @@ struct GameTileView: View {
         let example = Game(name: "Preview Game", gridSize: 4)
         
         @State var selectedGame: Game?
-        return GameTileView(game: example, selectedGame: $selectedGame)
+        return GameCardView(game: example, selectedGame: $selectedGame)
             .modelContainer(container)
     } catch {
         fatalError("Failed to created model container")

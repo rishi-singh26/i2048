@@ -19,10 +19,13 @@
 		5B75E7912D11807B009D2C80 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7902D11807B009D2C80 /* User.swift */; };
 		5B75E7972D11857D009D2C80 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7962D11857D009D2C80 /* ColorExtension.swift */; };
 		5B75E79A2D11B0CA009D2C80 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7992D11B0CA009D2C80 /* GameController.swift */; };
-		5B75E79F2D11D2DB009D2C80 /* GameTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E79E2D11D2DB009D2C80 /* GameTileView.swift */; };
+		5B75E79F2D11D2DB009D2C80 /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E79E2D11D2DB009D2C80 /* GameCardView.swift */; };
 		5B75E7A12D11E43B009D2C80 /* keyboardReactionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7A02D11E43B009D2C80 /* keyboardReactionModifier.swift */; };
 		5B75E7A32D11E495009D2C80 /* wndAccessorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7A22D11E495009D2C80 /* wndAccessorModifier.swift */; };
 		5B75E7A52D11E4FE009D2C80 /* KeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7A42D11E4FE009D2C80 /* KeyCode.swift */; };
+		5BED5FE42D12D9A50085968B /* GridTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FE32D12D9A50085968B /* GridTileView.swift */; };
+		5BED5FE82D12E0310085968B /* GameGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FE72D12E0310085968B /* GameGridView.swift */; };
+		5BED5FEC2D12E4880085968B /* KeyboardKeyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,10 +62,13 @@
 		5B75E7902D11807B009D2C80 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5B75E7962D11857D009D2C80 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		5B75E7992D11B0CA009D2C80 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
-		5B75E79E2D11D2DB009D2C80 /* GameTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTileView.swift; sourceTree = "<group>"; };
+		5B75E79E2D11D2DB009D2C80 /* GameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardView.swift; sourceTree = "<group>"; };
 		5B75E7A02D11E43B009D2C80 /* keyboardReactionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyboardReactionModifier.swift; sourceTree = "<group>"; };
 		5B75E7A22D11E495009D2C80 /* wndAccessorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wndAccessorModifier.swift; sourceTree = "<group>"; };
 		5B75E7A42D11E4FE009D2C80 /* KeyCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCode.swift; sourceTree = "<group>"; };
+		5BED5FE32D12D9A50085968B /* GridTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTileView.swift; sourceTree = "<group>"; };
+		5BED5FE72D12E0310085968B /* GameGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGridView.swift; sourceTree = "<group>"; };
+		5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardKeyButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,7 @@
 				5B75E79B2D11B0DC009D2C80 /* Controller */,
 				5B75E7982D118584009D2C80 /* Extensions */,
 				5B75E7A62D11EA82009D2C80 /* HotKeys */,
+				5BED5FED2D12E4960085968B /* SharedViews */,
 				5B75E6E82D109D0F009D2C80 /* Assets.xcassets */,
 				5B75E6EA2D109D0F009D2C80 /* i2048.entitlements */,
 				5B75E6EB2D109D0F009D2C80 /* Preview Content */,
@@ -163,9 +170,8 @@
 		5B75E7512D10CE99009D2C80 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5B75E6E62D109D0D009D2C80 /* ContentView.swift */,
-				5B75E79E2D11D2DB009D2C80 /* GameTileView.swift */,
-				5B75E7112D10AEBB009D2C80 /* GameView.swift */,
+				5BED5FE62D12DB440085968B /* GamesListView */,
+				5BED5FE52D12DB3B0085968B /* GameView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -194,6 +200,33 @@
 				5B75E7A22D11E495009D2C80 /* wndAccessorModifier.swift */,
 			);
 			path = HotKeys;
+			sourceTree = "<group>";
+		};
+		5BED5FE52D12DB3B0085968B /* GameView */ = {
+			isa = PBXGroup;
+			children = (
+				5B75E7112D10AEBB009D2C80 /* GameView.swift */,
+				5BED5FE72D12E0310085968B /* GameGridView.swift */,
+				5BED5FE32D12D9A50085968B /* GridTileView.swift */,
+			);
+			path = GameView;
+			sourceTree = "<group>";
+		};
+		5BED5FE62D12DB440085968B /* GamesListView */ = {
+			isa = PBXGroup;
+			children = (
+				5B75E6E62D109D0D009D2C80 /* ContentView.swift */,
+				5B75E79E2D11D2DB009D2C80 /* GameCardView.swift */,
+			);
+			path = GamesListView;
+			sourceTree = "<group>";
+		};
+		5BED5FED2D12E4960085968B /* SharedViews */ = {
+			isa = PBXGroup;
+			children = (
+				5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */,
+			);
+			path = SharedViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,14 +359,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B75E79F2D11D2DB009D2C80 /* GameTileView.swift in Sources */,
+				5BED5FE42D12D9A50085968B /* GridTileView.swift in Sources */,
+				5B75E79F2D11D2DB009D2C80 /* GameCardView.swift in Sources */,
 				5B75E7A12D11E43B009D2C80 /* keyboardReactionModifier.swift in Sources */,
 				5B75E79A2D11B0CA009D2C80 /* GameController.swift in Sources */,
 				5B75E6E72D109D0D009D2C80 /* ContentView.swift in Sources */,
 				5B75E7102D109D46009D2C80 /* Game.swift in Sources */,
 				5B75E7912D11807B009D2C80 /* User.swift in Sources */,
 				5B75E7A52D11E4FE009D2C80 /* KeyCode.swift in Sources */,
+				5BED5FE82D12E0310085968B /* GameGridView.swift in Sources */,
 				5B75E7972D11857D009D2C80 /* ColorExtension.swift in Sources */,
+				5BED5FEC2D12E4880085968B /* KeyboardKeyButton.swift in Sources */,
 				5B75E7122D10AEBB009D2C80 /* GameView.swift in Sources */,
 				5B75E6E52D109D0D009D2C80 /* i2048App.swift in Sources */,
 				5B75E7A32D11E495009D2C80 /* wndAccessorModifier.swift in Sources */,
