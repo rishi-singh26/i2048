@@ -9,34 +9,53 @@ import SwiftUI
 import SwiftData
 
 struct GameGridView: View {
+//    @StateObject private var motionManager = MotionManager()
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @Binding var gameController: GameController
     @Binding var animationValues: [[Double]]
 
     var body: some View {
-        VStack(spacing: 10) {
-            ForEach(0..<gameController.game.gridSize, id: \.self) { row in
-                HStack(spacing: 10) {
-                    ForEach(0..<gameController.game.gridSize, id: \.self) { col in
-                        let value = gameController.game.grid[row][col]
-                        GridTileView(
-                            value: value,
-                            color: colorForValue(value),
-                            scale: animationValues.count > 0 ? animationValues[row][col] : 1.0
-                        )
+        ZStack {
+            VStack(spacing: 10) {
+                ForEach(0..<gameController.game.gridSize, id: \.self) { row in
+                    HStack(spacing: 10) {
+                        ForEach(0..<gameController.game.gridSize, id: \.self) { col in
+                            let value = gameController.game.grid[row][col]
+                            GridTileView(
+                                value: value,
+                                color: colorForValue(value),
+                                scale: animationValues.count > 0 ? animationValues[row][col] : 1.0
+                            )
+                        }
                     }
                 }
             }
+            .padding()
+//            .background(LinearGradient(
+//                gradient: Gradient(colors: [Color.red, Color.orange]),
+//                startPoint: .topLeading,
+//                endPoint: .bottomTrailing
+//            ).opacity(0.3).blur(radius: 10))
+//            .shadow(radius: 10)
+            .background(.ultraThinMaterial)
+            .cornerRadius(10)
+            .gesture(
+                DragGesture()
+                    .onEnded { value in
+                        gameController.handleSwipe(translation: value.translation, $animationValues)
+                    }
+            )
         }
-        .padding()
-        .background(.ultraThinMaterial)
-        .cornerRadius(10)
-        .gesture(
-            DragGesture()
-                .onEnded { value in
-                    gameController.handleSwipe(translation: value.translation, $animationValues)
-                }
-        )
+//        .rotation3DEffect(
+//            .degrees(motionManager.x * 20), // Tilt on the x-axis
+//            axis: (x: 0, y: 1, z: 0)
+//        )
+//        .rotation3DEffect(
+//            .degrees(motionManager.y * 20), // Tilt on the y-axis
+//            axis: (x: 1, y: 0, z: 0)
+//        )
+//        .animation(.easeOut, value: motionManager.x)
+//        .animation(.easeOut, value: motionManager.y)
     }
     
     private func colorForValue(_ value: Int) -> Color {
