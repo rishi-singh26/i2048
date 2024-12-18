@@ -68,7 +68,17 @@ struct ContentView: View {
         }
 #if os(macOS)
         .navigationSplitViewColumnWidth(min: 180, ideal: 200)
+        .toolbar {
+            ToolbarItem {
+                Button(action: addGame) {
+                    Label("Add Game", systemImage: "plus.circle")
+                }
+                .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
+            }
+        }
 #endif
+#if os(iOS)
+        .toolbar(removing: .sidebarToggle)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
                 HStack {
@@ -86,6 +96,7 @@ struct ContentView: View {
                 }
             }
         }
+#endif
         .navigationTitle("i2048")
         .background(.orange.opacity(0.1))
 //        .background(Gradient(colors: [Color(hex: "#bac895"), Color(hex: "#f4ee93"), Color(hex: "#ebbe44")]))
@@ -118,9 +129,7 @@ struct ContentView: View {
     func addGame() {
         let game = Game(name: "Game #\(games.count + 1)", gridSize: 4)
         modelContext.insert(game)
-#if os(iOS)
         selectedGame = game
-#endif
     }
     
     func deleteGames(_ indexSet: IndexSet) {
@@ -134,6 +143,7 @@ struct ContentView: View {
     }
 }
 
-//#Preview {
-//    ContentView()
-//}
+#Preview {
+    ContentView()
+        .environmentObject(UserDefaultsManager.shared)
+}
