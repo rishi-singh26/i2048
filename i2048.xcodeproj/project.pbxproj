@@ -30,6 +30,7 @@
 		5BED5FF42D130E140085968B /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FF32D130E140085968B /* GeneralSettingsView.swift */; };
 		5BED5FF62D130E450085968B /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FF52D130E450085968B /* AppearanceSettingsView.swift */; };
 		5BED5FF82D130E980085968B /* PrivacySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FF72D130E980085968B /* PrivacySettingsView.swift */; };
+		5BED60002D1373E50085968B /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FFF2D1373E40085968B /* MotionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		5BED5FF32D130E140085968B /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		5BED5FF52D130E450085968B /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
 		5BED5FF72D130E980085968B /* PrivacySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySettingsView.swift; sourceTree = "<group>"; };
+		5BED5FFF2D1373E40085968B /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 			children = (
 				5B75E7992D11B0CA009D2C80 /* GameController.swift */,
 				5BED5FEE2D12F77B0085968B /* UserDefaultsManager.swift */,
+				5BED5FFF2D1373E40085968B /* MotionManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				5BED5FEF2D12F77B0085968B /* UserDefaultsManager.swift in Sources */,
 				5B75E7122D10AEBB009D2C80 /* GameView.swift in Sources */,
 				5B75E6E52D109D0D009D2C80 /* i2048App.swift in Sources */,
+				5BED60002D1373E50085968B /* MotionManager.swift in Sources */,
 				5B75E7A32D11E495009D2C80 /* wndAccessorModifier.swift in Sources */,
 				5BED5FF62D130E450085968B /* AppearanceSettingsView.swift in Sources */,
 			);
