@@ -79,7 +79,6 @@ struct ContentView: View {
         .toolbar {
             addToolbarItems()
         }
-        .navigationTitle("i2048")
 #if os(iOS)
         .background(LinearGradient(gradient: Gradient(colors: getGradienColors()), startPoint: UnitPoint(x: 0, y: -0.2), endPoint: UnitPoint(x: 0, y: 0.7)))
         .scrollContentBackground(.hidden)

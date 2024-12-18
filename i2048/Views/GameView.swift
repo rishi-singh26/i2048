@@ -11,16 +11,13 @@ import SwiftData
 struct GameView: View {
     @Environment(\.modelContext) var modelContext
     
-//    @Bindable var game: Game
-//    @Bindable var userPreference: UserPreferences
-    
     @Binding var gameController: GameController
     
 //    @State private var animationValues: [[Double]]
     
     var body: some View {
         ZStack {
-            Image("Camping-on-the-beach")
+            Image(gameController.userPreference.imageName)
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
@@ -37,15 +34,25 @@ struct GameView: View {
                         .fontWeight(.bold)
                 }
                 HStack {
-                    Text("High Score: \(gameController.userPreference.highScore)")
-                        .font(.headline)
+                    Spacer()
+                    VStack {
+                        Text("High Score")
+                        Text("\(gameController.userPreference.highScore)")
+                            .font(.title)
+                    }
+                    Spacer()
                     Divider().frame(height: 20)
-                    Text("Score: \(gameController.game.score)")
-                        .font(.headline)
+                    Spacer()
+                    VStack {
+                        Text("Score")
+                        Text("\(gameController.game.score)")
+                            .font(.title)
+                    }
+                    Spacer()
                 }
                 .padding()
-                .frame(minWidth: 300)
-                .background(.thinMaterial)
+                .frame(minWidth: 300, maxWidth: 400)
+                .background(.ultraThinMaterial)
                 .cornerRadius(10)
                 
                 gridView
@@ -59,14 +66,11 @@ struct GameView: View {
                 gameController.addInitialTiles()
             }
         }
-#if os(macOS)
         .onChange(of: gameController.game, { oldValue, newValue in
-            print(newValue.name)
             if newValue.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
                 gameController.addInitialTiles()
             }
         })
-#endif
     }
     
     // MARK: - MacOS game controlls
@@ -103,7 +107,7 @@ struct GameView: View {
             }
         }
         .padding()
-        .background(.thinMaterial)
+        .background(.ultraThinMaterial)
         .cornerRadius(10)
         .gesture(
             DragGesture()
@@ -131,79 +135,90 @@ struct TileView: View {
     var scale: Double = 1.0
     
     var body: some View {
-        Text(value == 0 ? "" : "\(value)")
+        Text(value == 0 ? "" : String(value))
             .frame(width: 70, height: 70)
             .background(colorForValue(value))
             .foregroundColor(.white)
-            .font(.title.bold())
+            .font(getFontSize())
             .cornerRadius(10)
             .scaleEffect(value > 0 ? 1.0 : 0.8)
 //            .scaleEffect(scale)
             .opacity(value > 0 ? 1 : 0.5)
     }
+    
+    private func getFontSize() -> Font {
+        let valueCount = String(value).count
+        if valueCount < 4 {
+            return .title.bold()
+        } else if valueCount < 5 {
+            return .title2.bold()
+        } else {
+            return .title3.bold()
+        }
+    }
 
     private func colorForValue(_ value: Int) -> Color {
-//        switch value {
-//        case 2:
-//            return Color(hex: userPreference.color2)
-//        case 4:
-//            return Color(hex: userPreference.color4)
-//        case 8:
-//            return Color(hex: userPreference.color8)
-//        case 16:
-//            return Color(hex: userPreference.color16)
-//        case 32:
-//            return Color(hex: userPreference.color32)
-//        case 64:
-//            return Color(hex: userPreference.color64)
-//        case 128:
-//            return Color(hex: userPreference.color128)
-//        case 256:
-//            return Color(hex: userPreference.color256)
-//        case 512:
-//            return Color(hex: userPreference.color512)
-//        case 1024:
-//            return Color(hex: userPreference.color1024)
-//        case 2048:
-//            return Color(hex: userPreference.color2048)
-//            // Color(red: 1.0, green: 0.84, blue: 0.0) // RGB for gold
-//        case 4096:
-//            return Color(hex: userPreference.color4096)
-//        case 8192:
-//            return Color(hex: userPreference.color8192)
-//        default:
-//            return Color(hex: userPreference.color16384)
-//        }
         switch value {
         case 2:
-            return .yellow
+            return Color(hex: userPreference.color2)
         case 4:
-            return Color.orange
+            return Color(hex: userPreference.color4)
         case 8:
-            return Color.pink
+            return Color(hex: userPreference.color8)
         case 16:
-            return Color.purple
+            return Color(hex: userPreference.color16)
         case 32:
-            return Color.red
+            return Color(hex: userPreference.color32)
         case 64:
-            return Color.red.opacity(0.8)
+            return Color(hex: userPreference.color64)
         case 128:
-            return Color.blue
+            return Color(hex: userPreference.color128)
         case 256:
-            return Color.blue.opacity(0.8)
+            return Color(hex: userPreference.color256)
         case 512:
-            return Color.green
+            return Color(hex: userPreference.color512)
         case 1024:
-            return Color.green.opacity(0.8)
+            return Color(hex: userPreference.color1024)
         case 2048:
-            return Color(red: 1.0, green: 0.84, blue: 0.0) // RGB for gold
+            return Color(hex: userPreference.color2048)
+            // Color(red: 1.0, green: 0.84, blue: 0.0) // RGB for gold
         case 4096:
-            return Color.indigo
+            return Color(hex: userPreference.color4096)
         case 8192:
-            return Color.purple.opacity(0.5)
+            return Color(hex: userPreference.color8192)
         default:
-            return Color.gray.opacity(0.3)
+            return Color(hex: userPreference.color16384)
         }
+//        switch value {
+//        case 2:
+//            return .yellow
+//        case 4:
+//            return Color.orange
+//        case 8:
+//            return Color.pink
+//        case 16:
+//            return Color.purple
+//        case 32:
+//            return Color.red
+//        case 64:
+//            return Color.red.opacity(0.8)
+//        case 128:
+//            return Color.blue
+//        case 256:
+//            return Color.blue.opacity(0.8)
+//        case 512:
+//            return Color.green
+//        case 1024:
+//            return Color.green.opacity(0.8)
+//        case 2048:
+//            return Color(red: 1.0, green: 0.84, blue: 0.0) // RGB for gold
+//        case 4096:
+//            return Color.indigo
+//        case 8192:
+//            return Color.purple.opacity(0.5)
+//        default:
+//            return Color.gray.opacity(0.3)
+//        }
     }
 }
 
