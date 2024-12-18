@@ -117,6 +117,7 @@ struct GameView: View {
         @State var animationValues: [[Double]] = []
         return GameView(gameController: $gameController, animationValues: $animationValues)
             .modelContainer(container)
+            .environmentObject(UserDefaultsManager.shared)
     } catch {
         fatalError("Failed to created model container")
     }
