@@ -79,10 +79,9 @@ struct ContentView: View {
         .toolbar {
             addToolbarItems()
         }
-#if os(iOS)
-        .background(LinearGradient(gradient: Gradient(colors: getGradienColors()), startPoint: UnitPoint(x: 0, y: -0.2), endPoint: UnitPoint(x: 0, y: 0.7)))
-        .scrollContentBackground(.hidden)
-#endif
+        .navigationTitle("i2048")
+//        .background(.yellow)
+//        .scrollContentBackground(.hidden)
     }
 
     var detailView: some View {
@@ -158,24 +157,6 @@ struct ContentView: View {
             }
         }
     }
-    
-#if os(iOS)
-    func getGradienColors() -> [Color] {
-        if colorScheme == .dark {
-            return [
-                Color(red: 0.57, green: 0.21, blue: 0.07, opacity: 1.00),
-                .black,
-                .black,
-            ]
-        } else {
-            return [
-                Color(red: 1.00, green: 0.69, blue: 0.53, opacity: 1.00),
-                Color(uiColor: UIColor.secondarySystemBackground),
-                Color(uiColor: UIColor.secondarySystemBackground),
-            ]
-        }
-    }
-#endif
 }
 
 //#Preview {

@@ -34,24 +34,22 @@ struct GameView: View {
                         .fontWeight(.bold)
                 }
                 HStack {
-                    Spacer()
                     VStack {
                         Text("High Score")
                         Text("\(gameController.userPreference.highScore)")
                             .font(.title)
                     }
-                    Spacer()
-                    Divider().frame(height: 20)
-                    Spacer()
+                    .frame(maxWidth: .infinity)
+                    Divider().frame(height: 60)
                     VStack {
                         Text("Score")
                         Text("\(gameController.game.score)")
                             .font(.title)
                     }
-                    Spacer()
+                    .frame(maxWidth: .infinity)
                 }
                 .padding()
-                .frame(minWidth: 300, maxWidth: 400)
+                .frame(minWidth: 300, maxWidth: 350)
                 .background(.ultraThinMaterial)
                 .cornerRadius(10)
                 
