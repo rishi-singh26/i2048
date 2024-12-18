@@ -20,7 +20,7 @@ struct KeyboardKeyButton: View {
             }
             .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
             .background(.thinMaterial)
-            .cornerRadius(10)
+            .cornerRadius(8)
         }
         .buttonStyle(PlainButtonStyle())
     }
