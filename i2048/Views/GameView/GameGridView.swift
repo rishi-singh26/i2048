@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct GameGridView: View {
+    @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @Binding var gameController: GameController
     @Binding var animationValues: [[Double]]
 
@@ -41,34 +42,34 @@ struct GameGridView: View {
     private func colorForValue(_ value: Int) -> Color {
         switch value {
         case 2:
-            return Color(hex: gameController.userPreference.color2)
+            return Color(hex: userDefaultsManager.color2)
         case 4:
-            return Color(hex: gameController.userPreference.color4)
+            return Color(hex: userDefaultsManager.color4)
         case 8:
-            return Color(hex: gameController.userPreference.color8)
+            return Color(hex: userDefaultsManager.color8)
         case 16:
-            return Color(hex: gameController.userPreference.color16)
+            return Color(hex: userDefaultsManager.color16)
         case 32:
-            return Color(hex: gameController.userPreference.color32)
+            return Color(hex: userDefaultsManager.color32)
         case 64:
-            return Color(hex: gameController.userPreference.color64)
+            return Color(hex: userDefaultsManager.color64)
         case 128:
-            return Color(hex: gameController.userPreference.color128)
+            return Color(hex: userDefaultsManager.color128)
         case 256:
-            return Color(hex: gameController.userPreference.color256)
+            return Color(hex: userDefaultsManager.color256)
         case 512:
-            return Color(hex: gameController.userPreference.color512)
+            return Color(hex: userDefaultsManager.color512)
         case 1024:
-            return Color(hex: gameController.userPreference.color1024)
+            return Color(hex: userDefaultsManager.color1024)
         case 2048:
-            return Color(hex: gameController.userPreference.color2048)
+            return Color(hex: userDefaultsManager.color2048)
             // Color(red: 1.0, green: 0.84, blue: 0.0) // RGB for gold
         case 4096:
-            return Color(hex: gameController.userPreference.color4096)
+            return Color(hex: userDefaultsManager.color4096)
         case 8192:
-            return Color(hex: gameController.userPreference.color8192)
+            return Color(hex: userDefaultsManager.color8192)
         default:
-            return Color(hex: gameController.userPreference.color16384)
+            return Color(hex: userDefaultsManager.color16384)
         }
 //        switch value {
 //        case 2:
@@ -110,14 +111,10 @@ struct GameGridView: View {
         let container = try ModelContainer(for: Game.self, configurations: config)
         let example = Game(name: "Preview Game", gridSize: 4)
         
-        let userPreferenceContainer = try ModelContainer(for: UserPreferences.self, configurations: config)
-        let userPreferenceExample = UserPreferences()
-        
-        @State var gameController = GameController(game: example, userPreference: userPreferenceExample)
+        @State var gameController = GameController(game: example, userDefaultsManager: UserDefaultsManager.shared)
         @State var animationValues: [[Double]] = []
         return GameGridView(gameController: $gameController, animationValues: $animationValues)
             .modelContainer(container)
-            .modelContainer(userPreferenceContainer)
     } catch {
         fatalError("Failed to created model container")
     }

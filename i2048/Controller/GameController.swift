@@ -10,11 +10,11 @@ import SwiftUI
 
 class GameController {
     @Bindable var game: Game
-    @Bindable var userPreference: UserPreferences
+    private var userDefaultsManager: UserDefaultsManager
     
-    init(game: Game, userPreference: UserPreferences) {
+    init(game: Game, userDefaultsManager: UserDefaultsManager) {
         self.game = game
-        self.userPreference = userPreference
+        self.userDefaultsManager = userDefaultsManager
     }
     
     func handleSwipe(translation: CGSize, _ animationValues: Binding<[[Double]]>) {
@@ -188,8 +188,8 @@ class GameController {
     }
     
     func updateScore() {
-        if game.score > userPreference.highScore {
-            userPreference.highScore = game.score
+        if game.score > userDefaultsManager.highScore {
+            userDefaultsManager.highScore = game.score
         }
     }
     

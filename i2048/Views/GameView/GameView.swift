@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct GameView: View {
+    @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @Environment(\.modelContext) var modelContext
     
     @Binding var gameController: GameController
@@ -16,7 +17,7 @@ struct GameView: View {
         
     var body: some View {
         ZStack {
-            Image(gameController.userPreference.imageName)
+            Image(userDefaultsManager.imageName)
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
@@ -35,7 +36,7 @@ struct GameView: View {
                 HStack {
                     VStack {
                         Text("High Score")
-                        Text("\(gameController.userPreference.highScore)")
+                        Text("\(userDefaultsManager.highScore)")
                             .font(.title)
                     }
                     .frame(maxWidth: .infinity)
@@ -91,8 +92,8 @@ struct GameView: View {
     }
     
     private func updateScore() {
-        if gameController.game.score > gameController.userPreference.highScore {
-            gameController.userPreference.highScore = gameController.game.score
+        if gameController.game.score > userDefaultsManager.highScore {
+            userDefaultsManager.highScore = gameController.game.score
         }
     }
     
@@ -112,14 +113,10 @@ struct GameView: View {
         let container = try ModelContainer(for: Game.self, configurations: config)
         let example = Game(name: "Preview Game", gridSize: 4)
         
-        let userPreferenceContainer = try ModelContainer(for: UserPreferences.self, configurations: config)
-        let userPreferenceExample = UserPreferences()
-        
-        @State var gameController = GameController(game: example, userPreference: userPreferenceExample)
+        @State var gameController = GameController(game: example, userDefaultsManager: UserDefaultsManager.shared)
         @State var animationValues: [[Double]] = []
         return GameView(gameController: $gameController, animationValues: $animationValues)
             .modelContainer(container)
-            .modelContainer(userPreferenceContainer)
     } catch {
         fatalError("Failed to created model container")
     }

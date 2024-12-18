@@ -10,10 +10,12 @@ import SwiftData
 
 @main
 struct i2048App: App {
+    @Environment(\.colorScheme) var colorScheme
+    @StateObject private var userDefaultsManager = UserDefaultsManager()
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Game.self,
-            UserPreferences.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -28,9 +30,18 @@ struct i2048App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(userDefaultsManager)
         }
         .modelContainer(sharedModelContainer)
 #if os(macOS)
+        .windowStyle(.hiddenTitleBar)
+#endif
+        
+#if os(macOS)
+        Settings {
+            SettingsView()
+                .environmentObject(userDefaultsManager)
+        }
         .windowStyle(.hiddenTitleBar)
 #endif
     }

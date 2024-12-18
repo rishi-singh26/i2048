@@ -10,11 +10,10 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
+    @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     
     @Query var games: [Game]
-    @Query var preferences: [UserPreferences]
     
-    @State private var userPreference: UserPreferences?
     @State private var selectedGame: Game?
     @State private var gameController: GameController?
     @State private var animationValues: [[Double]] = []
@@ -25,22 +24,16 @@ struct ContentView: View {
         } detail: {
             detailView
         }
-        .onAppear {
-            setupPreferences()
-        }
-        .onChange(of: preferences) { oldValue, newValue in
-            updateGameController()
-        }
         .onChange(of: selectedGame) { oldValue, newValue in
             updateGameController()
         }
 #if os(macOS)
-        .keyboardReaction { myMainViewHotkeys($0) }
+        .keyboardReaction { gameHotKeys($0) }
 #endif
     }
     
 #if os(macOS)
-    func myMainViewHotkeys(_ event: NSEvent) -> NSEvent? {
+    func gameHotKeys(_ event: NSEvent) -> NSEvent? {
         if event.modifierFlags.contains(.command) && gameController != nil {
             switch event.keyCode {
             case KeyCode.upArrow:
@@ -77,16 +70,31 @@ struct ContentView: View {
         .navigationSplitViewColumnWidth(min: 180, ideal: 200)
 #endif
         .toolbar {
-            addToolbarItems()
+            ToolbarItem(placement: .bottomBar) {
+                HStack {
+                    Button(action: addGame) {
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                            Text("Add game")
+                                .font(.headline)
+                        }
+                    }
+                    .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
+                    Spacer()
+                    Text("\(games.count) Games")
+                        .font(.headline)
+                }
+            }
         }
         .navigationTitle("i2048")
-//        .background(.yellow)
-//        .scrollContentBackground(.hidden)
+        .background(.orange.opacity(0.1))
+//        .background(Gradient(colors: [Color(hex: "#bac895"), Color(hex: "#f4ee93"), Color(hex: "#ebbe44")]))
+        .scrollContentBackground(.hidden)
     }
 
     var detailView: some View {
         Group {
-            if let _ = selectedGame, let _ = userPreference, let gameController = gameController {
+            if let _ = selectedGame, let gameController = gameController {
                 GameView(gameController: .constant(gameController), animationValues: $animationValues)
             } else {
                 placeholderView
@@ -95,21 +103,15 @@ struct ContentView: View {
     }
     
     var placeholderView: some View {
-        Group {
-            if let userPreference = userPreference {
-                Image(userPreference.imageName)
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea()
-            } else {
-                Text("Select a game")
-            }
-        }
+        Image(userDefaultsManager.imageName)
+            .resizable()
+            .scaledToFill()
+            .ignoresSafeArea()
     }
     
     func updateGameController() {
-        if let selectedGame = selectedGame, let userPreference = userPreference {
-            gameController = GameController(game: selectedGame, userPreference: userPreference)
+        if let selectedGame = selectedGame {
+            gameController = GameController(game: selectedGame, userDefaultsManager: userDefaultsManager)
         }
     }
     
@@ -117,35 +119,8 @@ struct ContentView: View {
         let game = Game(name: "Game #\(games.count + 1)", gridSize: 4)
         modelContext.insert(game)
 #if os(iOS)
-        game = game
+        selectedGame = game
 #endif
-    }
-    
-    // MARK: - Toolbar Items
-    @ToolbarContentBuilder
-    private func addToolbarItems() -> some ToolbarContent {
-#if os(iOS)
-        ToolbarItem(placement: .navigationBarTrailing) {
-            EditButton()
-        }
-#endif
-        ToolbarItem {
-            Button(action: addGame) {
-                Label("Add Game", systemImage: "plus")
-            }
-            .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
-        }
-    }
-    
-    // MARK: - Setup Preferences
-    private func setupPreferences() {
-        if let preference: UserPreferences = preferences.first {
-            userPreference = preference
-        } else {
-            let preference = UserPreferences()
-            userPreference = preference
-            modelContext.insert(preference)
-        }
     }
     
     func deleteGames(_ indexSet: IndexSet) {
