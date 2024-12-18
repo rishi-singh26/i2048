@@ -12,6 +12,7 @@ struct GameView: View {
     @Environment(\.modelContext) var modelContext
     
     @Binding var gameController: GameController
+    @Binding var animationValues: [[Double]]
         
     var body: some View {
         ZStack {
@@ -51,20 +52,22 @@ struct GameView: View {
                 .background(.ultraThinMaterial)
                 .cornerRadius(10)
                 
-                GameGridView(gameController: .constant(gameController))
+                GameGridView(gameController: .constant(gameController), animationValues: $animationValues)
 #if os(macOS)
                 macOSGameControlls
 #endif
             }
         }
         .onAppear {
+            initializeAnimationValues()
             if gameController.game.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
-                gameController.addInitialTiles()
+                gameController.addInitialTiles($animationValues)
             }
         }
         .onChange(of: gameController.game, { oldValue, newValue in
+            initializeAnimationValues()
             if newValue.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
-                gameController.addInitialTiles()
+                gameController.addInitialTiles($animationValues)
             }
         })
     }
@@ -72,15 +75,19 @@ struct GameView: View {
     // MARK: - MacOS game controlls
     private var macOSGameControlls: some View {
         HStack {
-            KeyboardKeyButton(keyLabel: ["command", "arrow.right"], action: gameController.moveRight)
-            KeyboardKeyButton(keyLabel: ["command", "arrow.left"], action: gameController.moveLeft)
-            KeyboardKeyButton(keyLabel: ["command", "arrow.down"], action: gameController.moveDown)
-            KeyboardKeyButton(keyLabel: ["command", "arrow.up"], action: gameController.moveUp)
+            KeyboardKeyButton(keyLabel: ["command", "arrow.right"]) {
+                gameController.moveRight($animationValues)
+            }
+            KeyboardKeyButton(keyLabel: ["command", "arrow.left"]) {
+                gameController.moveLeft($animationValues)
+            }
+            KeyboardKeyButton(keyLabel: ["command", "arrow.down"]) {
+                gameController.moveDown($animationValues)
+            }
+            KeyboardKeyButton(keyLabel: ["command", "arrow.up"]) {
+                gameController.moveUp($animationValues)
+            }
         }
-//        .padding()
-//        .frame(width: 300)
-//        .background(.thinMaterial)
-//        .cornerRadius(10)
     }
     
     private func updateScore() {
@@ -91,6 +98,10 @@ struct GameView: View {
     
     private func updateModifiedAt() {
         gameController.game.modifiedAt = .now
+    }
+    
+    private func initializeAnimationValues() {
+        animationValues = Array(repeating: Array(repeating: 1.0, count: gameController.game.gridSize), count: gameController.game.gridSize);
     }
 }
 
@@ -105,7 +116,8 @@ struct GameView: View {
         let userPreferenceExample = UserPreferences()
         
         @State var gameController = GameController(game: example, userPreference: userPreferenceExample)
-        return GameView(gameController: $gameController)
+        @State var animationValues: [[Double]] = []
+        return GameView(gameController: $gameController, animationValues: $animationValues)
             .modelContainer(container)
             .modelContainer(userPreferenceContainer)
     } catch {

@@ -17,6 +17,7 @@ struct ContentView: View {
     @State private var userPreference: UserPreferences?
     @State private var selectedGame: Game?
     @State private var gameController: GameController?
+    @State private var animationValues: [[Double]] = []
     
     var body: some View {
         NavigationSplitView {
@@ -43,16 +44,16 @@ struct ContentView: View {
         if event.modifierFlags.contains(.command) && gameController != nil {
             switch event.keyCode {
             case KeyCode.upArrow:
-                gameController!.moveUp()
+                gameController!.moveUp($animationValues)
                 return nil // disable beep sound
             case KeyCode.downArrow:
-                gameController!.moveDown()
+                gameController!.moveDown($animationValues)
                 return nil // disable beep sound
             case KeyCode.rightArrow:
-                gameController!.moveRight()
+                gameController!.moveRight($animationValues)
                 return nil // disable beep sound
             case KeyCode.leftArrow:
-                gameController!.moveLeft()
+                gameController!.moveLeft($animationValues)
                 return nil // disable beep sound
             default:
                 return event // beep sound will be here
@@ -86,7 +87,7 @@ struct ContentView: View {
     var detailView: some View {
         Group {
             if let _ = selectedGame, let _ = userPreference, let gameController = gameController {
-                GameView(gameController: .constant(gameController))
+                GameView(gameController: .constant(gameController), animationValues: $animationValues)
             } else {
                 placeholderView
             }

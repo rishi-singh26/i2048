@@ -10,6 +10,7 @@ import SwiftData
 
 struct GameGridView: View {
     @Binding var gameController: GameController
+    @Binding var animationValues: [[Double]]
 
     var body: some View {
         VStack(spacing: 10) {
@@ -17,7 +18,11 @@ struct GameGridView: View {
                 HStack(spacing: 10) {
                     ForEach(0..<gameController.game.gridSize, id: \.self) { col in
                         let value = gameController.game.grid[row][col]
-                        GridTileView(value: value, color: colorForValue(value), scale: 1.0)
+                        GridTileView(
+                            value: value,
+                            color: colorForValue(value),
+                            scale: animationValues.count > 0 ? animationValues[row][col] : 1.0
+                        )
                     }
                 }
             }
@@ -28,7 +33,7 @@ struct GameGridView: View {
         .gesture(
             DragGesture()
                 .onEnded { value in
-                    gameController.handleSwipe(translation: value.translation)
+                    gameController.handleSwipe(translation: value.translation, $animationValues)
                 }
         )
     }
@@ -109,7 +114,8 @@ struct GameGridView: View {
         let userPreferenceExample = UserPreferences()
         
         @State var gameController = GameController(game: example, userPreference: userPreferenceExample)
-        return GameGridView(gameController: $gameController)
+        @State var animationValues: [[Double]] = []
+        return GameGridView(gameController: $gameController, animationValues: $animationValues)
             .modelContainer(container)
             .modelContainer(userPreferenceContainer)
     } catch {

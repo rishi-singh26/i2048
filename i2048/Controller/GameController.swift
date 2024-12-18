@@ -11,33 +11,31 @@ import SwiftUI
 class GameController {
     @Bindable var game: Game
     @Bindable var userPreference: UserPreferences
-    var animationValues: [[Double]]
     
     init(game: Game, userPreference: UserPreferences) {
         self.game = game
         self.userPreference = userPreference
-        self.animationValues = Array(repeating: Array(repeating: 1.0, count: game.gridSize), count: game.gridSize)
     }
     
-    func handleSwipe(translation: CGSize) {
+    func handleSwipe(translation: CGSize, _ animationValues: Binding<[[Double]]>) {
         let horizontalDirection = abs(translation.width) > abs(translation.height)
         
         if horizontalDirection {
             if translation.width > 50 {
-                moveRight()
+                moveRight(animationValues)
             } else if translation.width < -50 {
-                moveLeft()
+                moveLeft(animationValues)
             }
         } else {
             if translation.height > 50 {
-                moveDown()
+                moveDown(animationValues)
             } else if translation.height < -50 {
-                moveUp()
+                moveUp(animationValues)
             }
         }
     }
     
-    func moveLeft() {
+    func moveLeft(_ animationValues: Binding<[[Double]]>) {
         print("🔍 moveLeft() called")
         var moved = false
         var newGrid = game.grid
@@ -51,7 +49,7 @@ class GameController {
         
         if moved {
             game.grid = newGrid
-            addRandomTile()
+            addRandomTile(animationValues)
             updateScore()
             updateModifiedAt()
         } else {
@@ -59,7 +57,7 @@ class GameController {
         }
     }
     
-    func moveRight() {
+    func moveRight(_ animationValues: Binding<[[Double]]>) {
         print("🔍 moveRight() called")
         var moved = false
         var newGrid = game.grid
@@ -75,7 +73,7 @@ class GameController {
         
         if moved {
             game.grid = newGrid
-            addRandomTile()
+            addRandomTile(animationValues)
             updateScore()
             updateModifiedAt()
         } else {
@@ -83,7 +81,7 @@ class GameController {
         }
     }
     
-    func moveUp() {
+    func moveUp(_ animationValues: Binding<[[Double]]>) {
         print("🔍 moveUp() called")
         var moved = false
         var newGrid = game.grid
@@ -100,7 +98,7 @@ class GameController {
         
         if moved {
             game.grid = newGrid
-            addRandomTile()
+            addRandomTile(animationValues)
             updateScore()
             updateModifiedAt()
         } else {
@@ -108,7 +106,7 @@ class GameController {
         }
     }
     
-    func moveDown() {
+    func moveDown(_ animationValues: Binding<[[Double]]>) {
         print("🔍 moveDown() called")
         
         var moved = false
@@ -128,7 +126,7 @@ class GameController {
         
         if moved {
             game.grid = newGrid
-            addRandomTile()
+            addRandomTile(animationValues)
             updateScore()
             updateModifiedAt()
         } else {
@@ -166,7 +164,7 @@ class GameController {
         return (newRow, moved)
     }
     
-    func addRandomTile() {
+    func addRandomTile(_ animationValues: Binding<[[Double]]>) {
         var emptyCells = [(Int, Int)]()
         for row in 0..<game.gridSize {
             for col in 0..<game.gridSize {
@@ -182,10 +180,10 @@ class GameController {
         let initialValue = Bool.random() ? 2 : 4
         
         game.grid[row][col] = initialValue
-        animationValues[row][col] = 0.5 // Add pop animation
+        animationValues.wrappedValue[row][col] = 0.5 // Add pop animation
         
         withAnimation(.spring()) {
-            animationValues[row][col] = 1.0
+            animationValues.wrappedValue[row][col] = 1.0
         }
     }
     
@@ -199,9 +197,9 @@ class GameController {
         game.modifiedAt = .now
     }
     
-    func addInitialTiles() {
-        addRandomTile()
-        addRandomTile()
+    func addInitialTiles(_ animationValues: Binding<[[Double]]>) {
+        addRandomTile(animationValues)
+        addRandomTile(animationValues)
         updateModifiedAt()
     }
     
