@@ -114,7 +114,7 @@ struct GameView: View {
         let example = Game(name: "Preview Game", gridSize: 4)
         
         @State var gameController = GameController(game: example, userDefaultsManager: UserDefaultsManager.shared)
-        @State var animationValues: [[Double]] = []
+        @State var animationValues: [[Double]] = Array(repeating: Array(repeating: 1.0, count: 4), count: 4);
         return GameView(gameController: $gameController, animationValues: $animationValues)
             .modelContainer(container)
             .environmentObject(UserDefaultsManager.shared)
