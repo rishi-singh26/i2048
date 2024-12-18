@@ -20,6 +20,7 @@ struct i2048App: App {
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
+            print(error)
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
@@ -29,5 +30,8 @@ struct i2048App: App {
             ContentView()
         }
         .modelContainer(sharedModelContainer)
+#if os(macOS)
+        .windowStyle(.hiddenTitleBar)
+#endif
     }
 }
