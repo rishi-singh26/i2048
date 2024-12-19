@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B1421672D13D84700032861 /* BackgroundArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1421662D13D84700032861 /* BackgroundArt.swift */; };
 		5B75E6E52D109D0D009D2C80 /* i2048App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6E42D109D0D009D2C80 /* i2048App.swift */; };
 		5B75E6E72D109D0D009D2C80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6E62D109D0D009D2C80 /* ContentView.swift */; };
 		5B75E6E92D109D0F009D2C80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B75E6E82D109D0F009D2C80 /* Assets.xcassets */; };
@@ -31,6 +32,8 @@
 		5BED5FF62D130E450085968B /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FF52D130E450085968B /* AppearanceSettingsView.swift */; };
 		5BED5FF82D130E980085968B /* PrivacySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FF72D130E980085968B /* PrivacySettingsView.swift */; };
 		5BED60002D1373E50085968B /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FFF2D1373E40085968B /* MotionManager.swift */; };
+		5BED60022D138F220085968B /* BackgroundArtManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED60012D138F220085968B /* BackgroundArtManager.swift */; };
+		5BED60042D138F870085968B /* BackgroundArtSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED60032D138F870085968B /* BackgroundArtSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,39 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B1421422D13D27700032861 /* ImageData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ImageData.json; sourceTree = "<group>"; };
+		5B1421472D13D3B700032861 /* Green-Valley.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Green-Valley.jpg"; sourceTree = "<group>"; };
+		5B1421482D13D3B700032861 /* Preview-Desert-Sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Desert-Sunset.jpg"; sourceTree = "<group>"; };
+		5B1421492D13D3B700032861 /* Autumn-in-the-mountains.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Autumn-in-the-mountains.jpg"; sourceTree = "<group>"; };
+		5B14214A2D13D3B700032861 /* Preview-Autumn-in-the-mountains.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Autumn-in-the-mountains.jpg"; sourceTree = "<group>"; };
+		5B14214B2D13D3B700032861 /* Antarctica-expedition.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Antarctica-expedition.jpg"; sourceTree = "<group>"; };
+		5B14214C2D13D3B700032861 /* Preview-Lake-House.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Lake-House.jpg"; sourceTree = "<group>"; };
+		5B14214D2D13D3B700032861 /* Preview-Life-on-Lake-Como.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Life-on-Lake-Como.jpg"; sourceTree = "<group>"; };
+		5B14214E2D13D3B700032861 /* Crop-duster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Crop-duster.jpg"; sourceTree = "<group>"; };
+		5B14214F2D13D3B700032861 /* Preview-Antarctica-expedition.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Antarctica-expedition.jpg"; sourceTree = "<group>"; };
+		5B1421502D13D3B700032861 /* Desert-Sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Desert-Sunset.jpg"; sourceTree = "<group>"; };
+		5B1421512D13D3B700032861 /* Tennis-court-at-the-villa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Tennis-court-at-the-villa.jpg"; sourceTree = "<group>"; };
+		5B1421522D13D3B700032861 /* Preview-Green-Valley.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Green-Valley.jpg"; sourceTree = "<group>"; };
+		5B1421532D13D3B700032861 /* Preview-Retro-Car.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Retro-Car.jpg"; sourceTree = "<group>"; };
+		5B1421542D13D3B700032861 /* Golden-Hour-in-Sicily.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Golden-Hour-in-Sicily.jpg"; sourceTree = "<group>"; };
+		5B1421552D13D3B700032861 /* Lake-Lugano's-landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lake-Lugano's-landscape.jpg"; sourceTree = "<group>"; };
+		5B1421562D13D3B700032861 /* Camping-on-the-beach.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Camping-on-the-beach.jpg"; sourceTree = "<group>"; };
+		5B1421572D13D3B700032861 /* Preview-Golf-Course.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Golf-Course.jpg"; sourceTree = "<group>"; };
+		5B1421582D13D3B700032861 /* Preview-Winery-in-Tuscany.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Winery-in-Tuscany.jpg"; sourceTree = "<group>"; };
+		5B1421592D13D3B700032861 /* Preview-Lake-Lugano's-landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Lake-Lugano's-landscape.jpg"; sourceTree = "<group>"; };
+		5B14215A2D13D3B700032861 /* Winery-in-Tuscany.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Winery-in-Tuscany.jpg"; sourceTree = "<group>"; };
+		5B14215B2D13D3B800032861 /* Golf-Course.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Golf-Course.jpg"; sourceTree = "<group>"; };
+		5B14215C2D13D3B800032861 /* Corn-Farm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Corn-Farm.jpg"; sourceTree = "<group>"; };
+		5B14215D2D13D3B800032861 /* Lake-House.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lake-House.jpg"; sourceTree = "<group>"; };
+		5B14215E2D13D3B800032861 /* Preview-Crop-duster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Crop-duster.jpg"; sourceTree = "<group>"; };
+		5B14215F2D13D3B800032861 /* Retro-Car.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Retro-Car.jpg"; sourceTree = "<group>"; };
+		5B1421602D13D3B800032861 /* Preview-Tennis-court-at-the-villa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Tennis-court-at-the-villa.jpg"; sourceTree = "<group>"; };
+		5B1421612D13D3B800032861 /* Life-on-Lake-Como.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Life-on-Lake-Como.jpg"; sourceTree = "<group>"; };
+		5B1421622D13D3B800032861 /* Preview-Camping-on-the-beach.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Camping-on-the-beach.jpg"; sourceTree = "<group>"; };
+		5B1421632D13D3B800032861 /* Preview-Golden-Hour-in-Sicily.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Golden-Hour-in-Sicily.jpg"; sourceTree = "<group>"; };
+		5B1421642D13D3B800032861 /* Preview-Corn-Farm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Corn-Farm.jpg"; sourceTree = "<group>"; };
+		5B1421652D13D47C00032861 /* ProfileImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ProfileImage.jpg; sourceTree = "<group>"; };
+		5B1421662D13D84700032861 /* BackgroundArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundArt.swift; sourceTree = "<group>"; };
 		5B75E6E12D109D0D009D2C80 /* i2048.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = i2048.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B75E6E42D109D0D009D2C80 /* i2048App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = i2048App.swift; sourceTree = "<group>"; };
 		5B75E6E62D109D0D009D2C80 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,6 +115,8 @@
 		5BED5FF52D130E450085968B /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
 		5BED5FF72D130E980085968B /* PrivacySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySettingsView.swift; sourceTree = "<group>"; };
 		5BED5FFF2D1373E40085968B /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		5BED60012D138F220085968B /* BackgroundArtManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundArtManager.swift; sourceTree = "<group>"; };
+		5BED60032D138F870085968B /* BackgroundArtSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundArtSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +144,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B1421432D13D27700032861 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5B1421442D13D28100032861 /* Krestovskaya-Anna */,
+				5B1421422D13D27700032861 /* ImageData.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		5B1421442D13D28100032861 /* Krestovskaya-Anna */ = {
+			isa = PBXGroup;
+			children = (
+				5B1421652D13D47C00032861 /* ProfileImage.jpg */,
+				5B1421452D13D28A00032861 /* Images */,
+			);
+			path = "Krestovskaya-Anna";
+			sourceTree = "<group>";
+		};
+		5B1421452D13D28A00032861 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5B14214B2D13D3B700032861 /* Antarctica-expedition.jpg */,
+				5B1421492D13D3B700032861 /* Autumn-in-the-mountains.jpg */,
+				5B1421562D13D3B700032861 /* Camping-on-the-beach.jpg */,
+				5B14215C2D13D3B800032861 /* Corn-Farm.jpg */,
+				5B14214E2D13D3B700032861 /* Crop-duster.jpg */,
+				5B1421502D13D3B700032861 /* Desert-Sunset.jpg */,
+				5B1421542D13D3B700032861 /* Golden-Hour-in-Sicily.jpg */,
+				5B14215B2D13D3B800032861 /* Golf-Course.jpg */,
+				5B1421472D13D3B700032861 /* Green-Valley.jpg */,
+				5B14215D2D13D3B800032861 /* Lake-House.jpg */,
+				5B1421552D13D3B700032861 /* Lake-Lugano's-landscape.jpg */,
+				5B1421612D13D3B800032861 /* Life-on-Lake-Como.jpg */,
+				5B14214F2D13D3B700032861 /* Preview-Antarctica-expedition.jpg */,
+				5B14214A2D13D3B700032861 /* Preview-Autumn-in-the-mountains.jpg */,
+				5B1421622D13D3B800032861 /* Preview-Camping-on-the-beach.jpg */,
+				5B1421642D13D3B800032861 /* Preview-Corn-Farm.jpg */,
+				5B14215E2D13D3B800032861 /* Preview-Crop-duster.jpg */,
+				5B1421482D13D3B700032861 /* Preview-Desert-Sunset.jpg */,
+				5B1421632D13D3B800032861 /* Preview-Golden-Hour-in-Sicily.jpg */,
+				5B1421572D13D3B700032861 /* Preview-Golf-Course.jpg */,
+				5B1421522D13D3B700032861 /* Preview-Green-Valley.jpg */,
+				5B14214C2D13D3B700032861 /* Preview-Lake-House.jpg */,
+				5B1421592D13D3B700032861 /* Preview-Lake-Lugano's-landscape.jpg */,
+				5B14214D2D13D3B700032861 /* Preview-Life-on-Lake-Como.jpg */,
+				5B1421532D13D3B700032861 /* Preview-Retro-Car.jpg */,
+				5B1421602D13D3B800032861 /* Preview-Tennis-court-at-the-villa.jpg */,
+				5B1421582D13D3B700032861 /* Preview-Winery-in-Tuscany.jpg */,
+				5B14215F2D13D3B800032861 /* Retro-Car.jpg */,
+				5B1421512D13D3B700032861 /* Tennis-court-at-the-villa.jpg */,
+				5B14215A2D13D3B700032861 /* Winery-in-Tuscany.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		5B75E6D82D109D0D009D2C80 = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +229,7 @@
 				5B75E7982D118584009D2C80 /* Extensions */,
 				5B75E7A62D11EA82009D2C80 /* HotKeys */,
 				5BED5FED2D12E4960085968B /* SharedViews */,
+				5B1421432D13D27700032861 /* Data */,
 				5B75E6E82D109D0F009D2C80 /* Assets.xcassets */,
 				5B75E6EA2D109D0F009D2C80 /* i2048.entitlements */,
 				5B75E6EB2D109D0F009D2C80 /* Preview Content */,
@@ -172,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				5B75E70F2D109D45009D2C80 /* Game.swift */,
+				5B1421662D13D84700032861 /* BackgroundArt.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -200,6 +295,7 @@
 				5B75E7992D11B0CA009D2C80 /* GameController.swift */,
 				5BED5FEE2D12F77B0085968B /* UserDefaultsManager.swift */,
 				5BED5FFF2D1373E40085968B /* MotionManager.swift */,
+				5BED60012D138F220085968B /* BackgroundArtManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -248,6 +344,7 @@
 				5BED5FF32D130E140085968B /* GeneralSettingsView.swift */,
 				5BED5FF52D130E450085968B /* AppearanceSettingsView.swift */,
 				5BED5FF72D130E980085968B /* PrivacySettingsView.swift */,
+				5BED60032D138F870085968B /* BackgroundArtSettings.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -382,15 +479,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BED60042D138F870085968B /* BackgroundArtSettings.swift in Sources */,
 				5BED5FE42D12D9A50085968B /* GridTileView.swift in Sources */,
 				5BED5FF82D130E980085968B /* PrivacySettingsView.swift in Sources */,
 				5B75E79F2D11D2DB009D2C80 /* GameCardView.swift in Sources */,
 				5B75E7A12D11E43B009D2C80 /* keyboardReactionModifier.swift in Sources */,
+				5B1421672D13D84700032861 /* BackgroundArt.swift in Sources */,
 				5B75E79A2D11B0CA009D2C80 /* GameController.swift in Sources */,
 				5B75E6E72D109D0D009D2C80 /* ContentView.swift in Sources */,
 				5B75E7102D109D46009D2C80 /* Game.swift in Sources */,
 				5B75E7A52D11E4FE009D2C80 /* KeyCode.swift in Sources */,
 				5BED5FE82D12E0310085968B /* GameGridView.swift in Sources */,
+				5BED60022D138F220085968B /* BackgroundArtManager.swift in Sources */,
 				5BED5FF12D12FD5E0085968B /* SettingsView.swift in Sources */,
 				5BED5FF42D130E140085968B /* GeneralSettingsView.swift in Sources */,
 				5B75E7972D11857D009D2C80 /* ColorExtension.swift in Sources */,
