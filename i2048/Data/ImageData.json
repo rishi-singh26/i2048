@@ -33,8 +33,8 @@
             },
             {
                 "id": 12,
-                "url": "https://raw.githubusercontent.com/rishi-singh26/i2048/Data/Krestovskaya-Anna/Images/Autumn-in-the-mountains.jpg",
-                "previewUrl": "https://raw.githubusercontent.com/rishi-singh26/i2048/Data/Krestovskaya-Anna/Images/Preview-Autumn-in-the-mountains.jpg",
+                "url": "https://raw.githubusercontent.com/rishi-singh26/i2048/refs/heads/main/i2048/Data/Krestovskaya-Anna/Images/Autumn-in-the-mountains.jpg",
+                "previewUrl": "https://raw.githubusercontent.com/rishi-singh26/i2048/refs/heads/main/i2048/Data/Krestovskaya-Anna/Images/Preview-Autumn-in-the-mountains.jpg",
                 "dribbleUrl": "https://dribbble.com/shots/25076817-Autumn-in-the-mountains",
                 "name": "Autumn in the mountains",
                 "mode": true,
@@ -59,8 +59,8 @@
             },
             {
                 "id": 13,
-                "url": "https://raw.githubusercontent.com/rishi-singh26/i2048/Data/Krestovskaya-Anna/Images/Tennis-court-at-the-villa.jpg",
-                "previewUrl": "https://raw.githubusercontent.com/rishi-singh26/i2048/Data/Krestovskaya-Anna/Images/Preview-Tennis-court-at-the-villa.jpg",
+                "url": "https://raw.githubusercontent.com/rishi-singh26/i2048/refs/heads/main/i2048/Data/Krestovskaya-Anna/Images/Tennis-court-at-the-villa.jpg",
+                "previewUrl": "https://raw.githubusercontent.com/rishi-singh26/i2048/refs/heads/main/i2048/Data/Krestovskaya-Anna/Images/Preview-Tennis-court-at-the-villa.jpg",
                 "dribbleUrl": "https://dribbble.com/shots/24685665-Tennis-court-at-the-villa",
                 "name": "Tennis court at the villa",
                 "mode": true,
