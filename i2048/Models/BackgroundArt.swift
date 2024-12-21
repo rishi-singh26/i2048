@@ -6,15 +6,15 @@
 //
 
 
-struct BackgroundArt: Identifiable, Codable {
+struct BackgroundArtist: Identifiable, Codable {
     let id: Int
     let name: String
     let dribbleLink: String
     let profileImage: String
-    let images: [ImageItem]
+    let images: [BackgroundArt]
 }
 
-struct ImageItem: Identifiable, Codable {
+struct BackgroundArt: Identifiable, Codable {
     let id: Int
     let url: String
     let previewUrl: String

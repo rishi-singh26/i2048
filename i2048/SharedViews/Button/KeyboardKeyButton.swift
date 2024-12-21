@@ -13,7 +13,7 @@ struct KeyboardKeyButton: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 2) { // Adjust spacing as needed
+            HStack(spacing: 3) {
                 ForEach(keyLabel, id: \.self) {lable in
                     Image(systemName: lable)
                 }
@@ -21,6 +21,7 @@ struct KeyboardKeyButton: View {
             .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
             .background(.thinMaterial)
             .cornerRadius(8)
+            .shadow(color: .black.opacity(0.25), radius: 8, x: 2, y: 2)
         }
         .buttonStyle(PlainButtonStyle())
     }

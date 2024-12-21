@@ -5,6 +5,7 @@
 //  Created by Rishi Singh on 18/12/24.
 //
 
+#if os(macOS)
 import SwiftUI
 
 struct GeneralSettingsView: View {
@@ -14,40 +15,49 @@ struct GeneralSettingsView: View {
             GroupBox {
                 VStack {
                     HStack {
-                        Text("Enable Haptics")
+                        Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
                         Spacer()
-                        Toggle("", isOn: $userDefaultsManager.hapticsEnabled)
+                        Toggle("", isOn: $userDefaultsManager.soundEnabled.animation())
                             .toggleStyle(.switch)
                     }
                     Divider()
                     HStack {
-                        Text("Enable Soubd")
+                        Label("Game Screen Theme", systemImage: userDefaultsManager.colorScheme ? "warninglight.fill" : "warninglight")
                         Spacer()
-                        Toggle("", isOn: $userDefaultsManager.soundEnabled)
+                        Toggle("", isOn: $userDefaultsManager.colorScheme.animation())
                             .toggleStyle(.switch)
-                    }
-                    Divider()
-                    HStack {
-                        Text("App theme")
-                        Spacer()
-                        Picker(selection: $userDefaultsManager.appThemeMode, label: Text("")) {
-                            Text("Automatic").tag(AppThemeMode.automatic)
-                            Text("Image Based").tag(AppThemeMode.imageBased)
-                            Text("Dark").tag(AppThemeMode.dark)
-                            Text("Light").tag(AppThemeMode.light)
-                        }
-                        .scaledToFit()
                     }
                 }
-                .padding(4)
+                .padding(6)
+            }
+            .padding(.top)
+            .padding(.horizontal)
+            
+            GroupBox {
+                VStack {
+                    CustomLabel(leadingImageName: "bolt.shield", trailingImageName: "chevron.right", title: "Privacy Policy")
+                    Divider()
+                        .padding(.vertical, 2)
+                    CustomLabel(leadingImageName: "list.bullet.rectangle.portrait", trailingImageName: "chevron.right", title: "Terms of Use")
+                    Divider()
+                        .padding(.vertical, 2)
+                    CustomLabel(leadingImageName: "licenseplate", trailingImageName: "chevron.right", title: "Usage License")
+                    Divider()
+                        .padding(.top, 2)
+                    Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
+                        CustomLabel(leadingImageName: "lock.open.display", trailingImageName: "arrow.up.right", title: "Open Source Code")
+                    }
+                }
+                .padding([.leading, .top, .bottom], 6)
+                .padding(.trailing, 12)
             }
             .padding(.horizontal)
         }
-        .padding(.top)
     }
 }
 
 #Preview {
-    GeneralSettingsView()
+    SettingsView()
         .environmentObject(UserDefaultsManager.shared)
 }
+#endif

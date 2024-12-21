@@ -12,6 +12,7 @@ import SwiftData
 struct i2048App: App {
     @Environment(\.colorScheme) var colorScheme
     @StateObject private var userDefaultsManager = UserDefaultsManager()
+    @StateObject private var artManager = BackgroundArtManager()
 
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -31,6 +32,7 @@ struct i2048App: App {
         WindowGroup {
             ContentView()
                 .environmentObject(userDefaultsManager)
+                .environmentObject(artManager)
         }
         .modelContainer(sharedModelContainer)
 #if os(macOS)
@@ -41,9 +43,10 @@ struct i2048App: App {
         Settings {
             SettingsView()
                 .environmentObject(userDefaultsManager)
+                .environmentObject(artManager)
                 .toolbar(.hidden, for: .windowToolbar)
         }
-        .windowStyle(.hiddenTitleBar)
+        .windowStyle(.titleBar)
 #endif
     }
 }

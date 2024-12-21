@@ -11,22 +11,27 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
+    @EnvironmentObject var backgroundArtManager: BackgroundArtManager
     
     @Query var games: [Game]
     
     @State private var selectedGame: Game?
     @State private var gameController: GameController?
     @State private var animationValues: [[Double]] = []
+    @State private var settingsSheetOpen: Bool = false
     
     var body: some View {
         NavigationSplitView {
             gamesListView
         } detail: {
-            detailView
+            DetailView()
         }
         .onChange(of: selectedGame) { oldValue, newValue in
             updateGameController()
         }
+        .sheet(isPresented: $settingsSheetOpen, content: {
+            SettingsView()
+        })
 #if os(macOS)
         .keyboardReaction { gameHotKeys($0) }
 #endif
@@ -67,57 +72,36 @@ struct ContentView: View {
             .onDelete(perform: deleteGames)
         }
 #if os(macOS)
-        .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-        .toolbar {
-            ToolbarItem {
-                Button(action: addGame) {
-                    Label("Add Game", systemImage: "plus.circle")
-                }
-                .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
-            }
-        }
+        .navigationSplitViewColumnWidth(min: 220, ideal: 230)
+        .toolbar(content: MacOSToolbarBuilder)
 #endif
 #if os(iOS)
-        .toolbar(removing: .sidebarToggle)
-        .toolbar {
-            ToolbarItem(placement: .bottomBar) {
-                HStack {
-                    Button(action: addGame) {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                            Text("Add game")
-                                .font(.headline)
-                        }
-                    }
-                    .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
-                    Spacer()
-                    Text("\(games.count) Games")
-                        .font(.headline)
-                }
-            }
-        }
+        .toolbar(content: IosToolbarBuilder)
 #endif
         .navigationTitle("i2048")
-        .background(.orange.opacity(0.1))
-//        .background(Gradient(colors: [Color(hex: "#bac895"), Color(hex: "#f4ee93"), Color(hex: "#ebbe44")]))
-        .scrollContentBackground(.hidden)
     }
 
-    var detailView: some View {
+    @ViewBuilder
+    func DetailView() -> some View {
         Group {
             if let _ = selectedGame, let gameController = gameController {
                 GameView(gameController: .constant(gameController), animationValues: $animationValues)
             } else {
-                placeholderView
+                PlaceholderView()
             }
         }
     }
     
-    var placeholderView: some View {
-        Image(userDefaultsManager.imageName)
-            .resizable()
-            .scaledToFill()
-            .ignoresSafeArea()
+    @ViewBuilder
+    func PlaceholderView() -> some View {
+        if userDefaultsManager.isNetworkImageSelected {
+            GameBackgroundImageView()
+        } else {
+            Image(userDefaultsManager.imageName)
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+        }
     }
     
     func updateGameController() {
@@ -141,9 +125,69 @@ struct ContentView: View {
             }
         }
     }
+    
+    #if os(macOS)
+    @ToolbarContentBuilder
+    func MacOSToolbarBuilder() -> some ToolbarContent {
+        ToolbarItem {
+            Menu {
+                Button("Duplicate", action: openSettingsWindow)
+                Button("Rename", action: openSettingsWindow)
+                Button("Delete…", action: openSettingsWindow)
+                Menu("Copy") {
+                    Button("Copy", action: openSettingsWindow)
+                    Button("Copy Formatted", action: openSettingsWindow)
+                    Button("Copy Library Path", action: openSettingsWindow)
+                }
+            } label: {
+                Label("Settings", systemImage: "switch.2")
+            }
+
+            Button(action: openSettingsWindow) {
+                Label("Settings", systemImage: "switch.2")
+            }
+            .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
+        }
+        ToolbarItem {
+            Button(action: addGame) {
+                Label("Add Game", systemImage: "plus.circle")
+            }
+            .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
+        }
+    }
+    
+    func openSettingsWindow() {
+        
+    }
+    #endif
+    
+    #if os(iOS)
+    @ToolbarContentBuilder
+    func IosToolbarBuilder() -> some ToolbarContent {
+        ToolbarItem(placement: .bottomBar) {
+            HStack {
+                Button(action: addGame) {
+                    HStack {
+                        Image(systemName: "plus.circle.fill")
+                        Text("Add game")
+                            .font(.headline)
+                    }
+                }
+                .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
+                Spacer()
+                Button(action: {
+                    settingsSheetOpen = true
+                }, label: {
+                    Image(systemName: "switch.2")
+                })
+            }
+        }
+    }
+    #endif
 }
 
 #Preview {
     ContentView()
         .environmentObject(UserDefaultsManager.shared)
+        .environmentObject(BackgroundArtManager.shared)
 }

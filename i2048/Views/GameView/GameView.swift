@@ -17,10 +17,7 @@ struct GameView: View {
         
     var body: some View {
         ZStack {
-            Image(userDefaultsManager.imageName)
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+            GameBackgroundImageView()
             VStack {
                 if gameController.game.hasWon {
                     Text("You Won!")
@@ -50,7 +47,7 @@ struct GameView: View {
                 }
                 .padding()
                 .frame(minWidth: 300, maxWidth: 350)
-                .background(.ultraThinMaterial)
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
                 .cornerRadius(10)
                 
                 GameGridView(gameController: .constant(gameController), animationValues: $animationValues)

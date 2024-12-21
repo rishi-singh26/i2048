@@ -17,34 +17,14 @@ enum GameSchemaV1: VersionedSchema {
 
     @Model
     class Game {
-        var id: UUID
-        var name: String
-        var gridSize: Int
-        var grid: [[Int]]
-        var score: Int
-        var hasWon: Bool
-        var createdAt: Date
-        var modifiedAt: Date
-        
-        /// For loading existing game
-        init(
-            id: UUID = UUID(),
-            name: String,
-            grid: [[Int]],
-            score: Int,
-            hasWon: Bool,
-            createdAt: Date,
-            modifiedAt: Date
-        ) {
-            self.id = id
-            self.name = name
-            self.gridSize = grid.count
-            self.grid = grid
-            self.score = score
-            self.hasWon = hasWon
-            self.createdAt = createdAt
-            self.modifiedAt = modifiedAt
-        }
+        var id: UUID = UUID()
+        var name: String = "New Game"
+        var gridSize: Int = 4
+        var grid: [[Int]] = Array(repeating: Array(repeating: 0, count: 4),count: 4)
+        var score: Int = 0
+        var hasWon: Bool = false
+        var createdAt: Date = Date.now
+        var modifiedAt: Date = Date.now
         
         /// For creating new game
         init(

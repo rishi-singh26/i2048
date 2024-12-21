@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B0B4F692D157B80005AD427 /* NetworkAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F682D157B80005AD427 /* NetworkAvatar.swift */; };
+		5B0B4F6B2D158208005AD427 /* ArtDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F6A2D158208005AD427 /* ArtDetailView.swift */; };
+		5B0B4F6D2D15A712005AD427 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F6C2D15A712005AD427 /* CustomButton.swift */; };
+		5B0B4F712D167F53005AD427 /* MacOsCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F702D167F53005AD427 /* MacOsCarouselView.swift */; };
+		5B0B4F752D167FCA005AD427 /* CarouselCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F742D167FCA005AD427 /* CarouselCard.swift */; };
+		5B0B4F772D1680B0005AD427 /* NetworkImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F762D1680B0005AD427 /* NetworkImageView.swift */; };
+		5B0B4F792D168EEE005AD427 /* GameBackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F782D168EEE005AD427 /* GameBackgroundImageView.swift */; };
 		5B1421672D13D84700032861 /* BackgroundArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1421662D13D84700032861 /* BackgroundArt.swift */; };
+		5B14219D2D14443300032861 /* ParallaxCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B14219C2D14443300032861 /* ParallaxCarouselView.swift */; };
+		5B14219F2D147C1D00032861 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B14219E2D147C1D00032861 /* AboutView.swift */; };
+		5B1421A12D147CAF00032861 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1421A02D147CAF00032861 /* CustomLabel.swift */; };
 		5B75E6E52D109D0D009D2C80 /* i2048App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6E42D109D0D009D2C80 /* i2048App.swift */; };
 		5B75E6E72D109D0D009D2C80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6E62D109D0D009D2C80 /* ContentView.swift */; };
 		5B75E6E92D109D0F009D2C80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B75E6E82D109D0F009D2C80 /* Assets.xcassets */; };
@@ -29,8 +39,6 @@
 		5BED5FEF2D12F77B0085968B /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FEE2D12F77B0085968B /* UserDefaultsManager.swift */; };
 		5BED5FF12D12FD5E0085968B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FF02D12FD5E0085968B /* SettingsView.swift */; };
 		5BED5FF42D130E140085968B /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FF32D130E140085968B /* GeneralSettingsView.swift */; };
-		5BED5FF62D130E450085968B /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FF52D130E450085968B /* AppearanceSettingsView.swift */; };
-		5BED5FF82D130E980085968B /* PrivacySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FF72D130E980085968B /* PrivacySettingsView.swift */; };
 		5BED60002D1373E50085968B /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FFF2D1373E40085968B /* MotionManager.swift */; };
 		5BED60022D138F220085968B /* BackgroundArtManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED60012D138F220085968B /* BackgroundArtManager.swift */; };
 		5BED60042D138F870085968B /* BackgroundArtSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED60032D138F870085968B /* BackgroundArtSettings.swift */; };
@@ -54,6 +62,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B0B4F682D157B80005AD427 /* NetworkAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAvatar.swift; sourceTree = "<group>"; };
+		5B0B4F6A2D158208005AD427 /* ArtDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtDetailView.swift; sourceTree = "<group>"; };
+		5B0B4F6C2D15A712005AD427 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		5B0B4F702D167F53005AD427 /* MacOsCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOsCarouselView.swift; sourceTree = "<group>"; };
+		5B0B4F742D167FCA005AD427 /* CarouselCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCard.swift; sourceTree = "<group>"; };
+		5B0B4F762D1680B0005AD427 /* NetworkImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageView.swift; sourceTree = "<group>"; };
+		5B0B4F782D168EEE005AD427 /* GameBackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBackgroundImageView.swift; sourceTree = "<group>"; };
+		5B0B4F7A2D16AC06005AD427 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5B1421422D13D27700032861 /* ImageData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ImageData.json; sourceTree = "<group>"; };
 		5B1421472D13D3B700032861 /* Green-Valley.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Green-Valley.jpg"; sourceTree = "<group>"; };
 		5B1421482D13D3B700032861 /* Preview-Desert-Sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Desert-Sunset.jpg"; sourceTree = "<group>"; };
@@ -87,6 +103,9 @@
 		5B1421642D13D3B800032861 /* Preview-Corn-Farm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Corn-Farm.jpg"; sourceTree = "<group>"; };
 		5B1421652D13D47C00032861 /* ProfileImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ProfileImage.jpg; sourceTree = "<group>"; };
 		5B1421662D13D84700032861 /* BackgroundArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundArt.swift; sourceTree = "<group>"; };
+		5B14219C2D14443300032861 /* ParallaxCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallaxCarouselView.swift; sourceTree = "<group>"; };
+		5B14219E2D147C1D00032861 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		5B1421A02D147CAF00032861 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		5B75E6E12D109D0D009D2C80 /* i2048.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = i2048.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B75E6E42D109D0D009D2C80 /* i2048App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = i2048App.swift; sourceTree = "<group>"; };
 		5B75E6E62D109D0D009D2C80 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,8 +131,6 @@
 		5BED5FEE2D12F77B0085968B /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		5BED5FF02D12FD5E0085968B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5BED5FF32D130E140085968B /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
-		5BED5FF52D130E450085968B /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
-		5BED5FF72D130E980085968B /* PrivacySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySettingsView.swift; sourceTree = "<group>"; };
 		5BED5FFF2D1373E40085968B /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		5BED60012D138F220085968B /* BackgroundArtManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundArtManager.swift; sourceTree = "<group>"; };
 		5BED60032D138F870085968B /* BackgroundArtSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundArtSettings.swift; sourceTree = "<group>"; };
@@ -144,6 +161,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B0B4F722D167F5C005AD427 /* Carousel */ = {
+			isa = PBXGroup;
+			children = (
+				5B0B4F762D1680B0005AD427 /* NetworkImageView.swift */,
+				5B14219C2D14443300032861 /* ParallaxCarouselView.swift */,
+				5B0B4F702D167F53005AD427 /* MacOsCarouselView.swift */,
+			);
+			path = Carousel;
+			sourceTree = "<group>";
+		};
+		5B0B4F732D167F73005AD427 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */,
+				5B0B4F6C2D15A712005AD427 /* CustomButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 		5B1421432D13D27700032861 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +258,7 @@
 		5B75E6E32D109D0D009D2C80 /* i2048 */ = {
 			isa = PBXGroup;
 			children = (
+				5B0B4F7A2D16AC06005AD427 /* Info.plist */,
 				5B75E6E42D109D0D009D2C80 /* i2048App.swift */,
 				5B75E7502D10CE82009D2C80 /* Models */,
 				5B75E7512D10CE99009D2C80 /* Views */,
@@ -267,6 +304,7 @@
 			children = (
 				5B75E70F2D109D45009D2C80 /* Game.swift */,
 				5B1421662D13D84700032861 /* BackgroundArt.swift */,
+				5B0B4F742D167FCA005AD427 /* CarouselCard.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -316,6 +354,7 @@
 				5B75E7112D10AEBB009D2C80 /* GameView.swift */,
 				5BED5FE72D12E0310085968B /* GameGridView.swift */,
 				5BED5FE32D12D9A50085968B /* GridTileView.swift */,
+				5B0B4F782D168EEE005AD427 /* GameBackgroundImageView.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -332,7 +371,10 @@
 		5BED5FED2D12E4960085968B /* SharedViews */ = {
 			isa = PBXGroup;
 			children = (
-				5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */,
+				5B0B4F732D167F73005AD427 /* Button */,
+				5B0B4F722D167F5C005AD427 /* Carousel */,
+				5B0B4F682D157B80005AD427 /* NetworkAvatar.swift */,
+				5B1421A02D147CAF00032861 /* CustomLabel.swift */,
 			);
 			path = SharedViews;
 			sourceTree = "<group>";
@@ -342,9 +384,9 @@
 			children = (
 				5BED5FF02D12FD5E0085968B /* SettingsView.swift */,
 				5BED5FF32D130E140085968B /* GeneralSettingsView.swift */,
-				5BED5FF52D130E450085968B /* AppearanceSettingsView.swift */,
-				5BED5FF72D130E980085968B /* PrivacySettingsView.swift */,
 				5BED60032D138F870085968B /* BackgroundArtSettings.swift */,
+				5B0B4F6A2D158208005AD427 /* ArtDetailView.swift */,
+				5B14219E2D147C1D00032861 /* AboutView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -481,26 +523,34 @@
 			files = (
 				5BED60042D138F870085968B /* BackgroundArtSettings.swift in Sources */,
 				5BED5FE42D12D9A50085968B /* GridTileView.swift in Sources */,
-				5BED5FF82D130E980085968B /* PrivacySettingsView.swift in Sources */,
 				5B75E79F2D11D2DB009D2C80 /* GameCardView.swift in Sources */,
+				5B0B4F6D2D15A712005AD427 /* CustomButton.swift in Sources */,
 				5B75E7A12D11E43B009D2C80 /* keyboardReactionModifier.swift in Sources */,
+				5B0B4F752D167FCA005AD427 /* CarouselCard.swift in Sources */,
 				5B1421672D13D84700032861 /* BackgroundArt.swift in Sources */,
 				5B75E79A2D11B0CA009D2C80 /* GameController.swift in Sources */,
+				5B0B4F6B2D158208005AD427 /* ArtDetailView.swift in Sources */,
 				5B75E6E72D109D0D009D2C80 /* ContentView.swift in Sources */,
 				5B75E7102D109D46009D2C80 /* Game.swift in Sources */,
+				5B1421A12D147CAF00032861 /* CustomLabel.swift in Sources */,
 				5B75E7A52D11E4FE009D2C80 /* KeyCode.swift in Sources */,
+				5B0B4F692D157B80005AD427 /* NetworkAvatar.swift in Sources */,
 				5BED5FE82D12E0310085968B /* GameGridView.swift in Sources */,
 				5BED60022D138F220085968B /* BackgroundArtManager.swift in Sources */,
+				5B0B4F792D168EEE005AD427 /* GameBackgroundImageView.swift in Sources */,
+				5B0B4F712D167F53005AD427 /* MacOsCarouselView.swift in Sources */,
 				5BED5FF12D12FD5E0085968B /* SettingsView.swift in Sources */,
 				5BED5FF42D130E140085968B /* GeneralSettingsView.swift in Sources */,
 				5B75E7972D11857D009D2C80 /* ColorExtension.swift in Sources */,
 				5BED5FEC2D12E4880085968B /* KeyboardKeyButton.swift in Sources */,
+				5B14219F2D147C1D00032861 /* AboutView.swift in Sources */,
 				5BED5FEF2D12F77B0085968B /* UserDefaultsManager.swift in Sources */,
 				5B75E7122D10AEBB009D2C80 /* GameView.swift in Sources */,
 				5B75E6E52D109D0D009D2C80 /* i2048App.swift in Sources */,
 				5BED60002D1373E50085968B /* MotionManager.swift in Sources */,
+				5B0B4F772D1680B0005AD427 /* NetworkImageView.swift in Sources */,
 				5B75E7A32D11E495009D2C80 /* wndAccessorModifier.swift in Sources */,
-				5BED5FF62D130E450085968B /* AppearanceSettingsView.swift in Sources */,
+				5B14219D2D14443300032861 /* ParallaxCarouselView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +714,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = i2048/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -702,6 +753,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = i2048/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
