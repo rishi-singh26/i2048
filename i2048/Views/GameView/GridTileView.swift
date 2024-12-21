@@ -16,7 +16,7 @@ struct GridTileView: View {
         Text(value == 0 ? "" : String(value))
             .frame(width: 70, height: 70)
             .background(color)
-            .foregroundColor(.white)
+            .foregroundColor(Color(forBackground: color))
             .font(getFontSize())
             .cornerRadius(10)
 //            .scaleEffect(value > 0 ? 1.0 : 0.8)
