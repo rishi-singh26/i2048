@@ -20,11 +20,15 @@ struct ContentView: View {
     @State private var animationValues: [[Double]] = []
     @State private var settingsSheetOpen: Bool = false
     
+    @Namespace var navigationNamespace
+    
     var body: some View {
-        NavigationSplitView {
-            gamesListView
-        } detail: {
-            DetailView()
+        Group {
+#if os(macOS)
+            MacOSViewBuilder()
+#elseif os(iOS)
+            IosViewBuilder()
+#endif
         }
         .onChange(of: selectedGame) { oldValue, newValue in
             updateGameController()
@@ -32,89 +36,38 @@ struct ContentView: View {
         .sheet(isPresented: $settingsSheetOpen, content: {
             SettingsView()
         })
-#if os(macOS)
-        .keyboardReaction { gameHotKeys($0) }
-#endif
-    }
-    
-#if os(macOS)
-    func gameHotKeys(_ event: NSEvent) -> NSEvent? {
-        if event.modifierFlags.contains(.command) && gameController != nil {
-            switch event.keyCode {
-            case KeyCode.upArrow:
-                gameController!.moveUp($animationValues)
-                return nil // disable beep sound
-            case KeyCode.downArrow:
-                gameController!.moveDown($animationValues)
-                return nil // disable beep sound
-            case KeyCode.rightArrow:
-                gameController!.moveRight($animationValues)
-                return nil // disable beep sound
-            case KeyCode.leftArrow:
-                gameController!.moveLeft($animationValues)
-                return nil // disable beep sound
-            default:
-                return event // beep sound will be here
-            }
-        } else {
-            return event
-        }
-    }
-#endif
-    
-    var gamesListView: some View {
-        List(selection: $selectedGame) {
-            ForEach(games) {game in
-                NavigationLink(value: game) {
-                    GameCardView(game: game, selectedGame: $selectedGame)
-                }
-            }
-            .onDelete(perform: deleteGames)
-        }
-#if os(macOS)
-        .navigationSplitViewColumnWidth(min: 220, ideal: 230)
-        .toolbar(content: MacOSToolbarBuilder)
-#endif
-#if os(iOS)
-        .toolbar(content: IosToolbarBuilder)
-#endif
-        .navigationTitle("i2048")
-    }
-
-    @ViewBuilder
-    func DetailView() -> some View {
-        Group {
-            if let _ = selectedGame, let gameController = gameController {
-                GameView(gameController: .constant(gameController), animationValues: $animationValues)
-            } else {
-                GameBackgroundImageView()
-            }
-        }
-    }
-    
-    func updateGameController() {
-        if let selectedGame = selectedGame {
-            gameController = GameController(game: selectedGame, userDefaultsManager: userDefaultsManager)
-        }
-    }
-    
-    func addGame() {
-        let game = Game(name: "Game #\(games.count + 1)", gridSize: 4)
-        modelContext.insert(game)
-        selectedGame = game
-    }
-    
-    func deleteGames(_ indexSet: IndexSet) {
-        for index in indexSet {
-            let game = games[index]
-            modelContext.delete(game)
-            if game == selectedGame {
-                selectedGame = nil
-            }
-        }
     }
     
     #if os(macOS)
+    @ViewBuilder
+    func MacOSViewBuilder() -> some View {
+        NavigationSplitView {
+            MacOsGamesListBuilder()
+        } detail: {
+            DetailView()
+        }
+        .keyboardReaction { gameHotKeys($0) }
+    }
+    
+    @ViewBuilder
+    func MacOsGamesListBuilder() -> some View {
+        List(selection: $selectedGame) {
+            ForEach(games) {game in
+                NavigationLink(value: game) {
+                    if #available(iOS 18.0, *) {
+                        GameCardView(game: game, selectedGame: $selectedGame)
+                            .navigationTransition(.zoom(sourceID: game.id, in: navigationNamespace))
+                    } else {
+                        GameCardView(game: game, selectedGame: $selectedGame)
+                    }
+                }
+            }
+        }
+        .navigationSplitViewColumnWidth(min: 220, ideal: 230)
+        .toolbar(content: MacOSToolbarBuilder)
+        .navigationTitle("i2048")
+    }
+    
     @ToolbarContentBuilder
     func MacOSToolbarBuilder() -> some ToolbarContent {
         ToolbarItem {
@@ -144,12 +97,80 @@ struct ContentView: View {
         }
     }
     
+    @ViewBuilder
+    func DetailView() -> some View {
+        Group {
+            if let _ = selectedGame, let gameController = gameController {
+                GameView(gameController: .constant(gameController), animationValues: $animationValues)
+            } else {
+                GameBackgroundImageView()
+            }
+        }
+    }
+    
     func openSettingsWindow() {
         
+    }
+    
+    func gameHotKeys(_ event: NSEvent) -> NSEvent? {
+        if event.modifierFlags.contains(.command) && gameController != nil {
+            switch event.keyCode {
+            case KeyCode.upArrow:
+                gameController!.moveUp($animationValues)
+                return nil // disable beep sound
+            case KeyCode.downArrow:
+                gameController!.moveDown($animationValues)
+                return nil // disable beep sound
+            case KeyCode.rightArrow:
+                gameController!.moveRight($animationValues)
+                return nil // disable beep sound
+            case KeyCode.leftArrow:
+                gameController!.moveLeft($animationValues)
+                return nil // disable beep sound
+            default:
+                return event // beep sound will be here
+            }
+        } else {
+            return event
+        }
     }
     #endif
     
     #if os(iOS)
+    @ViewBuilder
+    func IosViewBuilder() -> some View {
+        NavigationStack {
+            List(selection: $selectedGame) {
+                ForEach(games) { game in
+                    if #available(iOS 18.0, *) {
+                        NavigationCardBuilder(game: game)
+                            .matchedTransitionSource(id: game.id, in: navigationNamespace)
+                    } else {
+                        NavigationCardBuilder(game: game)
+                    }
+                }
+                .onDelete(perform: deleteGames)
+            }
+            .toolbar(content: IosToolbarBuilder)
+            .navigationTitle("i2048")
+        }
+    }
+    
+    func NavigationCardBuilder(game: Game) -> some View {
+        NavigationLink {
+            if let controller = gameController {
+                if #available(iOS 18.0, *) {
+                    GameView(gameController: .constant(controller), animationValues: $animationValues)
+                        .navigationTransition(.zoom(sourceID: game.id, in: navigationNamespace))
+                } else {
+                    GameView(gameController: .constant(controller), animationValues: $animationValues)
+                }
+            }
+        } label: {
+            GameCardView(game: game, selectedGame: $selectedGame)
+        }
+    }
+    
     @ToolbarContentBuilder
     func IosToolbarBuilder() -> some ToolbarContent {
         ToolbarItem(placement: .bottomBar) {
@@ -172,6 +193,28 @@ struct ContentView: View {
         }
     }
     #endif
+    
+    func updateGameController() {
+        if let selectedGame = selectedGame {
+            gameController = GameController(game: selectedGame, userDefaultsManager: userDefaultsManager)
+        }
+    }
+    
+    func addGame() {
+        let game = Game(name: "Game #\(games.count + 1)", gridSize: 4)
+        modelContext.insert(game)
+        selectedGame = game
+    }
+    
+    func deleteGames(_ indexSet: IndexSet) {
+        for index in indexSet {
+            let game = games[index]
+            modelContext.delete(game)
+            if game == selectedGame {
+                selectedGame = nil
+            }
+        }
+    }
 }
 
 #Preview {
