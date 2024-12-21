@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-//if userDefaultsManager.isNetworkImageSelected {
-//                GameBackgroundImageView()
-//            } else {
-//                Image(userDefaultsManager.imageName)
-//                    .resizable()
-//                    .scaledToFill()
-//                    .ignoresSafeArea()
-//            }
-
 struct GameBackgroundImageView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager

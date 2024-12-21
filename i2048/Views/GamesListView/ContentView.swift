@@ -87,20 +87,8 @@ struct ContentView: View {
             if let _ = selectedGame, let gameController = gameController {
                 GameView(gameController: .constant(gameController), animationValues: $animationValues)
             } else {
-                PlaceholderView()
+                GameBackgroundImageView()
             }
-        }
-    }
-    
-    @ViewBuilder
-    func PlaceholderView() -> some View {
-        if userDefaultsManager.isNetworkImageSelected {
-            GameBackgroundImageView()
-        } else {
-            Image(userDefaultsManager.imageName)
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
         }
     }
     

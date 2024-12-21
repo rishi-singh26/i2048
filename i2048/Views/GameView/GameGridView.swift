@@ -93,35 +93,8 @@ struct GameGridView: View {
     }
 }
 
-
-//#Preview {
-//    do {
-//        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-//        let container = try ModelContainer(for: Game.self, configurations: config)
-//        let example = Game(name: "Preview Game", gridSize: 4)
-//        
-//        @State var gameController = GameController(game: example, userDefaultsManager: UserDefaultsManager.shared)
-//        @State var animationValues: [[Double]] = []
-//        return GameGridView(gameController: $gameController, animationValues: $animationValues)
-//            .modelContainer(container)
-//            .environmentObject(UserDefaultsManager.shared)
-//    } catch {
-//        fatalError("Failed to created model container")
-//    }
-//}
-
 #Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Game.self, configurations: config)
-        let example = Game(name: "Preview Game", gridSize: 4)
-        
-        @State var gameController = GameController(game: example, userDefaultsManager: UserDefaultsManager.shared)
-        @State var animationValues: [[Double]] = Array(repeating: Array(repeating: 1.0, count: 4), count: 4);
-        return GameView(gameController: $gameController, animationValues: $animationValues)
-            .modelContainer(container)
-            .environmentObject(UserDefaultsManager.shared)
-    } catch {
-        fatalError("Failed to created model container")
-    }
+    ContentView()
+        .environmentObject(UserDefaultsManager.shared)
+        .environmentObject(BackgroundArtManager.shared)
 }

@@ -58,15 +58,7 @@ struct GameCardView: View {
 }
 
 #Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Game.self, configurations: config)
-        let example = Game(name: "Preview Game", gridSize: 4)
-        
-        @State var selectedGame: Game?
-        return GameCardView(game: example, selectedGame: $selectedGame)
-            .modelContainer(container)
-    } catch {
-        fatalError("Failed to created model container")
-    }
+    ContentView()
+        .environmentObject(UserDefaultsManager.shared)
+        .environmentObject(BackgroundArtManager.shared)
 }
