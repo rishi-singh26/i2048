@@ -44,9 +44,8 @@ struct i2048App: App {
             SettingsView()
                 .environmentObject(userDefaultsManager)
                 .environmentObject(artManager)
-                .toolbar(.hidden, for: .windowToolbar)
         }
-        .windowStyle(.titleBar)
+        .windowStyle(.hiddenTitleBar)
 #endif
     }
 }

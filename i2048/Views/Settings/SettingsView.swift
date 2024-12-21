@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var selectedTab: String?
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
-    
-    let screens = ["General", "Background Image", "About"]
-    
+        
     var body: some View {
         Group {
 #if os(iOS)
@@ -87,31 +84,27 @@ struct SettingsView: View {
 #if os(macOS)
     @ViewBuilder
     func MacOSViewBuilder() -> some View {
-        NavigationSplitView {
-            List(selection: $selectedTab) {
-                NavigationLink(value: screens[2]) {
-                    Label(screens[0], systemImage: "gear")
+        TabView {
+            GeneralSettingsView()
+                .tabItem {
+                    Label("General", systemImage: "wrench")
                 }
-                NavigationLink(value: screens[1]) {
-                    Label(screens[1], systemImage: "photo")
+                .tag(1)
+            
+            BackgroundArtSettings()
+                .tabItem {
+                    Label("Background", systemImage: "photo")
                 }
-                NavigationLink(value: screens[0]) {
-                    Label(screens[2], systemImage: "info.square")
+                .tag(2)
+            
+            AboutView()
+                .tabItem {
+                    Label("Advanced", systemImage: "info.square")
                 }
-            }
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-        } detail: {
-            switch selectedTab {
-            case screens[0]:
-                GeneralSettingsView()
-            case screens[1]:
-                BackgroundArtSettings()
-            case screens[2]:
-                AboutView()
-            default:
-                GeneralSettingsView()
-            }
+                .tag(3)
         }
+//        .scenePadding()
+        .frame(maxWidth: 640, minHeight: 600)
     }
 #endif
 }
@@ -119,4 +112,5 @@ struct SettingsView: View {
 #Preview {
     SettingsView()
         .environmentObject(UserDefaultsManager.shared)
+        .environmentObject(BackgroundArtManager.shared)
 }
