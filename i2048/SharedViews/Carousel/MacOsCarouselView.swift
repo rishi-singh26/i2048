@@ -56,8 +56,8 @@ struct MacOsOverlayView: View {
                     Text("Set as Game Background")
                         .font(.headline.bold())
                         .foregroundStyle(colorScheme == .dark ? .black : .white)
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                        .padding(6)
+                        .background(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 })
                 .buttonStyle(PlainButtonStyle())
             }
