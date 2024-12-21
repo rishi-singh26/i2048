@@ -11,16 +11,17 @@ import SwiftData
 struct GameGridView: View {
 //    @StateObject private var motionManager = MotionManager()
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
-    @Binding var gameController: GameController
     @Binding var animationValues: [[Double]]
+    private let gameController = GameController()
+    var selectedGame: Game
 
     var body: some View {
         ZStack {
             VStack(spacing: 10) {
-                ForEach(0..<gameController.game.gridSize, id: \.self) { row in
+                ForEach(0..<selectedGame.gridSize, id: \.self) { row in
                     HStack(spacing: 10) {
-                        ForEach(0..<gameController.game.gridSize, id: \.self) { col in
-                            let value = gameController.game.grid[row][col]
+                        ForEach(0..<selectedGame.gridSize, id: \.self) { col in
+                            let value = selectedGame.grid[row][col]
                             GridTileView(
                                 value: value,
                                 color: colorForValue(value),
@@ -42,7 +43,10 @@ struct GameGridView: View {
             .gesture(
                 DragGesture()
                     .onEnded { value in
-                        gameController.handleSwipe(translation: value.translation, $animationValues)
+                        gameController.handleSwipe(translation: value.translation, on: selectedGame, $animationValues)
+                        if selectedGame.score > userDefaultsManager.highScore {
+                            userDefaultsManager.highScore = selectedGame.score
+                        }
                     }
             )
         }

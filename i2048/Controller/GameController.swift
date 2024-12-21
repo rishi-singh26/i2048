@@ -8,56 +8,47 @@
 import Foundation
 import SwiftUI
 
-class GameController {
-    @Bindable var game: Game
-    private var userDefaultsManager: UserDefaultsManager
-    
-    init(game: Game, userDefaultsManager: UserDefaultsManager) {
-        self.game = game
-        self.userDefaultsManager = userDefaultsManager
-    }
-    
-    func handleSwipe(translation: CGSize, _ animationValues: Binding<[[Double]]>) {
+class GameController: ObservableObject {
+    func handleSwipe(translation: CGSize, on game: Game, _ animationValues: Binding<[[Double]]>) {
         let horizontalDirection = abs(translation.width) > abs(translation.height)
         
         if horizontalDirection {
             if translation.width > 50 {
-                moveRight(animationValues)
+                moveRight(on: game, animationValues)
             } else if translation.width < -50 {
-                moveLeft(animationValues)
+                moveLeft(on: game, animationValues)
             }
         } else {
             if translation.height > 50 {
-                moveDown(animationValues)
+                moveDown(on: game, animationValues)
             } else if translation.height < -50 {
-                moveUp(animationValues)
+                moveUp(on: game, animationValues)
             }
         }
     }
     
-    func moveLeft(_ animationValues: Binding<[[Double]]>) {
+    func moveLeft(on game: Game, _ animationValues: Binding<[[Double]]>) {
 //        print("🔍 moveLeft() called")
         var moved = false
         var newGrid = game.grid
         
         for row in 0..<game.gridSize {
             let rowItem = game.grid[row]
-            let (newRow, rowMoved) = compressRow(row: rowItem)
+            let (newRow, rowMoved) = compressRow(on: game,row: rowItem)
             newGrid[row] = newRow
             moved = moved || rowMoved || (rowItem != newRow)
         }
         
         if moved {
             game.grid = newGrid
-            addRandomTile(animationValues)
-            updateScore()
-            updateModifiedAt()
+            addRandomTile(on: game, animationValues)
+            updateModifiedAt(on: game)
         } else {
 //            print("❌ No movement occurred")
         }
     }
     
-    func moveRight(_ animationValues: Binding<[[Double]]>) {
+    func moveRight(on game: Game, _ animationValues: Binding<[[Double]]>) {
 //        print("🔍 moveRight() called")
         var moved = false
         var newGrid = game.grid
@@ -65,7 +56,7 @@ class GameController {
         for row in 0..<game.gridSize {
             let rowItem = game.grid[row]
             let reversedRow = rowItem.reversed()
-            let (compressedRow, rowMoved) = compressRow(row: Array(reversedRow))
+            let (compressedRow, rowMoved) = compressRow(on: game, row: Array(reversedRow))
             let compressionResult = Array(compressedRow.reversed())
             newGrid[row] = compressionResult
             moved = moved || rowMoved || (rowItem != compressionResult)
@@ -73,22 +64,21 @@ class GameController {
         
         if moved {
             game.grid = newGrid
-            addRandomTile(animationValues)
-            updateScore()
-            updateModifiedAt()
+            addRandomTile(on: game, animationValues)
+            updateModifiedAt(on: game)
         } else {
 //            print("❌ No movement occurred")
         }
     }
     
-    func moveUp(_ animationValues: Binding<[[Double]]>) {
+    func moveUp(on game: Game, _ animationValues: Binding<[[Double]]>) {
 //        print("🔍 moveUp() called")
         var moved = false
         var newGrid = game.grid
         
         for col in 0..<game.gridSize {
             let column = (0..<game.gridSize).map { game.grid[$0][col] }
-            let (newColumn, colMoved) = compressRow(row: column)
+            let (newColumn, colMoved) = compressRow(on: game, row: column)
             
             for row in 0..<game.gridSize {
                 newGrid[row][col] = newColumn[row]
@@ -98,15 +88,14 @@ class GameController {
         
         if moved {
             game.grid = newGrid
-            addRandomTile(animationValues)
-            updateScore()
-            updateModifiedAt()
+            addRandomTile(on: game, animationValues)
+            updateModifiedAt(on: game)
         } else {
 //            print("❌ No movement occurred")
         }
     }
     
-    func moveDown(_ animationValues: Binding<[[Double]]>) {
+    func moveDown(on game: Game, _ animationValues: Binding<[[Double]]>) {
 //        print("🔍 moveDown() called")
         
         var moved = false
@@ -114,7 +103,7 @@ class GameController {
         
         for col in 0..<game.gridSize {
             let column = (0..<game.gridSize).map { game.grid[$0][col] }
-            let (compressedColumn, colMoved) = compressRow(row: Array(column.reversed()))
+            let (compressedColumn, colMoved) = compressRow(on: game, row: Array(column.reversed()))
             let finalColumn = Array(compressedColumn.reversed())
             // Update the grid
             for row in 0..<game.gridSize {
@@ -126,15 +115,14 @@ class GameController {
         
         if moved {
             game.grid = newGrid
-            addRandomTile(animationValues)
-            updateScore()
-            updateModifiedAt()
+            addRandomTile(on: game, animationValues)
+            updateModifiedAt(on: game)
         } else {
 //            print("❌ No movement occurred")
         }
     }
     
-    func compressRow(row: [Int]) -> ([Int], Bool) {
+    func compressRow(on game: Game, row: [Int]) -> ([Int], Bool) {
         // Remove zeros
         var newRow = row.filter { $0 != 0 }
         var moved = newRow.count != row.filter { $0 != 0 }.count
@@ -164,7 +152,7 @@ class GameController {
         return (newRow, moved)
     }
     
-    func addRandomTile(_ animationValues: Binding<[[Double]]>) {
+    func addRandomTile(on game: Game, _ animationValues: Binding<[[Double]]>) {
         var emptyCells = [(Int, Int)]()
         for row in 0..<game.gridSize {
             for col in 0..<game.gridSize {
@@ -187,23 +175,17 @@ class GameController {
         }
     }
     
-    func updateScore() {
-        if game.score > userDefaultsManager.highScore {
-            userDefaultsManager.highScore = game.score
-        }
-    }
-    
-    func updateModifiedAt() {
+    func updateModifiedAt(on game: Game) {
         game.modifiedAt = .now
     }
     
-    func addInitialTiles(_ animationValues: Binding<[[Double]]>) {
-        addRandomTile(animationValues)
-        addRandomTile(animationValues)
-        updateModifiedAt()
+    func addInitialTiles(on game: Game, _ animationValues: Binding<[[Double]]>) {
+        addRandomTile(on: game, animationValues)
+        addRandomTile(on: game, animationValues)
+        updateModifiedAt(on: game)
     }
     
-    func isGameOver() -> Bool {
+    func isGameOver(on game: Game) -> Bool {
         // Check if no moves are possible
         for row in 0..<game.gridSize {
             for col in 0..<game.gridSize {

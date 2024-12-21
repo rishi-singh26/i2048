@@ -16,11 +16,12 @@ struct ContentView: View {
     @Query var games: [Game]
     
     @State private var selectedGame: Game?
-    @State private var gameController: GameController?
     @State private var animationValues: [[Double]] = []
     @State private var settingsSheetOpen: Bool = false
     
     @Namespace var navigationNamespace
+    
+    private let gameController = GameController()
     
     var body: some View {
         Group {
@@ -29,9 +30,6 @@ struct ContentView: View {
 #elseif os(iOS)
             IosViewBuilder()
 #endif
-        }
-        .onChange(of: selectedGame) { oldValue, newValue in
-            updateGameController()
         }
         .sheet(isPresented: $settingsSheetOpen, content: {
             SettingsView()
@@ -54,12 +52,7 @@ struct ContentView: View {
         List(selection: $selectedGame) {
             ForEach(games) {game in
                 NavigationLink(value: game) {
-                    if #available(iOS 18.0, *) {
-                        GameCardView(game: game, selectedGame: $selectedGame)
-                            .navigationTransition(.zoom(sourceID: game.id, in: navigationNamespace))
-                    } else {
-                        GameCardView(game: game, selectedGame: $selectedGame)
-                    }
+                    GameCardView(game: game, selectedGame: $selectedGame)
                 }
             }
         }
@@ -99,12 +92,10 @@ struct ContentView: View {
     
     @ViewBuilder
     func DetailView() -> some View {
-        Group {
-            if let _ = selectedGame, let gameController = gameController {
-                GameView(gameController: .constant(gameController), animationValues: $animationValues)
-            } else {
-                GameBackgroundImageView()
-            }
+        if let selectedGame = selectedGame {
+            GameView(selectedGame: selectedGame, animationValues: $animationValues)
+        } else {
+            GameBackgroundImageView()
         }
     }
     
@@ -113,22 +104,25 @@ struct ContentView: View {
     }
     
     func gameHotKeys(_ event: NSEvent) -> NSEvent? {
-        if event.modifierFlags.contains(.command) && gameController != nil {
+        if event.modifierFlags.contains(.command) && selectedGame != nil {
             switch event.keyCode {
             case KeyCode.upArrow:
-                gameController!.moveUp($animationValues)
+                gameController.moveUp(on: selectedGame!, $animationValues)
                 return nil // disable beep sound
             case KeyCode.downArrow:
-                gameController!.moveDown($animationValues)
+                gameController.moveDown(on: selectedGame!, $animationValues)
                 return nil // disable beep sound
             case KeyCode.rightArrow:
-                gameController!.moveRight($animationValues)
+                gameController.moveRight(on: selectedGame!, $animationValues)
                 return nil // disable beep sound
             case KeyCode.leftArrow:
-                gameController!.moveLeft($animationValues)
+                gameController.moveLeft(on: selectedGame!, $animationValues)
                 return nil // disable beep sound
             default:
                 return event // beep sound will be here
+            }
+            if selectedGame!.score > userDefaultsManager.highScore {
+                userDefaultsManager.highScore = selectedGame!.score
             }
         } else {
             return event
@@ -158,13 +152,17 @@ struct ContentView: View {
     
     func NavigationCardBuilder(game: Game) -> some View {
         NavigationLink {
-            if let controller = gameController {
-                if #available(iOS 18.0, *) {
-                    GameView(gameController: .constant(controller), animationValues: $animationValues)
-                        .navigationTransition(.zoom(sourceID: game.id, in: navigationNamespace))
-                } else {
-                    GameView(gameController: .constant(controller), animationValues: $animationValues)
-                }
+            if #available(iOS 18.0, *) {
+                GameView(
+                    selectedGame: game,
+                    animationValues: $animationValues
+                )
+                    .navigationTransition(.zoom(sourceID: game.id, in: navigationNamespace))
+            } else {
+                GameView(
+                    selectedGame: game,
+                    animationValues: $animationValues
+                )
             }
         } label: {
             GameCardView(game: game, selectedGame: $selectedGame)
@@ -193,12 +191,6 @@ struct ContentView: View {
         }
     }
     #endif
-    
-    func updateGameController() {
-        if let selectedGame = selectedGame {
-            gameController = GameController(game: selectedGame, userDefaultsManager: userDefaultsManager)
-        }
-    }
     
     func addGame() {
         let game = Game(name: "Game #\(games.count + 1)", gridSize: 4)

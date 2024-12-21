@@ -10,21 +10,21 @@ import SwiftData
 
 struct GameView: View {
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
-    @Environment(\.modelContext) var modelContext
     
-    @Binding var gameController: GameController
+    private let gameController: GameController = GameController()
+    var selectedGame: Game
     @Binding var animationValues: [[Double]]
         
     var body: some View {
         ZStack {
             GameBackgroundImageView()
             VStack {
-                if gameController.game.hasWon {
+                if selectedGame.hasWon {
                     Text("You Won!")
                         .font(.title)
                         .fontWeight(.bold)
                 }
-                if gameController.isGameOver() {
+                if gameController.isGameOver(on: selectedGame) {
                     Text("Game Over")
                         .foregroundColor(.red)
                         .font(.title)
@@ -40,7 +40,7 @@ struct GameView: View {
                     Divider().frame(height: 60)
                     VStack {
                         Text("Score")
-                        Text("\(gameController.game.score)")
+                        Text("\(selectedGame.score)")
                             .font(.title)
                     }
                     .frame(maxWidth: .infinity)
@@ -50,7 +50,7 @@ struct GameView: View {
                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
                 .cornerRadius(10)
                 
-                GameGridView(gameController: .constant(gameController), animationValues: $animationValues)
+                GameGridView(animationValues: $animationValues, selectedGame: selectedGame)
 #if os(macOS)
                 macOSGameControlls
 #endif
@@ -58,14 +58,14 @@ struct GameView: View {
         }
         .onAppear {
             initializeAnimationValues()
-            if gameController.game.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
-                gameController.addInitialTiles($animationValues)
+            if selectedGame.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
+                gameController.addInitialTiles(on: selectedGame, $animationValues)
             }
         }
-        .onChange(of: gameController.game, { oldValue, newValue in
+        .onChange(of: selectedGame, { oldValue, newValue in
             initializeAnimationValues()
             if newValue.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
-                gameController.addInitialTiles($animationValues)
+                gameController.addInitialTiles(on: selectedGame, $animationValues)
             }
         })
     }
@@ -74,32 +74,32 @@ struct GameView: View {
     private var macOSGameControlls: some View {
         HStack {
             KeyboardKeyButton(keyLabel: ["command", "arrow.right"]) {
-                gameController.moveRight($animationValues)
+                gameController.moveRight(on: selectedGame, $animationValues)
+                updateScore()
             }
             KeyboardKeyButton(keyLabel: ["command", "arrow.left"]) {
-                gameController.moveLeft($animationValues)
+                gameController.moveLeft(on: selectedGame, $animationValues)
+                updateScore()
             }
             KeyboardKeyButton(keyLabel: ["command", "arrow.down"]) {
-                gameController.moveDown($animationValues)
+                gameController.moveDown(on: selectedGame, $animationValues)
+                updateScore()
             }
             KeyboardKeyButton(keyLabel: ["command", "arrow.up"]) {
-                gameController.moveUp($animationValues)
+                gameController.moveUp(on: selectedGame, $animationValues)
+                updateScore()
             }
         }
     }
     
     private func updateScore() {
-        if gameController.game.score > userDefaultsManager.highScore {
-            userDefaultsManager.highScore = gameController.game.score
+        if selectedGame.score > userDefaultsManager.highScore {
+            userDefaultsManager.highScore = selectedGame.score
         }
     }
     
-    private func updateModifiedAt() {
-        gameController.game.modifiedAt = .now
-    }
-    
     private func initializeAnimationValues() {
-        animationValues = Array(repeating: Array(repeating: 1.0, count: gameController.game.gridSize), count: gameController.game.gridSize);
+        animationValues = Array(repeating: Array(repeating: 1.0, count: selectedGame.gridSize), count: selectedGame.gridSize);
     }
 }
 
