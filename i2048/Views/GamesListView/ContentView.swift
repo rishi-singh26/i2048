@@ -180,7 +180,6 @@ struct ContentView: View {
                             .font(.headline)
                     }
                 }
-                .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
                 Spacer()
                 Button(action: {
                     settingsSheetOpen = true
