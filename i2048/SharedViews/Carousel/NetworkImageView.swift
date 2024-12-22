@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct NetworkImageView<Content: View>: View {
     var card: CarouselCard
@@ -19,36 +20,22 @@ struct NetworkImageView<Content: View>: View {
     }
     
     var body: some View {
-        AsyncImage(url: URL(string: card.image)) { phase in
-            switch phase {
-            case .empty:
-                ProgressView()
-                    .frame(width: cardSize.width, height: cardSize.height)
-                //                        .background(Color(hex: card.backGroundColor))
-                    .background(.orange.opacity(0.6))
-                    .overlay {
-                        content
-                    }
-                    .clipShape(.rect(cornerRadius: 15))
-                    .shadow(color: .black.opacity(0.25), radius: 8, x: 5, y: 10)
-            case .success(let image):
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: cardSize.width, height: cardSize.height)
-                    .overlay {
-                        content
-                    }
-                    .clipShape(.rect(cornerRadius: 15))
-                    .shadow(color: .black.opacity(0.25), radius: 8, x: 5, y: 10)
-            case .failure:
-                Image("Camping-on-the-beach")
-                    .resizable()
-                    .scaledToFit()
-            @unknown default:
-                EmptyView()
+        KFImage(URL(string: card.image))
+            .cacheOriginalImage() // Cache original image
+//            .onSuccess { result in
+//                print("✅ Image loaded successfully: \(result.cacheType)")
+//            }
+//            .onFailure { error in
+//                print("❌ Failed to load image: \(error)")
+//            }
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: cardSize.width, height: cardSize.height)
+            .overlay {
+                content
             }
-        }
+            .clipShape(.rect(cornerRadius: 15))
+            .shadow(color: .black.opacity(0.25), radius: 8, x: 5, y: 10)
     }
 }
 

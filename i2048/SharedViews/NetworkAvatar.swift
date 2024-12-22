@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct NetworkAvatar: View {
     var url: String
@@ -13,37 +14,19 @@ struct NetworkAvatar: View {
     var height: CGFloat?
     
     var body: some View {
-        AsyncImage(url: URL(string: url)) { phase in
-            switch phase {
-            case .empty:
-                ProgressView()
-                    .frame(width: width ?? 30, height: height ?? 30)
-                    .cornerRadius((width ?? 30) / 2)
-                    .padding(8)
-                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
-            case .success(let image):
-                image
-                    .resizable()
-                    .frame(width: width ?? 30, height: height ?? 30)
-                    .cornerRadius((width ?? 30) / 2)
-                    .padding(8)
-                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
-            case .failure:
-                Image(systemName: "person.crop.circle")
-                    .resizable()
-                    .frame(width: width ?? 30, height: height ?? 30)
-                    .cornerRadius((width ?? 30) / 2)
-                    .padding(8)
-                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
-            @unknown default:
-                Image(systemName: "person.crop.circle")
-                    .resizable()
-                    .frame(width: width ?? 30, height: height ?? 30)
-                    .cornerRadius((width ?? 30) / 2)
-                    .padding(8)
-                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
-            }
-        }
+        KFImage(URL(string: url))
+            .cacheOriginalImage() // Cache original image
+//            .onSuccess { result in
+//                print("✅ Image loaded successfully: \(result.cacheType)")
+//            }
+//            .onFailure { error in
+//                print("❌ Failed to load image: \(error)")
+//            }
+            .resizable()
+            .frame(width: width ?? 30, height: height ?? 30)
+            .cornerRadius((width ?? 30) / 2)
+            .padding(8)
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
     }
 }
 

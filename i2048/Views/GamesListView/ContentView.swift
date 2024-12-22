@@ -23,6 +23,10 @@ struct ContentView: View {
     
     private let gameController = GameController()
     
+    init() {
+        _ = CacheManager.shared
+    }
+    
     var body: some View {
         Group {
 #if os(macOS)
