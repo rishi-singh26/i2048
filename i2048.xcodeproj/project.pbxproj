@@ -35,6 +35,7 @@
 		5B75E7A52D11E4FE009D2C80 /* KeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7A42D11E4FE009D2C80 /* KeyCode.swift */; };
 		5BBA510D2D18446A00B4D169 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA510C2D18446A00B4D169 /* CacheManager.swift */; };
 		5BBA51102D18457300B4D169 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5BBA510F2D18457300B4D169 /* Kingfisher */; };
+		5BBA51122D18FB8C00B4D169 /* DateExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA51112D18FB8C00B4D169 /* DateExtenstion.swift */; };
 		5BED5FE42D12D9A50085968B /* GridTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FE32D12D9A50085968B /* GridTileView.swift */; };
 		5BED5FE82D12E0310085968B /* GameGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FE72D12E0310085968B /* GameGridView.swift */; };
 		5BED5FEC2D12E4880085968B /* KeyboardKeyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */; };
@@ -128,6 +129,7 @@
 		5B75E7A22D11E495009D2C80 /* wndAccessorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wndAccessorModifier.swift; sourceTree = "<group>"; };
 		5B75E7A42D11E4FE009D2C80 /* KeyCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCode.swift; sourceTree = "<group>"; };
 		5BBA510C2D18446A00B4D169 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		5BBA51112D18FB8C00B4D169 /* DateExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtenstion.swift; sourceTree = "<group>"; };
 		5BED5FE32D12D9A50085968B /* GridTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTileView.swift; sourceTree = "<group>"; };
 		5BED5FE72D12E0310085968B /* GameGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGridView.swift; sourceTree = "<group>"; };
 		5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardKeyButton.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				5B75E7962D11857D009D2C80 /* ColorExtension.swift */,
+				5BBA51112D18FB8C00B4D169 /* DateExtenstion.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				5BED60002D1373E50085968B /* MotionManager.swift in Sources */,
 				5B0B4F772D1680B0005AD427 /* NetworkImageView.swift in Sources */,
 				5B75E7A32D11E495009D2C80 /* wndAccessorModifier.swift in Sources */,
+				5BBA51122D18FB8C00B4D169 /* DateExtenstion.swift in Sources */,
 				5B14219D2D14443300032861 /* ParallaxCarouselView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
