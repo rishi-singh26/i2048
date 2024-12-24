@@ -14,6 +14,7 @@ struct GameView: View {
     private let gameController: GameController = GameController()
     var selectedGame: Game
     @Binding var animationValues: [[Double]]
+    @State private var showOptionsPopover = false
         
     var body: some View {
         ZStack {
@@ -54,6 +55,18 @@ struct GameView: View {
 #if os(macOS)
                 macOSGameControlls
 #endif
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .automatic) {
+                Button(action: {
+                    showOptionsPopover = true
+                }, label: {
+                    Image(systemName: "switch.2")
+                })
+                .popover(isPresented: $showOptionsPopover) {
+                    GameViewControllsView(game: selectedGame)
+                }
             }
         }
         .onAppear {
