@@ -67,26 +67,7 @@ struct ContentView: View {
     
     @ToolbarContentBuilder
     func MacOSToolbarBuilder() -> some ToolbarContent {
-        ToolbarItem {
-            Menu {
-                Button("Duplicate", action: openSettingsWindow)
-                Button("Rename", action: openSettingsWindow)
-                Button("Delete…", action: openSettingsWindow)
-                Menu("Copy") {
-                    Button("Copy", action: openSettingsWindow)
-                    Button("Copy Formatted", action: openSettingsWindow)
-                    Button("Copy Library Path", action: openSettingsWindow)
-                }
-            } label: {
-                Label("Settings", systemImage: "switch.2")
-            }
-
-            Button(action: openSettingsWindow) {
-                Label("Settings", systemImage: "switch.2")
-            }
-            .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
-        }
-        ToolbarItem {
+        ToolbarItem(placement: .automatic) {
             Button(action: addGame) {
                 Label("Add Game", systemImage: "plus.circle")
             }
@@ -112,24 +93,31 @@ struct ContentView: View {
             switch event.keyCode {
             case KeyCode.upArrow:
                 gameController.moveUp(on: selectedGame!, $animationValues)
+                updateScore()
                 return nil // disable beep sound
             case KeyCode.downArrow:
                 gameController.moveDown(on: selectedGame!, $animationValues)
+                updateScore()
                 return nil // disable beep sound
             case KeyCode.rightArrow:
                 gameController.moveRight(on: selectedGame!, $animationValues)
+                updateScore()
                 return nil // disable beep sound
             case KeyCode.leftArrow:
                 gameController.moveLeft(on: selectedGame!, $animationValues)
+                updateScore()
                 return nil // disable beep sound
             default:
                 return event // beep sound will be here
             }
-            if selectedGame!.score > userDefaultsManager.highScore {
-                userDefaultsManager.highScore = selectedGame!.score
-            }
         } else {
             return event
+        }
+    }
+    
+    func updateScore() {
+        if selectedGame!.score > userDefaultsManager.highScore {
+            userDefaultsManager.highScore = selectedGame!.score
         }
     }
     #endif
