@@ -22,33 +22,29 @@ struct AboutView: View {
     func MacOSAboutViewBuilder() -> some View {
         ScrollView {
             GroupBox {
-                VStack(alignment: .leading) {
-                    HStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 70, height: 70)
-                            .padding(.trailing, 15)
-                        VStack(alignment: .leading) {
-                            Text("i2048")
-                                .font(.largeTitle.bold())
-                            Text("Version 1.0.0")
-                                .font(.callout)
-                        }
+                HStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(width: 70, height: 70)
+                        .padding(.trailing, 15)
+                    VStack(alignment: .leading) {
+                        Text("i2048")
+                            .font(.largeTitle.bold())
+                        Text("Version 1.0.0")
+                            .font(.callout)
                     }
-                    Divider()
-                    HStack {
-                        Label("Game Screen Theme", systemImage: "warninglight")
-                        Spacer()
-                        Toggle("", isOn: .constant(false))
-                            .toggleStyle(.switch)
-                    }
+                    Spacer()
                 }
                 .padding(6)
             }
             .padding(.top)
             .padding(.horizontal)
             
-            Text("Special Thanks")
-                .padding(.top)
+            HStack {
+                Text("Special Thanks")
+                    .padding(.top)
+                Spacer()
+            }
+            .padding(.horizontal)
             GroupBox {
                 VStack(alignment: .leading) {
                     ForEach(Array(artManager.backgroundImages.enumerated()), id: \.offset) { index, artist in
@@ -62,8 +58,12 @@ struct AboutView: View {
             }
             .padding(.horizontal)
             
-            Text("Acknowledgements")
-                .padding(.top)
+            HStack {
+                Text("Acknowledgements")
+                    .padding(.top)
+                Spacer()
+            }
+            .padding(.horizontal)
             GroupBox {
                 VStack(alignment: .leading) {
                     Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
@@ -78,8 +78,12 @@ struct AboutView: View {
             }
             .padding(.horizontal)
             
-            Text("Copyright © 2024 Rishi Singh")
-                .padding(.top)
+            HStack {
+                Text("Copyright © 2024 Rishi Singh")
+                    .padding(.top)
+                Spacer()
+            }
+            .padding(.horizontal)
             GroupBox {
                 VStack(alignment: .leading) {
                     Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
@@ -135,4 +139,5 @@ struct AboutView: View {
 #Preview {
     SettingsView()
         .environmentObject(UserDefaultsManager.shared)
+        .environmentObject(BackgroundArtManager.shared)
 }

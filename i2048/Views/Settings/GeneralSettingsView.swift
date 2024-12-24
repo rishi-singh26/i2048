@@ -10,6 +10,8 @@ import SwiftUI
 
 struct GeneralSettingsView: View {
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
+    @EnvironmentObject var artManager: BackgroundArtManager
+    
     var body: some View {
         ScrollView {
             GroupBox {

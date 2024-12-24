@@ -44,9 +44,12 @@ struct SettingsView: View {
                     Toggle(isOn: $userDefaultsManager.colorScheme.animation(), label: {
                         Label("Game Screen Theme", systemImage: userDefaultsManager.colorScheme ? "warninglight.fill" : "warninglight")
                     })
-                    NavigationLink(destination: BackgroundArtSettings()) {
+                    NavigationLink(destination: BackgroundArtSettings(
+                        cardSize: CGSize(width: 10, height: 10),
+                        artistImageSize: 50,
+                        simpleCarousel: false
+                    )) {
                         Label("Background Image", systemImage: "photo")
-                        //                        Text("Background Image")
                     }
                 } header: {
                     Text("App Theme")
@@ -91,7 +94,7 @@ struct SettingsView: View {
                 }
                 .tag(1)
             
-            BackgroundArtSettings()
+            BackgroundArtSettings(cardSize: CGSize(width: 550, height: 400), artistImageSize: 50)
                 .tabItem {
                     Label("Background", systemImage: "photo")
                 }
@@ -99,7 +102,7 @@ struct SettingsView: View {
             
             AboutView()
                 .tabItem {
-                    Label("Advanced", systemImage: "info.square")
+                    Label("About", systemImage: "info.square")
                 }
                 .tag(3)
         }
