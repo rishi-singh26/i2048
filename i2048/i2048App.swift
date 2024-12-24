@@ -21,7 +21,7 @@ struct i2048App: App {
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            return try ModelContainer(for: schema, migrationPlan: GamesMigrationPlan.self, configurations: [modelConfiguration])
         } catch {
             print(error)
             fatalError("Could not create ModelContainer: \(error)")
