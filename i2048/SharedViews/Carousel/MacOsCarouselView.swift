@@ -10,27 +10,33 @@ import SwiftUI
 
 struct MacOsCarouselView: View {
     var cards: [CarouselCard]
+    var size: CGSize
     @State private var currentIndex: Int = 0
     
     var body: some View {
         ZStack {
             GeometryReader(content: { geometry in
-                let size = geometry.size
+                let gSize = geometry.size
                 ScrollView(.horizontal) {
-                    HStack(spacing: 10){
-                        ForEach(cards) { card in
-                            NetworkImageView(card: card, cardSize: CGSize(width: 550, height: size.height)) {
-                                MacOsOverlayView(card: card)
-                            }
-                        }
-                    }
+                    BuildHorisontalArea(gSize.height)
                 }
-                .content.offset(x: -CGFloat(currentIndex) * 560)
+                .content.offset(x: -CGFloat(currentIndex) * (size.width + 10))
                 .scrollIndicators(.hidden)
             })
-            .frame(height: 400)
+            .frame(height: size.height)
             .padding([.leading, .trailing, .top], 30)
             CarouselControlls(cardsCount: cards.count, currentIndex: $currentIndex)
+        }
+    }
+    
+    @ViewBuilder
+    func BuildHorisontalArea(_ height: CGFloat) -> some View {
+        HStack(spacing: 10){
+            ForEach(cards) { card in
+                NetworkImageView(card: card, cardSize: CGSize(width: size.width, height: height)) {
+                    MacOsOverlayView(card: card)
+                }
+            }
         }
     }
 }
