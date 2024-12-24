@@ -11,6 +11,7 @@ struct BackgroundArtSettings: View {
     @EnvironmentObject private var artManager: BackgroundArtManager
     var cardSize: CGSize
     var artistImageSize: Double
+    var game: Game
     var simpleCarousel: Bool = false
     
     var body: some View {
@@ -21,6 +22,7 @@ struct BackgroundArtSettings: View {
                         artist: artist,
                         cardSize: cardSize,
                         artistImageSize: artistImageSize,
+                        game: game,
                         simpleCarousel: simpleCarousel,
                         artistNameFont: simpleCarousel ? .title2.bold() : .title.bold()
                     )

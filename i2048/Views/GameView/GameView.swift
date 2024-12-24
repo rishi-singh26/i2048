@@ -18,7 +18,7 @@ struct GameView: View {
         
     var body: some View {
         ZStack {
-            GameBackgroundImageView()
+            GameBackgroundImageView(game: selectedGame)
             VStack {
                 if selectedGame.hasWon {
                     Text("You Won!")
@@ -49,6 +49,7 @@ struct GameView: View {
                 .padding()
                 .frame(minWidth: 300, maxWidth: 350)
                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+                .environment(\.colorScheme, selectedGame.gameColorMode ? .light : .dark)
                 .cornerRadius(10)
                 
                 GameGridView(animationValues: $animationValues, selectedGame: selectedGame)

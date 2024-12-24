@@ -39,6 +39,7 @@ struct GameGridView: View {
 //            ).opacity(0.3).blur(radius: 10))
 //            .shadow(radius: 10)
             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+            .environment(\.colorScheme, selectedGame.gameColorMode ? .light : .dark)
             .cornerRadius(10)
             .gesture(
                 DragGesture()
@@ -65,34 +66,34 @@ struct GameGridView: View {
     private func colorForValue(_ value: Int) -> Color {
         switch value {
         case 2:
-            return Color(hex: userDefaultsManager.color2)
+            return Color(hex: selectedGame.color2)
         case 4:
-            return Color(hex: userDefaultsManager.color4)
+            return Color(hex: selectedGame.color4)
         case 8:
-            return Color(hex: userDefaultsManager.color8)
+            return Color(hex: selectedGame.color8)
         case 16:
-            return Color(hex: userDefaultsManager.color16)
+            return Color(hex: selectedGame.color16)
         case 32:
-            return Color(hex: userDefaultsManager.color32)
+            return Color(hex: selectedGame.color32)
         case 64:
-            return Color(hex: userDefaultsManager.color64)
+            return Color(hex: selectedGame.color64)
         case 128:
-            return Color(hex: userDefaultsManager.color128)
+            return Color(hex: selectedGame.color128)
         case 256:
-            return Color(hex: userDefaultsManager.color256)
+            return Color(hex: selectedGame.color256)
         case 512:
-            return Color(hex: userDefaultsManager.color512)
+            return Color(hex: selectedGame.color512)
         case 1024:
-            return Color(hex: userDefaultsManager.color1024)
+            return Color(hex: selectedGame.color1024)
         case 2048:
-            return Color(hex: userDefaultsManager.color2048)
+            return Color(hex: selectedGame.color2048)
             // Color(red: 1.0, green: 0.84, blue: 0.0) // RGB for gold
         case 4096:
-            return Color(hex: userDefaultsManager.color4096)
+            return Color(hex: selectedGame.color4096)
         case 8192:
-            return Color(hex: userDefaultsManager.color8192)
+            return Color(hex: selectedGame.color8192)
         default:
-            return Color(hex: userDefaultsManager.color16384)
+            return Color(hex: selectedGame.color16384)
         }
     }
 }

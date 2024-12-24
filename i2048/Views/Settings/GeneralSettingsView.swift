@@ -22,13 +22,6 @@ struct GeneralSettingsView: View {
                         Toggle("", isOn: $userDefaultsManager.soundEnabled.animation())
                             .toggleStyle(.switch)
                     }
-                    Divider()
-                    HStack {
-                        Label("Game Screen Theme", systemImage: userDefaultsManager.colorScheme ? "warninglight.fill" : "warninglight")
-                        Spacer()
-                        Toggle("", isOn: $userDefaultsManager.colorScheme.animation())
-                            .toggleStyle(.switch)
-                    }
                 }
                 .padding(6)
             }

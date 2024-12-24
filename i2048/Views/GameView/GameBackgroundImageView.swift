@@ -9,12 +9,12 @@ import SwiftUI
 import Kingfisher
 
 struct GameBackgroundImageView: View {
-    @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var userDefaultsManager: UserDefaultsManager
+    var game: Game?
+
     var body: some View {
         GeometryReader { geometry in
-            if (colorScheme == .light && userDefaultsManager.isNetworkImageSelected) || (colorScheme == .dark && userDefaultsManager.isDarkNetworkImageSelected) {
-                KFImage(URL(string: colorScheme == .dark ? userDefaultsManager.darkImageUrl : userDefaultsManager.imageUrl))
+            if (game != nil && game!.imageUrl != "") {
+                KFImage(URL(string: game!.imageUrl))
                     .cacheOriginalImage() // Cache original image
                 // .onSuccess { result in
                 //     print("✅ Image loaded successfully: \(result.cacheType)")
@@ -37,7 +37,6 @@ struct GameBackgroundImageView: View {
     }
 }
 
-#Preview {
-    GameBackgroundImageView()
-        .environmentObject(UserDefaultsManager.shared)
-}
+//#Preview {
+//    GameBackgroundImageView()
+//}

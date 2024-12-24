@@ -14,6 +14,7 @@ struct ArtistView: View {
     var artistImageSize: Double
     var simpleCarousel: Bool
     var artistNameFont: Font
+    var game: Game
     private var parallaxCards: [CarouselCard] = []
     
     @Environment(\.colorScheme) var colorScheme
@@ -24,12 +25,14 @@ struct ArtistView: View {
         artist: BackgroundArtist,
         cardSize: CGSize,
         artistImageSize: Double,
+        game: Game,
         simpleCarousel: Bool = false,
         artistNameFont: Font = .title.bold()
     ) {
         self.artist = artist
         self.cardSize = cardSize
         self.artistImageSize = artistImageSize
+        self.game = game
         self.parallaxCards = artist.images.map({ image in
             CarouselCard(
                 imageId: image.id,
@@ -73,9 +76,9 @@ struct ArtistView: View {
             } else {
                 
 #if os(iOS)
-                ParallaxCarouselView(cards: parallaxCards, cardHeight: 450)
+                ParallaxCarouselView(cards: parallaxCards, cardHeight: 450, game: game)
 #else
-                MacOsCarouselView(cards: parallaxCards, size: cardSize)
+                MacOsCarouselView(cards: parallaxCards, size: cardSize, game: game)
 #endif
             }
         }
@@ -83,7 +86,7 @@ struct ArtistView: View {
     
     func selectImage(card: CarouselCard) {
         if let image = artManager.getImageById(imageId: card.imageId, artistId: card.artistId) {
-            userDefaultsManager.selectNetworkImage(image, colorScheme)
+            game.selectNetworkImage(image)
         }
     }
 }

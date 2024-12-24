@@ -11,6 +11,7 @@ import SwiftUI
 struct MacOsCarouselView: View {
     var cards: [CarouselCard]
     var size: CGSize
+    var game: Game
     @State private var currentIndex: Int = 0
     
     var body: some View {
@@ -34,7 +35,7 @@ struct MacOsCarouselView: View {
         HStack(spacing: 10){
             ForEach(cards) { card in
                 NetworkImageView(card: card, cardSize: CGSize(width: size.width, height: height)) {
-                    MacOsOverlayView(card: card)
+                    MacOsOverlayView(card: card, game: game)
                 }
             }
         }
@@ -46,6 +47,7 @@ struct MacOsOverlayView: View {
     @EnvironmentObject var artManager: BackgroundArtManager
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     var card: CarouselCard
+    var game: Game
     
     var body: some View {
         VStack(content: {
@@ -56,7 +58,7 @@ struct MacOsOverlayView: View {
                 Spacer()
                 Button(action: {
                     if let image = artManager.getImageById(imageId: card.imageId, artistId: card.artistId) {
-                        userDefaultsManager.selectNetworkImage(image, colorScheme)
+                        game.selectNetworkImage(image)
                     }
                 }, label: {
                     Text("Set as Game Background")

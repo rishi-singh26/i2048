@@ -10,6 +10,7 @@ import SwiftUI
 struct ParallaxCarouselView: View {
     var cards: [CarouselCard]
     var cardHeight: CGFloat = 500
+    var game: Game
     
     var body: some View {
         GeometryReader(content: { geometry in
@@ -21,7 +22,7 @@ struct ParallaxCarouselView: View {
                         GeometryReader(content: { proxy in
                             let cardSize = proxy.size
                             NetworkImageView(card: card, cardSize: cardSize) {
-                                OverlayView(card: card)
+                                OverlayView(card: card, game: game)
                             }
                         })
                         .frame(width: size.width - 60, height: size.height - 50)
@@ -48,8 +49,8 @@ struct ParallaxCarouselView: View {
 struct OverlayView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var artManager: BackgroundArtManager
-    @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     var card: CarouselCard
+    var game: Game
     
     var body: some View {
         VStack(content: {
@@ -59,7 +60,7 @@ struct OverlayView: View {
                     .font(.title2.bold())
                 Button(action: {
                     if let image = artManager.getImageById(imageId: card.imageId, artistId: card.artistId) {
-                        userDefaultsManager.selectNetworkImage(image, colorScheme)
+                        game.selectNetworkImage(image)
                     }
                 }, label: {
                     Text("Set as Game Background")
@@ -85,7 +86,6 @@ struct OverlayView: View {
 
 #Preview {
     SettingsView()
-        .environmentObject(UserDefaultsManager.shared)
         .environmentObject(BackgroundArtManager.shared)
 }
 #endif

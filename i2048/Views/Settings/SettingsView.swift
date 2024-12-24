@@ -41,23 +41,6 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    Toggle(isOn: $userDefaultsManager.colorScheme.animation(), label: {
-                        Label("Game Screen Theme", systemImage: userDefaultsManager.colorScheme ? "warninglight.fill" : "warninglight")
-                    })
-                    NavigationLink(destination: BackgroundArtSettings(
-                        cardSize: CGSize(width: 10, height: 10),
-                        artistImageSize: 50,
-                        simpleCarousel: false
-                    )) {
-                        Label("Background Image", systemImage: "photo")
-                    }
-                } header: {
-                    Text("App Theme")
-                } footer: {
-                    Text("Footer note")
-                }
-                
-                Section {
                     NavigationLink(destination: Text("Destination")) {
                         Label("Privacy Policy", systemImage: "bolt.shield")
                     }
@@ -93,12 +76,6 @@ struct SettingsView: View {
                     Label("General", systemImage: "wrench")
                 }
                 .tag(1)
-            
-            BackgroundArtSettings(cardSize: CGSize(width: 550, height: 400), artistImageSize: 50)
-                .tabItem {
-                    Label("Background", systemImage: "photo")
-                }
-                .tag(2)
             
             AboutView()
                 .tabItem {

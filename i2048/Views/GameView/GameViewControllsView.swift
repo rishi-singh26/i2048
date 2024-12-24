@@ -41,8 +41,13 @@ struct GameViewControllsView: View {
             }
             
             Section {
-                Toggle(isOn: $userDefaultsManager.colorScheme.animation(), label: {
-                    Label("Game Screen Theme", systemImage: userDefaultsManager.colorScheme ? "warninglight.fill" : "warninglight")
+                Toggle(isOn: Binding(
+                    get: { game.gameColorMode },
+                    set: { newValue in
+                        game.gameColorMode = newValue
+                    }
+               ).animation(), label: {
+                    Label("Game Screen Theme", systemImage: game.gameColorMode ? "warninglight.fill" : "warninglight")
                 })
                 Button {
                     showBackgroundImageSheet.toggle()
@@ -58,7 +63,7 @@ struct GameViewControllsView: View {
         .frame(minWidth: 350, minHeight: 350)
         .presentationCompactAdaptation(.popover)
         .sheet(isPresented: $showBackgroundImageSheet) {
-            BackgroundArtSettings(cardSize: CGSize(width: 550, height: 400), artistImageSize: 50)
+            BackgroundArtSettings(cardSize: CGSize(width: 550, height: 400), artistImageSize: 50, game: game)
         }
     }
     
@@ -74,9 +79,13 @@ struct GameViewControllsView: View {
                     }
                     Divider()
                     HStack {
-                        Label("Game Screen Theme", systemImage: userDefaultsManager.colorScheme ? "warninglight.fill" : "warninglight")
+                        Label("Game Screen Theme", systemImage: game.gameColorMode ? "warninglight.fill" : "warninglight")
                         Spacer()
-                        Toggle("", isOn: $userDefaultsManager.colorScheme.animation())
+                        Toggle("", isOn: Binding(
+                            get: { game.gameColorMode },
+                            set: { newValue in
+                                game.gameColorMode = newValue
+                        }).animation())
                             .toggleStyle(.switch)
                     }
                 }
@@ -85,7 +94,7 @@ struct GameViewControllsView: View {
             .padding(.top)
             .padding(.horizontal)
             
-            BackgroundArtSettings(cardSize: CGSize(width: 130, height: 80), artistImageSize: 30, simpleCarousel: true)
+            BackgroundArtSettings(cardSize: CGSize(width: 130, height: 80), artistImageSize: 30, game: game, simpleCarousel: true)
             .padding(.horizontal)
         }
         .frame(minWidth: 350, idealWidth: 400, maxWidth: 450, minHeight: 400, idealHeight: 450, maxHeight: 500, alignment: .leading)
