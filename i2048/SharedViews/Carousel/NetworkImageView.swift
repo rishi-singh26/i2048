@@ -12,11 +12,18 @@ struct NetworkImageView<Content: View>: View {
     var card: CarouselCard
     var cardSize: CGSize
     let content: Content
+    var radius: Double
 
-    init(card: CarouselCard, cardSize: CGSize, @ViewBuilder content: () -> Content) {
+    init(
+        card: CarouselCard,
+        cardSize: CGSize,
+        radius: Double = 15,
+        @ViewBuilder content: () -> Content = { EmptyView()}
+    ) {
         self.content = content()
         self.card = card
         self.cardSize = cardSize
+        self.radius = radius
     }
     
     var body: some View {
@@ -34,7 +41,7 @@ struct NetworkImageView<Content: View>: View {
             .overlay {
                 content
             }
-            .clipShape(.rect(cornerRadius: 15))
+            .clipShape(.rect(cornerRadius: radius))
             .shadow(color: .black.opacity(0.25), radius: 8, x: 5, y: 10)
     }
 }
