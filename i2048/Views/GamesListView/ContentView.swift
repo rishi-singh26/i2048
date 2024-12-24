@@ -13,6 +13,10 @@ struct ContentView: View {
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @EnvironmentObject var backgroundArtManager: BackgroundArtManager
     
+#if os(iOS)
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+#endif
+    
     @Query var games: [Game]
     
     @State private var selectedGame: Game?
@@ -32,12 +36,18 @@ struct ContentView: View {
 #if os(macOS)
             MacOSViewBuilder()
 #elseif os(iOS)
-            IosViewBuilder()
+            if horizontalSizeClass == .compact {
+                IosViewBuilder()
+            } else {
+                IpadOSViewBuilder()
+            }
 #endif
         }
+#if os(iOS)
         .sheet(isPresented: $settingsSheetOpen, content: {
             SettingsView()
         })
+#endif
     }
     
     #if os(macOS)
@@ -72,15 +82,6 @@ struct ContentView: View {
                 Label("Add Game", systemImage: "plus.circle")
             }
             .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
-        }
-    }
-    
-    @ViewBuilder
-    func DetailView() -> some View {
-        if let selectedGame = selectedGame {
-            GameView(selectedGame: selectedGame, animationValues: $animationValues)
-        } else {
-            GameBackgroundImageView()
         }
     }
     
@@ -126,20 +127,35 @@ struct ContentView: View {
     @ViewBuilder
     func IosViewBuilder() -> some View {
         NavigationStack {
-            List(selection: $selectedGame) {
-                ForEach(games) { game in
-                    if #available(iOS 18.0, *) {
-                        NavigationCardBuilder(game: game)
-                            .matchedTransitionSource(id: game.id, in: navigationNamespace)
-                    } else {
-                        NavigationCardBuilder(game: game)
-                    }
-                }
-                .onDelete(perform: deleteGames)
-            }
-            .toolbar(content: IosToolbarBuilder)
-            .navigationTitle("i2048")
+            IosGamesListBuilder()
         }
+    }
+    
+    @ViewBuilder
+    func IpadOSViewBuilder() -> some View {
+        NavigationSplitView {
+            IosGamesListBuilder()
+        } detail: {
+            DetailView()
+        }
+    }
+    
+    @ViewBuilder
+    func IosGamesListBuilder() -> some View {
+        List(selection: $selectedGame) {
+            ForEach(games) { game in
+                if #available(iOS 18.0, *) {
+                    NavigationCardBuilder(game: game)
+                        .matchedTransitionSource(id: game.id, in: navigationNamespace)
+                } else {
+                    NavigationCardBuilder(game: game)
+                }
+            }
+            .onDelete(perform: deleteGames)
+        }
+        .listStyle(.sidebar)
+        .toolbar(content: IosToolbarBuilder)
+        .navigationTitle("i2048")
     }
     
     func NavigationCardBuilder(game: Game) -> some View {
@@ -182,6 +198,17 @@ struct ContentView: View {
         }
     }
     #endif
+    
+    // MARK: - The detail view
+    /// Detail view is used on macos and ipad for navigation split view
+    @ViewBuilder
+    func DetailView() -> some View {
+        if let selectedGame = selectedGame {
+            GameView(selectedGame: selectedGame, animationValues: $animationValues)
+        } else {
+            GameBackgroundImageView()
+        }
+    }
     
     func addGame() {
         let game = Game(name: "Game #\(games.count + 1)", gridSize: 4)
