@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 class GameController: ObservableObject {
+    static let shared = GameController();
+    
     func handleSwipe(translation: CGSize, on game: Game, _ animationValues: Binding<[[Double]]>) {
         let horizontalDirection = abs(translation.width) > abs(translation.height)
         
