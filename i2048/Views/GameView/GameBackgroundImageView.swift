@@ -12,23 +12,27 @@ struct GameBackgroundImageView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     var body: some View {
-        if (colorScheme == .light && userDefaultsManager.isNetworkImageSelected) || (colorScheme == .dark && userDefaultsManager.isDarkNetworkImageSelected) {
-            KFImage(URL(string: colorScheme == .dark ? userDefaultsManager.darkImageUrl : userDefaultsManager.imageUrl))
-                .cacheOriginalImage() // Cache original image
+        GeometryReader { geometry in
+            if (colorScheme == .light && userDefaultsManager.isNetworkImageSelected) || (colorScheme == .dark && userDefaultsManager.isDarkNetworkImageSelected) {
+                KFImage(URL(string: colorScheme == .dark ? userDefaultsManager.darkImageUrl : userDefaultsManager.imageUrl))
+                    .cacheOriginalImage() // Cache original image
                 // .onSuccess { result in
                 //     print("✅ Image loaded successfully: \(result.cacheType)")
                 // }
                 // .onFailure { error in
                 //     print("❌ Failed to load image: \(error)")
                 // }
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
-        } else {
-            Image("Camping-on-the-beach")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+                    .frame(width: geometry.size.width)
+            } else {
+                Image("Camping-on-the-beach")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+                    .frame(width: geometry.size.width)
+            }
         }
     }
 }
