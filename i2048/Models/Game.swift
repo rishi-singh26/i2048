@@ -107,6 +107,10 @@ enum GameSchemaV2: VersionedSchema {
             gridSize: Int,
             imageUrl: String = "",
             gameColorMode: Bool = true,
+            forGroundColor: String = "#ffffff",
+            gameVictoryColor: String = "#00F900",
+            gameLossColor: String = "#FF2600",
+            backGroundColor: String = "#FFFB00",
             color2: String = "#FFCC01",
             color4: String = "#FF9500",
             color8: String = "#FF2C55",
@@ -132,6 +136,10 @@ enum GameSchemaV2: VersionedSchema {
             self.modifiedAt = .now
             self.imageUrl = imageUrl
             self.gameColorMode = gameColorMode
+            self.forGroundColor = forGroundColor
+            self.gameVictoryColor = gameVictoryColor
+            self.gameLossColor = gameLossColor
+            self.backGroundColor = backGroundColor
             self.color2 = color2
             self.color4 = color4
             self.color8 = color8
@@ -146,6 +154,29 @@ enum GameSchemaV2: VersionedSchema {
             self.color4096 = color4096
             self.color8192 = color8192
             self.color16384 = color16384
+        }
+        
+        func selectNetworkImage(_ image: BackgroundArt) {
+            self.gameColorMode = !image.mode // for light images use dark background and vice versa
+            self.imageUrl = image.url
+            self.forGroundColor = image.forGroundColor
+            self.gameVictoryColor = image.gameVictoryColor
+            self.gameLossColor = image.gameLossColor
+            self.backGroundColor = image.backGroundColor
+            self.color2 = image.color2
+            self.color4 = image.color4
+            self.color8 = image.color8
+            self.color16 = image.color16
+            self.color32 = image.color32
+            self.color64 = image.color64
+            self.color128 = image.color128
+            self.color256 = image.color256
+            self.color512 = image.color512
+            self.color1024 = image.color1024
+            self.color2048 = image.color2048
+            self.color4096 = image.color4096
+            self.color8192 = image.color8192
+            self.color16384 = image.color16384
         }
     }
 }
