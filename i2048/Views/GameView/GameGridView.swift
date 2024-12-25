@@ -44,7 +44,7 @@ struct GameGridView: View {
             .gesture(
                 DragGesture()
                     .onEnded { value in
-                        gameController.handleSwipe(translation: value.translation, on: selectedGame, $animationValues)
+                        gameController.handleSwipe(translation: value.translation, on: selectedGame, $animationValues, userDefaultsManager)
                         if selectedGame.score > userDefaultsManager.highScore {
                             userDefaultsManager.highScore = selectedGame.score
                         }

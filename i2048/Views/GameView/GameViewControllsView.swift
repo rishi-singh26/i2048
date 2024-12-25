@@ -55,9 +55,9 @@ struct GameViewControllsView: View {
                     Label("Background Image", systemImage: "photo")
                 }
             } header: {
-                Text("App Theme")
+                Text("Theme")
             } footer: {
-                Text("Footer note")
+                Text("Customize game interface with backgroung image and colors")
             }
         }
         .frame(minWidth: 350, minHeight: 350)

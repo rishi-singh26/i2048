@@ -11,25 +11,25 @@ import SwiftUI
 class GameController: ObservableObject {
     static let shared = GameController();
     
-    func handleSwipe(translation: CGSize, on game: Game, _ animationValues: Binding<[[Double]]>) {
+    func handleSwipe(translation: CGSize, on game: Game, _ animationValues: Binding<[[Double]]>, _ userDefaults: UserDefaultsManager) {
         let horizontalDirection = abs(translation.width) > abs(translation.height)
         
         if horizontalDirection {
             if translation.width > 50 {
-                moveRight(on: game, animationValues)
+                moveRight(on: game, animationValues, userDefaults)
             } else if translation.width < -50 {
-                moveLeft(on: game, animationValues)
+                moveLeft(on: game, animationValues, userDefaults)
             }
         } else {
             if translation.height > 50 {
-                moveDown(on: game, animationValues)
+                moveDown(on: game, animationValues, userDefaults)
             } else if translation.height < -50 {
-                moveUp(on: game, animationValues)
+                moveUp(on: game, animationValues, userDefaults)
             }
         }
     }
     
-    func moveLeft(on game: Game, _ animationValues: Binding<[[Double]]>) {
+    func moveLeft(on game: Game, _ animationValues: Binding<[[Double]]>, _ userDefaults: UserDefaultsManager? = nil) {
 //        print("🔍 moveLeft() called")
         var moved = false
         var newGrid = game.grid
@@ -45,12 +45,14 @@ class GameController: ObservableObject {
             game.grid = newGrid
             addRandomTile(on: game, animationValues)
             updateModifiedAt(on: game)
+            triggerFeedback(as: true, userDefaults)
         } else {
+            triggerFeedback(as: false, userDefaults)
 //            print("❌ No movement occurred")
         }
     }
     
-    func moveRight(on game: Game, _ animationValues: Binding<[[Double]]>) {
+    func moveRight(on game: Game, _ animationValues: Binding<[[Double]]>, _ userDefaults: UserDefaultsManager? = nil) {
 //        print("🔍 moveRight() called")
         var moved = false
         var newGrid = game.grid
@@ -68,12 +70,14 @@ class GameController: ObservableObject {
             game.grid = newGrid
             addRandomTile(on: game, animationValues)
             updateModifiedAt(on: game)
+            triggerFeedback(as: true, userDefaults)
         } else {
+            triggerFeedback(as: false, userDefaults)
 //            print("❌ No movement occurred")
         }
     }
     
-    func moveUp(on game: Game, _ animationValues: Binding<[[Double]]>) {
+    func moveUp(on game: Game, _ animationValues: Binding<[[Double]]>, _ userDefaults: UserDefaultsManager? = nil) {
 //        print("🔍 moveUp() called")
         var moved = false
         var newGrid = game.grid
@@ -92,12 +96,14 @@ class GameController: ObservableObject {
             game.grid = newGrid
             addRandomTile(on: game, animationValues)
             updateModifiedAt(on: game)
+            triggerFeedback(as: true, userDefaults)
         } else {
+            triggerFeedback(as: false, userDefaults)
 //            print("❌ No movement occurred")
         }
     }
     
-    func moveDown(on game: Game, _ animationValues: Binding<[[Double]]>) {
+    func moveDown(on game: Game, _ animationValues: Binding<[[Double]]>, _ userDefaults: UserDefaultsManager? = nil) {
 //        print("🔍 moveDown() called")
         
         var moved = false
@@ -119,7 +125,9 @@ class GameController: ObservableObject {
             game.grid = newGrid
             addRandomTile(on: game, animationValues)
             updateModifiedAt(on: game)
+            triggerFeedback(as: true, userDefaults)
         } else {
+            triggerFeedback(as: false, userDefaults)
 //            print("❌ No movement occurred")
         }
     }
@@ -174,6 +182,16 @@ class GameController: ObservableObject {
         
         withAnimation(.spring()) {
             animationValues.wrappedValue[row][col] = 1.0
+        }
+    }
+    
+    func triggerFeedback(as success: Bool, _ userDefaults: UserDefaultsManager?) {
+        if let userDefaults = userDefaults {
+            if success {
+                userDefaults.triggerSimpleHaptic()
+            } else {
+                userDefaults.triggerCustomPattern()
+            }
         }
     }
     
