@@ -15,7 +15,8 @@ struct GameCardView: View {
     @Binding var selectedGame: Game?
     
     var body: some View {
-        Label {
+        HStack(alignment: .center) {
+            IconViewBuilder(game: game)
             HStack {
                 VStack(alignment: .leading) {
                     Text(game.name)
@@ -29,9 +30,8 @@ struct GameCardView: View {
                         .font(.title3.bold())
                 }
             }
-        } icon: {
-            IconViewBuilder(game: game)
         }
+        .padding(.vertical, 5)
         .swipeActions(edge: .leading) {
             Button {
                 editGame(game.id)
@@ -60,35 +60,41 @@ struct GameCardView: View {
             if game.hasWon {
                 Image(systemName: "trophy.fill")
                     .symbolEffect(.wiggle.byLayer, options: .repeat(5))
-                    .font(.headline)
+                    .font(.title2)
                     .foregroundStyle(.yellow)
+                    .frame(width: 30)
             } else {
                 if GameController.shared.isGameOver(on: game) {
                     Image(systemName: "exclamationmark.warninglight")
                         .symbolEffect(.wiggle.byLayer, options: .repeat(5))
-                        .font(.headline)
+                        .font(.title2)
                         .foregroundStyle(.red)
+                        .frame(width: 30)
                 } else {
                     Image(systemName: "hourglass")
                         .symbolEffect(.wiggle, options: .repeat(5))
-                        .font(.headline)
+                        .font(.title2)
                         .foregroundStyle(.orange)
+                        .frame(width: 30)
                 }
             }
         } else {
             if game.hasWon {
                 Image(systemName: "trophy.fill")
-                    .font(.headline)
+                    .font(.title2)
                     .foregroundStyle(.yellow)
+                    .frame(width: 30)
             } else {
                 if GameController.shared.isGameOver(on: game) {
                     Image(systemName: "exclamationmark.warninglight")
-                        .font(.headline)
+                        .font(.title2)
                         .foregroundStyle(.red)
+                        .frame(width: 30)
                 } else {
                     Image(systemName: "hourglass")
-                        .font(.headline)
+                        .font(.title2)
                         .foregroundStyle(.orange)
+                        .frame(width: 30)
                 }
             }
         }
