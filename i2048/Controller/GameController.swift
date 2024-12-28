@@ -204,30 +204,4 @@ class GameController: ObservableObject {
         addRandomTile(on: game, animationValues)
         updateModifiedAt(on: game)
     }
-    
-    func isGameOver(on game: Game) -> Bool {
-        // Check if no moves are possible
-        for row in 0..<game.gridSize {
-            for col in 0..<game.gridSize {
-                if game.grid[row][col] == 0 {
-                    return false
-                }
-                
-                // Check adjacent cells for possible merges
-                let currentValue = game.grid[row][col]
-                
-                // Right
-                if col < game.gridSize - 1 && game.grid[row][col + 1] == currentValue {
-                    return false
-                }
-                
-                // Down
-                if row < game.gridSize - 1 && game.grid[row + 1][col] == currentValue {
-                    return false
-                }
-            }
-        }
-        
-        return true
-    }
 }

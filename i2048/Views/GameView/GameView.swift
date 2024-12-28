@@ -25,7 +25,7 @@ struct GameView: View {
                         .font(.title)
                         .fontWeight(.bold)
                 }
-                if gameController.isGameOver(on: selectedGame) {
+                if selectedGame.isGameOver {
                     Text("Game Over")
                         .foregroundColor(.red)
                         .font(.title)

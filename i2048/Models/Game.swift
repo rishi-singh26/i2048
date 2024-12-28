@@ -178,7 +178,48 @@ enum GameSchemaV2: VersionedSchema {
             self.color8192 = image.color8192
             self.color16384 = image.color16384
         }
+        
+        var isGameOver: Bool {
+            // Check if no moves are possible
+            for row in 0..<gridSize {
+                for col in 0..<gridSize {
+                    if grid[row][col] == 0 {
+                        return false
+                    }
+                    
+                    // Check adjacent cells for possible merges
+                    let currentValue = grid[row][col]
+                    
+                    // Right
+                    if col < gridSize - 1 && grid[row][col + 1] == currentValue {
+                        return false
+                    }
+                    
+                    // Down
+                    if row < gridSize - 1 && grid[row + 1][col] == currentValue {
+                        return false
+                    }
+                }
+            }
+            
+            return true
+        }
+        
+        var status: GameStatus {
+            if hasWon {
+                return .won
+            } else {
+                return isGameOver ? .lost : .running
+            }
+        }
     }
 }
 
 typealias Game = GameSchemaV2.Game
+
+// Enum for game statuses
+enum GameStatus: String {
+    case won = "Won"
+    case running = "Running"
+    case lost = "Lost"
+}
