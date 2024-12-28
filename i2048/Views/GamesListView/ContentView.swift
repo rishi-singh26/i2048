@@ -197,6 +197,27 @@ struct ContentView: View {
                 }, label: {
                     Image(systemName: "switch.2")
                 })
+                Divider().frame(height: 30)
+                Menu {
+                    Picker("Sort Games By", selection: $sortBy) {
+                        Text("Name")
+                        .tag(SortOrder.name)
+                        Text("Game Created Date")
+                        .tag(SortOrder.createdOn)
+                        Text("Last Played Date")
+                        .tag(SortOrder.lastPlayedOn)
+                    }
+                    .pickerStyle(.inline)
+                    Picker("Sort Order", selection: $sortOrder) {
+                        Text("Ascending")
+                        .tag(true)
+                        Text("Descending")
+                        .tag(false)
+                    }
+                    .pickerStyle(.inline)
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                }
             }
         }
     }
