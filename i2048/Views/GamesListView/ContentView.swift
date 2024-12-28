@@ -22,6 +22,7 @@ struct ContentView: View {
     @State private var selectedGame: Game?
     @State private var animationValues: [[Double]] = []
     @State private var settingsSheetOpen: Bool = false
+    @State private var searchText: String = ""
     
     @Namespace var navigationNamespace
     
@@ -29,6 +30,13 @@ struct ContentView: View {
     
     init() {
         _ = CacheManager.shared
+    }
+    
+    var filteredGames: [Game] {
+        guard !searchText.isEmpty else { return games }
+        return games.filter { game in
+            game.name.lowercased().contains(searchText.lowercased()) || searchText.lowercased().contains(game.name.lowercased())
+        }
     }
     
     var body: some View {
@@ -58,13 +66,14 @@ struct ContentView: View {
         } detail: {
             DetailView()
         }
+        .searchable(text: $searchText, placement: .sidebar)
         .keyboardReaction { gameHotKeys($0) }
     }
     
     @ViewBuilder
     func MacOsGamesListBuilder() -> some View {
-        List(selection: $selectedGame) {
-            ForEach(games) {game in
+        List(selection: $selectedGame.animation()) {
+            ForEach(filteredGames) {game in
                 NavigationLink(value: game) {
                     GameCardView(game: game, selectedGame: $selectedGame)
                 }
@@ -129,6 +138,7 @@ struct ContentView: View {
         NavigationStack {
             IosGamesListBuilder()
         }
+        .searchable(text: $searchText)
     }
     
     @ViewBuilder
@@ -138,12 +148,13 @@ struct ContentView: View {
         } detail: {
             DetailView()
         }
+        .searchable(text: $searchText)
     }
     
     @ViewBuilder
     func IosGamesListBuilder() -> some View {
         List(selection: $selectedGame) {
-            ForEach(games) { game in
+            ForEach(filteredGames) { game in
                 if #available(iOS 18.0, *) {
                     NavigationCardBuilder(game: game)
                         .matchedTransitionSource(id: game.id, in: navigationNamespace)
