@@ -12,11 +12,15 @@ struct GamesListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Game.createdAt, order: .reverse) private var games: [Game]
     @Namespace private var navigationNamespace
-
+    // State for collapsible sections
+    @State private var isWonSectionExpanded = false
+    @State private var isRunningSectionExpanded = true
+    @State private var isLostSectionExpanded = false
+    
     @Binding var selectedGame: Game?
     @Binding var animationValues: [[Double]]
     var searchText: String
-
+    
     init(selectedGame: Binding<Game?>, animationValues: Binding<[[Double]]>, sortBy: SortOrder, sortOrder: Bool, searchText: String) {
         self._selectedGame = selectedGame
         self._animationValues = animationValues
@@ -42,10 +46,22 @@ struct GamesListView: View {
         
         let predicate = #Predicate<Game> { game in
             game.name.localizedStandardContains(searchText) ||
-            searchText.localizedStandardContains(game.name) ||
             searchText.isEmpty
         }
         _games = Query(filter: predicate, sort: sortDescriptors)
+    }
+    
+    // Filter games into sections based on runtime status
+    private var wonGames: [Game] {
+        games.filter { $0.status == .won }
+    }
+    
+    private var runningGames: [Game] {
+        games.filter { $0.status == .running }
+    }
+    
+    private var lostGames: [Game] {
+        games.filter { $0.status == .lost }
     }
     
     var body: some View {
@@ -60,11 +76,44 @@ struct GamesListView: View {
     @ViewBuilder
     func MacOsGamesListBuilder() -> some View {
         List(selection: $selectedGame.animation()) {
+            if (!runningGames.isEmpty) {
+                MacOsSectionView(title: "Active Games", isExpanded: $isRunningSectionExpanded, games: runningGames)
+            }
+            if (!wonGames.isEmpty) {
+                MacOsSectionView(title: "Won Games", isExpanded: $isWonSectionExpanded, games: wonGames)
+            }
+            if (!lostGames.isEmpty) {
+                MacOsSectionView(title: "Lost Games", isExpanded: $isLostSectionExpanded, games: lostGames)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func MacOsSectionView(title: String, isExpanded: Binding<Bool>, games: [Game]) -> some View {
+        DisclosureGroup(isExpanded: isExpanded) {
             ForEach(games) {game in
                 NavigationLink(value: game) {
                     GameCardView(game: game, selectedGame: $selectedGame)
                 }
             }
+        } label: {
+            HStack {
+                Text(title)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+                    .font(.headline)
+                Spacer()
+                Image(systemName: isExpanded.wrappedValue ? "chevron.down" : "chevron.right")
+                    .font(.footnote.bold())
+                    .foregroundColor(.secondary)
+            }
+            .onTapGesture {
+                withAnimation(.easeIn) {
+                    isExpanded.wrappedValue = !isExpanded.wrappedValue
+                }
+            }
+            .padding(5)
         }
     }
 #endif
@@ -73,6 +122,21 @@ struct GamesListView: View {
     @ViewBuilder
     func IosGamesListBuilder() -> some View {
         List(selection: $selectedGame) {
+            if (!runningGames.isEmpty) {
+                IosSectionViewBuilder("Active Games", $isRunningSectionExpanded, runningGames)
+            }
+            if (!wonGames.isEmpty) {
+                IosSectionViewBuilder("Games Won", $isWonSectionExpanded, wonGames)
+            }
+            if (!lostGames.isEmpty) {
+                IosSectionViewBuilder("Games Lost", $isLostSectionExpanded, lostGames)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func IosSectionViewBuilder(_ title: String, _ expanded: Binding<Bool>, _ games: [Game]) -> some View {
+        Section(title, isExpanded: expanded) {
             ForEach(games) { game in
                 if #available(iOS 18.0, *) {
                     NavigationCardBuilder(game: game)
@@ -83,6 +147,7 @@ struct GamesListView: View {
             }
             .onDelete(perform: deleteGames)
         }
+        .headerProminence(.increased)
     }
     
     @ViewBuilder

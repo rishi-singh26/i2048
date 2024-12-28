@@ -75,10 +75,11 @@ struct ContentView: View {
     func MacOSViewBuilder() -> some View {
         NavigationSplitView {
             MacOsGamesListBuilder()
+                .frame(minWidth: 280, idealWidth: 300, maxWidth: 340)
+                .searchable(text: $searchText, placement: .sidebar)
         } detail: {
             DetailView()
         }
-        .searchable(text: $searchText, placement: .sidebar)
         .keyboardReaction { gameHotKeys($0) }
     }
     
