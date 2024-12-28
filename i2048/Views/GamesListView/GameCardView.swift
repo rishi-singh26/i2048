@@ -20,18 +20,20 @@ struct GameCardView: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text(game.name)
-                        .font(.title2.bold())
+                        .font(.title3.bold())
                     Text(game.createdAt.formattedString())
                         .font(.footnote)
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 0) {
                     Text("\(game.score)")
-                        .font(.title3.bold())
+                        .font(.headline.bold())
                 }
             }
         }
+        #if os(macOS)
         .padding(.vertical, 5)
+        #endif
         .swipeActions(edge: .leading) {
             Button {
                 editGame(game.id)
@@ -64,14 +66,14 @@ struct GameCardView: View {
                     .foregroundStyle(.yellow)
                     .frame(width: 30)
             } else {
-                if GameController.shared.isGameOver(on: game) {
+                if game.isGameOver {
                     Image(systemName: "exclamationmark.warninglight")
                         .symbolEffect(.wiggle.byLayer, options: .repeat(5))
                         .font(.title2)
                         .foregroundStyle(.red)
                         .frame(width: 30)
                 } else {
-                    Image(systemName: "hourglass")
+                    Image(systemName: "gamecontroller.fill")
                         .symbolEffect(.wiggle, options: .repeat(5))
                         .font(.title2)
                         .foregroundStyle(.orange)
@@ -85,13 +87,13 @@ struct GameCardView: View {
                     .foregroundStyle(.yellow)
                     .frame(width: 30)
             } else {
-                if GameController.shared.isGameOver(on: game) {
+                if game.isGameOver {
                     Image(systemName: "exclamationmark.warninglight")
                         .font(.title2)
                         .foregroundStyle(.red)
                         .frame(width: 30)
                 } else {
-                    Image(systemName: "hourglass")
+                    Image(systemName: "gamecontroller.fill")
                         .font(.title2)
                         .foregroundStyle(.orange)
                         .frame(width: 30)
