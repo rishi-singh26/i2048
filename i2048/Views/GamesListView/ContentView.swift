@@ -8,6 +8,16 @@
 import SwiftUI
 import SwiftData
 
+enum SortOrder {
+    case name // Name
+    case createdOn // Game Created Date
+    case lastPlayedOn // Last Played Date
+    
+    var id: Self {
+        self
+    }
+}
+
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
@@ -17,26 +27,22 @@ struct ContentView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 #endif
     
-    @Query var games: [Game]
+    
     
     @State private var selectedGame: Game?
     @State private var animationValues: [[Double]] = []
     @State private var settingsSheetOpen: Bool = false
     @State private var searchText: String = ""
+    @State private var sortBy: SortOrder = .name
+    /// **sortOrder** true -> Ascending; false -> descending
+    @State private var sortOrder: Bool = true
     
-    @Namespace var navigationNamespace
+    
     
     private let gameController = GameController()
     
     init() {
         _ = CacheManager.shared
-    }
-    
-    var filteredGames: [Game] {
-        guard !searchText.isEmpty else { return games }
-        return games.filter { game in
-            game.name.lowercased().contains(searchText.lowercased()) || searchText.lowercased().contains(game.name.lowercased())
-        }
     }
     
     var body: some View {
@@ -50,6 +56,14 @@ struct ContentView: View {
                 IpadOSViewBuilder()
             }
 #endif
+        }
+        .onChange(of: sortBy) { oldValue, newValue in
+            print(oldValue)
+            print(newValue)
+        }
+        .onChange(of: sortOrder) { oldValue, newValue in
+            print(oldValue)
+            print(newValue)
         }
 #if os(iOS)
         .sheet(isPresented: $settingsSheetOpen, content: {
@@ -72,13 +86,7 @@ struct ContentView: View {
     
     @ViewBuilder
     func MacOsGamesListBuilder() -> some View {
-        List(selection: $selectedGame.animation()) {
-            ForEach(filteredGames) {game in
-                NavigationLink(value: game) {
-                    GameCardView(game: game, selectedGame: $selectedGame)
-                }
-            }
-        }
+        GamesListView(selectedGame: $selectedGame, animationValues: $animationValues, sortBy: sortBy, sortOrder: sortOrder, searchText: searchText)
         .navigationSplitViewColumnWidth(min: 220, ideal: 230)
         .toolbar(content: MacOSToolbarBuilder)
         .navigationTitle("i2048")
@@ -86,16 +94,31 @@ struct ContentView: View {
     
     @ToolbarContentBuilder
     func MacOSToolbarBuilder() -> some ToolbarContent {
-        ToolbarItem(placement: .automatic) {
-            Button(action: addGame) {
-                Label("Add Game", systemImage: "plus.circle")
+        ToolbarItem(placement: .primaryAction) {
+            Menu {
+                Picker("Sort Games By", selection: $sortBy) {
+                    Text("Name")
+                    .tag(SortOrder.name)
+                    Text("Game Created Date")
+                    .tag(SortOrder.createdOn)
+                    Text("Last Played Date")
+                    .tag(SortOrder.lastPlayedOn)
+                }
+                .pickerStyle(.inline)
+                Picker("Sort Order", selection: $sortOrder) {
+                    Text("Ascending")
+                    .tag(true)
+                    Text("Descending")
+                    .tag(false)
+                }
+                .pickerStyle(.inline)
+            } label: {
+                Image(systemName: "plus.circle")
+            } primaryAction: {
+                addGame()
             }
             .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
         }
-    }
-    
-    func openSettingsWindow() {
-        
     }
     
     func gameHotKeys(_ event: NSEvent) -> NSEvent? {
@@ -153,39 +176,10 @@ struct ContentView: View {
     
     @ViewBuilder
     func IosGamesListBuilder() -> some View {
-        List(selection: $selectedGame) {
-            ForEach(filteredGames) { game in
-                if #available(iOS 18.0, *) {
-                    NavigationCardBuilder(game: game)
-                        .matchedTransitionSource(id: game.id, in: navigationNamespace)
-                } else {
-                    NavigationCardBuilder(game: game)
-                }
-            }
-            .onDelete(perform: deleteGames)
-        }
+        GamesListView(selectedGame: $selectedGame, animationValues: $animationValues, sortBy: sortBy, sortOrder: sortOrder, searchText: searchText)
         .listStyle(.sidebar)
         .toolbar(content: IosToolbarBuilder)
         .navigationTitle("i2048")
-    }
-    
-    func NavigationCardBuilder(game: Game) -> some View {
-        NavigationLink {
-            if #available(iOS 18.0, *) {
-                GameView(
-                    selectedGame: game,
-                    animationValues: $animationValues
-                )
-                    .navigationTransition(.zoom(sourceID: game.id, in: navigationNamespace))
-            } else {
-                GameView(
-                    selectedGame: game,
-                    animationValues: $animationValues
-                )
-            }
-        } label: {
-            GameCardView(game: game, selectedGame: $selectedGame)
-        }
     }
     
     @ToolbarContentBuilder
@@ -222,19 +216,9 @@ struct ContentView: View {
     }
     
     func addGame() {
-        let game = Game(name: "Game #\(games.count + 1)", gridSize: 4)
+        let game = Game(name: "New Game", gridSize: 4)
         modelContext.insert(game)
         selectedGame = game
-    }
-    
-    func deleteGames(_ indexSet: IndexSet) {
-        for index in indexSet {
-            let game = games[index]
-            modelContext.delete(game)
-            if game == selectedGame {
-                selectedGame = nil
-            }
-        }
     }
 }
 
