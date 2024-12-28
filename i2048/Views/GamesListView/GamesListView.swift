@@ -9,15 +9,45 @@ import SwiftUI
 import SwiftData
 
 struct GamesListView: View {
-    @Environment(\.modelContext) var modelContext
-    @Query(sort: \Game.createdAt) var games: [Game]
-    @Namespace var navigationNamespace
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \Game.createdAt, order: .reverse) private var games: [Game]
+    @Namespace private var navigationNamespace
 
     @Binding var selectedGame: Game?
     @Binding var animationValues: [[Double]]
-    var sortBy: SortOrder
-    var sortOrder: Bool
     var searchText: String
+
+    init(selectedGame: Binding<Game?>, animationValues: Binding<[[Double]]>, sortBy: SortOrder, sortOrder: Bool, searchText: String) {
+        self._selectedGame = selectedGame
+        self._animationValues = animationValues
+        self.searchText = searchText
+        
+        let sortDescriptors: [SortDescriptor<Game>] = switch sortBy {
+        case .name:
+            [
+                SortDescriptor(\Game.name, order: sortOrder ? .forward : .reverse),
+                SortDescriptor(\Game.createdAt, order: sortOrder ? .forward : .reverse)
+            ]
+        case .createdOn:
+            [
+                SortDescriptor(\Game.createdAt, order: sortOrder ? .forward : .reverse),
+                SortDescriptor(\Game.name, order: sortOrder ? .forward : .reverse)
+            ]
+        case .lastPlayedOn:
+            [
+                SortDescriptor(\Game.modifiedAt, order: sortOrder ? .forward : .reverse),
+                SortDescriptor(\Game.name, order: sortOrder ? .forward : .reverse)
+            ]
+        }
+        
+        let predicate = #Predicate<Game> { game in
+            game.name.localizedStandardContains(searchText) ||
+            searchText.localizedStandardContains(game.name) ||
+            searchText.isEmpty
+        }
+        _games = Query(filter: predicate, sort: sortDescriptors)
+    }
+    
     var body: some View {
 #if os (macOS)
         MacOsGamesListBuilder()
@@ -26,28 +56,24 @@ struct GamesListView: View {
 #endif
     }
     
-    var filteredGames: [Game] {
-        guard !searchText.isEmpty else { return games }
-        return games.filter { game in
-            game.name.lowercased().contains(searchText.lowercased()) || searchText.lowercased().contains(game.name.lowercased())
-        }
-    }
-    
+#if os (macOS)
     @ViewBuilder
     func MacOsGamesListBuilder() -> some View {
         List(selection: $selectedGame.animation()) {
-            ForEach(filteredGames) {game in
+            ForEach(games) {game in
                 NavigationLink(value: game) {
                     GameCardView(game: game, selectedGame: $selectedGame)
                 }
             }
         }
     }
+#endif
     
+#if os(iOS)
     @ViewBuilder
     func IosGamesListBuilder() -> some View {
         List(selection: $selectedGame) {
-            ForEach(filteredGames) { game in
+            ForEach(games) { game in
                 if #available(iOS 18.0, *) {
                     NavigationCardBuilder(game: game)
                         .matchedTransitionSource(id: game.id, in: navigationNamespace)
@@ -88,6 +114,7 @@ struct GamesListView: View {
             }
         }
     }
+#endif
 }
 
 //#Preview {

@@ -27,15 +27,13 @@ struct ContentView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 #endif
     
-    
-    
     @State private var selectedGame: Game?
     @State private var animationValues: [[Double]] = []
     @State private var settingsSheetOpen: Bool = false
     @State private var searchText: String = ""
-    @State private var sortBy: SortOrder = .name
+    @State private var sortBy: SortOrder = .createdOn
     /// **sortOrder** true -> Ascending; false -> descending
-    @State private var sortOrder: Bool = true
+    @State private var sortOrder: Bool = false
     
     
     
