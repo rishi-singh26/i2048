@@ -145,7 +145,9 @@ struct GamesListView: View {
                     NavigationCardBuilder(game: game)
                 }
             }
-            .onDelete(perform: deleteGames)
+            .onDelete { indexSet in
+                deleteGames(indexSet, games: games)
+            }
         }
         .headerProminence(.increased)
     }
@@ -170,7 +172,7 @@ struct GamesListView: View {
         }
     }
     
-    func deleteGames(_ indexSet: IndexSet) {
+    func deleteGames(_ indexSet: IndexSet, games: [Game]) {
         for index in indexSet {
             let game = games[index]
             modelContext.delete(game)
