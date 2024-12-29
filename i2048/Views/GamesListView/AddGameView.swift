@@ -18,6 +18,83 @@ struct AddGameView: View {
     @Binding var selectedGame: Game?
     
     var body: some View {
+#if os(iOS)
+        IosNewGameFormBuilder()
+#elseif os(macOS)
+        MacOSNewGameFormBuilder()
+#endif
+    }
+
+#if os(macOS)
+    private func MacOSNewGameFormBuilder() -> some View {
+        ScrollView {
+            GroupBox {
+                HStack {
+                    Text("Game Name")
+                        .font(.headline)
+                        .frame(width: 100, alignment: .leading)
+                    Spacer()
+                    TextField("", text: $gameName)
+                }
+                .padding(6)
+            }
+            .padding([.horizontal, .top])
+            
+            GroupBox {
+                HStack {
+                    Text("Difficulty Level")
+                        .font(.headline)
+                        .frame(width: 100, alignment: .leading)
+                    Spacer()
+                    Picker("", selection: $gridSize) {
+                        Text("3 x 3 grid")
+                            .tag(3)
+                        Text("4 x 4 grid")
+                            .tag(4)
+                    }
+                    .pickerStyle(.segmented)
+                }
+                .padding([.leading, .top, .bottom], 6)
+                .padding(.trailing, 12)
+            }
+            .padding(.horizontal)
+            
+            GroupBox {
+                HStack(alignment: .center) {
+                    Text("Allow Undo")
+                        .font(.headline)
+                        .frame(width: 100, alignment: .leading)
+                    Spacer()
+                    Toggle("", isOn: $allowUndo)
+                        .toggleStyle(.switch)
+                }
+                .padding([.leading, .top, .bottom], 6)
+                .padding(.trailing, 12)
+            }
+            .padding([.horizontal, .bottom])
+        }
+        .toolbar {
+            ToolbarItem(placement: .destructiveAction) {
+                Button("Cancel") {
+                    dismiss()
+                }
+            }
+            
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    addGame()
+                } label: {
+                    Text("Done")
+                        .font(.headline)
+                }
+            }
+        }
+        .frame(width: 500, height: 200, alignment: .leading)
+    }
+#endif
+    
+#if os(iOS)
+    private func IosNewGameFormBuilder() -> some View {
         NavigationView {
             Form {
                 Section {
@@ -61,11 +138,11 @@ struct AddGameView: View {
                         Text("Done")
                             .font(.headline)
                     }
-
                 }
             }
         }
     }
+#endif
     
     func addGame() {
         if gameName == "" {
