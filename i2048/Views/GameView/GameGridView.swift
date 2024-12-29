@@ -25,7 +25,7 @@ struct GameGridView: View {
                             GridTileView(
                                 value: value,
                                 color: colorForValue(value),
-                                scale: animationValues.count > 0 ? animationValues[row][col] : 1.0
+                                scale: getAnimationScale(row: row, col: col)
                             )
                         }
                     }
@@ -61,6 +61,16 @@ struct GameGridView: View {
 //        )
 //        .animation(.easeOut, value: motionManager.x)
 //        .animation(.easeOut, value: motionManager.y)
+    }
+    
+    private func getAnimationScale(row: Int, col: Int) -> Double {
+        var animationScale = 1.0
+        if let safeRow = animationValues[safe: row] {
+            if let safeCol = safeRow[safe: col] {
+                animationScale = safeCol
+            }
+        }
+        return animationScale
     }
     
     private func colorForValue(_ value: Int) -> Color {
