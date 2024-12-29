@@ -30,6 +30,7 @@ struct ContentView: View {
     @State private var selectedGame: Game?
     @State private var animationValues: [[Double]] = []
     @State private var settingsSheetOpen: Bool = false
+    @State private var addGameSheetOpen: Bool = false
     @State private var searchText: String = ""
     @State private var sortBy: SortOrder = .createdOn
     /// **sortOrder** true -> Ascending; false -> descending
@@ -55,19 +56,14 @@ struct ContentView: View {
             }
 #endif
         }
-        .onChange(of: sortBy) { oldValue, newValue in
-            print(oldValue)
-            print(newValue)
-        }
-        .onChange(of: sortOrder) { oldValue, newValue in
-            print(oldValue)
-            print(newValue)
-        }
 #if os(iOS)
         .sheet(isPresented: $settingsSheetOpen, content: {
             SettingsView()
         })
 #endif
+        .sheet(isPresented: $addGameSheetOpen, content: {
+            AddGameView(selectedGame: $selectedGame)
+        })
     }
     
     #if os(macOS)
@@ -95,26 +91,34 @@ struct ContentView: View {
     func MacOSToolbarBuilder() -> some ToolbarContent {
         ToolbarItem(placement: .primaryAction) {
             Menu {
+                Button("Quick 3x3 Game", systemImage: "3.square") {
+                    addGame(3)
+                }
+                .keyboardShortcut(KeyEquivalent("3"), modifiers: .command)
+                Button("Quick 4x4 Game", systemImage: "4.alt.square") {
+                    addGame(4)
+                }
+                .keyboardShortcut(KeyEquivalent("4"), modifiers: .command)
                 Picker("Sort Games By", selection: $sortBy) {
                     Text("Name")
-                    .tag(SortOrder.name)
+                        .tag(SortOrder.name)
                     Text("Game Created Date")
-                    .tag(SortOrder.createdOn)
+                        .tag(SortOrder.createdOn)
                     Text("Last Played Date")
-                    .tag(SortOrder.lastPlayedOn)
+                        .tag(SortOrder.lastPlayedOn)
                 }
                 .pickerStyle(.inline)
                 Picker("Sort Order", selection: $sortOrder) {
                     Text("Ascending")
-                    .tag(true)
+                        .tag(true)
                     Text("Descending")
-                    .tag(false)
+                        .tag(false)
                 }
                 .pickerStyle(.inline)
             } label: {
                 Image(systemName: "plus.circle")
             } primaryAction: {
-                addGame()
+                addGameSheetOpen = true
             }
             .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
         }
@@ -185,12 +189,21 @@ struct ContentView: View {
     func IosToolbarBuilder() -> some ToolbarContent {
         ToolbarItem(placement: .bottomBar) {
             HStack {
-                Button(action: addGame) {
+                Menu {
+                    Button("Quick Game", systemImage: "4.alt.square") {
+                        addGame(4)
+                    }
+                    Button("Quick Game", systemImage: "3.square") {
+                        addGame(3)
+                    }
+                } label: {
                     HStack {
                         Image(systemName: "plus.circle.fill")
                         Text("Add game")
                             .font(.headline)
                     }
+                } primaryAction: {
+                    addGameSheetOpen = true
                 }
                 Spacer()
                 Button(action: {
@@ -235,8 +248,8 @@ struct ContentView: View {
         }
     }
     
-    func addGame() {
-        let game = Game(name: "New Game", gridSize: 4)
+    func addGame(_ gridSize: Int) {
+        let game = Game(name: "New Game #\(gridSize)x\(gridSize)", gridSize: gridSize)
         modelContext.insert(game)
         selectedGame = game
     }
