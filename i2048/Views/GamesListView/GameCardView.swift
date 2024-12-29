@@ -13,6 +13,7 @@ struct GameCardView: View {
         
     @Bindable var game: Game
     @Binding var selectedGame: Game?
+    @State private var showDeleteConfirmation: Bool = false
     
     var body: some View {
         HStack(alignment: .center) {
@@ -42,6 +43,14 @@ struct GameCardView: View {
             }
             .tint(.yellow)
         }
+        .swipeActions(edge: .trailing) {
+            Button {
+                showDeleteConfirmation = true
+            } label: {
+                Label("Delete", systemImage: "trash")
+            }
+            .tint(.red)
+        }
         .contextMenu(menuItems: {
             Button {
                 deleteGame(game.id)
@@ -49,11 +58,21 @@ struct GameCardView: View {
                 Label("Rename", systemImage: "pencil.circle")
             }
             Button(role: .destructive) {
-                deleteGame(game.id)
+                showDeleteConfirmation = true
             } label: {
                 Label("Delete", systemImage: "trash")
             }.keyboardShortcut(.delete)
         })
+        .confirmationDialog(
+            "Are you sure you want to delete this game?",
+            isPresented: $showDeleteConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Delete", role: .destructive) {
+                deleteGame(game.id)
+            }
+            Button("Cancel", role: .cancel) { }
+        }
     }
     
     @ViewBuilder
@@ -64,20 +83,20 @@ struct GameCardView: View {
                     .symbolEffect(.wiggle.byLayer, options: .repeat(5))
                     .font(.title2)
                     .foregroundStyle(.yellow)
-                    .frame(width: 30)
+                    .frame(width: 35)
             } else {
                 if game.isGameOver {
                     Image(systemName: "exclamationmark.warninglight")
                         .symbolEffect(.wiggle.byLayer, options: .repeat(5))
                         .font(.title2)
                         .foregroundStyle(.red)
-                        .frame(width: 30)
+                        .frame(width: 35)
                 } else {
                     Image(systemName: "gamecontroller.fill")
                         .symbolEffect(.wiggle, options: .repeat(5))
                         .font(.title2)
                         .foregroundStyle(.orange)
-                        .frame(width: 30)
+                        .frame(width: 35)
                 }
             }
         } else {
@@ -85,18 +104,18 @@ struct GameCardView: View {
                 Image(systemName: "trophy.fill")
                     .font(.title2)
                     .foregroundStyle(.yellow)
-                    .frame(width: 30)
+                    .frame(width: 35)
             } else {
                 if game.isGameOver {
                     Image(systemName: "exclamationmark.warninglight")
                         .font(.title2)
                         .foregroundStyle(.red)
-                        .frame(width: 30)
+                        .frame(width: 35)
                 } else {
                     Image(systemName: "gamecontroller.fill")
                         .font(.title2)
                         .foregroundStyle(.orange)
-                        .frame(width: 30)
+                        .frame(width: 35)
                 }
             }
         }

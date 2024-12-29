@@ -127,9 +127,6 @@ struct GamesListView: View {
                     NavigationCardBuilder(game: game)
                 }
             }
-            .onDelete { indexSet in
-                deleteGames(indexSet, games: games)
-            }
         }
         .headerProminence(.increased)
     }
@@ -151,16 +148,6 @@ struct GamesListView: View {
             }
         } label: {
             GameCardView(game: game, selectedGame: $selectedGame)
-        }
-    }
-    
-    func deleteGames(_ indexSet: IndexSet, games: [Game]) {
-        for index in indexSet {
-            let game = games[index]
-            modelContext.delete(game)
-            if game == selectedGame {
-                selectedGame = nil
-            }
         }
     }
 #endif
