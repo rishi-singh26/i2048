@@ -40,6 +40,8 @@
 		5BBA51182D19D24F00B4D169 /* GameViewControllsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA51172D19D24F00B4D169 /* GameViewControllsView.swift */; };
 		5BBA511C2D1A4A7600B4D169 /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA511B2D1A4A7600B4D169 /* ArtistView.swift */; };
 		5BBA511E2D1B0EB700B4D169 /* GamesMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */; };
+		5BE9A8BA2D2132B500B6945F /* AddGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9A8B92D2132B500B6945F /* AddGameView.swift */; };
+		5BE9A8BC2D213F0700B6945F /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9A8BB2D213F0700B6945F /* ArrayExtension.swift */; };
 		5BED5FE42D12D9A50085968B /* GridTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FE32D12D9A50085968B /* GridTileView.swift */; };
 		5BED5FE82D12E0310085968B /* GameGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FE72D12E0310085968B /* GameGridView.swift */; };
 		5BED5FEC2D12E4880085968B /* KeyboardKeyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */; };
@@ -138,6 +140,8 @@
 		5BBA51172D19D24F00B4D169 /* GameViewControllsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewControllsView.swift; sourceTree = "<group>"; };
 		5BBA511B2D1A4A7600B4D169 /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
 		5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesMigrationPlan.swift; sourceTree = "<group>"; };
+		5BE9A8B92D2132B500B6945F /* AddGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameView.swift; sourceTree = "<group>"; };
+		5BE9A8BB2D213F0700B6945F /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		5BED5FE32D12D9A50085968B /* GridTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTileView.swift; sourceTree = "<group>"; };
 		5BED5FE72D12E0310085968B /* GameGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGridView.swift; sourceTree = "<group>"; };
 		5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardKeyButton.swift; sourceTree = "<group>"; };
@@ -340,6 +344,7 @@
 			children = (
 				5B75E7962D11857D009D2C80 /* ColorExtension.swift */,
 				5BBA51112D18FB8C00B4D169 /* DateExtenstion.swift */,
+				5BE9A8BB2D213F0700B6945F /* ArrayExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -391,6 +396,7 @@
 				5B75E6E62D109D0D009D2C80 /* ContentView.swift */,
 				5B36F5DD2D20358300D318A6 /* GamesListView.swift */,
 				5B75E79E2D11D2DB009D2C80 /* GameCardView.swift */,
+				5BE9A8B92D2132B500B6945F /* AddGameView.swift */,
 			);
 			path = GamesListView;
 			sourceTree = "<group>";
@@ -561,6 +567,7 @@
 				5B0B4F752D167FCA005AD427 /* CarouselCard.swift in Sources */,
 				5B1421672D13D84700032861 /* BackgroundArt.swift in Sources */,
 				5B75E79A2D11B0CA009D2C80 /* GameController.swift in Sources */,
+				5BE9A8BA2D2132B500B6945F /* AddGameView.swift in Sources */,
 				5B0B4F6B2D158208005AD427 /* ArtDetailView.swift in Sources */,
 				5B75E6E72D109D0D009D2C80 /* ContentView.swift in Sources */,
 				5B75E7102D109D46009D2C80 /* Game.swift in Sources */,
@@ -588,6 +595,7 @@
 				5BBA511E2D1B0EB700B4D169 /* GamesMigrationPlan.swift in Sources */,
 				5BBA51122D18FB8C00B4D169 /* DateExtenstion.swift in Sources */,
 				5B14219D2D14443300032861 /* ParallaxCarouselView.swift in Sources */,
+				5BE9A8BC2D213F0700B6945F /* ArrayExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
