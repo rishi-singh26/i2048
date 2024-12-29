@@ -190,10 +190,10 @@ struct ContentView: View {
         ToolbarItem(placement: .bottomBar) {
             HStack {
                 Menu {
-                    Button("Quick Game", systemImage: "4.alt.square") {
+                    Button("Quick 4x4 Game", systemImage: "4.alt.square") {
                         addGame(4)
                     }
-                    Button("Quick Game", systemImage: "3.square") {
+                    Button("Quick 3x3 Game", systemImage: "3.square") {
                         addGame(3)
                     }
                 } label: {

@@ -90,30 +90,12 @@ struct GamesListView: View {
     
     @ViewBuilder
     private func MacOsSectionView(title: String, isExpanded: Binding<Bool>, games: [Game]) -> some View {
-        DisclosureGroup(isExpanded: isExpanded) {
+        Section(title, isExpanded: isExpanded) {
             ForEach(games) {game in
                 NavigationLink(value: game) {
                     GameCardView(game: game, selectedGame: $selectedGame)
                 }
             }
-        } label: {
-            HStack {
-                Text(title)
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.secondary)
-                    .font(.headline)
-                Spacer()
-                Image(systemName: isExpanded.wrappedValue ? "chevron.down" : "chevron.right")
-                    .font(.footnote.bold())
-                    .foregroundColor(.secondary)
-            }
-            .onTapGesture {
-                withAnimation(.easeIn) {
-                    isExpanded.wrappedValue = !isExpanded.wrappedValue
-                }
-            }
-            .padding(5)
         }
     }
 #endif
