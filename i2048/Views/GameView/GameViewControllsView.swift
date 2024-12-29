@@ -26,7 +26,7 @@ struct GameViewControllsView: View {
     private func IosViewBuilder() -> some View {
         List {
             Section {
-                Toggle(isOn: $userDefaultsManager.hapticsEnabled) {
+                Toggle(isOn: $userDefaultsManager.hapticsEnabled.animation()) {
                     Label("Enable Haptics", systemImage: userDefaultsManager.hapticsEnabled ? "hand.tap.fill" : "hand.tap")
                 }
                 .toggleStyle(.switch)
