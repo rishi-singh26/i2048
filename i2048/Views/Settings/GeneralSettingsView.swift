@@ -47,6 +47,38 @@ struct GeneralSettingsView: View {
                 }
             }
             
+            MacCustomSection(header: "Quick Game Defaults", footer: "Select default values for quick game") {
+                HStack {
+                    Text("Game name prefix")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    TextField("", text: $userDefaultsManager.quickGameNamePrefix)
+                        .textFieldStyle(.roundedBorder)
+                }
+                Divider()
+                HStack(alignment: .center) {
+                    Text("Allow Undo")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    Toggle("", isOn: $userDefaultsManager.quickGameAllowUndo)
+                        .toggleStyle(.switch)
+                }
+                Divider()
+                HStack(alignment: .center) {
+                    Text("Allow Undo")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    Picker("", selection: $userDefaultsManager.quickGameNewBlocNum) {
+                        Text("2")
+                            .tag(2)
+                        Text("4")
+                            .tag(4)
+                        Text("2 or 4 (Random)")
+                            .tag(0)
+                    }
+                }
+            }
+            
             MacCustomSection(header: "") {
                 CustomLabel(leadingImageName: "bolt.shield", trailingImageName: "chevron.right", title: "Privacy Policy")
                 Divider()
@@ -61,6 +93,7 @@ struct GeneralSettingsView: View {
                     CustomLabel(leadingImageName: "lock.open.display", trailingImageName: "arrow.up.right", title: "Open Source Code")
                 }
             }
+            .padding(.bottom)
         }
     }
 }

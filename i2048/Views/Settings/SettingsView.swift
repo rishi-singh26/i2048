@@ -38,10 +38,8 @@ struct SettingsView: View {
                         Label("Games Lost", systemImage: userDefaultsManager.gamesLostSectionEnabled ? "exclamationmark.warninglight.fill" : "exclamationmark.warninglight")
                     }
                     .toggleStyle(.switch)
-                } header: {
-                    Text("Choose which sections to show at app launch")
                 } footer: {
-                    Text("Selected sections will be expanded at app launch")
+                    Text("Choose which sections to show at app launch. Selected sections will be expanded at app launch")
                 }
                 
                 Section {
@@ -54,9 +52,37 @@ struct SettingsView: View {
                     }
                     .toggleStyle(.switch)
                 } header: {
-                    Text("General")
+                    Text("Game Feedback")
                 } footer: {
-                    Text("Enable game feedbacks with haptics")
+                    Text("Enable game feedbacks with Haptics and Sound")
+                }
+                
+                Section {
+                    TextField("Game name prefix", text: $userDefaultsManager.quickGameNamePrefix)
+                        .textInputAutocapitalization(.words)
+                    Toggle(isOn: $userDefaultsManager.quickGameAllowUndo.animation()) {
+                        Label("Allow Undo", systemImage: userDefaultsManager.quickGameAllowUndo ? "arrow.uturn.backward.square.fill" : "arrow.uturn.backward.square")
+                    }
+                    .toggleStyle(.switch)
+                    Picker(selection: $userDefaultsManager.quickGameNewBlocNum.animation()) {
+                        Text("2")
+                            .tag(2)
+                        Text("4")
+                            .tag(4)
+                        Text("2 or 4 (Random)")
+                            .tag(0)
+                    } label: {
+                        Label {
+                            Text("New Block")
+                        } icon: {
+                            AnimatedIconsView(symbols: Game.getNewBlockIcon(userDefaultsManager.quickGameNewBlocNum), animationDuration: 2.0)
+                        }
+                    }
+                    .pickerStyle(.navigationLink)
+                } header: {
+                    Text("Quick Game Defaults")
+                } footer: {
+                    Text("Select default values for quick game")
                 }
                 
                 Section {
