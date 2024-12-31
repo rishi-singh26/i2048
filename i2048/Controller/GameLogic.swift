@@ -191,8 +191,8 @@ final class GameLogic : ObservableObject {
     
     @discardableResult fileprivate func _generateNewBlock() -> Bool {
           var blankLocations = [BlockMatrixType.Index]()
-          for rowIndex in 0..<4 {
-              for colIndex in 0..<4 {
+          for rowIndex in 0..<gridSize {
+              for colIndex in 0..<gridSize {
                   let index = (colIndex, rowIndex)
                   if _blockMatrix[index] == nil {
                       blankLocations.append(index)
