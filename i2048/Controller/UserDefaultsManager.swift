@@ -47,6 +47,24 @@ class UserDefaultsManager: ObservableObject {
         }
     }
     
+    @Published var quickGameNamePrefix: String {
+        didSet {
+            UserDefaults.standard.set(quickGameNamePrefix, forKey: "quickGameNamePrefix")
+        }
+    }
+    
+    @Published var quickGameAllowUndo: Bool {
+        didSet {
+            UserDefaults.standard.set(quickGameAllowUndo, forKey: "quickGameAllowUndo")
+        }
+    }
+    
+    @Published var quickGameNewBlocNum: Int {
+        didSet {
+            UserDefaults.standard.set(quickGameNewBlocNum, forKey: "quickGameNewBlocNum")
+        }
+    }
+    
     @Published var activeGamesSectionEnabled: Bool {
         didSet {
             UserDefaults.standard.set(activeGamesSectionEnabled, forKey: "activeGamesSectionEnabled")
@@ -74,6 +92,9 @@ class UserDefaultsManager: ObservableObject {
         self.hapticsEnabled = UserDefaults.standard.bool(forKey: "hapticsEnabled")
         self.soundEnabled = UserDefaults.standard.bool(forKey: "soundEnabled")
         self.titleBarDisabled = UserDefaults.standard.bool(forKey: "titleBarDisabled")
+        self.quickGameNamePrefix = UserDefaults.standard.string(forKey: "quickGameNamePrefix") ?? "Game Name"
+        self.quickGameAllowUndo = UserDefaults.standard.bool(forKey: "quickGameAllowUndo")
+        self.quickGameNewBlocNum = UserDefaults.standard.integer(forKey: "quickGameNewBlocNum")
         self.activeGamesSectionEnabled = UserDefaults.standard.bool(forKey: "activeGamesSectionEnabled")
         self.gamesWonSectionEnabled = UserDefaults.standard.bool(forKey: "gamesWonSectionEnabled")
         self.gamesLostSectionEnabled = UserDefaults.standard.bool(forKey: "gamesLostSectionEnabled")
