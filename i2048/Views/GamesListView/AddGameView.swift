@@ -124,6 +124,7 @@ struct AddGameView: View {
                 }
             }
             .navigationTitle("Add Game")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {

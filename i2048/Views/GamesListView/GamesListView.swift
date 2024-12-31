@@ -11,20 +11,19 @@ import SwiftData
 struct GamesListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Game.createdAt, order: .reverse) private var games: [Game]
-    @Namespace private var navigationNamespace
+    var navigationNamespace: Namespace.ID
     // State for collapsible sections
     @State private var isWonSectionExpanded = false
     @State private var isRunningSectionExpanded = true
     @State private var isLostSectionExpanded = false
     
     @Binding var selectedGame: Game?
-    @Binding var animationValues: [[Double]]
     var searchText: String
     
-    init(selectedGame: Binding<Game?>, animationValues: Binding<[[Double]]>, sortBy: SortOrder, sortOrder: Bool, searchText: String) {
+    init(selectedGame: Binding<Game?>, sortBy: SortOrder, sortOrder: Bool, searchText: String, nameSpace: Namespace.ID) {
         self._selectedGame = selectedGame
-        self._animationValues = animationValues
         self.searchText = searchText
+        self.navigationNamespace = nameSpace
         
         let sortDescriptors: [SortDescriptor<Game>] = switch sortBy {
         case .name:
@@ -120,35 +119,17 @@ struct GamesListView: View {
     func IosSectionViewBuilder(_ title: String, _ expanded: Binding<Bool>, _ games: [Game]) -> some View {
         Section(title, isExpanded: expanded) {
             ForEach(games) { game in
-                if #available(iOS 18.0, *) {
-                    NavigationCardBuilder(game: game)
-                        .matchedTransitionSource(id: game.id, in: navigationNamespace)
-                } else {
-                    NavigationCardBuilder(game: game)
+                NavigationLink(value: game) {
+                    if #available(iOS 18.0, *) {
+                        GameCardView(game: game, selectedGame: $selectedGame)
+                            .matchedTransitionSource(id: game.id, in: navigationNamespace)
+                    } else {
+                        GameCardView(game: game, selectedGame: $selectedGame)
+                    }
                 }
             }
         }
         .headerProminence(.increased)
-    }
-    
-    @ViewBuilder
-    func NavigationCardBuilder(game: Game) -> some View {
-        NavigationLink {
-            if #available(iOS 18.0, *) {
-                GameView(
-                    selectedGame: game,
-                    animationValues: $animationValues
-                )
-                    .navigationTransition(.zoom(sourceID: game.id, in: navigationNamespace))
-            } else {
-                GameView(
-                    selectedGame: game,
-                    animationValues: $animationValues
-                )
-            }
-        } label: {
-            GameCardView(game: game, selectedGame: $selectedGame)
-        }
     }
 #endif
 }

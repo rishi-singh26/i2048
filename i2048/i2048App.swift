@@ -13,6 +13,7 @@ struct i2048App: App {
     @Environment(\.colorScheme) var colorScheme
     @StateObject private var userDefaultsManager = UserDefaultsManager()
     @StateObject private var artManager = BackgroundArtManager()
+    @StateObject private var gameLogic = GameLogic()
 
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -33,6 +34,7 @@ struct i2048App: App {
             ContentView()
                 .environmentObject(userDefaultsManager)
                 .environmentObject(artManager)
+                .environmentObject(gameLogic)
         }
         .modelContainer(sharedModelContainer)
 #if os(macOS)

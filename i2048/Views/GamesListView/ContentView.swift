@@ -22,23 +22,16 @@ struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @EnvironmentObject var backgroundArtManager: BackgroundArtManager
-    
-#if os(iOS)
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-#endif
+    @EnvironmentObject var gameLogic: GameLogic
     
     @State private var selectedGame: Game?
-    @State private var animationValues: [[Double]] = []
     @State private var settingsSheetOpen: Bool = false
     @State private var addGameSheetOpen: Bool = false
     @State private var searchText: String = ""
     @State private var sortBy: SortOrder = .createdOn
     /// **sortOrder** true -> Ascending; false -> descending
     @State private var sortOrder: Bool = false
-    
-    
-    
-    private let gameController = GameController()
+    @Namespace private var navigationNamespace
     
     init() {
         _ = CacheManager.shared
@@ -49,11 +42,7 @@ struct ContentView: View {
 #if os(macOS)
             MacOSViewBuilder()
 #elseif os(iOS)
-            if horizontalSizeClass == .compact {
-                IosViewBuilder()
-            } else {
-                IpadOSViewBuilder()
-            }
+            IosViewBuilder()
 #endif
         }
 #if os(iOS)
@@ -81,7 +70,22 @@ struct ContentView: View {
     
     @ViewBuilder
     func MacOsGamesListBuilder() -> some View {
-        GamesListView(selectedGame: $selectedGame, animationValues: $animationValues, sortBy: sortBy, sortOrder: sortOrder, searchText: searchText)
+        GamesListView(
+            selectedGame: Binding(get: {
+                selectedGame
+            }, set: { updatedGame in
+                withAnimation {
+                    selectedGame = updatedGame
+                }
+                if let unwrappedGame = updatedGame {
+                    gameLogic.updateSelectedGame(selectedGame: unwrappedGame)
+                }
+            }),
+            sortBy: sortBy,
+            sortOrder: sortOrder,
+            searchText: searchText,
+            nameSpace: navigationNamespace
+        )
         .navigationSplitViewColumnWidth(min: 220, ideal: 230)
         .toolbar(content: MacOSToolbarBuilder)
         .navigationTitle("i2048")
@@ -128,20 +132,24 @@ struct ContentView: View {
         if event.modifierFlags.contains(.command) && selectedGame != nil {
             switch event.keyCode {
             case KeyCode.upArrow:
-                gameController.moveUp(on: selectedGame!, $animationValues)
-                updateScore()
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.up)
+                }
                 return nil // disable beep sound
             case KeyCode.downArrow:
-                gameController.moveDown(on: selectedGame!, $animationValues)
-                updateScore()
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.down)
+                }
                 return nil // disable beep sound
             case KeyCode.rightArrow:
-                gameController.moveRight(on: selectedGame!, $animationValues)
-                updateScore()
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.right)
+                }
                 return nil // disable beep sound
             case KeyCode.leftArrow:
-                gameController.moveLeft(on: selectedGame!, $animationValues)
-                updateScore()
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.left)
+                }
                 return nil // disable beep sound
             default:
                 return event // beep sound will be here
@@ -150,25 +158,11 @@ struct ContentView: View {
             return event
         }
     }
-    
-    func updateScore() {
-        if selectedGame!.score > userDefaultsManager.highScore {
-            userDefaultsManager.highScore = selectedGame!.score
-        }
-    }
     #endif
     
     #if os(iOS)
     @ViewBuilder
     func IosViewBuilder() -> some View {
-        NavigationStack {
-            IosGamesListBuilder()
-        }
-        .searchable(text: $searchText)
-    }
-    
-    @ViewBuilder
-    func IpadOSViewBuilder() -> some View {
         NavigationSplitView {
             IosGamesListBuilder()
         } detail: {
@@ -179,7 +173,22 @@ struct ContentView: View {
     
     @ViewBuilder
     func IosGamesListBuilder() -> some View {
-        GamesListView(selectedGame: $selectedGame, animationValues: $animationValues, sortBy: sortBy, sortOrder: sortOrder, searchText: searchText)
+        GamesListView(
+            selectedGame: Binding(get: {
+                selectedGame
+            }, set: { updatedGame in
+                withAnimation {
+                    selectedGame = updatedGame
+                }
+                if let unwrappedGame = updatedGame {
+                    gameLogic.updateSelectedGame(selectedGame: unwrappedGame)
+                }
+            }),
+            sortBy: sortBy,
+            sortOrder: sortOrder,
+            searchText: searchText,
+            nameSpace: navigationNamespace
+        )
         .listStyle(.sidebar)
         .toolbar(content: IosToolbarBuilder)
         .navigationTitle("i2048")
@@ -241,8 +250,15 @@ struct ContentView: View {
     /// Detail view is used on macos and ipad for navigation split view
     @ViewBuilder
     func DetailView() -> some View {
-        if let selectedGame = selectedGame {
-            GameView(selectedGame: selectedGame, animationValues: $animationValues)
+        if let _ = selectedGame {
+            if #available(iOS 18.0, *) {
+                AnimatedGameView()
+#if os(iOS)
+                    .navigationTransition(.zoom(sourceID: selectedGame?.id, in: navigationNamespace))
+                #endif
+            } else {
+                AnimatedGameView()
+            }
         } else {
             GameBackgroundImageView()
         }
@@ -252,6 +268,7 @@ struct ContentView: View {
         let game = Game(name: "New Game #\(gridSize)x\(gridSize)", gridSize: gridSize)
         modelContext.insert(game)
         selectedGame = game
+        gameLogic.updateSelectedGame(selectedGame: game)
     }
 }
 
