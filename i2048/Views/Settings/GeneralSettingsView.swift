@@ -14,39 +14,53 @@ struct GeneralSettingsView: View {
     
     var body: some View {
         ScrollView {
-            GroupBox {
-                VStack {
-                    HStack {
-                        Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
-                        Spacer()
-                        Toggle("", isOn: $userDefaultsManager.soundEnabled.animation())
-                            .toggleStyle(.switch)
-                    }
-                }
-                .padding(6)
-            }
-            .padding(.top)
-            .padding(.horizontal)
             
-            GroupBox {
-                VStack {
-                    CustomLabel(leadingImageName: "bolt.shield", trailingImageName: "chevron.right", title: "Privacy Policy")
-                    Divider()
-                        .padding(.vertical, 2)
-                    CustomLabel(leadingImageName: "list.bullet.rectangle.portrait", trailingImageName: "chevron.right", title: "Terms of Use")
-                    Divider()
-                        .padding(.vertical, 2)
-                    CustomLabel(leadingImageName: "licenseplate", trailingImageName: "chevron.right", title: "Usage License")
-                    Divider()
-                        .padding(.top, 2)
-                    Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
-                        CustomLabel(leadingImageName: "lock.open.display", trailingImageName: "arrow.up.right", title: "Open Source Code")
-                    }
+            MacCustomSection(header: "Choose which sections to show at app launch", footer: "Selected sections will be expanded at app launch") {
+                HStack {
+                    Label("Active Games", systemImage: userDefaultsManager.activeGamesSectionEnabled ? "gamecontroller.fill" : "gamecontroller")
+                    Spacer()
+                    Toggle("", isOn: $userDefaultsManager.activeGamesSectionEnabled.animation())
+                        .toggleStyle(.switch)
                 }
-                .padding([.leading, .top, .bottom], 6)
-                .padding(.trailing, 12)
+                Divider()
+                HStack {
+                    Label("Games Won", systemImage: userDefaultsManager.gamesWonSectionEnabled ? "trophy.fill" : "trophy")
+                    Spacer()
+                    Toggle("", isOn: $userDefaultsManager.gamesWonSectionEnabled.animation())
+                        .toggleStyle(.switch)
+                }
+                Divider()
+                HStack {
+                    Label("Games Lost", systemImage: userDefaultsManager.gamesLostSectionEnabled ? "exclamationmark.warninglight.fill" : "exclamationmark.warninglight")
+                    Spacer()
+                    Toggle("", isOn: $userDefaultsManager.gamesLostSectionEnabled.animation())
+                        .toggleStyle(.switch)
+                }
             }
-            .padding(.horizontal)
+            
+            MacCustomSection(header: "Game Geedback", footer: "Enable game feedback with Sound") {
+                HStack {
+                    Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
+                    Spacer()
+                    Toggle("", isOn: $userDefaultsManager.soundEnabled.animation())
+                        .toggleStyle(.switch)
+                }
+            }
+            
+            MacCustomSection(header: "") {
+                CustomLabel(leadingImageName: "bolt.shield", trailingImageName: "chevron.right", title: "Privacy Policy")
+                Divider()
+                    .padding(.vertical, 2)
+                CustomLabel(leadingImageName: "list.bullet.rectangle.portrait", trailingImageName: "chevron.right", title: "Terms of Use")
+                Divider()
+                    .padding(.vertical, 2)
+                CustomLabel(leadingImageName: "checkmark.seal", trailingImageName: "chevron.right", title: "Usage License")
+                Divider()
+                    .padding(.top, 2)
+                Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
+                    CustomLabel(leadingImageName: "lock.open.display", trailingImageName: "arrow.up.right", title: "Open Source Code")
+                }
+            }
         }
     }
 }
@@ -54,5 +68,6 @@ struct GeneralSettingsView: View {
 #Preview {
     SettingsView()
         .environmentObject(UserDefaultsManager.shared)
+        .environmentObject(BackgroundArtManager.shared)
 }
 #endif

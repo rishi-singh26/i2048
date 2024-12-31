@@ -26,7 +26,26 @@ struct SettingsView: View {
         NavigationView {
             List {
                 Section {
-                    Toggle(isOn: $userDefaultsManager.hapticsEnabled) {
+                    Toggle(isOn: $userDefaultsManager.activeGamesSectionEnabled.animation()) {
+                        Label("Active Games", systemImage: userDefaultsManager.activeGamesSectionEnabled ? "gamecontroller.fill" : "gamecontroller")
+                    }
+                    .toggleStyle(.switch)
+                    Toggle(isOn: $userDefaultsManager.gamesWonSectionEnabled.animation()) {
+                        Label("Games Won", systemImage: userDefaultsManager.gamesWonSectionEnabled ? "trophy.fill" : "trophy")
+                    }
+                    .toggleStyle(.switch)
+                    Toggle(isOn: $userDefaultsManager.gamesLostSectionEnabled.animation()) {
+                        Label("Games Lost", systemImage: userDefaultsManager.gamesLostSectionEnabled ? "exclamationmark.warninglight.fill" : "exclamationmark.warninglight")
+                    }
+                    .toggleStyle(.switch)
+                } header: {
+                    Text("Choose which sections to show at app launch")
+                } footer: {
+                    Text("Selected sections will be expanded at app launch")
+                }
+                
+                Section {
+                    Toggle(isOn: $userDefaultsManager.hapticsEnabled.animation()) {
                         Label("Enable Haptics", systemImage: userDefaultsManager.hapticsEnabled ? "hand.tap.fill" : "hand.tap")
                     }
                     .toggleStyle(.switch)
@@ -37,7 +56,7 @@ struct SettingsView: View {
                 } header: {
                     Text("General")
                 } footer: {
-                    Text("Enaable game feedbacks with haptics")
+                    Text("Enable game feedbacks with haptics")
                 }
                 
                 Section {
@@ -48,7 +67,7 @@ struct SettingsView: View {
                         Label("Terms of Use", systemImage: "list.bullet.rectangle.portrait")
                     }
                     NavigationLink(destination: Text("Destination")) {
-                        Label("Usage License", systemImage: "licenseplate")
+                        Label("Usage License", systemImage: "checkmark.seal")
                     }
                     
                     Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {

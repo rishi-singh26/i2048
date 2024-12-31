@@ -10,12 +10,9 @@ import SwiftData
 
 struct GamesListView: View {
     @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @Query(sort: \Game.createdAt, order: .reverse) private var games: [Game]
     var navigationNamespace: Namespace.ID
-    // State for collapsible sections
-    @State private var isWonSectionExpanded = false
-    @State private var isRunningSectionExpanded = true
-    @State private var isLostSectionExpanded = false
     
     @Binding var selectedGame: Game?
     var searchText: String
@@ -76,13 +73,13 @@ struct GamesListView: View {
     func MacOsGamesListBuilder() -> some View {
         List(selection: $selectedGame.animation()) {
             if (!runningGames.isEmpty) {
-                MacOsSectionView(title: "Active Games", isExpanded: $isRunningSectionExpanded, games: runningGames)
+                MacOsSectionView(title: "Active Games", isExpanded: $userDefaultsManager.isRunningSectionExpanded, games: runningGames)
             }
             if (!wonGames.isEmpty) {
-                MacOsSectionView(title: "Won Games", isExpanded: $isWonSectionExpanded, games: wonGames)
+                MacOsSectionView(title: "Won Games", isExpanded: $userDefaultsManager.isWonSectionExpanded, games: wonGames)
             }
             if (!lostGames.isEmpty) {
-                MacOsSectionView(title: "Lost Games", isExpanded: $isLostSectionExpanded, games: lostGames)
+                MacOsSectionView(title: "Lost Games", isExpanded: $userDefaultsManager.isLostSectionExpanded, games: lostGames)
             }
         }
     }
@@ -104,13 +101,13 @@ struct GamesListView: View {
     func IosGamesListBuilder() -> some View {
         List(selection: $selectedGame) {
             if (!runningGames.isEmpty) {
-                IosSectionViewBuilder("Active Games", $isRunningSectionExpanded, runningGames)
+                IosSectionViewBuilder("Active Games", $userDefaultsManager.isRunningSectionExpanded, runningGames)
             }
             if (!wonGames.isEmpty) {
-                IosSectionViewBuilder("Games Won", $isWonSectionExpanded, wonGames)
+                IosSectionViewBuilder("Games Won", $userDefaultsManager.isWonSectionExpanded, wonGames)
             }
             if (!lostGames.isEmpty) {
-                IosSectionViewBuilder("Games Lost", $isLostSectionExpanded, lostGames)
+                IosSectionViewBuilder("Games Lost", $userDefaultsManager.isLostSectionExpanded, lostGames)
             }
         }
     }
