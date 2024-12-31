@@ -190,43 +190,43 @@ final class GameLogic : ObservableObject {
     }
     
     @discardableResult fileprivate func _generateNewBlock() -> Bool {
-          var blankLocations = [BlockMatrixType.Index]()
-          for rowIndex in 0..<gridSize {
-              for colIndex in 0..<gridSize {
-                  let index = (colIndex, rowIndex)
-                  if _blockMatrix[index] == nil {
-                      blankLocations.append(index)
-                  }
-              }
-          }
-          
-          guard blankLocations.count >= 1 else {
-              return false
-          }
-          
-          // Don't forget to sync data.
-          defer {
-              objectWillChange.send(self)
-          }
-          
-          _blockMatrix.place(IdentifiedBlock(id: newGlobalID, number: 2), to: blankLocations.randomElement()!)
-          
-          return true
-      }
+        var blankLocations = [BlockMatrixType.Index]()
+        for rowIndex in 0..<gridSize {
+            for colIndex in 0..<gridSize {
+                let index = (colIndex, rowIndex)
+                if _blockMatrix[index] == nil {
+                    blankLocations.append(index)
+                }
+            }
+        }
+        
+        guard blankLocations.count >= 1 else {
+            return false
+        }
+        
+        // Don't forget to sync data.
+        defer {
+            objectWillChange.send(self)
+        }
+        
+        _blockMatrix.place(IdentifiedBlock(id: newGlobalID, number: selectedGame?.getNewBlockNum() ?? 2), to: blankLocations.randomElement()!)
+        
+        return true
+    }
       
-      @discardableResult fileprivate func generateNewBlocks(_ num: Int = 1) -> Bool {
-          guard num > 0 else {
-              return false
-          }
-          
-          for _ in 0..<num {
-              if !_generateNewBlock() {
-                  return false
-              }
-          }
-          
-          updateGame()
-          
-          return true
-      }
+    @discardableResult fileprivate func generateNewBlocks(_ num: Int = 1) -> Bool {
+        guard num > 0 else {
+            return false
+        }
+        
+        for _ in 0..<num {
+            if !_generateNewBlock() {
+                return false
+            }
+        }
+        
+        updateGame()
+        
+        return true
+    }
 }
