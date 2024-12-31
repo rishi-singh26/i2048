@@ -74,8 +74,11 @@ struct BlockGridView : View {
     let matrix: Self.SupportingMatrix
     let blockEnterEdge: Edge
     
-    func createBlock(_ block: IdentifiedBlock?,
-                     at index: IndexedBlock<IdentifiedBlock>.Index) -> some View {
+    func createBlock(
+        _ block: IdentifiedBlock?,
+        at index: IndexedBlock<IdentifiedBlock>.Index,
+        width: CGFloat
+    ) -> some View {
         let blockView: BlockView
         if let block = block {
             blockView = BlockView(block: block, color: colorForValue(block.number))
@@ -98,16 +101,8 @@ struct BlockGridView : View {
             .transition(.blockGenerated(
                 from: self.blockEnterEdge,
                 position: CGPoint(x: position.x, y: position.y),
-                in: CGRect(x: 0, y: 0, width: 320, height: 320)
+                in: CGRect(x: 0, y: 0, width: width, height: width)
             ))
-    }
-    
-    // FIXME: This is existed as a workaround for a Swift compiler bug.
-    func zIndex(_ block: IdentifiedBlock?) -> Double {
-        if block == nil {
-            return 1
-        }
-        return 1000
     }
     
     var body: some View {
@@ -117,17 +112,17 @@ struct BlockGridView : View {
             // Background grid blocks:
             ForEach(0..<gridSize, id: \.self) { x in
                 ForEach(0..<gridSize, id: \.self) { y in
-                    self.createBlock(nil, at: (x, y))
+                    self.createBlock(nil, at: (x, y), width: width)
                 }
             }
             .zIndex(1)
             
             // Number blocks:
             ForEach(self.matrix.flatten, id: \.item.id) {
-                self.createBlock($0.item, at: $0.index)
+                self.createBlock($0.item, at: $0.index, width: width)
             }
             .zIndex(1000)
-            .animation(.interactiveSpring(response: 0.4, dampingFraction: 0.8), value: true)
+            .animation(.interactiveSpring(response: 0.0, dampingFraction: 0.0), value: true)
         }
         .frame(width: width, height: width, alignment: .center)
         .padding(8)
