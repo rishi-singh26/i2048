@@ -20,6 +20,7 @@
 		5B1421A12D147CAF00032861 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1421A02D147CAF00032861 /* CustomLabel.swift */; };
 		5B36F5DE2D20358300D318A6 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B36F5DD2D20358300D318A6 /* GamesListView.swift */; };
 		5B6B2BCA2D2433D900278BE1 /* MacCustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B2BC92D2433D900278BE1 /* MacCustomSection.swift */; };
+		5B6B2BCC2D246BA200278BE1 /* AnimatedIconsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B2BCB2D246BA200278BE1 /* AnimatedIconsView.swift */; };
 		5B75E6E52D109D0D009D2C80 /* i2048App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6E42D109D0D009D2C80 /* i2048App.swift */; };
 		5B75E6E72D109D0D009D2C80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6E62D109D0D009D2C80 /* ContentView.swift */; };
 		5B75E6E92D109D0F009D2C80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B75E6E82D109D0F009D2C80 /* Assets.xcassets */; };
@@ -121,6 +122,7 @@
 		5B1421A02D147CAF00032861 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		5B36F5DD2D20358300D318A6 /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
 		5B6B2BC92D2433D900278BE1 /* MacCustomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacCustomSection.swift; sourceTree = "<group>"; };
+		5B6B2BCB2D246BA200278BE1 /* AnimatedIconsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedIconsView.swift; sourceTree = "<group>"; };
 		5B75E6E12D109D0D009D2C80 /* i2048.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = i2048.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B75E6E42D109D0D009D2C80 /* i2048App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = i2048App.swift; sourceTree = "<group>"; };
 		5B75E6E62D109D0D009D2C80 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 				5B0B4F722D167F5C005AD427 /* Carousel */,
 				5B0B4F682D157B80005AD427 /* NetworkAvatar.swift */,
 				5B1421A02D147CAF00032861 /* CustomLabel.swift */,
+				5B6B2BCB2D246BA200278BE1 /* AnimatedIconsView.swift */,
 				5BBA511B2D1A4A7600B4D169 /* ArtistView.swift */,
 				5B6B2BC92D2433D900278BE1 /* MacCustomSection.swift */,
 			);
@@ -588,6 +591,7 @@
 				5BF1940F2D238501006C6471 /* BlockMatrix.swift in Sources */,
 				5B75E6E72D109D0D009D2C80 /* ContentView.swift in Sources */,
 				5B75E7102D109D46009D2C80 /* Game.swift in Sources */,
+				5B6B2BCC2D246BA200278BE1 /* AnimatedIconsView.swift in Sources */,
 				5BBA51182D19D24F00B4D169 /* GameViewControllsView.swift in Sources */,
 				5BBA510D2D18446A00B4D169 /* CacheManager.swift in Sources */,
 				5B1421A12D147CAF00032861 /* CustomLabel.swift in Sources */,
