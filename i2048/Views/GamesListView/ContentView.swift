@@ -78,7 +78,7 @@ struct ContentView: View {
                     selectedGame = updatedGame
                 }
                 if let unwrappedGame = updatedGame {
-                    gameLogic.updateSelectedGame(selectedGame: unwrappedGame)
+                    gameLogic.updateSelectedGame(selectedGame: unwrappedGame, defaultsManager: userDefaultsManager)
                 }
             }),
             sortBy: sortBy,
@@ -181,7 +181,7 @@ struct ContentView: View {
                     selectedGame = updatedGame
                 }
                 if let unwrappedGame = updatedGame {
-                    gameLogic.updateSelectedGame(selectedGame: unwrappedGame)
+                    gameLogic.updateSelectedGame(selectedGame: unwrappedGame, defaultsManager: userDefaultsManager)
                 }
             }),
             sortBy: sortBy,
@@ -268,7 +268,7 @@ struct ContentView: View {
         let game = Game(name: "New Game #\(gridSize)x\(gridSize)", gridSize: gridSize)
         modelContext.insert(game)
         selectedGame = game
-        gameLogic.updateSelectedGame(selectedGame: game)
+        gameLogic.updateSelectedGame(selectedGame: game, defaultsManager: userDefaultsManager)
     }
 }
 

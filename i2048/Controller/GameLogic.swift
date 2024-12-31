@@ -28,6 +28,7 @@ final class GameLogic : ObservableObject {
         return _blockMatrix
     }
     private(set) var selectedGame: Game?
+    private(set) var defaultsManager: UserDefaultsManager?
     private(set) var gridSize: Int = 4
     
     @Published fileprivate(set) var lastGestureDirection: Direction = .up
@@ -50,7 +51,7 @@ final class GameLogic : ObservableObject {
         objectWillChange.send(self)
     }
     
-    func updateSelectedGame(selectedGame: Game) {
+    func updateSelectedGame(selectedGame: Game, defaultsManager: UserDefaultsManager) {
         self.selectedGame = selectedGame
         self.gridSize = selectedGame.gridSize
         _blockMatrix = BlockMatrixType(grid: transformToIdentifiedBlocks(matrix: selectedGame.grid))
@@ -144,6 +145,7 @@ final class GameLogic : ObservableObject {
         }
         
         var score = selectedGame?.score ?? 0
+        var hasWon = false
         
         blocks = blocks
             .map { (false, $0) }
@@ -153,6 +155,7 @@ final class GameLogic : ObservableObject {
                     var mergedBlock = item.1
                     let mergedNumber = mergedBlock.number * 2
                     score += mergedNumber
+                    hasWon = mergedNumber >= 2048 // win score is 2048
                     mergedBlock.number = mergedNumber
                     accPrefix.append((true, mergedBlock))
                     return accPrefix
@@ -164,7 +167,16 @@ final class GameLogic : ObservableObject {
             }
             .map { $0.1 }
         
+        // Update game score
         selectedGame?.score = score
+        // Update game status
+        if !(selectedGame?.hasWon ?? false) {
+            selectedGame?.hasWon = hasWon
+        }
+        // Update high score
+        if score > defaultsManager?.highScore ?? 0 {
+            defaultsManager?.highScore = score
+        }
         
         if reverse {
             blocks = blocks.reversed()
