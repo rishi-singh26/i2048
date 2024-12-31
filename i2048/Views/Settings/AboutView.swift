@@ -79,7 +79,7 @@ struct AboutView: View {
             .padding(.horizontal)
             
             HStack {
-                Text("Copyright © 2024 Rishi Singh")
+                Text("Copyright © 2024 Rishi Singh. All Rights Reserved.")
                     .padding(.top)
                 Spacer()
             }
@@ -127,7 +127,7 @@ struct AboutView: View {
                 }
             }
             
-            Section("Copyright © 2024 Rishi Singh") {
+            Section("Copyright © 2024 Rishi Singh. All Rights Reserved.") {
                 Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
                     CustomLabel(trailingImageName: "arrow.up.right", title: "i2048.rishisingh.in")
                 }
