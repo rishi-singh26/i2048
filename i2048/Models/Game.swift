@@ -8,14 +8,6 @@
 import Foundation
 import SwiftData
 
-enum NewBlockType: Int {
-    case two = 2, four = 4, random = 0
-    
-    var id: Self {
-        self
-    }
-}
-
 enum GameSchemaV1: VersionedSchema {
     static var versionIdentifier = Schema.Version(1, 0, 0)
     
@@ -378,6 +370,26 @@ enum GameSchemaV3: VersionedSchema {
                 return .won
             } else {
                 return isGameOver ? .lost : .running
+            }
+        }
+        
+        @discardableResult func getNewBlockNum() -> Int {
+            if newBlockNumber == 0 {
+                return Bool.random() ? 2 : 4
+            } else {
+                return newBlockNumber
+            }
+        }
+        
+        public static func getNewBlockIcon(_ newBlockNum: Int) -> [String] {
+            if newBlockNum == 0 {
+                return ["2.square", "4.square"]
+            } else if newBlockNum == 2 {
+                return ["2.square"]
+            } else if newBlockNum == 4 {
+                return ["4.square"]
+            } else {
+                return ["4.square"]
             }
         }
     }
