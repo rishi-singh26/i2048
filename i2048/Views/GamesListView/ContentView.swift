@@ -265,7 +265,12 @@ struct ContentView: View {
     }
     
     func addGame(_ gridSize: Int) {
-        let game = Game(name: "New Game #\(gridSize)x\(gridSize)", gridSize: gridSize)
+        let game = Game(
+            name: "\(userDefaultsManager.quickGameNamePrefix) #\(gridSize)x\(gridSize)",
+            gridSize: gridSize,
+            allowUndo: userDefaultsManager.quickGameAllowUndo,
+            newBlockNumber: userDefaultsManager.quickGameNewBlocNum
+        )
         modelContext.insert(game)
         selectedGame = game
         gameLogic.updateSelectedGame(selectedGame: game, defaultsManager: userDefaultsManager)
