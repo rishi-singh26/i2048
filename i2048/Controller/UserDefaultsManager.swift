@@ -47,11 +47,40 @@ class UserDefaultsManager: ObservableObject {
         }
     }
     
+    @Published var activeGamesSectionEnabled: Bool {
+        didSet {
+            UserDefaults.standard.set(activeGamesSectionEnabled, forKey: "activeGamesSectionEnabled")
+        }
+    }
+    
+    @Published var gamesWonSectionEnabled: Bool {
+        didSet {
+            UserDefaults.standard.set(gamesWonSectionEnabled, forKey: "gamesWonSectionEnabled")
+        }
+    }
+    
+    @Published var gamesLostSectionEnabled: Bool {
+        didSet {
+            UserDefaults.standard.set(gamesLostSectionEnabled, forKey: "gamesLostSectionEnabled")
+        }
+    }
+    
+    @Published var isWonSectionExpanded = false
+    @Published var isRunningSectionExpanded = true
+    @Published var isLostSectionExpanded = false
+    
     init() {
         self.highScore = UserDefaults.standard.integer(forKey: "highScore")
         self.hapticsEnabled = UserDefaults.standard.bool(forKey: "hapticsEnabled")
         self.soundEnabled = UserDefaults.standard.bool(forKey: "soundEnabled")
         self.titleBarDisabled = UserDefaults.standard.bool(forKey: "titleBarDisabled")
+        self.activeGamesSectionEnabled = UserDefaults.standard.bool(forKey: "activeGamesSectionEnabled")
+        self.gamesWonSectionEnabled = UserDefaults.standard.bool(forKey: "gamesWonSectionEnabled")
+        self.gamesLostSectionEnabled = UserDefaults.standard.bool(forKey: "gamesLostSectionEnabled")
+        
+        self.isWonSectionExpanded = self.gamesWonSectionEnabled
+        self.isRunningSectionExpanded = self.activeGamesSectionEnabled
+        self.isLostSectionExpanded = self.gamesLostSectionEnabled
         
         if self.hapticsEnabled {
             prepareHapticEngine()
