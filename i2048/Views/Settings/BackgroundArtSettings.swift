@@ -14,7 +14,21 @@ struct BackgroundArtSettings: View {
     var game: Game
     var simpleCarousel: Bool = false
     
+    
+    
     var body: some View {
+#if os(iOS)
+        NavigationView {
+            ArtListBuilder()
+            .navigationTitle("Background Image")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+#elseif os(macOS)
+        ArtListBuilder()
+#endif
+    }
+    
+    private func ArtListBuilder() -> some View {
         ScrollView(.vertical) {
             VStack(spacing: 15) {
                 ForEach(Array(artManager.backgroundImages.enumerated()), id: \.offset) {index, artist in
@@ -30,10 +44,6 @@ struct BackgroundArtSettings: View {
             }
             .padding(15)
         }
-#if os(iOS)
-        .navigationTitle("Background Image")
-        .navigationBarTitleDisplayMode(.inline)
-#endif
     }
 }
 
