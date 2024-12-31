@@ -28,7 +28,6 @@
 		5B75E7032D109D0F009D2C80 /* i2048UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7022D109D0F009D2C80 /* i2048UITestsLaunchTests.swift */; };
 		5B75E7102D109D46009D2C80 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E70F2D109D45009D2C80 /* Game.swift */; };
 		5B75E7972D11857D009D2C80 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7962D11857D009D2C80 /* ColorExtension.swift */; };
-		5B75E79A2D11B0CA009D2C80 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7992D11B0CA009D2C80 /* GameController.swift */; };
 		5B75E79F2D11D2DB009D2C80 /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E79E2D11D2DB009D2C80 /* GameCardView.swift */; };
 		5B75E7A12D11E43B009D2C80 /* keyboardReactionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7A02D11E43B009D2C80 /* keyboardReactionModifier.swift */; };
 		5B75E7A32D11E495009D2C80 /* wndAccessorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7A22D11E495009D2C80 /* wndAccessorModifier.swift */; };
@@ -54,6 +53,7 @@
 		5BF194142D238556006C6471 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF194112D238556006C6471 /* BlockView.swift */; };
 		5BF194152D238556006C6471 /* BlockGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF194122D238556006C6471 /* BlockGridView.swift */; };
 		5BF194162D238556006C6471 /* AnimatedGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF194132D238556006C6471 /* AnimatedGameView.swift */; };
+		5BF194182D23F092006C6471 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF194172D23F092006C6471 /* GameLogic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,7 +132,6 @@
 		5B75E7022D109D0F009D2C80 /* i2048UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = i2048UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5B75E70F2D109D45009D2C80 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		5B75E7962D11857D009D2C80 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
-		5B75E7992D11B0CA009D2C80 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		5B75E79E2D11D2DB009D2C80 /* GameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardView.swift; sourceTree = "<group>"; };
 		5B75E7A02D11E43B009D2C80 /* keyboardReactionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyboardReactionModifier.swift; sourceTree = "<group>"; };
 		5B75E7A22D11E495009D2C80 /* wndAccessorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wndAccessorModifier.swift; sourceTree = "<group>"; };
@@ -157,6 +156,7 @@
 		5BF194112D238556006C6471 /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
 		5BF194122D238556006C6471 /* BlockGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockGridView.swift; sourceTree = "<group>"; };
 		5BF194132D238556006C6471 /* AnimatedGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedGameView.swift; sourceTree = "<group>"; };
+		5BF194172D23F092006C6471 /* GameLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,11 +361,11 @@
 		5B75E79B2D11B0DC009D2C80 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5B75E7992D11B0CA009D2C80 /* GameController.swift */,
 				5BED5FEE2D12F77B0085968B /* UserDefaultsManager.swift */,
 				5BED5FFF2D1373E40085968B /* MotionManager.swift */,
 				5BED60012D138F220085968B /* BackgroundArtManager.swift */,
 				5BBA510C2D18446A00B4D169 /* CacheManager.swift */,
+				5BF194172D23F092006C6471 /* GameLogic.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -573,8 +573,8 @@
 				5B0B4F6D2D15A712005AD427 /* CustomButton.swift in Sources */,
 				5B75E7A12D11E43B009D2C80 /* keyboardReactionModifier.swift in Sources */,
 				5B0B4F752D167FCA005AD427 /* CarouselCard.swift in Sources */,
+				5BF194182D23F092006C6471 /* GameLogic.swift in Sources */,
 				5B1421672D13D84700032861 /* BackgroundArt.swift in Sources */,
-				5B75E79A2D11B0CA009D2C80 /* GameController.swift in Sources */,
 				5BE9A8BA2D2132B500B6945F /* AddGameView.swift in Sources */,
 				5B0B4F6B2D158208005AD427 /* ArtDetailView.swift in Sources */,
 				5BF194142D238556006C6471 /* BlockView.swift in Sources */,
