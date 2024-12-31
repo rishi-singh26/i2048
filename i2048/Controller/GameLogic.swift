@@ -53,6 +53,7 @@ final class GameLogic : ObservableObject {
     
     func updateSelectedGame(selectedGame: Game, defaultsManager: UserDefaultsManager) {
         self.selectedGame = selectedGame
+        self.defaultsManager = defaultsManager
         self.gridSize = selectedGame.gridSize
         _blockMatrix = BlockMatrixType(grid: transformToIdentifiedBlocks(matrix: selectedGame.grid))
         resetLastGestureDirection()
@@ -107,8 +108,9 @@ final class GameLogic : ObservableObject {
                 if let block = _blockMatrix[axis ? (col, row) : (row, col)] {
                     rowSnapshot.append(block)
                     compactRow.append(block)
+                } else {
+                    rowSnapshot.append(nil)
                 }
-                rowSnapshot.append(nil)
             }
             
             merge(blocks: &compactRow, reverse: direction == .down || direction == .right)
@@ -126,16 +128,20 @@ final class GameLogic : ObservableObject {
             }
             
             newRow.enumerated().forEach {
+                if rowSnapshot[$0]?.number != $1?.number {
+                    moved = true
+                }
                 _blockMatrix.place($1, to: axis ? ($0, row) : (row, $0))
             }
         }
-        
-        moved = selectedGame?.grid ?? [] != blockMatrix.toIntMatrix()
-        
+                
         updateGame()
         
         if moved {
             generateNewBlocks(1)
+            defaultsManager?.triggerSimpleHaptic()
+        } else {
+            defaultsManager?.triggerCustomPattern()
         }
     }
     
