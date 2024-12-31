@@ -45,7 +45,7 @@ final class GameLogic : ObservableObject {
     func newGame() {
         _blockMatrix = BlockMatrixType()
         resetLastGestureDirection()
-        generateNewBlocks()
+        generateNewBlocks(2)
         
         objectWillChange.send(self)
     }
@@ -57,7 +57,7 @@ final class GameLogic : ObservableObject {
         resetLastGestureDirection()
         
         if selectedGame.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
-            generateNewBlocks()
+            generateNewBlocks(2)
         }
         
         DispatchQueue.main.async {
@@ -74,7 +74,7 @@ final class GameLogic : ObservableObject {
                 if number == 0 {
                     return nil
                 }
-                return IdentifiedBlock(id: idCounter, number: number)
+                return IdentifiedBlock(id: UUID().hashValue, number: number)
             }
         }
     }
@@ -125,17 +125,16 @@ final class GameLogic : ObservableObject {
             }
             
             newRow.enumerated().forEach {
-                if rowSnapshot[$0]?.number != $1?.number {
-                    moved = true
-                }
                 _blockMatrix.place($1, to: axis ? ($0, row) : (row, $0))
             }
         }
         
+        moved = selectedGame?.grid ?? [] != blockMatrix.toIntMatrix()
+        
         updateGame()
         
         if moved {
-            generateNewBlocks()
+            generateNewBlocks(1)
         }
     }
     
@@ -144,13 +143,17 @@ final class GameLogic : ObservableObject {
             blocks = blocks.reversed()
         }
         
+        var score = selectedGame?.score ?? 0
+        
         blocks = blocks
             .map { (false, $0) }
             .reduce([(Bool, IdentifiedBlock)]()) { acc, item in
                 if acc.last?.0 == false && acc.last?.1.number == item.1.number {
                     var accPrefix = Array(acc.dropLast())
                     var mergedBlock = item.1
-                    mergedBlock.number *= 2
+                    let mergedNumber = mergedBlock.number * 2
+                    score += mergedNumber
+                    mergedBlock.number = mergedNumber
                     accPrefix.append((true, mergedBlock))
                     return accPrefix
                 } else {
@@ -161,45 +164,51 @@ final class GameLogic : ObservableObject {
             }
             .map { $0.1 }
         
+        selectedGame?.score = score
+        
         if reverse {
             blocks = blocks.reversed()
         }
     }
     
-    @discardableResult fileprivate func generateNewBlocks() -> Bool {
-        var blankLocations = [BlockMatrixType.Index]()
-        for rowIndex in 0..<gridSize {
-            for colIndex in 0..<gridSize {
-                let index = (colIndex, rowIndex)
-                if _blockMatrix[index] == nil {
-                    blankLocations.append(index)
-                }
-            }
-        }
-        
-        guard blankLocations.count >= 1 else {
-            return false
-        }
-        
-        // Don't forget to sync data.
-        DispatchQueue.main.async {
-            self.objectWillChange.send(self)
-        }
-        
-        // Place the first block.
-        let placeLocIndex = Int.random(in: 0..<blankLocations.count)
-        _blockMatrix.place(IdentifiedBlock(id: newGlobalID, number: Bool.random() ? 2 : 4), to: blankLocations[placeLocIndex])
-        
-        // Place the second block.
-//        guard let lastLoc = blankLocations.last else {
-//            return false
-//        }
-//        blankLocations[placeLocIndex] = lastLoc
-//        placeLocIndex = Int.random(in: 0..<(blankLocations.count - 1))
-//        _blockMatrix.place(IdentifiedBlock(id: newGlobalID, number: 2), to: blankLocations[placeLocIndex])
-        
-        updateGame()
-        
-        return true
-    }
+    @discardableResult fileprivate func _generateNewBlock() -> Bool {
+          var blankLocations = [BlockMatrixType.Index]()
+          for rowIndex in 0..<4 {
+              for colIndex in 0..<4 {
+                  let index = (colIndex, rowIndex)
+                  if _blockMatrix[index] == nil {
+                      blankLocations.append(index)
+                  }
+              }
+          }
+          
+          guard blankLocations.count >= 1 else {
+              return false
+          }
+          
+          // Don't forget to sync data.
+          defer {
+              objectWillChange.send(self)
+          }
+          
+          _blockMatrix.place(IdentifiedBlock(id: newGlobalID, number: 2), to: blankLocations.randomElement()!)
+          
+          return true
+      }
+      
+      @discardableResult fileprivate func generateNewBlocks(_ num: Int = 1) -> Bool {
+          guard num > 0 else {
+              return false
+          }
+          
+          for _ in 0..<num {
+              if !_generateNewBlock() {
+                  return false
+              }
+          }
+          
+          updateGame()
+          
+          return true
+      }
 }
