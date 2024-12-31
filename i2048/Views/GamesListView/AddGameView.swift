@@ -15,6 +15,7 @@ struct AddGameView: View {
     @State private var gridSize: Int = 4
     @State private var allowUndo: Bool = false
     @State private var showGameNameError: Bool = false
+    @State private var newBlockNum: Int = 0
     @Binding var selectedGame: Game?
     
     var body: some View {
@@ -27,51 +28,64 @@ struct AddGameView: View {
 
 #if os(macOS)
     private func MacOSNewGameFormBuilder() -> some View {
-        ScrollView {
-            GroupBox {
-                HStack {
-                    Text("Game Name")
-                        .font(.headline)
-                        .frame(width: 100, alignment: .leading)
-                    Spacer()
-                    TextField("", text: $gameName)
-                }
-                .padding(6)
-            }
-            .padding([.horizontal, .top])
-            
-            GroupBox {
-                HStack {
-                    Text("Difficulty Level")
-                        .font(.headline)
-                        .frame(width: 100, alignment: .leading)
-                    Spacer()
-                    Picker("", selection: $gridSize) {
-                        Text("3 x 3 grid")
-                            .tag(3)
-                        Text("4 x 4 grid")
-                            .tag(4)
+        VStack(alignment: .leading) {
+            Text("Add Game")
+                .font(.title.bold())
+                .padding([.top, .horizontal])
+                .padding(.bottom, 0)
+            ScrollView {
+                MacCustomSection(footer: "Game name appears on the games list screen.") {
+                    HStack {
+                        Text("Game Name")
+                            .frame(width: 100, alignment: .leading)
+                        Spacer()
+                        TextField("", text: $gameName)
+                            .textFieldStyle(.roundedBorder)
                     }
-                    .pickerStyle(.segmented)
                 }
-                .padding([.leading, .top, .bottom], 6)
-                .padding(.trailing, 12)
-            }
-            .padding(.horizontal)
-            
-            GroupBox {
-                HStack(alignment: .center) {
-                    Text("Allow Undo")
-                        .font(.headline)
-                        .frame(width: 100, alignment: .leading)
-                    Spacer()
-                    Toggle("", isOn: $allowUndo)
-                        .toggleStyle(.switch)
+                
+                MacCustomSection(footer: "3x3 grid is a lot more difficult then 4x4 grid") {
+                    HStack {
+                        Text("Grid Size")
+                            .frame(width: 100, alignment: .leading)
+                        Spacer()
+                        Picker("", selection: $gridSize) {
+                            Text("3 x 3 grid")
+                                .tag(3)
+                            Text("4 x 4 grid")
+                                .tag(4)
+                        }
+                        .pickerStyle(.segmented)
+                    }
                 }
-                .padding([.leading, .top, .bottom], 6)
-                .padding(.trailing, 12)
+                
+                MacCustomSection(footer: "If on, player will be allowd to undo one move at a time") {
+                    HStack(alignment: .center) {
+                        Text("Allow Undo")
+                            .frame(width: 100, alignment: .leading)
+                        Spacer()
+                        Toggle("", isOn: $allowUndo)
+                            .toggleStyle(.switch)
+                    }
+                }
+                
+                MacCustomSection(footer: "Number on new blocks in the game") {
+                    HStack(alignment: .center) {
+                        Text("Allow Undo")
+                            .frame(width: 100, alignment: .leading)
+                        Spacer()
+                        Picker("", selection: $newBlockNum) {
+                            Text("2")
+                                .tag(2)
+                            Text("4")
+                                .tag(4)
+                            Text("2 or 4 (Random)")
+                                .tag(0)
+                        }
+                    }
+                }
             }
-            .padding([.horizontal, .bottom])
+            .padding(.bottom, 10)
         }
         .toolbar {
             ToolbarItem(placement: .destructiveAction) {
@@ -85,11 +99,10 @@ struct AddGameView: View {
                     addGame()
                 } label: {
                     Text("Done")
-                        .font(.headline)
                 }
             }
         }
-        .frame(width: 500, height: 200, alignment: .leading)
+        .frame(width: 500, height: 380, alignment: .leading)
     }
 #endif
     
@@ -105,22 +118,43 @@ struct AddGameView: View {
                         .foregroundStyle(showGameNameError ? .red : .secondary)
                 }
                 
-                Section(footer: Text("3x3 grid is a lot more difficult then 4x4 grid.")) {
-                    VStack(alignment: .leading) {
-                        Text("Difficulty Level")
-                            .font(.headline)
-                        Picker("Difficulty Level", selection: $gridSize) {
-                            Text("3 x 3 grid")
-                                .tag(3)
-                            Text("4 x 4 grid")
-                                .tag(4)
-                        }
-                        .pickerStyle(.segmented)
+                Section {
+                    Picker("Grid Size", selection: $gridSize) {
+                        Text("3 x 3 grid")
+                            .tag(3)
+                        Text("4 x 4 grid")
+                            .tag(4)
                     }
+                    .pickerStyle(.segmented)
+                } header: {
+                    Text("Select grid size")
+                } footer: {
+                    Text("3x3 grid is a lot more difficult then 4x4 grid")
                 }
                 
-                Section(footer: Text("Ones on, you will be allowd to undo one move at a time")) {
+                Section(footer: Text("If on, you will be allowd to undo one move at a time")) {
                     Toggle("Allow Undo", isOn: $allowUndo)
+                }
+                
+                Section {
+                    Picker(selection: $newBlockNum.animation()) {
+                        Text("2")
+                            .tag(2)
+                        Text("4")
+                            .tag(4)
+                        Text("2 or 4 (Random)")
+                            .tag(0)
+                    } label: {
+                        Label {
+                            Text("New Block")
+                        } icon: {
+                            AnimatedIconsView(symbols: Game.getNewBlockIcon(newBlockNum), animationDuration: 2.0)
+                        }
+                    }
+                    .pickerStyle(.navigationLink)
+                    
+                } footer: {
+                    Text("Number on new blocks in the game")
                 }
             }
             .navigationTitle("Add Game")
@@ -151,13 +185,15 @@ struct AddGameView: View {
             return
         }
         showGameNameError = false
-        let game = Game(name: gameName, gridSize: gridSize)
+        let game = Game(name: gameName, gridSize: gridSize, allowUndo: allowUndo, newBlockNumber: newBlockNum)
         modelContext.insert(game)
         selectedGame = game
         dismiss()
     }
 }
 
-//#Preview {
-//    AddGameView()
-//}
+#Preview {
+    ContentView()
+        .environmentObject(UserDefaultsManager.shared)
+        .environmentObject(BackgroundArtManager.shared)
+}
