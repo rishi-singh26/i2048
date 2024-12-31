@@ -23,6 +23,7 @@ struct GameViewControllsView: View {
         #endif
     }
     
+#if os(iOS)
     private func IosViewBuilder() -> some View {
         List {
             Section {
@@ -35,18 +36,20 @@ struct GameViewControllsView: View {
                 }
                 .toggleStyle(.switch)
             } header: {
-                Text("General")
+                Text("Game Feedback")
             } footer: {
-                Text("Enaable game feedbacks with haptics")
+                Text("Enable game feedbacks with Haptics and Sound")
             }
             
             Section {
                 Toggle(isOn: Binding(
                     get: { game.gameColorMode },
                     set: { newValue in
-                        game.gameColorMode = newValue
+                        withAnimation {
+                            game.gameColorMode = newValue
+                        }
                     }
-               ).animation(), label: {
+                ).animation(), label: {
                     Label("Game Screen Theme", systemImage: game.gameColorMode ? "warninglight.fill" : "warninglight")
                 })
                 Button {
@@ -55,9 +58,9 @@ struct GameViewControllsView: View {
                     Label("Background Image", systemImage: "photo")
                 }
             } header: {
-                Text("Theme")
+                Text("Game Theme")
             } footer: {
-                Text("Customize game interface with backgroung image and colors")
+                Text("Customize game interface with Background Image and Colors")
             }
         }
         .frame(minWidth: 350, minHeight: 350)
@@ -66,38 +69,37 @@ struct GameViewControllsView: View {
             BackgroundArtSettings(cardSize: CGSize(width: 550, height: 400), artistImageSize: 50, game: game)
         }
     }
+#endif
     
     private func MacOSViewBuilder() -> some View {
         ScrollView {
-            GroupBox {
-                VStack {
-                    HStack {
-                        Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
-                        Spacer()
-                        Toggle("", isOn: $userDefaultsManager.soundEnabled.animation())
-                            .toggleStyle(.switch)
-                    }
-                    Divider()
-                    HStack {
-                        Label("Game Screen Theme", systemImage: game.gameColorMode ? "warninglight.fill" : "warninglight")
-                        Spacer()
-                        Toggle("", isOn: Binding(
-                            get: { game.gameColorMode },
-                            set: { newValue in
-                                game.gameColorMode = newValue
-                        }).animation())
-                            .toggleStyle(.switch)
-                    }
+
+            MacCustomSection(header: "") {
+                HStack {
+                    Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
+                    Spacer()
+                    Toggle("", isOn: $userDefaultsManager.soundEnabled.animation())
+                        .toggleStyle(.switch)
                 }
-                .padding(6)
+                Divider()
+                HStack {
+                    Label("Game Screen Theme", systemImage: game.gameColorMode ? "warninglight.fill" : "warninglight")
+                    Spacer()
+                    Toggle("", isOn: Binding(
+                        get: { game.gameColorMode },
+                        set: { newValue in
+                            withAnimation {
+                                game.gameColorMode = newValue
+                            }
+                    }).animation())
+                        .toggleStyle(.switch)
+                }
             }
-            .padding(.top)
-            .padding(.horizontal)
             
             BackgroundArtSettings(cardSize: CGSize(width: 130, height: 80), artistImageSize: 30, game: game, simpleCarousel: true)
             .padding(.horizontal)
         }
-        .frame(minWidth: 350, idealWidth: 400, maxWidth: 450, minHeight: 400, idealHeight: 450, maxHeight: 500, alignment: .leading)
+        .frame(minWidth: 350, idealWidth: 400, maxWidth: 450, minHeight: 400, idealHeight: 450, alignment: .leading)
     }
 }
 
