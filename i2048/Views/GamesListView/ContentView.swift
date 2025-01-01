@@ -151,6 +151,15 @@ struct ContentView: View {
                     gameLogic.move(.left)
                 }
                 return nil // disable beep sound
+            case KeyCode.z:
+                if let selectedGame, selectedGame.canUndo {
+                    withTransaction(Transaction(animation: .spring())) {
+                        gameLogic.undoStep()
+                    }
+                    return nil // disable beep sound
+                } else {
+                    return event // dont disable beep sound
+                }
             default:
                 return event // beep sound will be here
             }

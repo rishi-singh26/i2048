@@ -27,6 +27,7 @@ final class GameLogic : ObservableObject {
     var blockMatrix: BlockMatrixType {
         return _blockMatrix
     }
+    private var _prevBlocMatrix: BlockMatrixType!
     private(set) var selectedGame: Game?
     private(set) var defaultsManager: UserDefaultsManager?
     private(set) var gridSize: Int = 4
@@ -45,6 +46,7 @@ final class GameLogic : ObservableObject {
     
     func newGame() {
         _blockMatrix = BlockMatrixType()
+        _prevBlocMatrix = _blockMatrix
         resetLastGestureDirection()
         generateNewBlocks(2)
         
@@ -56,6 +58,7 @@ final class GameLogic : ObservableObject {
         self.defaultsManager = defaultsManager
         self.gridSize = selectedGame.gridSize
         _blockMatrix = BlockMatrixType(grid: transformToIdentifiedBlocks(matrix: selectedGame.grid))
+        _prevBlocMatrix = _blockMatrix
         resetLastGestureDirection()
         
         if selectedGame.grid.allSatisfy({ $0.allSatisfy { $0 == 0 } }) {
@@ -82,7 +85,12 @@ final class GameLogic : ObservableObject {
     }
 
     private func updateGame() {
-        selectedGame?.grid = self.blockMatrix.toIntMatrix()
+        if let game = selectedGame {
+            if game.allowUndo {
+                game.prevState = game.grid
+            }
+            game.grid = self.blockMatrix.toIntMatrix()
+        }
     }
 
     
@@ -90,9 +98,27 @@ final class GameLogic : ObservableObject {
         lastGestureDirection = .up
     }
     
+    func undoStep() {
+        if let selectedGame, selectedGame.canUndo {
+            // when running on a device the _prevBlocMatrix will be maintined and used for undo
+            // when switching between games, _prevBlocMatrix will be reset and _blocMatrix will generated from game.prevState with new ids for blocks
+            // when swithcing from one device to another, the _prevBlocMatrix will not be available and _blocMatrix will generated from game.prevState with new ids for blocks
+            
+            // storing _prevBlocMatrix is important because it holds the ids for each block, so during undo, blocks animate to their previous location properly.
+            // when _prevBlocMatrix is not available and _blocMatrix will generated from game.prevState with new ids for blocks, the game will undo but animation will be as if totally new blocks were generated
+            if _blockMatrix == _prevBlocMatrix {
+                _blockMatrix = BlockMatrixType(grid: transformToIdentifiedBlocks(matrix: selectedGame.prevState))
+            } else {
+                _blockMatrix = _prevBlocMatrix
+            }
+            selectedGame.undoStep()
+        }
+    }
+    
     func move(_ direction: Direction) {
-        defer {
-            objectWillChange.send(self)
+        _prevBlocMatrix = _blockMatrix // store the previous step, will be needed for undo
+        DispatchQueue.main.async {
+            self.objectWillChange.send(self)
         }
         
         lastGestureDirection = direction
@@ -134,8 +160,6 @@ final class GameLogic : ObservableObject {
                 _blockMatrix.place($1, to: axis ? ($0, row) : (row, $0))
             }
         }
-                
-        updateGame()
         
         if moved {
             generateNewBlocks(1)
@@ -205,8 +229,8 @@ final class GameLogic : ObservableObject {
         }
         
         // Don't forget to sync data.
-        defer {
-            objectWillChange.send(self)
+        DispatchQueue.main.async {
+            self.objectWillChange.send(self)
         }
         
         _blockMatrix.place(IdentifiedBlock(id: newGlobalID, number: selectedGame?.getNewBlockNum() ?? 2), to: blankLocations.randomElement()!)

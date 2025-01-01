@@ -54,7 +54,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Game Feedback")
                 } footer: {
-                    Text("Enable game feedbacks with Haptics and Sound")
+                    Text("Enable game feedback with Haptics and Sound")
                 }
                 
                 Section {

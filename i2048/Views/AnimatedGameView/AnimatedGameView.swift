@@ -77,6 +77,16 @@ struct AnimatedGameView : View {
     @ViewBuilder
     private func MacOSGameControlls() -> some View {
         HStack {
+            if let game = gameLogic.selectedGame, game.canUndo {
+                KeyboardKeyButton(keyLabel: ["command", "z.square"]) {
+                    withTransaction(Transaction(animation: .spring())) {
+                        gameLogic.undoStep()
+                    }
+                }
+                Divider()
+                    .foregroundStyle(.gray)
+                    .frame(maxHeight: 20)
+            }
             KeyboardKeyButton(keyLabel: ["command", "arrow.right"]) {
                 withTransaction(Transaction(animation: .spring())) {
                     gameLogic.move(.right)
@@ -150,6 +160,7 @@ struct AnimatedGameView : View {
         .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
         .toolbar {
             ToolbarItem(placement: .automatic) {
+#if os(macOS)
                 Button(action: {
                     showOptionsPopover = true
                 }, label: {
@@ -158,6 +169,23 @@ struct AnimatedGameView : View {
                 .popover(isPresented: $showOptionsPopover) {
                     GameViewControllsView(game: selectedGame)
                 }
+#elseif os(iOS)
+                HStack {
+                    if let game = gameLogic.selectedGame, game.canUndo {
+                        KeyboardKeyButton(keyLabel: ["arrow.uturn.backward.circle"]) {
+                            withTransaction(Transaction(animation: .spring())) {
+                                gameLogic.undoStep()
+                            }
+                        }
+                    }
+                    KeyboardKeyButton(keyLabel: ["switch.2"]) {
+                        showOptionsPopover = true
+                    }
+                }
+                .popover(isPresented: $showOptionsPopover) {
+                    GameViewControllsView(game: selectedGame)
+                }
+#endif
             }
         }
     }

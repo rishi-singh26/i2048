@@ -373,6 +373,17 @@ enum GameSchemaV3: VersionedSchema {
             }
         }
         
+        var canUndo: Bool {
+            return allowUndo && prevState.count == gridSize
+        }
+        
+        func undoStep() {
+            if canUndo {
+                grid = prevState
+                prevState = []
+            }
+        }
+        
         @discardableResult func getNewBlockNum() -> Int {
             if newBlockNumber == 0 {
                 return Bool.random() ? 2 : 4

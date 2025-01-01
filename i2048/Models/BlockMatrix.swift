@@ -8,9 +8,9 @@
 
 import Foundation
 
-protocol Block {
+protocol Block: Equatable {
     
-    associatedtype Value
+    associatedtype Value: Equatable
     
     var number: Value { get set }
     
@@ -25,11 +25,11 @@ struct IndexedBlock<T> where T: Block {
 
 }
 
-struct BlockMatrix<T> : CustomDebugStringConvertible where T: Block {
+struct BlockMatrix<T> : Equatable, CustomDebugStringConvertible where T: Block {
     
     typealias Index = (Int, Int)
     
-    fileprivate var matrix: [[T?]]
+    private var matrix: [[T?]]
     
     private var gridSize: Int = 4
     
@@ -142,6 +142,26 @@ struct BlockMatrix<T> : CustomDebugStringConvertible where T: Block {
         
         return true
     }
+    
+    static func == (lhs: BlockMatrix<T>, rhs: BlockMatrix<T>) -> Bool {
+            guard lhs.matrix.count == rhs.matrix.count else {
+                return false
+            }
+            
+            for (row1, row2) in zip(lhs.matrix, rhs.matrix) {
+                guard row1.count == row2.count else {
+                    return false
+                }
+                
+                for (block1, block2) in zip(row1, row2) {
+                    if block1?.number != block2?.number {
+                        return false
+                    }
+                }
+            }
+            
+            return true
+        }
     
 }
 
