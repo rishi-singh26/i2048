@@ -17,6 +17,15 @@ struct AddGameView: View {
     @State private var showGameNameError: Bool = false
     @State private var newBlockNum: Int = 0
     @Binding var selectedGame: Game?
+    var editingGame: Game? = nil
+    
+    init(selectedGame: Binding<Game?>, editingGame: Game? = nil) {
+        self.editingGame = editingGame
+        self._selectedGame = selectedGame
+        if let game = editingGame {
+            self._gameName = State(initialValue: game.name)
+        }
+    }
     
     var body: some View {
 #if os(iOS)
@@ -29,7 +38,7 @@ struct AddGameView: View {
 #if os(macOS)
     private func MacOSNewGameFormBuilder() -> some View {
         VStack(alignment: .leading) {
-            Text("Add Game")
+            Text(editingGame != nil ? "Edit Game" : "Add Game")
                 .font(.title.bold())
                 .padding([.top, .horizontal])
                 .padding(.bottom, 0)
@@ -56,6 +65,7 @@ struct AddGameView: View {
                                 .tag(4)
                         }
                         .pickerStyle(.segmented)
+                        .disabled(editingGame != nil)
                     }
                 }
                 
@@ -66,6 +76,7 @@ struct AddGameView: View {
                         Spacer()
                         Toggle("", isOn: $allowUndo)
                             .toggleStyle(.switch)
+                            .disabled(editingGame != nil)
                     }
                 }
                 
@@ -82,6 +93,7 @@ struct AddGameView: View {
                             Text("2 or 4 (Random)")
                                 .tag(0)
                         }
+                        .disabled(editingGame != nil)
                     }
                 }
             }
@@ -96,7 +108,11 @@ struct AddGameView: View {
             
             ToolbarItem(placement: .primaryAction) {
                 Button {
-                    addGame()
+                    if editingGame != nil {
+                        editGame()
+                    } else {
+                        addGame()
+                    }
                 } label: {
                     Text("Done")
                 }
@@ -126,6 +142,7 @@ struct AddGameView: View {
                             .tag(4)
                     }
                     .pickerStyle(.segmented)
+                    .disabled(editingGame != nil)
                 } header: {
                     Text("Select grid size")
                 } footer: {
@@ -134,6 +151,7 @@ struct AddGameView: View {
                 
                 Section(footer: Text("If on, you will be allowd to undo one move at a time")) {
                     Toggle("Allow Undo", isOn: $allowUndo)
+                        .disabled(editingGame != nil)
                 }
                 
                 Section {
@@ -152,12 +170,13 @@ struct AddGameView: View {
                         }
                     }
                     .pickerStyle(.navigationLink)
+                    .disabled(editingGame != nil)
                     
                 } footer: {
                     Text("Number on new blocks in the game")
                 }
             }
-            .navigationTitle("Add Game")
+            .navigationTitle(editingGame != nil ? "Edit Game" : "Add Game")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -168,7 +187,11 @@ struct AddGameView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        addGame()
+                        if editingGame != nil {
+                            editGame()
+                        } else {
+                            addGame()
+                        }
                     } label: {
                         Text("Done")
                             .font(.headline)
@@ -188,6 +211,16 @@ struct AddGameView: View {
         let game = Game(name: gameName, gridSize: gridSize, allowUndo: allowUndo, newBlockNumber: newBlockNum)
         modelContext.insert(game)
         selectedGame = game
+        dismiss()
+    }
+    
+    func editGame() {
+        if gameName == "" {
+            showGameNameError = true
+            return
+        }
+        showGameNameError = false
+        editingGame?.name = gameName
         dismiss()
     }
 }

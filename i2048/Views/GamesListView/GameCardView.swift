@@ -14,6 +14,7 @@ struct GameCardView: View {
     @Bindable var game: Game
     @Binding var selectedGame: Game?
     @State private var showDeleteConfirmation: Bool = false
+    @State private var showEditGameSheet: Bool = false
     
     var body: some View {
         HStack(alignment: .center) {
@@ -37,7 +38,7 @@ struct GameCardView: View {
         #endif
         .swipeActions(edge: .leading) {
             Button {
-                editGame(game.id)
+                showEditGameSheet = true
             } label: {
                 Label("Rename", systemImage: "pencil.circle")
             }
@@ -53,9 +54,9 @@ struct GameCardView: View {
         }
         .contextMenu(menuItems: {
             Button {
-                deleteGame(game.id)
+                showEditGameSheet = true
             } label: {
-                Label("Rename", systemImage: "pencil.circle")
+                Label("Edit", systemImage: "pencil.circle")
             }
             Button(role: .destructive) {
                 showDeleteConfirmation = true
@@ -72,6 +73,9 @@ struct GameCardView: View {
                 deleteGame(game.id)
             }
             Button("Cancel", role: .cancel) { }
+        }
+        .sheet(isPresented: $showEditGameSheet) {
+            AddGameView(selectedGame: $selectedGame, editingGame: game)
         }
     }
     
@@ -119,12 +123,6 @@ struct GameCardView: View {
                 }
             }
         }
-    }
-    
-    func editGame(_ gameId: UUID) {
-    //        if let game = games.first(where: { $0.id == gameId }) {
-    //            modelContext.delete(game)
-    //        }
     }
     
     func deleteGame(_ gameId: UUID) {
