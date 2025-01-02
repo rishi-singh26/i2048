@@ -47,14 +47,14 @@ struct SettingsView: View {
                         Label("Enable Haptics", systemImage: userDefaultsManager.hapticsEnabled ? "hand.tap.fill" : "hand.tap")
                     }
                     .toggleStyle(.switch)
-                    Toggle(isOn: $userDefaultsManager.soundEnabled.animation()) {
-                        Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
-                    }
-                    .toggleStyle(.switch)
+//                    Toggle(isOn: $userDefaultsManager.soundEnabled.animation()) {
+//                        Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
+//                    }
+//                    .toggleStyle(.switch)
                 } header: {
                     Text("Game Feedback")
                 } footer: {
-                    Text("Enable game feedback with Haptics and Sound")
+                    Text("Enable game feedback with Haptics")
                 }
                 
                 Section {
@@ -82,7 +82,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Quick Game Defaults")
                 } footer: {
-                    Text("Select default values for quick game")
+                    Text("Quick game can be launched by pressing and holding on the Add Game button")
                 }
                 
                 Section {

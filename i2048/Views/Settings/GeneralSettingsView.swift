@@ -38,14 +38,14 @@ struct GeneralSettingsView: View {
                 }
             }
             
-            MacCustomSection(header: "Game Geedback", footer: "Enable game feedback with Sound") {
-                HStack {
-                    Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
-                    Spacer()
-                    Toggle("", isOn: $userDefaultsManager.soundEnabled.animation())
-                        .toggleStyle(.switch)
-                }
-            }
+//            MacCustomSection(header: "Game Geedback", footer: "Enable game feedback with Sound") {
+//                HStack {
+//                    Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
+//                    Spacer()
+//                    Toggle("", isOn: $userDefaultsManager.soundEnabled.animation())
+//                        .toggleStyle(.switch)
+//                }
+//            }
             
             MacCustomSection(header: "Quick Game Defaults", footer: "Select default values for quick game") {
                 HStack {

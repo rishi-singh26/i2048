@@ -31,14 +31,14 @@ struct GameViewControllsView: View {
                     Label("Enable Haptics", systemImage: userDefaultsManager.hapticsEnabled ? "hand.tap.fill" : "hand.tap")
                 }
                 .toggleStyle(.switch)
-                Toggle(isOn: $userDefaultsManager.soundEnabled.animation()) {
-                    Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
-                }
-                .toggleStyle(.switch)
+//                Toggle(isOn: $userDefaultsManager.soundEnabled.animation()) {
+//                    Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
+//                }
+//                .toggleStyle(.switch)
             } header: {
                 Text("Game Feedback")
             } footer: {
-                Text("Enable game feedbacks with Haptics and Sound")
+                Text("Enable game feedback with Haptics")
             }
             
             Section {
@@ -75,13 +75,13 @@ struct GameViewControllsView: View {
         ScrollView {
 
             MacCustomSection(header: "") {
-                HStack {
-                    Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
-                    Spacer()
-                    Toggle("", isOn: $userDefaultsManager.soundEnabled.animation())
-                        .toggleStyle(.switch)
-                }
-                Divider()
+//                HStack {
+//                    Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
+//                    Spacer()
+//                    Toggle("", isOn: $userDefaultsManager.soundEnabled.animation())
+//                        .toggleStyle(.switch)
+//                }
+//                Divider()
                 HStack {
                     Label("Game Screen Theme", systemImage: game.gameColorMode ? "warninglight.fill" : "warninglight")
                     Spacer()
