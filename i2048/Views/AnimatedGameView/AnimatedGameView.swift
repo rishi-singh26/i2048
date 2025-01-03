@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 
 extension Edge {
     
@@ -152,6 +153,15 @@ struct AnimatedGameView : View {
                     blockEnterEdge: .from(gameLogic.lastGestureDirection)
                 )
                 .gesture(gesture, including: .all)
+                .confettiCannon(
+                    counter: $gameLogic.confettiCounter,
+                    num: 50,
+                    confettiSize: 15,
+                    openingAngle: Angle(degrees: 0),
+                    closingAngle: Angle(degrees: 360),
+                    radius: 200,
+                    repetitions: 1
+                )
 #if os(macOS)
                 MacOSGameControlls()
 #endif
@@ -199,6 +209,8 @@ struct AnimatedGameView : View {
             }
         }
     }
+    
+    func doNothing(val: Int) {}
 }
 
 #Preview {

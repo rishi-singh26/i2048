@@ -28,7 +28,8 @@ final class GameLogic : ObservableObject {
         return _blockMatrix
     }
     private var _prevBlocMatrix: BlockMatrixType!
-    private(set) var selectedGame: Game?
+    @Published var selectedGame: Game?
+    @Published var confettiCounter: Int = 0
     private(set) var defaultsManager: UserDefaultsManager?
     private(set) var gridSize: Int = 4
     
@@ -90,6 +91,23 @@ final class GameLogic : ObservableObject {
                 game.prevState = game.grid
             }
             game.grid = self.blockMatrix.toIntMatrix()
+        }
+    }
+    
+    private func updateGameValues(score: Int, hasWon: Bool) {
+        guard let selectedGame = selectedGame else { return }
+        // Update game score
+        selectedGame.score = score
+        // Update game status
+        if !selectedGame.hasWon && hasWon {
+            withAnimation {
+                confettiCounter += 1
+            }
+            selectedGame.hasWon = hasWon
+        }
+        // Update high score
+        if score > defaultsManager?.highScore ?? 0 {
+            defaultsManager?.highScore = score
         }
     }
 
@@ -174,8 +192,8 @@ final class GameLogic : ObservableObject {
             blocks = blocks.reversed()
         }
         
-        var score = selectedGame?.score ?? 0
-        var hasWon = false
+        var score: Int = selectedGame?.score ?? 0
+        var hasWon: Bool = false
         
         blocks = blocks
             .map { (false, $0) }
@@ -197,16 +215,8 @@ final class GameLogic : ObservableObject {
             }
             .map { $0.1 }
         
-        // Update game score
-        selectedGame?.score = score
-        // Update game status
-        if !(selectedGame?.hasWon ?? false) {
-            selectedGame?.hasWon = hasWon
-        }
-        // Update high score
-        if score > defaultsManager?.highScore ?? 0 {
-            defaultsManager?.highScore = score
-        }
+        // Update game values
+        updateGameValues(score: score, hasWon: hasWon)
         
         if reverse {
             blocks = blocks.reversed()
