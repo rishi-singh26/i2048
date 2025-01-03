@@ -81,46 +81,22 @@ struct GameCardView: View {
     
     @ViewBuilder
     func IconViewBuilder(game: Game) -> some View {
-        if #available(iOS 18.0, macOS 15.0, *) {
-            if game.hasWon {
-                Image(systemName: "trophy.fill")
-                    .symbolEffect(.wiggle.byLayer, options: .repeat(5))
-                    .font(.title2)
-                    .foregroundStyle(.yellow)
-                    .frame(width: 35)
-            } else {
-                if game.isGameOver {
-                    Image(systemName: "exclamationmark.warninglight")
-                        .symbolEffect(.wiggle.byLayer, options: .repeat(5))
-                        .font(.title2)
-                        .foregroundStyle(.red)
-                        .frame(width: 35)
-                } else {
-                    Image(systemName: "gamecontroller.fill")
-                        .symbolEffect(.wiggle, options: .repeat(5))
-                        .font(.title2)
-                        .foregroundStyle(.orange)
-                        .frame(width: 35)
-                }
-            }
+        if game.hasWon {
+            Image(systemName: "trophy.fill")
+                .font(.title2)
+                .foregroundStyle(.yellow)
+                .frame(width: 35)
         } else {
-            if game.hasWon {
-                Image(systemName: "trophy.fill")
+            if game.isGameOver {
+                Image(systemName: "exclamationmark.warninglight")
                     .font(.title2)
-                    .foregroundStyle(.yellow)
+                    .foregroundStyle(.red)
                     .frame(width: 35)
             } else {
-                if game.isGameOver {
-                    Image(systemName: "exclamationmark.warninglight")
-                        .font(.title2)
-                        .foregroundStyle(.red)
-                        .frame(width: 35)
-                } else {
-                    Image(systemName: "gamecontroller.fill")
-                        .font(.title2)
-                        .foregroundStyle(.orange)
-                        .frame(width: 35)
-                }
+                Image(systemName: "gamecontroller.fill")
+                    .font(.title2)
+                    .foregroundStyle(.orange)
+                    .frame(width: 35)
             }
         }
     }
