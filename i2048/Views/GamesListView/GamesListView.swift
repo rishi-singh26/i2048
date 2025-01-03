@@ -25,17 +25,22 @@ struct GamesListView: View {
         case .name:
             [
                 SortDescriptor(\Game.name, order: sortOrder ? .forward : .reverse),
-                SortDescriptor(\Game.createdAt, order: sortOrder ? .forward : .reverse)
+                SortDescriptor(\Game.createdAt, order: .reverse)
+            ]
+        case .score:
+            [
+                SortDescriptor(\Game.score, order: sortOrder ? .forward : .reverse),
+                SortDescriptor(\Game.name)
             ]
         case .createdOn:
             [
                 SortDescriptor(\Game.createdAt, order: sortOrder ? .forward : .reverse),
-                SortDescriptor(\Game.name, order: sortOrder ? .forward : .reverse)
+                SortDescriptor(\Game.name)
             ]
         case .lastPlayedOn:
             [
                 SortDescriptor(\Game.modifiedAt, order: sortOrder ? .forward : .reverse),
-                SortDescriptor(\Game.name, order: sortOrder ? .forward : .reverse)
+                SortDescriptor(\Game.name)
             ]
         }
         

@@ -12,6 +12,7 @@ enum SortOrder {
     case name // Name
     case createdOn // Game Created Date
     case lastPlayedOn // Last Played Date
+    case score // Game score
     
     var id: Self {
         self
@@ -95,6 +96,8 @@ struct ContentView: View {
                 Picker("Sort Games By", selection: $sortBy) {
                     Text("Name")
                         .tag(SortOrder.name)
+                    Text("Score")
+                        .tag(SortOrder.score)
                     Text("Game Created Date")
                         .tag(SortOrder.createdOn)
                     Text("Last Played Date")
@@ -212,11 +215,13 @@ struct ContentView: View {
                 Menu {
                     Picker("Sort Games By", selection: $sortBy) {
                         Text("Name")
-                        .tag(SortOrder.name)
+                            .tag(SortOrder.name)
+                        Text("Score")
+                            .tag(SortOrder.score)
                         Text("Game Created Date")
-                        .tag(SortOrder.createdOn)
+                            .tag(SortOrder.createdOn)
                         Text("Last Played Date")
-                        .tag(SortOrder.lastPlayedOn)
+                            .tag(SortOrder.lastPlayedOn)
                     }
                     .pickerStyle(.inline)
                     Picker("Sort Order", selection: $sortOrder) {
