@@ -11,14 +11,13 @@ import SwiftData
 struct GamesListView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
+    @EnvironmentObject var gameLogic: GameLogic
     @Query(sort: \Game.createdAt, order: .reverse) private var games: [Game]
     var navigationNamespace: Namespace.ID
     
-    @Binding var selectedGame: Game?
     var searchText: String
     
-    init(selectedGame: Binding<Game?>, sortBy: SortOrder, sortOrder: Bool, searchText: String, nameSpace: Namespace.ID) {
-        self._selectedGame = selectedGame
+    init(sortBy: SortOrder, sortOrder: Bool, searchText: String, nameSpace: Namespace.ID) {
         self.searchText = searchText
         self.navigationNamespace = nameSpace
         
@@ -71,7 +70,7 @@ struct GamesListView: View {
 #if os (macOS)
     @ViewBuilder
     func MacOsGamesListBuilder() -> some View {
-        List(selection: $selectedGame.animation()) {
+        List(selection: $gameLogic.selectedGame.animation()) {
             if (!runningGames.isEmpty) {
                 MacOsSectionView(title: "Active Games", isExpanded: $userDefaultsManager.isRunningSectionExpanded, games: runningGames)
             }
@@ -89,7 +88,7 @@ struct GamesListView: View {
         Section(title, isExpanded: isExpanded) {
             ForEach(games) {game in
                 NavigationLink(value: game) {
-                    GameCardView(game: game, selectedGame: $selectedGame)
+                    GameCardView(game: game, selectedGame: $gameLogic.selectedGame)
                 }
             }
         }
@@ -99,7 +98,7 @@ struct GamesListView: View {
 #if os(iOS)
     @ViewBuilder
     func IosGamesListBuilder() -> some View {
-        List(selection: $selectedGame) {
+        List(selection: $gameLogic.selectedGame) {
             if (!runningGames.isEmpty) {
                 IosSectionViewBuilder("Active Games", $userDefaultsManager.isRunningSectionExpanded, runningGames)
             }
@@ -118,10 +117,10 @@ struct GamesListView: View {
             ForEach(games) { game in
                 NavigationLink(value: game) {
                     if #available(iOS 18.0, *) {
-                        GameCardView(game: game, selectedGame: $selectedGame)
+                        GameCardView(game: game, selectedGame: $gameLogic.selectedGame)
                             .matchedTransitionSource(id: game.id, in: navigationNamespace)
                     } else {
-                        GameCardView(game: game, selectedGame: $selectedGame)
+                        GameCardView(game: game, selectedGame: $gameLogic.selectedGame)
                     }
                 }
             }

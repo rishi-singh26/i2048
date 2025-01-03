@@ -75,7 +75,7 @@ struct GameCardView: View {
             Button("Cancel", role: .cancel) { }
         }
         .sheet(isPresented: $showEditGameSheet) {
-            AddGameView(selectedGame: $selectedGame, editingGame: game)
+            AddGameView(editingGame: game)
         }
     }
     

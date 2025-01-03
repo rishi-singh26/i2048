@@ -34,7 +34,7 @@ struct i2048App: App {
             ContentView()
                 .environmentObject(userDefaultsManager)
                 .environmentObject(artManager)
-                .environmentObject(gameLogic)
+                .environmentObject(gameLogic.updateUserDefaults(defaultsManager: userDefaultsManager))
         }
         .modelContainer(sharedModelContainer)
 #if os(macOS)

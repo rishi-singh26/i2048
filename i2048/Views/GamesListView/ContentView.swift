@@ -24,7 +24,6 @@ struct ContentView: View {
     @EnvironmentObject var backgroundArtManager: BackgroundArtManager
     @EnvironmentObject var gameLogic: GameLogic
     
-    @State private var selectedGame: Game?
     @State private var settingsSheetOpen: Bool = false
     @State private var addGameSheetOpen: Bool = false
     @State private var searchText: String = ""
@@ -51,7 +50,7 @@ struct ContentView: View {
         })
 #endif
         .sheet(isPresented: $addGameSheetOpen, content: {
-            AddGameView(selectedGame: $selectedGame)
+            AddGameView()
         })
     }
     
@@ -71,16 +70,6 @@ struct ContentView: View {
     @ViewBuilder
     func MacOsGamesListBuilder() -> some View {
         GamesListView(
-            selectedGame: Binding(get: {
-                selectedGame
-            }, set: { updatedGame in
-                withAnimation {
-                    selectedGame = updatedGame
-                }
-                if let unwrappedGame = updatedGame {
-                    gameLogic.updateSelectedGame(selectedGame: unwrappedGame, defaultsManager: userDefaultsManager)
-                }
-            }),
             sortBy: sortBy,
             sortOrder: sortOrder,
             searchText: searchText,
@@ -129,7 +118,7 @@ struct ContentView: View {
     }
     
     func gameHotKeys(_ event: NSEvent) -> NSEvent? {
-        if event.modifierFlags.contains(.command) && selectedGame != nil {
+        if event.modifierFlags.contains(.command) && gameLogic.selectedGame != nil {
             switch event.keyCode {
             case KeyCode.upArrow:
                 withTransaction(Transaction(animation: .spring())) {
@@ -152,7 +141,7 @@ struct ContentView: View {
                 }
                 return nil // disable beep sound
             case KeyCode.z:
-                if let selectedGame, selectedGame.canUndo {
+                if let selectedGame = gameLogic.selectedGame, selectedGame.canUndo {
                     withTransaction(Transaction(animation: .spring())) {
                         gameLogic.undoStep()
                     }
@@ -183,16 +172,6 @@ struct ContentView: View {
     @ViewBuilder
     func IosGamesListBuilder() -> some View {
         GamesListView(
-            selectedGame: Binding(get: {
-                selectedGame
-            }, set: { updatedGame in
-                withAnimation {
-                    selectedGame = updatedGame
-                }
-                if let unwrappedGame = updatedGame {
-                    gameLogic.updateSelectedGame(selectedGame: unwrappedGame, defaultsManager: userDefaultsManager)
-                }
-            }),
             sortBy: sortBy,
             sortOrder: sortOrder,
             searchText: searchText,
@@ -255,15 +234,15 @@ struct ContentView: View {
     }
     #endif
     
-    // MARK: - The detail view
+    // MARK: - Detail view
     /// Detail view is used on macos and ipad for navigation split view
     @ViewBuilder
     func DetailView() -> some View {
-        if let _ = selectedGame {
+        if let selectedGame = gameLogic.selectedGame {
             if #available(iOS 18.0, *) {
                 AnimatedGameView()
 #if os(iOS)
-                    .navigationTransition(.zoom(sourceID: selectedGame?.id, in: navigationNamespace))
+                    .navigationTransition(.zoom(sourceID: selectedGame.id, in: navigationNamespace))
                 #endif
             } else {
                 AnimatedGameView()
@@ -281,8 +260,7 @@ struct ContentView: View {
             newBlockNumber: userDefaultsManager.quickGameNewBlocNum
         )
         modelContext.insert(game)
-        selectedGame = game
-        gameLogic.updateSelectedGame(selectedGame: game, defaultsManager: userDefaultsManager)
+        gameLogic.selectedGame = game
     }
 }
 

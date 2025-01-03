@@ -10,18 +10,17 @@ import SwiftUI
 struct AddGameView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
+    @EnvironmentObject var gameLogic: GameLogic
     
     @State private var gameName: String = ""
     @State private var gridSize: Int = 4
     @State private var allowUndo: Bool = false
     @State private var showGameNameError: Bool = false
     @State private var newBlockNum: Int = 0
-    @Binding var selectedGame: Game?
     var editingGame: Game? = nil
     
-    init(selectedGame: Binding<Game?>, editingGame: Game? = nil) {
+    init(editingGame: Game? = nil) {
         self.editingGame = editingGame
-        self._selectedGame = selectedGame
         if let game = editingGame {
             self._gameName = State(initialValue: game.name)
         }
@@ -210,7 +209,7 @@ struct AddGameView: View {
         showGameNameError = false
         let game = Game(name: gameName, gridSize: gridSize, allowUndo: allowUndo, newBlockNumber: newBlockNum)
         modelContext.insert(game)
-        selectedGame = game
+        gameLogic.selectedGame = game
         dismiss()
     }
     

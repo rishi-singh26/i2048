@@ -28,7 +28,11 @@ final class GameLogic : ObservableObject {
         return _blockMatrix
     }
     private var _prevBlocMatrix: BlockMatrixType!
-    @Published var selectedGame: Game?
+    @Published var selectedGame: Game? {
+        didSet {
+            _onGameSet(selectedGame: selectedGame)
+        }
+    }
     @Published var confettiCounter: Int = 0
     private(set) var defaultsManager: UserDefaultsManager?
     private(set) var gridSize: Int = 4
@@ -54,10 +58,14 @@ final class GameLogic : ObservableObject {
         objectWillChange.send(self)
     }
     
-    func updateSelectedGame(selectedGame: Game, defaultsManager: UserDefaultsManager) {
-        self.selectedGame = selectedGame
+    func updateUserDefaults(defaultsManager: UserDefaultsManager) -> GameLogic {
         self.defaultsManager = defaultsManager
-        self.gridSize = selectedGame.gridSize
+        return self
+    }
+    
+    private func _onGameSet(selectedGame: Game?) {
+        guard let selectedGame = selectedGame else { return }
+        gridSize = selectedGame.gridSize
         _blockMatrix = BlockMatrixType(grid: transformToIdentifiedBlocks(matrix: selectedGame.grid))
         _prevBlocMatrix = _blockMatrix
         resetLastGestureDirection()
