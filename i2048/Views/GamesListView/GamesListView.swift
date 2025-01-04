@@ -91,7 +91,7 @@ struct GamesListView: View {
         Section(title, isExpanded: isExpanded) {
             ForEach(games) {game in
                 NavigationLink(value: game) {
-                    GameCardView(game: game, selectedGame: $gameLogic.selectedGame)
+                    GameCardView(game: game)
                 }
             }
         }
@@ -119,7 +119,7 @@ struct GamesListView: View {
         Section(title, isExpanded: expanded) {
             ForEach(games) { game in
                 NavigationLink(value: game) {
-                    GameCardView(game: game, selectedGame: $gameLogic.selectedGame)
+                    GameCardView(game: game)
                 }
             }
         }

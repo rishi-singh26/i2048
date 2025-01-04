@@ -10,7 +10,7 @@ import SwiftData
 
 @main
 struct i2048App: App {
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.openWindow) var openWindow
     @StateObject private var userDefaultsManager = UserDefaultsManager()
     @StateObject private var artManager = BackgroundArtManager()
     @StateObject private var gameLogic = GameLogic()
@@ -44,6 +44,29 @@ struct i2048App: App {
         .modelContainer(sharedModelContainer)
 #if os(macOS)
         .windowStyle(.hiddenTitleBar)
+        .commands {
+            CommandMenu("Game") {
+                Button("Add Game") {
+                    openWindow(id: "newGame")
+                }
+                .keyboardShortcut("N", modifiers: [.command, .shift])
+                Divider()
+                Button("Quick 3x3 Game", systemImage: "3.square") {
+                    addGame(3)
+                }
+                .keyboardShortcut(KeyEquivalent("3"), modifiers: .command)
+                
+                Button("Quick 4x4 Game", systemImage: "4.alt.square") {
+                    addGame(4)
+                }
+                .keyboardShortcut(KeyEquivalent("4"), modifiers: .command)
+                Divider()
+                Button("Statistics", systemImage: "chart.bar") {
+                    openWindow(id: "statistics")
+                }
+                .keyboardShortcut(KeyEquivalent("S"), modifiers: .command)
+            }
+        }
 #endif
         
 #if os(macOS)
@@ -51,6 +74,23 @@ struct i2048App: App {
             StatisticsView()
         }
         .modelContainer(sharedModelContainer)
+        .defaultSize(width: 300, height: 650)
+        
+        Window("New Game", id: "newGame") {
+            AddGameView()
+                .environmentObject(gameLogic.updateUserDefaults(defaultsManager: userDefaultsManager))
+        }
+        .modelContainer(sharedModelContainer)
+        .defaultSize(width: 400, height: 400)
+        
+        WindowGroup("Edit Game", for: Game.ID.self) { $gameId in
+            AddGameView(gameId: gameId)
+                .environmentObject(gameLogic.updateUserDefaults(defaultsManager: userDefaultsManager))
+        }
+        .modelContainer(sharedModelContainer)
+        .defaultSize(width: 400, height: 400)
+        .commandsRemoved()
+        
         Settings {
             SettingsView()
                 .environmentObject(userDefaultsManager)
@@ -58,5 +98,16 @@ struct i2048App: App {
         }
         .windowStyle(.hiddenTitleBar)
 #endif
+    }
+    
+    func addGame(_ gridSize: Int) {
+        let game = Game(
+            name: "\(userDefaultsManager.quickGameNamePrefix) #\(gridSize)x\(gridSize)",
+            gridSize: gridSize,
+            allowUndo: userDefaultsManager.quickGameAllowUndo,
+            newBlockNumber: userDefaultsManager.quickGameNewBlocNum
+        )
+        sharedModelContainer.mainContext.insert(game)
+        gameLogic.selectedGame = game
     }
 }

@@ -83,43 +83,44 @@ struct ContentView: View {
     @ToolbarContentBuilder
     func MacOSToolbarBuilder() -> some ToolbarContent {
         ToolbarItem(placement: .primaryAction) {
-            Menu {
-                Button("Quick 3x3 Game", systemImage: "3.square") {
-                    addGame(3)
+            HStack(spacing: 0) {
+                Button {
+                    openWindow(id: "newGame")
+                } label: {
+                    Image(systemName: "plus.circle")
                 }
-                .keyboardShortcut(KeyEquivalent("3"), modifiers: .command)
-                Button("Quick 4x4 Game", systemImage: "4.alt.square") {
-                    addGame(4)
+                Menu {
+                    Button("Quick 3x3 Game", systemImage: "3.square") {
+                        addGame(3)
+                    }
+                    Button("Quick 4x4 Game", systemImage: "4.alt.square") {
+                        addGame(4)
+                    }
+                    Picker("Sort Games By", selection: $sortBy) {
+                        Text("Name")
+                            .tag(SortOrder.name)
+                        Text("Score")
+                            .tag(SortOrder.score)
+                        Text("Game Created Date")
+                            .tag(SortOrder.createdOn)
+                        Text("Last Played Date")
+                            .tag(SortOrder.lastPlayedOn)
+                    }
+                    .pickerStyle(.inline)
+                    Picker("Sort Order", selection: $sortOrder) {
+                        Text("Ascending")
+                            .tag(true)
+                        Text("Descending")
+                            .tag(false)
+                    }
+                    .pickerStyle(.inline)
+                    Button("Statistics", systemImage: "chart.bar") {
+                        openWindow(id: "statistics")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
                 }
-                .keyboardShortcut(KeyEquivalent("4"), modifiers: .command)
-                Picker("Sort Games By", selection: $sortBy) {
-                    Text("Name")
-                        .tag(SortOrder.name)
-                    Text("Score")
-                        .tag(SortOrder.score)
-                    Text("Game Created Date")
-                        .tag(SortOrder.createdOn)
-                    Text("Last Played Date")
-                        .tag(SortOrder.lastPlayedOn)
-                }
-                .pickerStyle(.inline)
-                Picker("Sort Order", selection: $sortOrder) {
-                    Text("Ascending")
-                        .tag(true)
-                    Text("Descending")
-                        .tag(false)
-                }
-                .pickerStyle(.inline)
-                Button("Statistics", systemImage: "chart.bar") {
-                    openWindow(id: "statistics")
-                }
-                .keyboardShortcut(KeyEquivalent("s"), modifiers: .command)
-            } label: {
-                Image(systemName: "plus.circle")
-            } primaryAction: {
-                addGameSheetOpen = true
             }
-            .keyboardShortcut(KeyEquivalent("n"), modifiers: [.command, .shift])
         }
     }
     

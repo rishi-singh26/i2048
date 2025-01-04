@@ -10,9 +10,10 @@ import SwiftData
 
 struct GameCardView: View {
     @Environment(\.modelContext) var modelContext
+    @Environment(\.openWindow) var openWindow
+    @EnvironmentObject var gameLogic: GameLogic
         
     @Bindable var game: Game
-    @Binding var selectedGame: Game?
     @State private var showDeleteConfirmation: Bool = false
     @State private var showEditGameSheet: Bool = false
     
@@ -38,7 +39,7 @@ struct GameCardView: View {
         #endif
         .swipeActions(edge: .leading) {
             Button {
-                showEditGameSheet = true
+                editGame()
             } label: {
                 Label("Rename", systemImage: "pencil.circle")
             }
@@ -46,7 +47,7 @@ struct GameCardView: View {
         }
         .swipeActions(edge: .trailing) {
             Button {
-                showDeleteConfirmation = true
+                showDeleteConfirmation .toggle()
             } label: {
                 Label("Delete", systemImage: "trash")
             }
@@ -54,12 +55,12 @@ struct GameCardView: View {
         }
         .contextMenu(menuItems: {
             Button {
-                showEditGameSheet = true
+                editGame()
             } label: {
                 Label("Edit", systemImage: "pencil.circle")
             }
             Button(role: .destructive) {
-                showDeleteConfirmation = true
+                showDeleteConfirmation.toggle()
             } label: {
                 Label("Delete", systemImage: "trash")
             }.keyboardShortcut(.delete)
@@ -70,12 +71,12 @@ struct GameCardView: View {
             titleVisibility: .visible
         ) {
             Button("Delete", role: .destructive) {
-                deleteGame(game.id)
+                deleteGame()
             }
             Button("Cancel", role: .cancel) { }
         }
         .sheet(isPresented: $showEditGameSheet) {
-            AddGameView(editingGame: game)
+            AddGameView(gameId: game.id)
         }
     }
     
@@ -101,11 +102,19 @@ struct GameCardView: View {
         }
     }
     
-    func deleteGame(_ gameId: UUID) {
-        modelContext.delete(game)
-        if game == selectedGame {
-            selectedGame = nil
+    func editGame() {
+#if os(macOS)
+        openWindow(value: game.id)
+#elseif os(iOS)
+        showEditGameSheet.toggle()
+#endif
+    }
+    
+    func deleteGame() {
+        if game.id == gameLogic.selectedGame?.id {
+            gameLogic.selectedGame = nil
         }
+        modelContext.delete(game)
     }
 }
 
