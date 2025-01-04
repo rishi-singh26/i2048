@@ -30,6 +30,11 @@ struct i2048App: App {
     }()
 
     var body: some Scene {
+//        Window Group
+//        Document Group
+//        Settings
+//        Window
+//        Menu Bar Extra
         WindowGroup {
             ContentView()
                 .environmentObject(userDefaultsManager)
@@ -42,6 +47,10 @@ struct i2048App: App {
 #endif
         
 #if os(macOS)
+        Window("Statistics", id: "statistics") {
+            StatisticsView()
+        }
+        .modelContainer(sharedModelContainer)
         Settings {
             SettingsView()
                 .environmentObject(userDefaultsManager)

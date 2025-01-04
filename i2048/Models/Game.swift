@@ -410,8 +410,8 @@ enum GameSchemaV3: VersionedSchema {
 typealias Game = GameSchemaV3.Game
 
 // Enum for game statuses
-enum GameStatus: String {
+enum GameStatus: String, CaseIterable {
     case won = "Won"
-    case running = "Running"
     case lost = "Lost"
+    case running = "Running"
 }

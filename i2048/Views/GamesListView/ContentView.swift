@@ -21,12 +21,14 @@ enum SortOrder {
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
+    @Environment(\.openWindow) var openWindow
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @EnvironmentObject var backgroundArtManager: BackgroundArtManager
     @EnvironmentObject var gameLogic: GameLogic
     
     @State private var settingsSheetOpen: Bool = false
     @State private var addGameSheetOpen: Bool = false
+    @State private var showStatisticsView: Bool = false
     @State private var searchText: String = ""
     @State private var sortBy: SortOrder = .createdOn
     /// **sortOrder** true -> Ascending; false -> descending
@@ -49,6 +51,9 @@ struct ContentView: View {
         .sheet(isPresented: $settingsSheetOpen, content: {
             SettingsView()
         })
+        .fullScreenCover(isPresented: $showStatisticsView) {
+            StatisticsView()
+        }
 #endif
         .sheet(isPresented: $addGameSheetOpen, content: {
             AddGameView()
@@ -111,12 +116,16 @@ struct ContentView: View {
                         .tag(false)
                 }
                 .pickerStyle(.inline)
+                Button("Statistics", systemImage: "chart.bar") {
+                    openWindow(id: "statistics")
+                }
+                .keyboardShortcut(KeyEquivalent("s"), modifiers: .command)
             } label: {
                 Image(systemName: "plus.circle")
             } primaryAction: {
                 addGameSheetOpen = true
             }
-            .keyboardShortcut(KeyEquivalent("n"), modifiers: .command)
+            .keyboardShortcut(KeyEquivalent("n"), modifiers: [.command, .shift])
         }
     }
     
@@ -207,7 +216,13 @@ struct ContentView: View {
                 }
                 Spacer()
                 Button(action: {
-                    settingsSheetOpen = true
+                    showStatisticsView.toggle()
+                }, label: {
+                    Image(systemName: "chart.bar")
+                })
+                Divider().frame(height: 30)
+                Button(action: {
+                    settingsSheetOpen.toggle()
                 }, label: {
                     Image(systemName: "switch.2")
                 })

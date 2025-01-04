@@ -143,10 +143,10 @@ final class GameLogic : ObservableObject {
     
     func move(_ direction: Direction) {
         _prevBlocMatrix = _blockMatrix // store the previous step, will be needed for undo
-        DispatchQueue.main.async {
-            self.objectWillChange.send(self)
-        }
-        
+//        DispatchQueue.main.async {
+//            self.objectWillChange.send(self)
+//        }
+//        
         lastGestureDirection = direction
         
         var moved = false
