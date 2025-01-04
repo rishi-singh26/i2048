@@ -33,7 +33,6 @@ struct ContentView: View {
     @State private var sortBy: SortOrder = .createdOn
     /// **sortOrder** true -> Ascending; false -> descending
     @State private var sortOrder: Bool = false
-    @Namespace private var navigationNamespace
     
     init() {
         _ = CacheManager.shared
@@ -75,12 +74,7 @@ struct ContentView: View {
     
     @ViewBuilder
     func MacOsGamesListBuilder() -> some View {
-        GamesListView(
-            sortBy: sortBy,
-            sortOrder: sortOrder,
-            searchText: searchText,
-            nameSpace: navigationNamespace
-        )
+        GamesListView(sortBy: sortBy, sortOrder: sortOrder, searchText: searchText)
         .navigationSplitViewColumnWidth(min: 220, ideal: 230)
         .toolbar(content: MacOSToolbarBuilder)
         .navigationTitle("i2048")
@@ -183,12 +177,7 @@ struct ContentView: View {
     
     @ViewBuilder
     func IosGamesListBuilder() -> some View {
-        GamesListView(
-            sortBy: sortBy,
-            sortOrder: sortOrder,
-            searchText: searchText,
-            nameSpace: navigationNamespace
-        )
+        GamesListView(sortBy: sortBy, sortOrder: sortOrder, searchText: searchText)
         .listStyle(.sidebar)
         .toolbar(content: IosToolbarBuilder)
         .navigationTitle("i2048")
@@ -258,15 +247,8 @@ struct ContentView: View {
     /// Detail view is used on macos and ipad for navigation split view
     @ViewBuilder
     func DetailView() -> some View {
-        if let selectedGame = gameLogic.selectedGame {
-            if #available(iOS 18.0, *) {
-                AnimatedGameView()
-#if os(iOS)
-                    .navigationTransition(.zoom(sourceID: selectedGame.id, in: navigationNamespace))
-                #endif
-            } else {
-                AnimatedGameView()
-            }
+        if let _ = gameLogic.selectedGame {
+            AnimatedGameView()
         } else {
             GameBackgroundImageView()
         }

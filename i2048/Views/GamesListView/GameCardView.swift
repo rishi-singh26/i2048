@@ -20,11 +20,11 @@ struct GameCardView: View {
         HStack(alignment: .center) {
             IconViewBuilder(game: game)
             HStack {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 6) {
                     Text(game.name)
-                        .font(.title3.bold())
+                        .font(.headline.bold())
                     Text(game.createdAt.formattedString())
-                        .font(.footnote)
+                        .font(.caption)
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 0) {

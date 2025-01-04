@@ -13,13 +13,11 @@ struct GamesListView: View {
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @EnvironmentObject var gameLogic: GameLogic
     @Query(sort: \Game.createdAt, order: .reverse) private var games: [Game]
-    var navigationNamespace: Namespace.ID
     
     var searchText: String
     
-    init(sortBy: SortOrder, sortOrder: Bool, searchText: String, nameSpace: Namespace.ID) {
+    init(sortBy: SortOrder, sortOrder: Bool, searchText: String) {
         self.searchText = searchText
-        self.navigationNamespace = nameSpace
         
         let sortDescriptors: [SortDescriptor<Game>] = switch sortBy {
         case .name:
@@ -121,12 +119,7 @@ struct GamesListView: View {
         Section(title, isExpanded: expanded) {
             ForEach(games) { game in
                 NavigationLink(value: game) {
-                    if #available(iOS 18.0, *) {
-                        GameCardView(game: game, selectedGame: $gameLogic.selectedGame)
-                            .matchedTransitionSource(id: game.id, in: navigationNamespace)
-                    } else {
-                        GameCardView(game: game, selectedGame: $gameLogic.selectedGame)
-                    }
+                    GameCardView(game: game, selectedGame: $gameLogic.selectedGame)
                 }
             }
         }
