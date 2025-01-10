@@ -95,9 +95,9 @@ final class GameLogic : ObservableObject {
 
     private func updateGame() {
         if let game = selectedGame {
-            if game.allowUndo {
-                game.prevState = game.grid
-            }
+//            if game.allowUndo {
+//                game.prevState = game.grid
+//            }
             game.grid = self.blockMatrix.toIntMatrix()
         }
     }
@@ -114,9 +114,9 @@ final class GameLogic : ObservableObject {
             selectedGame.hasWon = hasWon
         }
         // Update high score
-        if score > defaultsManager?.highScore ?? 0 {
-            defaultsManager?.highScore = score
-        }
+//        if score > defaultsManager?.highScore ?? 0 {
+//            defaultsManager?.highScore = score
+//        }
     }
 
     
@@ -142,11 +142,11 @@ final class GameLogic : ObservableObject {
     }
     
     func move(_ direction: Direction) {
-        _prevBlocMatrix = _blockMatrix // store the previous step, will be needed for undo
-//        DispatchQueue.main.async {
-//            self.objectWillChange.send(self)
-//        }
-//        
+//        _prevBlocMatrix = _blockMatrix // store the previous step, will be needed for undo
+        DispatchQueue.main.async {
+            self.objectWillChange.send(self)
+        }
+        
         lastGestureDirection = direction
         
         var moved = false

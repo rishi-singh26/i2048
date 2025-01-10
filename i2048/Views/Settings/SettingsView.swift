@@ -60,9 +60,9 @@ struct SettingsView: View {
                 Section {
                     TextField("Game name prefix", text: $userDefaultsManager.quickGameNamePrefix)
                         .textInputAutocapitalization(.words)
-                    Toggle(isOn: $userDefaultsManager.quickGameAllowUndo.animation()) {
-                        Label("Allow Undo", systemImage: userDefaultsManager.quickGameAllowUndo ? "arrow.uturn.backward.square.fill" : "arrow.uturn.backward.square")
-                    }
+//                    Toggle(isOn: $userDefaultsManager.quickGameAllowUndo.animation()) {
+//                        Label("Allow Undo", systemImage: userDefaultsManager.quickGameAllowUndo ? "arrow.uturn.backward.square.fill" : "arrow.uturn.backward.square")
+//                    }
                     .toggleStyle(.switch)
                     Picker(selection: $userDefaultsManager.quickGameNewBlocNum.animation()) {
                         Text("2")

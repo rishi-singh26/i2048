@@ -67,16 +67,16 @@ import SwiftData
                 }
             }
             
-            MacCustomSection(footer: "If on, player will be allowd to undo one move at a time") {
-                HStack(alignment: .center) {
-                    Text("Allow Undo")
-                        .frame(width: 100, alignment: .leading)
-                    Spacer()
-                    Toggle("", isOn: $allowUndo)
-                        .toggleStyle(.switch)
-                        .disabled(editingGame != nil)
-                }
-            }
+//            MacCustomSection(footer: "If on, player will be allowd to undo one move at a time") {
+//                HStack(alignment: .center) {
+//                    Text("Allow Undo")
+//                        .frame(width: 100, alignment: .leading)
+//                    Spacer()
+//                    Toggle("", isOn: $allowUndo)
+//                        .toggleStyle(.switch)
+//                        .disabled(editingGame != nil)
+//                }
+//            }
             
             MacCustomSection(footer: "Number on new blocks in the game") {
                 HStack(alignment: .center) {
@@ -139,10 +139,10 @@ import SwiftData
                     Text("3x3 grid is a lot more difficult then 4x4 grid")
                 }
                 
-                Section(footer: Text("If on, you will be allowd to undo one move at a time")) {
-                    Toggle("Allow Undo", isOn: $allowUndo)
-                        .disabled(editingGame != nil)
-                }
+//                Section(footer: Text("If on, you will be allowd to undo one move at a time")) {
+//                    Toggle("Allow Undo", isOn: $allowUndo)
+//                        .disabled(editingGame != nil)
+//                }
                 
                 Section {
                     Picker(selection: $newBlockNum.animation()) {
