@@ -34,7 +34,7 @@ struct StatisticsView: View {
     }
     
     var activeGames: Int {
-        games.filter { $0.status == .running }.count
+        games.filter { $0.status == .active }.count
     }
     
     var dailyGameCounts: [Date: Int] {

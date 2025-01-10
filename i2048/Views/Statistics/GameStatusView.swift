@@ -42,7 +42,7 @@ struct GameStatusView: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text("\(totalGames)")
                     .font(.title.bold())
-                Text("Total Games")
+                Text("TOTAL")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                 Divider()
@@ -55,8 +55,8 @@ struct GameStatusView: View {
                         .padding(.leading, 5)
                     Text("\(wonGames)")
                         .font(.headline.bold())
-                        .frame(width: 20)
-                    Text(": Won")
+//                        .frame(width: 20)
+                    Text(": WON")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
@@ -67,8 +67,8 @@ struct GameStatusView: View {
                         .padding(.leading, 5)
                     Text("\(activeGames)")
                         .font(.headline.bold())
-                        .frame(width: 20)
-                    Text(": Active")
+//                        .frame(width: 20)
+                    Text(": ACTIVE")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
@@ -79,8 +79,8 @@ struct GameStatusView: View {
                         .padding(.leading, 5)
                     Text("\(lostGames)")
                         .font(.headline.bold())
-                        .frame(width: 20)
-                    Text(": Lost")
+//                        .frame(width: 20)
+                    Text(": LOST")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }

@@ -209,7 +209,7 @@ enum GameSchemaV2: VersionedSchema {
             if hasWon {
                 return .won
             } else {
-                return isGameOver ? .lost : .running
+                return isGameOver ? .lost : .active
             }
         }
     }
@@ -369,7 +369,7 @@ enum GameSchemaV3: VersionedSchema {
             if hasWon {
                 return .won
             } else {
-                return isGameOver ? .lost : .running
+                return isGameOver ? .lost : .active
             }
         }
         
@@ -413,5 +413,5 @@ typealias Game = GameSchemaV3.Game
 enum GameStatus: String, CaseIterable {
     case won = "Won"
     case lost = "Lost"
-    case running = "Running"
+    case active = "Active"
 }

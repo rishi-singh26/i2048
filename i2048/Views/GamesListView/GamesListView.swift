@@ -55,7 +55,7 @@ struct GamesListView: View {
     }
     
     private var runningGames: [Game] {
-        games.filter { $0.status == .running }
+        games.filter { $0.status == .active }
     }
     
     private var lostGames: [Game] {
@@ -101,7 +101,7 @@ struct GamesListView: View {
 #if os(iOS)
     @ViewBuilder
     func IosGamesListBuilder() -> some View {
-        List(selection: $gameLogic.selectedGame) {
+        List(selection: $gameLogic.selectedGame.animation()) {
             if (!runningGames.isEmpty) {
                 IosSectionViewBuilder("Active Games", $userDefaultsManager.isRunningSectionExpanded, runningGames)
             }

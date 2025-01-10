@@ -54,20 +54,16 @@ struct BarChartView: View {
                                     y: .value("Games", count)
                                 )
                                 .foregroundStyle(by: .value("Status", status.rawValue))
-                                .annotation {
-                                    Text("\(count)")
-                                        .font(.caption)
-                                        .foregroundColor(.primary)
-                                }
                             }
                         }
                     }
                 }
                 .chartForegroundStyleScale([
                     "Won": .green,
-                    "Lost": .red,
-                    "Running": .orange
+                    "Active": .orange,
+                    "Lost": .red
                 ])
+                .textCase(.uppercase)
                 .frame(height: 300)
                 .gesture(
                     DragGesture()
