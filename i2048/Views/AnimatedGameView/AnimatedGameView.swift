@@ -159,8 +159,7 @@ struct AnimatedGameView : View {
                     confettiSize: 15,
                     openingAngle: Angle(degrees: 0),
                     closingAngle: Angle(degrees: 360),
-                    radius: 200,
-                    repetitions: 1
+                    radius: 200
                 )
 #if os(macOS)
                 MacOSGameControlls()
