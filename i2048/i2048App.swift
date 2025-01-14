@@ -46,7 +46,7 @@ struct i2048App: App {
         .windowStyle(.hiddenTitleBar)
         .commands {
             CommandMenu("Game") {
-                Button("Add Game") {
+                Button("New Game") {
                     openWindow(id: "newGame")
                 }
                 .keyboardShortcut("N", modifiers: [.command, .shift])
