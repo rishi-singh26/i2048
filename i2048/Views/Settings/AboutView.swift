@@ -21,7 +21,7 @@ struct AboutView: View {
     @ViewBuilder
     func MacOSAboutViewBuilder() -> some View {
         ScrollView {
-            GroupBox {
+            MacCustomSection(header: "") {
                 HStack {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(width: 70, height: 70)
@@ -34,18 +34,9 @@ struct AboutView: View {
                     }
                     Spacer()
                 }
-                .padding(6)
             }
-            .padding(.top)
-            .padding(.horizontal)
             
-            HStack {
-                Text("Special Thanks")
-                    .padding(.top)
-                Spacer()
-            }
-            .padding(.horizontal)
-            GroupBox {
+            MacCustomSection(header: "Special Thanks") {
                 VStack(alignment: .leading) {
                     ForEach(Array(artManager.backgroundImages.enumerated()), id: \.offset) { index, artist in
                         Text(artist.name)
@@ -54,17 +45,9 @@ struct AboutView: View {
                         }
                     }
                 }
-                .padding(6)
             }
-            .padding(.horizontal)
             
-            HStack {
-                Text("Acknowledgements")
-                    .padding(.top)
-                Spacer()
-            }
-            .padding(.horizontal)
-            GroupBox {
+            MacCustomSection(header: "Acknowledgements") {
                 VStack(alignment: .leading) {
                     Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
                         CustomLabel(trailingImageName: "arrow.up.right", title: "Markdown Viewer")
@@ -74,25 +57,15 @@ struct AboutView: View {
                         CustomLabel(trailingImageName: "arrow.up.right", title: "Kingfisher")
                     }
                 }
-                .padding(6)
             }
-            .padding(.horizontal)
             
-            HStack {
-                Text("Copyright © 2024 Rishi Singh. All Rights Reserved.")
-                    .padding(.top)
-                Spacer()
-            }
-            .padding(.horizontal)
-            GroupBox {
+            MacCustomSection(header: "Copyright © 2025 Rishi Singh. All Rights Reserved.") {
                 VStack(alignment: .leading) {
                     Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
                         CustomLabel(trailingImageName: "arrow.up.right", title: "i2048.rishisingh.in")
                     }
                 }
-                .padding(6)
             }
-            .padding(.horizontal)
             .padding(.bottom)
         }
     }
@@ -127,7 +100,7 @@ struct AboutView: View {
                 }
             }
             
-            Section("Copyright © 2024 Rishi Singh. All Rights Reserved.") {
+            Section("Copyright © 2025 Rishi Singh. All Rights Reserved.") {
                 Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
                     CustomLabel(trailingImageName: "arrow.up.right", title: "i2048.rishisingh.in")
                 }
