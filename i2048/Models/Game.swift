@@ -318,8 +318,114 @@ enum GameSchemaV3: VersionedSchema {
     }
 }
 
+enum GameSchemaV4: VersionedSchema {
+    static var versionIdentifier = Schema.Version(4, 0, 0)
+    
+    static var models: [any PersistentModel.Type] {
+        [Game.self]
+    }
 
-typealias Game = GameSchemaV3.Game
+    @Model
+    class Game {
+        var id: UUID = UUID()
+        var name: String = "New Game"
+        var gridSize: Int = 4
+        var grid: [[Int]] = Array(repeating: Array(repeating: 0, count: 4),count: 4)
+        var score: Int = 0
+        var hasWon: Bool = false
+        var createdAt: Date = Date.now
+        var modifiedAt: Date = Date.now
+        var imageUrl: String = ""
+        var gameColorMode: Bool = true
+        var forGroundColor: String = "#ffffff"
+        var gameVictoryColor: String = "#00F900"
+        var gameLossColor: String = "#FF2600"
+        var backGroundColor: String = "#FFFB00"
+        var color2: String = "#FFCC01"
+        var color4: String = "#FF9500"
+        var color8: String = "#FF2C55"
+        var color16: String = "#AF52DE"
+        var color32: String = "#FF3C2F"
+        var color64: String = "#FB5C4C"
+        var color128: String = "#007AFF"
+        var color256: String = "#2C8EF3"
+        var color512: String = "#35C759"
+        var color1024: String = "#51CA70"
+        var color2048: String = "#FED702"
+        var color4096: String = "#5856D6"
+        var color8192: String = "#BD8BCD"
+        var color16384: String = "#B8BAB2"
+        var allowUndo: Bool = false
+        var prevState: [[Int]] = Array(repeating: Array(repeating: 0, count: 4),count: 4)
+        var newBlockNumber: Int = 0 // one of [2, 4, 0]: when 0 -> either 2 or 4 at random will be added as new blocks to the grid during game run
+        var targetScore: Int = 2048 // a 3x3 game can have a lower target score
+        
+        /// For creating new game
+        init(
+            name: String,
+            gridSize: Int,
+            imageUrl: String = "",
+            gameColorMode: Bool = true,
+            forGroundColor: String = "#ffffff",
+            gameVictoryColor: String = "#00F900",
+            gameLossColor: String = "#FF2600",
+            backGroundColor: String = "#FFFB00",
+            color2: String = "#FFCC01",
+            color4: String = "#FF9500",
+            color8: String = "#FF2C55",
+            color16: String = "#AF52DE",
+            color32: String = "#FF3C2F",
+            color64: String = "#FB5C4C",
+            color128: String = "#007AFF",
+            color256: String = "#2C8EF3",
+            color512: String = "#35C759",
+            color1024: String = "#51CA70",
+            color2048: String = "#FED702",
+            color4096: String = "#5856D6",
+            color8192: String = "#BD8BCD",
+            color16384: String = "#B8BAB2",
+            allowUndo: Bool = false,
+            newBlockNumber: Int = 0,
+            targetScore: Int = 2048
+        ) {
+            self.id = UUID()
+            self.name = name
+            self.gridSize = gridSize
+            self.grid = Array(repeating: Array(repeating: 0, count: gridSize),count: gridSize)
+            self.score = 0
+            self.hasWon = false
+            self.createdAt = .now
+            self.modifiedAt = .now
+            self.imageUrl = imageUrl
+            self.gameColorMode = gameColorMode
+            self.forGroundColor = forGroundColor
+            self.gameVictoryColor = gameVictoryColor
+            self.gameLossColor = gameLossColor
+            self.backGroundColor = backGroundColor
+            self.color2 = color2
+            self.color4 = color4
+            self.color8 = color8
+            self.color16 = color16
+            self.color32 = color32
+            self.color64 = color64
+            self.color128 = color128
+            self.color256 = color256
+            self.color512 = color512
+            self.color1024 = color1024
+            self.color2048 = color2048
+            self.color4096 = color4096
+            self.color8192 = color8192
+            self.color16384 = color16384
+            self.allowUndo = allowUndo
+            self.prevState = Array(repeating: Array(repeating: 0, count: gridSize),count: gridSize)
+            self.newBlockNumber = newBlockNumber
+            self.targetScore = targetScore
+        }
+    }
+}
+
+
+typealias Game = GameSchemaV4.Game
 
 extension Game {
     func selectNetworkImage(_ image: BackgroundArt) {

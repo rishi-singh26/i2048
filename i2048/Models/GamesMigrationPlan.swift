@@ -10,11 +10,11 @@ import SwiftData
 
 enum GamesMigrationPlan: SchemaMigrationPlan {
     static var schemas: [any VersionedSchema.Type] {
-        [GameSchemaV1.self, GameSchemaV2.self, GameSchemaV3.self]
+        [GameSchemaV1.self, GameSchemaV2.self, GameSchemaV3.self, GameSchemaV4.self]
     }
     
     static var stages: [MigrationStage] {
-        [migrateV1toV2, migrateV2toV3]
+        [migrateV1toV2, migrateV2toV3, migrateV3toV4]
     }
     
     static let migrateV1toV2 = MigrationStage.lightweight(
@@ -25,5 +25,10 @@ enum GamesMigrationPlan: SchemaMigrationPlan {
     static let migrateV2toV3 = MigrationStage.lightweight(
         fromVersion: GameSchemaV2.self,
         toVersion: GameSchemaV3.self
+    )
+    
+    static let migrateV3toV4 = MigrationStage.lightweight(
+        fromVersion: GameSchemaV3.self,
+        toVersion: GameSchemaV4.self
     )
 }
