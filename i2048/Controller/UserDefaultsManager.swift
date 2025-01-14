@@ -9,22 +9,14 @@ import SwiftUI
 import CoreHaptics
 
 class UserDefaultsManager: ObservableObject {
-    /// Singleton instance for centralized management if needed
     static let shared = UserDefaultsManager()
-    
+
     private var hapticEngine: CHHapticEngine?
-        
-    /// Game hight score. This will not be synced with each device
-    @Published var highScore: Int {
-        didSet {
-            UserDefaults.standard.set(highScore, forKey: "highScore")
-        }
-    }
     
-    /// Haptic feedback control
-    @Published var hapticsEnabled: Bool {
+    // Properties directly linked to UserDefaults using @AppStorage
+    @AppStorage("highScore") var highScore: Int = 0
+    @AppStorage("hapticsEnabled") var hapticsEnabled: Bool = false {
         didSet {
-            UserDefaults.standard.set(hapticsEnabled, forKey: "hapticsEnabled")
             if hapticsEnabled {
                 prepareHapticEngine()
             } else {
@@ -32,73 +24,22 @@ class UserDefaultsManager: ObservableObject {
             }
         }
     }
-    
-    /// Game sound control
-    @Published var soundEnabled: Bool {
-        didSet {
-            UserDefaults.standard.set(soundEnabled, forKey: "soundEnabled")
-        }
-    }
-    
-    /// TitleBar enabled
-    @Published var titleBarDisabled: Bool {
-        didSet {
-            UserDefaults.standard.set(titleBarDisabled, forKey: "titleBarDisabled")
-        }
-    }
-    
-    @Published var quickGameNamePrefix: String {
-        didSet {
-            UserDefaults.standard.set(quickGameNamePrefix, forKey: "quickGameNamePrefix")
-        }
-    }
-    
-    @Published var quickGameAllowUndo: Bool {
-        didSet {
-            UserDefaults.standard.set(quickGameAllowUndo, forKey: "quickGameAllowUndo")
-        }
-    }
-    
-    @Published var quickGameNewBlocNum: Int {
-        didSet {
-            UserDefaults.standard.set(quickGameNewBlocNum, forKey: "quickGameNewBlocNum")
-        }
-    }
-    
-    @Published var activeGamesSectionEnabled: Bool {
-        didSet {
-            UserDefaults.standard.set(activeGamesSectionEnabled, forKey: "activeGamesSectionEnabled")
-        }
-    }
-    
-    @Published var gamesWonSectionEnabled: Bool {
-        didSet {
-            UserDefaults.standard.set(gamesWonSectionEnabled, forKey: "gamesWonSectionEnabled")
-        }
-    }
-    
-    @Published var gamesLostSectionEnabled: Bool {
-        didSet {
-            UserDefaults.standard.set(gamesLostSectionEnabled, forKey: "gamesLostSectionEnabled")
-        }
-    }
-    
+    @AppStorage("soundEnabled") var soundEnabled: Bool = true
+    @AppStorage("titleBarDisabled") var titleBarDisabled: Bool = false
+    @AppStorage("quickGameNamePrefix") var quickGameNamePrefix: String = "Game Name"
+    @AppStorage("quickGameAllowUndo") var quickGameAllowUndo: Bool = false
+    @AppStorage("quickGameNewBlocNum") var quickGameNewBlocNum: Int = 0
+    @AppStorage("activeGamesSectionEnabled") var activeGamesSectionEnabled: Bool = true
+    @AppStorage("gamesWonSectionEnabled") var gamesWonSectionEnabled: Bool = true
+    @AppStorage("gamesLostSectionEnabled") var gamesLostSectionEnabled: Bool = true
+
+    // State properties for section expansion
     @Published var isWonSectionExpanded = false
     @Published var isRunningSectionExpanded = true
     @Published var isLostSectionExpanded = false
-    
-    init() {
-        self.highScore = UserDefaults.standard.integer(forKey: "highScore")
-        self.hapticsEnabled = UserDefaults.standard.bool(forKey: "hapticsEnabled")
-        self.soundEnabled = UserDefaults.standard.bool(forKey: "soundEnabled")
-        self.titleBarDisabled = UserDefaults.standard.bool(forKey: "titleBarDisabled")
-        self.quickGameNamePrefix = UserDefaults.standard.string(forKey: "quickGameNamePrefix") ?? "Game Name"
-        self.quickGameAllowUndo = UserDefaults.standard.bool(forKey: "quickGameAllowUndo")
-        self.quickGameNewBlocNum = UserDefaults.standard.integer(forKey: "quickGameNewBlocNum")
-        self.activeGamesSectionEnabled = UserDefaults.standard.bool(forKey: "activeGamesSectionEnabled")
-        self.gamesWonSectionEnabled = UserDefaults.standard.bool(forKey: "gamesWonSectionEnabled")
-        self.gamesLostSectionEnabled = UserDefaults.standard.bool(forKey: "gamesLostSectionEnabled")
         
+    init() {
+        // Initialize expansion states based on the enabled settings
         self.isWonSectionExpanded = self.gamesWonSectionEnabled
         self.isRunningSectionExpanded = self.activeGamesSectionEnabled
         self.isLostSectionExpanded = self.gamesLostSectionEnabled
