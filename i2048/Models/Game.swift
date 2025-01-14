@@ -315,99 +315,101 @@ enum GameSchemaV3: VersionedSchema {
             self.prevState = Array(repeating: Array(repeating: 0, count: gridSize),count: gridSize)
             self.newBlockNumber = newBlockNumber
         }
-        
-        func selectNetworkImage(_ image: BackgroundArt) {
-            self.gameColorMode = !image.mode // for light images use dark background and vice versa
-            self.imageUrl = image.url
-            self.forGroundColor = image.forGroundColor
-            self.gameVictoryColor = image.gameVictoryColor
-            self.gameLossColor = image.gameLossColor
-            self.backGroundColor = image.backGroundColor
-            self.color2 = image.color2
-            self.color4 = image.color4
-            self.color8 = image.color8
-            self.color16 = image.color16
-            self.color32 = image.color32
-            self.color64 = image.color64
-            self.color128 = image.color128
-            self.color256 = image.color256
-            self.color512 = image.color512
-            self.color1024 = image.color1024
-            self.color2048 = image.color2048
-            self.color4096 = image.color4096
-            self.color8192 = image.color8192
-            self.color16384 = image.color16384
-        }
-        
-        var isGameOver: Bool {
-            // Check if no moves are possible
-            for row in 0..<gridSize {
-                for col in 0..<gridSize {
-                    if grid[row][col] == 0 {
-                        return false
-                    }
-                    
-                    // Check adjacent cells for possible merges
-                    let currentValue = grid[row][col]
-                    
-                    // Right
-                    if col < gridSize - 1 && grid[row][col + 1] == currentValue {
-                        return false
-                    }
-                    
-                    // Down
-                    if row < gridSize - 1 && grid[row + 1][col] == currentValue {
-                        return false
-                    }
-                }
-            }
-            
-            return true
-        }
-        
-        var status: GameStatus {
-            if hasWon {
-                return .won
-            } else {
-                return isGameOver ? .lost : .active
-            }
-        }
-        
-        var canUndo: Bool {
-            return allowUndo && prevState.count == gridSize
-        }
-        
-        func undoStep() {
-            if canUndo {
-                grid = prevState
-                prevState = []
-            }
-        }
-        
-        @discardableResult func getNewBlockNum() -> Int {
-            if newBlockNumber == 0 {
-                return Bool.random() ? 2 : 4
-            } else {
-                return newBlockNumber
-            }
-        }
-        
-        public static func getNewBlockIcon(_ newBlockNum: Int) -> [String] {
-            if newBlockNum == 0 {
-                return ["2.square", "4.square"]
-            } else if newBlockNum == 2 {
-                return ["2.square"]
-            } else if newBlockNum == 4 {
-                return ["4.square"]
-            } else {
-                return ["4.square"]
-            }
-        }
     }
 }
 
 
 typealias Game = GameSchemaV3.Game
+
+extension Game {
+    func selectNetworkImage(_ image: BackgroundArt) {
+        self.gameColorMode = !image.mode // for light images use dark background and vice versa
+        self.imageUrl = image.url
+        self.forGroundColor = image.forGroundColor
+        self.gameVictoryColor = image.gameVictoryColor
+        self.gameLossColor = image.gameLossColor
+        self.backGroundColor = image.backGroundColor
+        self.color2 = image.color2
+        self.color4 = image.color4
+        self.color8 = image.color8
+        self.color16 = image.color16
+        self.color32 = image.color32
+        self.color64 = image.color64
+        self.color128 = image.color128
+        self.color256 = image.color256
+        self.color512 = image.color512
+        self.color1024 = image.color1024
+        self.color2048 = image.color2048
+        self.color4096 = image.color4096
+        self.color8192 = image.color8192
+        self.color16384 = image.color16384
+    }
+    
+    var isGameOver: Bool {
+        // Check if no moves are possible
+        for row in 0..<gridSize {
+            for col in 0..<gridSize {
+                if grid[row][col] == 0 {
+                    return false
+                }
+                
+                // Check adjacent cells for possible merges
+                let currentValue = grid[row][col]
+                
+                // Right
+                if col < gridSize - 1 && grid[row][col + 1] == currentValue {
+                    return false
+                }
+                
+                // Down
+                if row < gridSize - 1 && grid[row + 1][col] == currentValue {
+                    return false
+                }
+            }
+        }
+        
+        return true
+    }
+    
+    var status: GameStatus {
+        if hasWon {
+            return .won
+        } else {
+            return isGameOver ? .lost : .active
+        }
+    }
+    
+    var canUndo: Bool {
+        return allowUndo && prevState.count == gridSize
+    }
+    
+    func undoStep() {
+        if canUndo {
+            grid = prevState
+            prevState = []
+        }
+    }
+    
+    @discardableResult func getNewBlockNum() -> Int {
+        if newBlockNumber == 0 {
+            return Bool.random() ? 2 : 4
+        } else {
+            return newBlockNumber
+        }
+    }
+    
+    public static func getNewBlockIcon(_ newBlockNum: Int) -> [String] {
+        if newBlockNum == 0 {
+            return ["2.square", "4.square"]
+        } else if newBlockNum == 2 {
+            return ["2.square"]
+        } else if newBlockNum == 4 {
+            return ["4.square"]
+        } else {
+            return ["4.square"]
+        }
+    }
+}
 
 // Enum for game statuses
 enum GameStatus: String, CaseIterable {
