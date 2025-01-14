@@ -56,16 +56,16 @@ struct GeneralSettingsView: View {
                         .textFieldStyle(.roundedBorder)
                 }
                 Divider()
+//                HStack(alignment: .center) {
+//                    Text("Allow Undo")
+//                        .frame(width: 150, alignment: .leading)
+//                    Spacer()
+//                    Toggle("", isOn: $userDefaultsManager.quickGameAllowUndo)
+//                        .toggleStyle(.switch)
+//                }
+//                Divider()
                 HStack(alignment: .center) {
-                    Text("Allow Undo")
-                        .frame(width: 150, alignment: .leading)
-                    Spacer()
-                    Toggle("", isOn: $userDefaultsManager.quickGameAllowUndo)
-                        .toggleStyle(.switch)
-                }
-                Divider()
-                HStack(alignment: .center) {
-                    Text("Allow Undo")
+                    Text("New Block")
                         .frame(width: 150, alignment: .leading)
                     Spacer()
                     Picker("", selection: $userDefaultsManager.quickGameNewBlocNum) {
@@ -75,6 +75,54 @@ struct GeneralSettingsView: View {
                             .tag(4)
                         Text("2 or 4 (Random)")
                             .tag(0)
+                    }
+                }
+                Divider()
+                HStack(alignment: .center) {
+                    Text("3x3 Game Target Score")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    Picker("", selection: $userDefaultsManager.quick3GameTarget) {
+                        Text("128")
+                            .tag(128)
+                        Text("256")
+                            .tag(256)
+                        Text("512")
+                            .tag(512)
+                        Text("1024")
+                            .tag(1024)
+                        Text("2048")
+                            .tag(2048)
+                        Text("4096")
+                            .tag(4096)
+                        Text("8192")
+                            .tag(8192)
+                        Text("16384")
+                            .tag(16384)
+                    }
+                }
+                Divider()
+                HStack(alignment: .center) {
+                    Text("4x4 Game Target Score")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    Picker("", selection: $userDefaultsManager.quick4GameTarget) {
+                        Text("128")
+                            .tag(128)
+                        Text("256")
+                            .tag(256)
+                        Text("512")
+                            .tag(512)
+                        Text("1024")
+                            .tag(1024)
+                        Text("2048")
+                            .tag(2048)
+                        Text("4096")
+                            .tag(4096)
+                        Text("8192")
+                            .tag(8192)
+                        Text("16384")
+                            .tag(16384)
                     }
                 }
             }

@@ -79,6 +79,44 @@ struct SettingsView: View {
                         }
                     }
                     .pickerStyle(.navigationLink)
+                    Picker("3x3 Game Target Score", systemImage: "target", selection: $userDefaultsManager.quick3GameTarget) {
+                        Text("128")
+                            .tag(128)
+                        Text("256")
+                            .tag(256)
+                        Text("512")
+                            .tag(512)
+                        Text("1024")
+                            .tag(1024)
+                        Text("2048")
+                            .tag(2048)
+                        Text("4096")
+                            .tag(4096)
+                        Text("8192")
+                            .tag(8192)
+                        Text("16384")
+                            .tag(16384)
+                    }
+                    .pickerStyle(.navigationLink)
+                    Picker("4x4 Game Target Score", systemImage: "target", selection: $userDefaultsManager.quick4GameTarget) {
+                        Text("128")
+                            .tag(128)
+                        Text("256")
+                            .tag(256)
+                        Text("512")
+                            .tag(512)
+                        Text("1024")
+                            .tag(1024)
+                        Text("2048")
+                            .tag(2048)
+                        Text("4096")
+                            .tag(4096)
+                        Text("8192")
+                            .tag(8192)
+                        Text("16384")
+                            .tag(16384)
+                    }
+                    .pickerStyle(.navigationLink)
                 } header: {
                     Text("Quick Game Defaults")
                 } footer: {

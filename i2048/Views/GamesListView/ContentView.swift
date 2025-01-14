@@ -53,10 +53,10 @@ struct ContentView: View {
         .fullScreenCover(isPresented: $showStatisticsView) {
             StatisticsView()
         }
-#endif
         .sheet(isPresented: $addGameSheetOpen, content: {
             AddGameView()
         })
+#endif
     }
     
     #if os(macOS)
@@ -260,7 +260,8 @@ struct ContentView: View {
             name: "\(userDefaultsManager.quickGameNamePrefix) #\(gridSize)x\(gridSize)",
             gridSize: gridSize,
             allowUndo: userDefaultsManager.quickGameAllowUndo,
-            newBlockNumber: userDefaultsManager.quickGameNewBlocNum
+            newBlockNumber: userDefaultsManager.quickGameNewBlocNum,
+            targetScore: gridSize == 3 ? userDefaultsManager.quick3GameTarget : userDefaultsManager.quick4GameTarget
         )
         modelContext.insert(game)
         gameLogic.selectedGame = game
@@ -271,4 +272,5 @@ struct ContentView: View {
     ContentView()
         .environmentObject(UserDefaultsManager.shared)
         .environmentObject(BackgroundArtManager.shared)
+        .environmentObject(GameLogic())
 }

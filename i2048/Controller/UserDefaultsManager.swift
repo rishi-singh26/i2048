@@ -26,9 +26,13 @@ class UserDefaultsManager: ObservableObject {
     }
     @AppStorage("soundEnabled") var soundEnabled: Bool = true
     @AppStorage("titleBarDisabled") var titleBarDisabled: Bool = false
+    
     @AppStorage("quickGameNamePrefix") var quickGameNamePrefix: String = "Game Name"
     @AppStorage("quickGameAllowUndo") var quickGameAllowUndo: Bool = false
     @AppStorage("quickGameNewBlocNum") var quickGameNewBlocNum: Int = 0
+    @AppStorage("quick3GameTarget") var quick3GameTarget: Int = 256
+    @AppStorage("quick4GameTarget") var quick4GameTarget: Int = 2048
+    
     @AppStorage("activeGamesSectionEnabled") var activeGamesSectionEnabled: Bool = true
     @AppStorage("gamesWonSectionEnabled") var gamesWonSectionEnabled: Bool = true
     @AppStorage("gamesLostSectionEnabled") var gamesLostSectionEnabled: Bool = true

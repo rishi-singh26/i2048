@@ -97,6 +97,7 @@ struct i2048App: App {
                 .environmentObject(artManager)
         }
         .windowStyle(.hiddenTitleBar)
+        .defaultSize(width: 400, height: 650)
 #endif
     }
     
@@ -105,7 +106,8 @@ struct i2048App: App {
             name: "\(userDefaultsManager.quickGameNamePrefix) #\(gridSize)x\(gridSize)",
             gridSize: gridSize,
             allowUndo: userDefaultsManager.quickGameAllowUndo,
-            newBlockNumber: userDefaultsManager.quickGameNewBlocNum
+            newBlockNumber: userDefaultsManager.quickGameNewBlocNum,
+            targetScore: gridSize == 3 ? userDefaultsManager.quick3GameTarget : userDefaultsManager.quick4GameTarget
         )
         sharedModelContainer.mainContext.insert(game)
         gameLogic.selectedGame = game

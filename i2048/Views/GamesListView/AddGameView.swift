@@ -20,6 +20,7 @@ import SwiftData
     @State private var allowUndo: Bool = false
     @State private var showGameNameError: Bool = false
     @State private var newBlockNum: Int = 0
+    @State private var targetScore: Int = 2048
     @State private var editingGame: Game? = nil
     var gameId: UUID? = nil
     
@@ -94,6 +95,34 @@ import SwiftData
                     .disabled(editingGame != nil)
                 }
             }
+            
+            MacCustomSection(footer: "Choose Target Score") {
+                HStack(alignment: .center) {
+                    Text("Game Target Score")
+                        .frame(width: 100, alignment: .leading)
+                    Spacer()
+                    Picker("", selection: $targetScore) {
+                        Text("128")
+                            .tag(128)
+                        Text("256")
+                            .tag(256)
+                        Text("512")
+                            .tag(512)
+                        Text("1024")
+                            .tag(1024)
+                        Text("2048")
+                            .tag(2048)
+                        Text("4096")
+                            .tag(4096)
+                        Text("8192")
+                            .tag(8192)
+                        Text("16384")
+                            .tag(16384)
+                    }
+                    .disabled(editingGame != nil)
+                }
+            }
+            
         }
         .padding(.vertical, 10)
         .toolbar {
@@ -105,7 +134,7 @@ import SwiftData
                         addGame()
                     }
                 } label: {
-                    Text("Done")
+                    Text(editingGame != nil ? "Edit" : "Add")
                 }
             }
         }
@@ -165,6 +194,31 @@ import SwiftData
                 } footer: {
                     Text("Number on new blocks in the game")
                 }
+                
+                Section {
+                    Picker("Game Target Score", systemImage: "target", selection: $targetScore) {
+                        Text("128")
+                            .tag(128)
+                        Text("256")
+                            .tag(256)
+                        Text("512")
+                            .tag(512)
+                        Text("1024")
+                            .tag(1024)
+                        Text("2048")
+                            .tag(2048)
+                        Text("4096")
+                            .tag(4096)
+                        Text("8192")
+                            .tag(8192)
+                        Text("16384")
+                            .tag(16384)
+                    }
+                    .pickerStyle(.navigationLink)
+                    .disabled(editingGame != nil)
+                } footer: {
+                    Text("Choose Target Score")
+                }
             }
             .navigationTitle(editingGame != nil ? "Edit Game" : "Add Game")
             .navigationBarTitleDisplayMode(.inline)
@@ -197,6 +251,10 @@ import SwiftData
         if let gameId = gameId, let fetchedItem = games.first(where: { $0.id == gameId }) {
             editingGame = fetchedItem
             gameName = fetchedItem.name
+            targetScore = fetchedItem.targetScore
+            gridSize = fetchedItem.gridSize
+            newBlockNum = fetchedItem.newBlockNumber
+            allowUndo = fetchedItem.allowUndo
         }
     }
     
@@ -206,7 +264,13 @@ import SwiftData
             return
         }
         showGameNameError = false
-        let game = Game(name: gameName, gridSize: gridSize, allowUndo: allowUndo, newBlockNumber: newBlockNum)
+        let game = Game(
+            name: gameName,
+            gridSize: gridSize,
+            allowUndo: allowUndo,
+            newBlockNumber: newBlockNum,
+            targetScore: targetScore
+        )
         modelContext.insert(game)
         gameLogic.selectedGame = game
         dismiss()

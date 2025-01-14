@@ -211,7 +211,7 @@ final class GameLogic : ObservableObject {
                     var mergedBlock = item.1
                     let mergedNumber = mergedBlock.number * 2
                     score += mergedNumber
-                    hasWon = mergedNumber >= 2048 // win score is 2048
+                    hasWon = mergedNumber >= selectedGame?.targetScore ?? 2048 // win score is 2048 by default
                     mergedBlock.number = mergedNumber
                     accPrefix.append((true, mergedBlock))
                     return accPrefix
