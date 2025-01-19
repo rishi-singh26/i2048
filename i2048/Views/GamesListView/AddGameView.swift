@@ -52,7 +52,7 @@ import SwiftData
                 }
             }
             
-            MacCustomSection(footer: "3x3 grid is a lot more difficult then 4x4 grid") {
+            MacCustomSection(footer: "3x3 grid is a lot more difficult than 4x4 grid") {
                 HStack {
                     Text("Grid Size")
                         .frame(width: 100, alignment: .leading)
@@ -146,7 +146,7 @@ import SwiftData
         NavigationView {
             Form {
                 Section {
-                    TextField("Game name", text: $gameName)
+                    TextField("Game Name", text: $gameName)
                         .textInputAutocapitalization(.words)
                 } footer: {
                     Text("Game name appears on the games list screen.")
@@ -165,7 +165,7 @@ import SwiftData
                 } header: {
                     Text("Select grid size")
                 } footer: {
-                    Text("3x3 grid is a lot more difficult then 4x4 grid")
+                    Text("3x3 grid is a lot more difficult than 4x4 grid")
                 }
                 
 //                Section(footer: Text("If on, you will be allowd to undo one move at a time")) {

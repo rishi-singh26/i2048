@@ -35,8 +35,6 @@ struct GameViewControllsView: View {
 //                    Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
 //                }
 //                .toggleStyle(.switch)
-            } header: {
-                Text("Game Feedback")
             } footer: {
                 Text("Enable game feedback with Haptics")
             }

@@ -193,7 +193,7 @@ struct ContentView: View {
                 } label: {
                     HStack {
                         Image(systemName: "plus.circle.fill")
-                        Text("Add game")
+                        Text("Add Game")
                             .font(.headline)
                     }
                 } primaryAction: {

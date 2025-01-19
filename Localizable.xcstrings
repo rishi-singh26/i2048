@@ -253,6 +253,34 @@
         }
       }
     },
+    "3x3 grid is a lot more difficult than 4x4 grid" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein 3x3-Raster ist viel schwieriger als ein 4x4-Raster"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La grille 3x3 est beaucoup plus difficile que la grille 4x4"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3x3 ग्रिड 4x4 ग्रिड से कहीं अधिक कठिन है"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3x3 ಗ್ರಿಡ್ 4x4 ಗ್ರಿಡ್ ಗಿಂತ ತುಂಬಾ ಕಷ್ಟ."
+          }
+        }
+      }
+    },
     "4" : {
       "localizations" : {
         "de" : {
@@ -589,6 +617,34 @@
         }
       }
     },
+    "About i2048" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Über i2048"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À propos de i2048"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 के बारे में"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 ಬಗ್ಗೆ"
+          }
+        }
+      }
+    },
     "Acknowledgements" : {
       "localizations" : {
         "de" : {
@@ -641,6 +697,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಸೇರ್ಪಡೆ"
+          }
+        }
+      }
+    },
+    "Add Game" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spiel hinzufügen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter Jeu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल जोड़े"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಆಟವನ್ನು ಸೇರಿಸಿ"
           }
         }
       }
@@ -701,6 +785,34 @@
         }
       }
     },
+    "Background Image" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image d'arrière-plan"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image d'arrière-plan"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पृष्ठभूमि छवि"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಹಿನ್ನೆಲೆ ಚಿತ್ರ"
+          }
+        }
+      }
+    },
     "Camping on the beach" : {
       "localizations" : {
         "de" : {
@@ -757,6 +869,34 @@
         }
       }
     },
+    "Choose Target Score" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zielpunktzahl wählen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez score cible"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लक्ष्य अंक चुनें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಗುರಿ ಸ್ಕೋರ್ ಆಯ್ಕೆಮಾಡಿ"
+          }
+        }
+      }
+    },
     "Copyright © 2025 Rishi Singh. All Rights Reserved." : {
       "localizations" : {
         "de" : {
@@ -781,6 +921,62 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಕೃತಿಸ್ವಾಮ್ಯ © 2025 ರಿಷಿ ಸಿಂಗ್. ಎಲ್ಲ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ."
+          }
+        }
+      }
+    },
+    "Customize game interface with Background Image and Colors" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Customize game interface with background image and colors"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personnaliser l'interface du jeu avec l'image d'arrière-plan et les couleurs"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पृष्ठभूमि छवि और रंगों के साथ गेम इंटरफ़ेस को अनुकूलित करें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಹಿನ್ನೆಲೆ ಚಿತ್ರ ಮತ್ತು ಬಣ್ಣಗಳೊಂದಿಗೆ ಆಟದ ಇಂಟರ್ಫೇಸ್ ಅನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಿ"
+          }
+        }
+      }
+    },
+    "Daily Game Trends" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tägliche Spieltrends"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tendances quotidiennes du jeu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दैनिक खेल रुझान"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ದೈನಂದಿನ ಆಟದ ಪ್ರವೃತ್ತಿಗಳು"
           }
         }
       }
@@ -869,6 +1065,37 @@
         }
       }
     },
+    "Destination" : {
+
+    },
+    "Done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erledigt"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fait"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हो गया"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಮುಗಿದಿದೆ"
+          }
+        }
+      }
+    },
     "Edit" : {
       "localizations" : {
         "de" : {
@@ -921,6 +1148,62 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಆಟವನ್ನು ಸಂಪಾದಿಸಿ"
+          }
+        }
+      }
+    },
+    "Enable game feedback with Haptics" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktivieren Sie Spiel-Feedback mit Haptik"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activer le retour d'information sur le jeu avec Haptics"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हैप्टिक्स के साथ गेम फीडबैक सक्षम करें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಹ್ಯಾಪ್ಟಿಕ್ಸ್‌ನೊಂದಿಗೆ ಆಟದ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ"
+          }
+        }
+      }
+    },
+    "Enable Haptics" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haptik aktivieren"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activer l'haptique"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हैप्टिक्स सक्षम करें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಹ್ಯಾಪ್ಟಿಕ್ಸ್ ಸಕ್ರಿಯಗೊಳಿಸಿ"
           }
         }
       }
@@ -1009,6 +1292,34 @@
         }
       }
     },
+    "Game name appears on the games list screen." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Name des Spiels wird auf dem Bildschirm mit der Spieleliste angezeigt."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le nom du jeu apparaît sur l’écran de la liste des jeux."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल का नाम खेल सूची स्क्रीन पर दिखाई देता है।"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಆಟಗಳ ಪಟ್ಟಿಯ ಪರದೆಯಲ್ಲಿ ಆಟದ ಹೆಸರು ಕಾಣಿಸಿಕೊಳ್ಳುತ್ತದೆ."
+          }
+        }
+      }
+    },
     "Game name prefix" : {
       "localizations" : {
         "de" : {
@@ -1093,6 +1404,34 @@
         }
       }
     },
+    "Game Status" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spielstatus"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statut du jeu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल की स्थिति"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಆಟದ ಸ್ಥಿತಿ"
+          }
+        }
+      }
+    },
     "Game Target Score" : {
       "localizations" : {
         "de" : {
@@ -1117,6 +1456,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಆಟದ ಗುರಿ ಅಂಕ"
+          }
+        }
+      }
+    },
+    "Game Theme" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spielthema"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thème du jeu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गेम थीम"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಆಟದ ಥೀಮ್"
           }
         }
       }
@@ -1401,6 +1768,62 @@
         }
       }
     },
+    "Number on new blocks in the game" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nummer auf neuen Blöcken im Spiel"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numéro sur les nouveaux blocs du jeu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल में नए ब्लॉकों पर संख्या"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಆಟದಲ್ಲಿ ಹೊಸ ಬ್ಲಾಕ್‌ಗಳ ಸಂಖ್ಯೆ"
+          }
+        }
+      }
+    },
+    "Privacy Policy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenschutzrichtlinie"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "politique de confidentialité"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गोपनीयता नीति"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಗೌಪ್ಯತಾ ನೀತಿ"
+          }
+        }
+      }
+    },
     "Quick 3x3 Game" : {
       "localizations" : {
         "de" : {
@@ -1429,6 +1852,34 @@
         }
       }
     },
+    "Quick 3x3 Game Defaults" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schnelle 3x3-Spielvorgaben"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paramètres par défaut du jeu Quick 3x3"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्वरित 3x3 गेम डिफ़ॉल्ट"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ತ್ವರಿತ 3x3 ಆಟದ ಡೀಫಾಲ್ಟ್‌ಗಳು"
+          }
+        }
+      }
+    },
     "Quick 4x4 Game" : {
       "localizations" : {
         "de" : {
@@ -1453,6 +1904,62 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಶೀಘ್ರ ೪x೪ ಆಟ"
+          }
+        }
+      }
+    },
+    "Quick 4x4 Game Defaults" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schnelle 4x4-Spielvorgaben"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paramètres par défaut du jeu Quick 4x4"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्वरित 4x4 गेम डिफ़ॉल्ट"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ತ್ವರಿತ 4x4 ಆಟದ ಡೀಫಾಲ್ಟ್‌ಗಳು"
+          }
+        }
+      }
+    },
+    "Quick game can be launched by pressing and holding on the Add Game button" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Schnellspiel kann durch Drücken und Halten der Schaltfläche „Spiel hinzufügen“ gestartet werden."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le jeu rapide peut être lancé en appuyant longuement sur le bouton Ajouter un jeu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्वरित गेम को 'ऐड गेम' बटन को दबाकर रखने पर लॉन्च किया जा सकता है"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಆಟ ಸೇರಿಸು ಬಟನ್ ಒತ್ತಿ ಹಿಡಿದುಕೊಳ್ಳುವ ಮೂಲಕ ತ್ವರಿತ ಆಟವನ್ನು ಪ್ರಾರಂಭಿಸಬಹುದು."
           }
         }
       }
@@ -1513,6 +2020,34 @@
         }
       }
     },
+    "Select grid size" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rastergröße auswählen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionnez taille de la grille"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रिड आकार चुनें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಗ್ರಿಡ್ ಗಾತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+          }
+        }
+      }
+    },
     "Set as Game Background" : {
       "localizations" : {
         "de" : {
@@ -1537,6 +2072,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಆಟದ ಹಿನ್ನೆಲೆಯಾಗಿ ಹೊಂದಿಸಿ"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paramètres"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग्स"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
           }
         }
       }
@@ -1681,6 +2244,34 @@
         }
       }
     },
+    "Terms of Use" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nutzungsbedingungen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conditions d'utilisation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपयोग की शर्तें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಬಳಕೆಯ ನಿಯಮಗಳು"
+          }
+        }
+      }
+    },
     "Time" : {
       "localizations" : {
         "de" : {
@@ -1761,6 +2352,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಒಟ್ಟು"
+          }
+        }
+      }
+    },
+    "Usage License" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nutzungslizenz"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licence d'utilisation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपयोग लाइसेंस"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಬಳಕೆಯ ಪರವಾನಗಿ"
           }
         }
       }
