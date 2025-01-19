@@ -27,27 +27,16 @@ class UserDefaultsManager: ObservableObject {
     @AppStorage("soundEnabled") var soundEnabled: Bool = true
     @AppStorage("titleBarDisabled") var titleBarDisabled: Bool = false
     
-    @AppStorage("quickGameNamePrefix") var quickGameNamePrefix: String = "Game Name"
-    @AppStorage("quickGameAllowUndo") var quickGameAllowUndo: Bool = false
-    @AppStorage("quickGameNewBlocNum") var quickGameNewBlocNum: Int = 0
+    @AppStorage("quick3GameNamePrefix") var quick3GameNamePrefix: String = "New Game"
+    @AppStorage("quick4GameNamePrefix") var quick4GameNamePrefix: String = "New Game"
+    @AppStorage("quick3GameAllowUndo") var quick3GameAllowUndo: Bool = false
+    @AppStorage("quick4GameAllowUndo") var quick4GameAllowUndo: Bool = false
+    @AppStorage("quick3GameNewBlocNum") var quick3GameNewBlocNum: Int = 0
+    @AppStorage("quick4GameNewBlocNum") var quick4GameNewBlocNum: Int = 0
     @AppStorage("quick3GameTarget") var quick3GameTarget: Int = 256
     @AppStorage("quick4GameTarget") var quick4GameTarget: Int = 2048
-    
-    @AppStorage("activeGamesSectionEnabled") var activeGamesSectionEnabled: Bool = true
-    @AppStorage("gamesWonSectionEnabled") var gamesWonSectionEnabled: Bool = true
-    @AppStorage("gamesLostSectionEnabled") var gamesLostSectionEnabled: Bool = true
-
-    // State properties for section expansion
-    @Published var isWonSectionExpanded = false
-    @Published var isRunningSectionExpanded = true
-    @Published var isLostSectionExpanded = false
         
     init() {
-        // Initialize expansion states based on the enabled settings
-        self.isWonSectionExpanded = self.gamesWonSectionEnabled
-        self.isRunningSectionExpanded = self.activeGamesSectionEnabled
-        self.isLostSectionExpanded = self.gamesLostSectionEnabled
-        
         if self.hapticsEnabled {
             prepareHapticEngine()
         }

@@ -14,30 +14,6 @@ struct GeneralSettingsView: View {
     
     var body: some View {
         ScrollView {
-            
-            MacCustomSection(header: "Choose which sections to show at app launch", footer: "Selected sections will be expanded at app launch") {
-                HStack {
-                    Label("Active Games", systemImage: userDefaultsManager.activeGamesSectionEnabled ? "gamecontroller.fill" : "gamecontroller")
-                    Spacer()
-                    Toggle("", isOn: $userDefaultsManager.activeGamesSectionEnabled.animation())
-                        .toggleStyle(.switch)
-                }
-                Divider()
-                HStack {
-                    Label("Games Won", systemImage: userDefaultsManager.gamesWonSectionEnabled ? "trophy.fill" : "trophy")
-                    Spacer()
-                    Toggle("", isOn: $userDefaultsManager.gamesWonSectionEnabled.animation())
-                        .toggleStyle(.switch)
-                }
-                Divider()
-                HStack {
-                    Label("Games Lost", systemImage: userDefaultsManager.gamesLostSectionEnabled ? "exclamationmark.warninglight.fill" : "exclamationmark.warninglight")
-                    Spacer()
-                    Toggle("", isOn: $userDefaultsManager.gamesLostSectionEnabled.animation())
-                        .toggleStyle(.switch)
-                }
-            }
-            
 //            MacCustomSection(header: "Game Geedback", footer: "Enable game feedback with Sound") {
 //                HStack {
 //                    Label("Enable Sound", systemImage: userDefaultsManager.soundEnabled ? "speaker.wave.3.fill" : "speaker.wave.3")
@@ -47,12 +23,12 @@ struct GeneralSettingsView: View {
 //                }
 //            }
             
-            MacCustomSection(header: "Quick Game Defaults", footer: "Select default values for quick game") {
+            MacCustomSection(header: "Quick 3x3 Game Defaults", footer: "Select default values for quick game") {
                 HStack {
                     Text("Game name prefix")
                         .frame(width: 150, alignment: .leading)
                     Spacer()
-                    TextField("", text: $userDefaultsManager.quickGameNamePrefix)
+                    TextField("", text: $userDefaultsManager.quick3GameNamePrefix)
                         .textFieldStyle(.roundedBorder)
                 }
                 Divider()
@@ -68,7 +44,7 @@ struct GeneralSettingsView: View {
                     Text("New Block")
                         .frame(width: 150, alignment: .leading)
                     Spacer()
-                    Picker("", selection: $userDefaultsManager.quickGameNewBlocNum) {
+                    Picker("", selection: $userDefaultsManager.quick3GameNewBlocNum) {
                         Text("2")
                             .tag(2)
                         Text("4")
@@ -99,6 +75,38 @@ struct GeneralSettingsView: View {
                             .tag(8192)
                         Text("16384")
                             .tag(16384)
+                    }
+                }
+            }
+            
+            MacCustomSection(header: "Quick 4x4 Game Defaults", footer: "Select default values for quick game") {
+                HStack {
+                    Text("Game name prefix")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    TextField("", text: $userDefaultsManager.quick4GameNamePrefix)
+                        .textFieldStyle(.roundedBorder)
+                }
+                Divider()
+//                HStack(alignment: .center) {
+//                    Text("Allow Undo")
+//                        .frame(width: 150, alignment: .leading)
+//                    Spacer()
+//                    Toggle("", isOn: $userDefaultsManager.quickGameAllowUndo)
+//                        .toggleStyle(.switch)
+//                }
+//                Divider()
+                HStack(alignment: .center) {
+                    Text("New Block")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    Picker("", selection: $userDefaultsManager.quick4GameNewBlocNum) {
+                        Text("2")
+                            .tag(2)
+                        Text("4")
+                            .tag(4)
+                        Text("2 or 4 (Random)")
+                            .tag(0)
                     }
                 }
                 Divider()

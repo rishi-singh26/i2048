@@ -251,13 +251,24 @@ struct ContentView: View {
     }
     
     func addGame(_ gridSize: Int) {
-        let game = Game(
-            name: "\(userDefaultsManager.quickGameNamePrefix) #\(gridSize)x\(gridSize)",
-            gridSize: gridSize,
-            allowUndo: userDefaultsManager.quickGameAllowUndo,
-            newBlockNumber: userDefaultsManager.quickGameNewBlocNum,
-            targetScore: gridSize == 3 ? userDefaultsManager.quick3GameTarget : userDefaultsManager.quick4GameTarget
-        )
+        var game: Game
+        if gridSize == 3 {
+            game = Game(
+                name: "\(userDefaultsManager.quick3GameNamePrefix) #\(gridSize)x\(gridSize)",
+                gridSize: gridSize,
+                allowUndo: userDefaultsManager.quick3GameAllowUndo,
+                newBlockNumber: userDefaultsManager.quick3GameNewBlocNum,
+                targetScore: userDefaultsManager.quick3GameTarget
+            )
+        } else {
+            game = Game(
+                name: "\(userDefaultsManager.quick4GameNamePrefix) #\(gridSize)x\(gridSize)",
+                gridSize: gridSize,
+                allowUndo: userDefaultsManager.quick4GameAllowUndo,
+                newBlockNumber: userDefaultsManager.quick4GameNewBlocNum,
+                targetScore: userDefaultsManager.quick4GameTarget
+            )
+        }
         modelContext.insert(game)
         gameLogic.selectedGame = game
     }

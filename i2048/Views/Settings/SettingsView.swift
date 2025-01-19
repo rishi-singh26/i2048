@@ -26,23 +26,6 @@ struct SettingsView: View {
         NavigationView {
             List {
                 Section {
-                    Toggle(isOn: $userDefaultsManager.activeGamesSectionEnabled.animation()) {
-                        Label("Active Games", systemImage: userDefaultsManager.activeGamesSectionEnabled ? "gamecontroller.fill" : "gamecontroller")
-                    }
-                    .toggleStyle(.switch)
-                    Toggle(isOn: $userDefaultsManager.gamesWonSectionEnabled.animation()) {
-                        Label("Games Won", systemImage: userDefaultsManager.gamesWonSectionEnabled ? "trophy.fill" : "trophy")
-                    }
-                    .toggleStyle(.switch)
-                    Toggle(isOn: $userDefaultsManager.gamesLostSectionEnabled.animation()) {
-                        Label("Games Lost", systemImage: userDefaultsManager.gamesLostSectionEnabled ? "exclamationmark.warninglight.fill" : "exclamationmark.warninglight")
-                    }
-                    .toggleStyle(.switch)
-                } footer: {
-                    Text("Choose which sections to show at app launch. Selected sections will be expanded at app launch")
-                }
-                
-                Section {
                     Toggle(isOn: $userDefaultsManager.hapticsEnabled.animation()) {
                         Label("Enable Haptics", systemImage: userDefaultsManager.hapticsEnabled ? "hand.tap.fill" : "hand.tap")
                     }
@@ -58,13 +41,13 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    TextField("Game name prefix", text: $userDefaultsManager.quickGameNamePrefix)
+                    TextField("Game name prefix", text: $userDefaultsManager.quick3GameNamePrefix)
                         .textInputAutocapitalization(.words)
 //                    Toggle(isOn: $userDefaultsManager.quickGameAllowUndo.animation()) {
 //                        Label("Allow Undo", systemImage: userDefaultsManager.quickGameAllowUndo ? "arrow.uturn.backward.square.fill" : "arrow.uturn.backward.square")
 //                    }
                     .toggleStyle(.switch)
-                    Picker(selection: $userDefaultsManager.quickGameNewBlocNum.animation()) {
+                    Picker(selection: $userDefaultsManager.quick3GameNewBlocNum.animation()) {
                         Text("2")
                             .tag(2)
                         Text("4")
@@ -75,30 +58,11 @@ struct SettingsView: View {
                         Label {
                             Text("New Block")
                         } icon: {
-                            AnimatedIconsView(symbols: Game.getNewBlockIcon(userDefaultsManager.quickGameNewBlocNum), animationDuration: 2.0)
+                            AnimatedIconsView(symbols: Game.getNewBlockIcon(userDefaultsManager.quick3GameNewBlocNum), animationDuration: 2.0)
                         }
                     }
                     .pickerStyle(.navigationLink)
-                    Picker("3x3 Game Target Score", systemImage: "target", selection: $userDefaultsManager.quick3GameTarget) {
-                        Text("128")
-                            .tag(128)
-                        Text("256")
-                            .tag(256)
-                        Text("512")
-                            .tag(512)
-                        Text("1024")
-                            .tag(1024)
-                        Text("2048")
-                            .tag(2048)
-                        Text("4096")
-                            .tag(4096)
-                        Text("8192")
-                            .tag(8192)
-                        Text("16384")
-                            .tag(16384)
-                    }
-                    .pickerStyle(.navigationLink)
-                    Picker("4x4 Game Target Score", systemImage: "target", selection: $userDefaultsManager.quick4GameTarget) {
+                    Picker("Game Target Score", systemImage: "target", selection: $userDefaultsManager.quick3GameTarget) {
                         Text("128")
                             .tag(128)
                         Text("256")
@@ -118,7 +82,54 @@ struct SettingsView: View {
                     }
                     .pickerStyle(.navigationLink)
                 } header: {
-                    Text("Quick Game Defaults")
+                    Text("Quick 3x3 Game Defaults")
+                } footer: {
+                    Text("Quick game can be launched by pressing and holding on the Add Game button")
+                }
+                
+                Section {
+                    TextField("Game name prefix", text: $userDefaultsManager.quick4GameNamePrefix)
+                        .textInputAutocapitalization(.words)
+//                    Toggle(isOn: $userDefaultsManager.quickGameAllowUndo.animation()) {
+//                        Label("Allow Undo", systemImage: userDefaultsManager.quickGameAllowUndo ? "arrow.uturn.backward.square.fill" : "arrow.uturn.backward.square")
+//                    }
+                    .toggleStyle(.switch)
+                    Picker(selection: $userDefaultsManager.quick4GameNewBlocNum.animation()) {
+                        Text("2")
+                            .tag(2)
+                        Text("4")
+                            .tag(4)
+                        Text("2 or 4 (Random)")
+                            .tag(0)
+                    } label: {
+                        Label {
+                            Text("New Block")
+                        } icon: {
+                            AnimatedIconsView(symbols: Game.getNewBlockIcon(userDefaultsManager.quick4GameNewBlocNum), animationDuration: 2.0)
+                        }
+                    }
+                    .pickerStyle(.navigationLink)
+                    Picker("Game Target Score", systemImage: "target", selection: $userDefaultsManager.quick4GameTarget) {
+                        Text("128")
+                            .tag(128)
+                        Text("256")
+                            .tag(256)
+                        Text("512")
+                            .tag(512)
+                        Text("1024")
+                            .tag(1024)
+                        Text("2048")
+                            .tag(2048)
+                        Text("4096")
+                            .tag(4096)
+                        Text("8192")
+                            .tag(8192)
+                        Text("16384")
+                            .tag(16384)
+                    }
+                    .pickerStyle(.navigationLink)
+                } header: {
+                    Text("Quick 4x4 Game Defaults")
                 } footer: {
                     Text("Quick game can be launched by pressing and holding on the Add Game button")
                 }
