@@ -46,6 +46,7 @@
 		5BBA51182D19D24F00B4D169 /* GameViewControllsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA51172D19D24F00B4D169 /* GameViewControllsView.swift */; };
 		5BBA511C2D1A4A7600B4D169 /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA511B2D1A4A7600B4D169 /* ArtistView.swift */; };
 		5BBA511E2D1B0EB700B4D169 /* GamesMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */; };
+		5BBB33552D3D117200259537 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5BBB33542D3D117200259537 /* Localizable.xcstrings */; };
 		5BE9A8BA2D2132B500B6945F /* AddGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9A8B92D2132B500B6945F /* AddGameView.swift */; };
 		5BE9A8BC2D213F0700B6945F /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9A8BB2D213F0700B6945F /* ArrayExtension.swift */; };
 		5BED5FEC2D12E4880085968B /* KeyboardKeyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */; };
@@ -156,6 +157,7 @@
 		5BBA51172D19D24F00B4D169 /* GameViewControllsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewControllsView.swift; sourceTree = "<group>"; };
 		5BBA511B2D1A4A7600B4D169 /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
 		5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesMigrationPlan.swift; sourceTree = "<group>"; };
+		5BBB33542D3D117200259537 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		5BE9A8B92D2132B500B6945F /* AddGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameView.swift; sourceTree = "<group>"; };
 		5BE9A8BB2D213F0700B6945F /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardKeyButton.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 		5B75E6D82D109D0D009D2C80 = {
 			isa = PBXGroup;
 			children = (
+				5BBB33542D3D117200259537 /* Localizable.xcstrings */,
 				5B75E6E32D109D0D009D2C80 /* i2048 */,
 				5B75E6F52D109D0F009D2C80 /* i2048Tests */,
 				5B75E6FF2D109D0F009D2C80 /* i2048UITests */,
@@ -551,6 +554,7 @@
 			knownRegions = (
 				en,
 				Base,
+				hi,
 			);
 			mainGroup = 5B75E6D82D109D0D009D2C80;
 			packageReferences = (
@@ -575,6 +579,7 @@
 			files = (
 				5B75E6ED2D109D0F009D2C80 /* Preview Assets.xcassets in Resources */,
 				5B75E6E92D109D0F009D2C80 /* Assets.xcassets in Resources */,
+				5BBB33552D3D117200259537 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,6 +746,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -796,6 +802,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};

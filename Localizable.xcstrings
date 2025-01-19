@@ -1,0 +1,666 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    ": ACTIVE" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ": सक्रिय"
+          }
+        }
+      }
+    },
+    ": LOST" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ": हारे हुए"
+          }
+        }
+      }
+    },
+    ": WON" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ": जीते हुए"
+          }
+        }
+      }
+    },
+    "%lld" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
+    },
+    "2" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2"
+          }
+        }
+      }
+    },
+    "2 or 4 (Random)" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2 या 4 (अनियमित)"
+          }
+        }
+      }
+    },
+    "3 x 3 grid" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 x 3 ग्रिड"
+          }
+        }
+      }
+    },
+    "3x3 Game Target Score" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3x3 खेल लक्ष्य अंक"
+          }
+        }
+      }
+    },
+    "4" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4"
+          }
+        }
+      }
+    },
+    "4 x 4 grid" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4 x 4 ग्रिड"
+          }
+        }
+      }
+    },
+    "4x4 Game Target Score" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4x4 खेल लक्ष्य अंक"
+          }
+        }
+      }
+    },
+    "128" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "128"
+          }
+        }
+      }
+    },
+    "256" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "256"
+          }
+        }
+      }
+    },
+    "512" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "512"
+          }
+        }
+      }
+    },
+    "1024" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1024"
+          }
+        }
+      }
+    },
+    "2048" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2048"
+          }
+        }
+      }
+    },
+    "4096" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4096"
+          }
+        }
+      }
+    },
+    "8192" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8192"
+          }
+        }
+      }
+    },
+    "16384" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "16384"
+          }
+        }
+      }
+    },
+    "About" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बारे में"
+          }
+        }
+      }
+    },
+    "Acknowledgements" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आभार"
+          }
+        }
+      }
+    },
+    "Add" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जोड़ें"
+          }
+        }
+      }
+    },
+    "Are you sure you want to delete this game?" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्या आप वाकई इस गेम को हटाना चाहते हैं?"
+          }
+        }
+      }
+    },
+    "Ascending" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आरोही"
+          }
+        }
+      }
+    },
+    "Camping on the beach" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "समुद्र तट पर शिविर"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रद्द करें"
+          }
+        }
+      }
+    },
+    "Copyright © 2025 Rishi Singh. All Rights Reserved." : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉपीराइट © 2025 ऋषि सिंह। सर्वाधिकार सुरक्षित।"
+          }
+        }
+      }
+    },
+    "Date" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तिथि"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हटाएं"
+          }
+        }
+      }
+    },
+    "Descending" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अवरोही"
+          }
+        }
+      }
+    },
+    "Edit" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संपादित करें"
+          }
+        }
+      }
+    },
+    "Edit Game" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल संपादित करें"
+          }
+        }
+      }
+    },
+    "Game" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल"
+          }
+        }
+      }
+    },
+    "Game Created Time" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल निर्मित समय"
+          }
+        }
+      }
+    },
+    "Game Name" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल का नाम"
+          }
+        }
+      }
+    },
+    "Game name prefix" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल नाम उपसर्ग"
+          }
+        }
+      }
+    },
+    "Game Over" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल समाप्त"
+          }
+        }
+      }
+    },
+    "Game Screen Theme" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल स्क्रीन थीम"
+          }
+        }
+      }
+    },
+    "Game Target Score" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल लक्ष्य अंक"
+          }
+        }
+      }
+    },
+    "Games" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल"
+          }
+        }
+      }
+    },
+    "General" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सामान्य"
+          }
+        }
+      }
+    },
+    "Grid Size" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रिड आकार"
+          }
+        }
+      }
+    },
+    "High Score" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उच्च अंक"
+          }
+        }
+      }
+    },
+    "i2048" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आई2048"
+          }
+        }
+      }
+    },
+    "Krestovskaya Anna" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्रेस्टोव्स्काया अन्ना"
+          }
+        }
+      }
+    },
+    "Last Played Time" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अंतिम खेले गए समय"
+          }
+        }
+      }
+    },
+    "Name" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नाम"
+          }
+        }
+      }
+    },
+    "New Block" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नया ब्लॉक"
+          }
+        }
+      }
+    },
+    "New Game" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नया खेल"
+          }
+        }
+      }
+    },
+    "Quick 3x3 Game" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्वरित 3x3 खेल"
+          }
+        }
+      }
+    },
+    "Quick 4x4 Game" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्वरित 4x4 खेल"
+          }
+        }
+      }
+    },
+    "Rename" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नाम बदलें"
+          }
+        }
+      }
+    },
+    "Score" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अंक"
+          }
+        }
+      }
+    },
+    "Set as Game Background" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल पृष्ठभूमि के रूप में सेट करें"
+          }
+        }
+      }
+    },
+    "Sort Games By" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेलों को छांटें"
+          }
+        }
+      }
+    },
+    "Sort Order" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्रम छांटें"
+          }
+        }
+      }
+    },
+    "Special Thanks" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विशेष धन्यवाद"
+          }
+        }
+      }
+    },
+    "Statistics" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आँकड़े"
+          }
+        }
+      }
+    },
+    "Status" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थिति"
+          }
+        }
+      }
+    },
+    "Time" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "समय"
+          }
+        }
+      }
+    },
+    "Time Period" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "समय अवधि"
+          }
+        }
+      }
+    },
+    "TOTAL" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कुल"
+          }
+        }
+      }
+    },
+    "Value" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मान"
+          }
+        }
+      }
+    },
+    "Version 1.0.0" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संस्करण 1.0.0"
+          }
+        }
+      }
+    },
+    "You Won!" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आप जीत गए!"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
