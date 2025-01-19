@@ -555,6 +555,8 @@
 				en,
 				Base,
 				hi,
+				fr,
+				de,
 			);
 			mainGroup = 5B75E6D82D109D0D009D2C80;
 			packageReferences = (
