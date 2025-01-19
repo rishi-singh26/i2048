@@ -101,9 +101,9 @@ struct ContentView: View {
                             .tag(SortOrder.name)
                         Text("Score")
                             .tag(SortOrder.score)
-                        Text("Game Created Date")
+                        Text("Game Created Time")
                             .tag(SortOrder.createdOn)
-                        Text("Last Played Date")
+                        Text("Last Played Time")
                             .tag(SortOrder.lastPlayedOn)
                     }
                     .pickerStyle(.inline)
@@ -169,19 +169,14 @@ struct ContentView: View {
     @ViewBuilder
     func IosViewBuilder() -> some View {
         NavigationSplitView {
-            IosGamesListBuilder()
+            GamesListView(sortBy: sortBy, sortOrder: sortOrder, searchText: searchText)
+                .listStyle(.sidebar)
+                .toolbar(content: IosToolbarBuilder)
+                .navigationTitle("i2048")
         } detail: {
             DetailView()
         }
         .searchable(text: $searchText)
-    }
-    
-    @ViewBuilder
-    func IosGamesListBuilder() -> some View {
-        GamesListView(sortBy: sortBy, sortOrder: sortOrder, searchText: searchText)
-        .listStyle(.sidebar)
-        .toolbar(content: IosToolbarBuilder)
-        .navigationTitle("i2048")
     }
     
     @ToolbarContentBuilder
@@ -223,9 +218,9 @@ struct ContentView: View {
                             .tag(SortOrder.name)
                         Text("Score")
                             .tag(SortOrder.score)
-                        Text("Game Created Date")
+                        Text("Game Created Time")
                             .tag(SortOrder.createdOn)
-                        Text("Last Played Date")
+                        Text("Last Played Time")
                             .tag(SortOrder.lastPlayedOn)
                     }
                     .pickerStyle(.inline)

@@ -49,83 +49,43 @@ struct GamesListView: View {
         _games = Query(filter: predicate, sort: sortDescriptors)
     }
     
-    // Filter games into sections based on runtime status
-    private var wonGames: [Game] {
-        games.filter { $0.status == .won }
-    }
-    
-    private var runningGames: [Game] {
-        games.filter { $0.status == .active }
-    }
-    
-    private var lostGames: [Game] {
-        games.filter { $0.status == .lost }
+    var gamesByDate: [[Game]] {
+        let calendar = Calendar.current
+        return Dictionary(grouping: games) { game in
+            calendar.startOfDay(for: game.createdAt)
+        }
+        .values
+        .map { Array($0) }
+        .sorted { group1, group2 in
+            guard let date1 = group1.first?.createdAt,
+                  let date2 = group2.first?.createdAt else {
+                return false
+            }
+            return date1 > date2
+        }
     }
     
     var body: some View {
-#if os (macOS)
-        MacOsGamesListBuilder()
-#elseif os(iOS)
-        IosGamesListBuilder()
-#endif
-    }
-    
-#if os (macOS)
-    @ViewBuilder
-    func MacOsGamesListBuilder() -> some View {
         List(selection: $gameLogic.selectedGame.animation()) {
-            if (!runningGames.isEmpty) {
-                MacOsSectionView(title: "Active Games", isExpanded: $userDefaultsManager.isRunningSectionExpanded, games: runningGames)
-            }
-            if (!wonGames.isEmpty) {
-                MacOsSectionView(title: "Won Games", isExpanded: $userDefaultsManager.isWonSectionExpanded, games: wonGames)
-            }
-            if (!lostGames.isEmpty) {
-                MacOsSectionView(title: "Lost Games", isExpanded: $userDefaultsManager.isLostSectionExpanded, games: lostGames)
-            }
-        }
-    }
-    
-    @ViewBuilder
-    private func MacOsSectionView(title: String, isExpanded: Binding<Bool>, games: [Game]) -> some View {
-        Section(title, isExpanded: isExpanded) {
-            ForEach(games) {game in
-                NavigationLink(value: game) {
-                    GameCardView(game: game)
+            ForEach(Array(gamesByDate.enumerated()), id: \.offset) { index, gameGroup in
+                if let firstGame = gameGroup.first {
+                    Section(header: Text(formatDate(firstGame.createdAt))) {
+                        ForEach(gameGroup) { game in
+                            NavigationLink(value: game) {
+                                GameCardView(game: game)
+                            }
+                        }
+                    }
                 }
             }
         }
     }
-#endif
     
-#if os(iOS)
-    @ViewBuilder
-    func IosGamesListBuilder() -> some View {
-        List(selection: $gameLogic.selectedGame.animation()) {
-            if (!runningGames.isEmpty) {
-                IosSectionViewBuilder("Active Games", $userDefaultsManager.isRunningSectionExpanded, runningGames)
-            }
-            if (!wonGames.isEmpty) {
-                IosSectionViewBuilder("Games Won", $userDefaultsManager.isWonSectionExpanded, wonGames)
-            }
-            if (!lostGames.isEmpty) {
-                IosSectionViewBuilder("Games Lost", $userDefaultsManager.isLostSectionExpanded, lostGames)
-            }
-        }
+    private func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter.string(from: date)
     }
-    
-    @ViewBuilder
-    func IosSectionViewBuilder(_ title: String, _ expanded: Binding<Bool>, _ games: [Game]) -> some View {
-        Section(title, isExpanded: expanded) {
-            ForEach(games) { game in
-                NavigationLink(value: game) {
-                    GameCardView(game: game)
-                }
-            }
-        }
-        .headerProminence(.increased)
-    }
-#endif
 }
 
 //#Preview {
