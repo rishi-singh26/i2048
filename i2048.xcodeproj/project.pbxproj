@@ -19,6 +19,8 @@
 		5B14219F2D147C1D00032861 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B14219E2D147C1D00032861 /* AboutView.swift */; };
 		5B1421A12D147CAF00032861 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1421A02D147CAF00032861 /* CustomLabel.swift */; };
 		5B36F5DE2D20358300D318A6 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B36F5DD2D20358300D318A6 /* GamesListView.swift */; };
+		5B48F3A02D3F387E00F57851 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B48F39F2D3F387E00F57851 /* StoreKit.framework */; };
+		5B48F3A22D3F38A600F57851 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 5B48F3A12D3F38A600F57851 /* Products.storekit */; };
 		5B6B2BCA2D2433D900278BE1 /* MacCustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B2BC92D2433D900278BE1 /* MacCustomSection.swift */; };
 		5B6B2BCC2D246BA200278BE1 /* AnimatedIconsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B2BCB2D246BA200278BE1 /* AnimatedIconsView.swift */; };
 		5B6B2BD62D26CBA600278BE1 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6B2BD52D26CBA600278BE1 /* ConfettiSwiftUI */; };
@@ -128,6 +130,8 @@
 		5B14219E2D147C1D00032861 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		5B1421A02D147CAF00032861 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		5B36F5DD2D20358300D318A6 /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
+		5B48F39F2D3F387E00F57851 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		5B48F3A12D3F38A600F57851 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		5B6B2BC92D2433D900278BE1 /* MacCustomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacCustomSection.swift; sourceTree = "<group>"; };
 		5B6B2BCB2D246BA200278BE1 /* AnimatedIconsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedIconsView.swift; sourceTree = "<group>"; };
 		5B6B2BD72D27836700278BE1 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
@@ -181,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B48F3A02D3F387E00F57851 /* StoreKit.framework in Frameworks */,
 				5B6B2BD62D26CBA600278BE1 /* ConfettiSwiftUI in Frameworks */,
 				5BBA51102D18457300B4D169 /* Kingfisher in Frameworks */,
 			);
@@ -326,6 +331,7 @@
 				5B75E6E82D109D0F009D2C80 /* Assets.xcassets */,
 				5B75E6EA2D109D0F009D2C80 /* i2048.entitlements */,
 				5B75E6EB2D109D0F009D2C80 /* Preview Content */,
+				5B48F3A12D3F38A600F57851 /* Products.storekit */,
 			);
 			path = i2048;
 			sourceTree = "<group>";
@@ -415,6 +421,7 @@
 		5BBA510E2D18457300B4D169 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5B48F39F2D3F387E00F57851 /* StoreKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -579,6 +586,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B48F3A22D3F38A600F57851 /* Products.storekit in Resources */,
 				5B75E6ED2D109D0F009D2C80 /* Preview Assets.xcassets in Resources */,
 				5B75E6E92D109D0F009D2C80 /* Assets.xcassets in Resources */,
 				5BBB33552D3D117200259537 /* Localizable.xcstrings in Resources */,
