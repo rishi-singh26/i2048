@@ -18,6 +18,9 @@
 		5B14219D2D14443300032861 /* ParallaxCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B14219C2D14443300032861 /* ParallaxCarouselView.swift */; };
 		5B14219F2D147C1D00032861 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B14219E2D147C1D00032861 /* AboutView.swift */; };
 		5B1421A12D147CAF00032861 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1421A02D147CAF00032861 /* CustomLabel.swift */; };
+		5B18C5992D46C17D00985B40 /* MotionTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18C5982D46C17D00985B40 /* MotionTestView.swift */; };
+		5B18C59B2D46C29900985B40 /* HeadphoneMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18C59A2D46C29900985B40 /* HeadphoneMotionManager.swift */; };
+		5B18C59F2D46C37000985B40 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18C59E2D46C37000985B40 /* DeviceType.swift */; };
 		5B36F5DE2D20358300D318A6 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B36F5DD2D20358300D318A6 /* GamesListView.swift */; };
 		5B48F3A02D3F387E00F57851 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B48F39F2D3F387E00F57851 /* StoreKit.framework */; };
 		5B48F3A22D3F38A600F57851 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 5B48F3A12D3F38A600F57851 /* Products.storekit */; };
@@ -130,6 +133,9 @@
 		5B14219C2D14443300032861 /* ParallaxCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallaxCarouselView.swift; sourceTree = "<group>"; };
 		5B14219E2D147C1D00032861 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		5B1421A02D147CAF00032861 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		5B18C5982D46C17D00985B40 /* MotionTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionTestView.swift; sourceTree = "<group>"; };
+		5B18C59A2D46C29900985B40 /* HeadphoneMotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadphoneMotionManager.swift; sourceTree = "<group>"; };
+		5B18C59E2D46C37000985B40 /* DeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
 		5B36F5DD2D20358300D318A6 /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
 		5B48F39F2D3F387E00F57851 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5B48F3A12D3F38A600F57851 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
@@ -406,6 +412,8 @@
 				5BED60012D138F220085968B /* BackgroundArtManager.swift */,
 				5BBA510C2D18446A00B4D169 /* CacheManager.swift */,
 				5BF194172D23F092006C6471 /* GameLogic.swift */,
+				5B18C59A2D46C29900985B40 /* HeadphoneMotionManager.swift */,
+				5B18C59E2D46C37000985B40 /* DeviceType.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -461,6 +469,7 @@
 				5BED60032D138F870085968B /* BackgroundArtSettings.swift */,
 				5B0B4F6A2D158208005AD427 /* ArtDetailView.swift */,
 				5B14219E2D147C1D00032861 /* AboutView.swift */,
+				5B18C5982D46C17D00985B40 /* MotionTestView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -647,6 +656,7 @@
 				5B0B4F792D168EEE005AD427 /* GameBackgroundImageView.swift in Sources */,
 				5B6B2BDD2D2783F300278BE1 /* PieChartView.swift in Sources */,
 				5B0B4F712D167F53005AD427 /* MacOsCarouselView.swift in Sources */,
+				5B18C5992D46C17D00985B40 /* MotionTestView.swift in Sources */,
 				5BED5FF12D12FD5E0085968B /* SettingsView.swift in Sources */,
 				5BED5FF42D130E140085968B /* GeneralSettingsView.swift in Sources */,
 				5B75E7972D11857D009D2C80 /* ColorExtension.swift in Sources */,
@@ -655,7 +665,9 @@
 				5B14219F2D147C1D00032861 /* AboutView.swift in Sources */,
 				5B6DD9502D43EC7D008F2EE2 /* IosGameControllsView.swift in Sources */,
 				5BED5FEF2D12F77B0085968B /* UserDefaultsManager.swift in Sources */,
+				5B18C59B2D46C29900985B40 /* HeadphoneMotionManager.swift in Sources */,
 				5B75E6E52D109D0D009D2C80 /* i2048App.swift in Sources */,
+				5B18C59F2D46C37000985B40 /* DeviceType.swift in Sources */,
 				5BED60002D1373E50085968B /* MotionManager.swift in Sources */,
 				5B0B4F772D1680B0005AD427 /* NetworkImageView.swift in Sources */,
 				5B75E7A32D11E495009D2C80 /* wndAccessorModifier.swift in Sources */,
