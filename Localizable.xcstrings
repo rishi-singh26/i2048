@@ -729,6 +729,9 @@
         }
       }
     },
+    "Allow Undo" : {
+
+    },
     "Are you sure you want to delete this game?" : {
       "localizations" : {
         "de" : {
@@ -812,6 +815,9 @@
           }
         }
       }
+    },
+    "background.image" : {
+
     },
     "Camping on the beach" : {
       "localizations" : {
@@ -926,6 +932,7 @@
       }
     },
     "Customize game interface with Background Image and Colors" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -980,6 +987,9 @@
           }
         }
       }
+    },
+    "dark" : {
+
     },
     "Date" : {
       "localizations" : {
@@ -1067,6 +1077,16 @@
     },
     "Destination" : {
 
+    },
+    "disable.haptics" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disable Haptics"
+          }
+        }
+      }
     },
     "Done" : {
       "localizations" : {
@@ -1461,6 +1481,7 @@
       }
     },
     "Game Theme" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1487,6 +1508,9 @@
           }
         }
       }
+    },
+    "game.screen.theme" : {
+
     },
     "Games" : {
       "localizations" : {
@@ -1628,6 +1652,9 @@
         }
       }
     },
+    "If on, you will be allowd to undo one move at a time" : {
+
+    },
     "Krestovskaya Anna" : {
       "localizations" : {
         "de" : {
@@ -1683,6 +1710,9 @@
           }
         }
       }
+    },
+    "light" : {
+
     },
     "Name" : {
       "localizations" : {
@@ -2355,6 +2385,9 @@
           }
         }
       }
+    },
+    "undo.step" : {
+
     },
     "Usage License" : {
       "localizations" : {

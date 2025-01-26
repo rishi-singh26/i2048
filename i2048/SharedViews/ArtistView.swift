@@ -97,7 +97,7 @@ struct ArtistView: View {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Game.self, configurations: config)
         let example = Game(name: "Preview Game", gridSize: 4)
-        return GameViewControllsView(game: example)
+        return MacOSGameControllsView(game: example)
             .modelContainer(container)
             .environmentObject(BackgroundArtManager.shared)
             .environmentObject(UserDefaultsManager.shared)

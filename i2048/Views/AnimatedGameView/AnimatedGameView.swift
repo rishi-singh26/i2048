@@ -32,6 +32,7 @@ struct AnimatedGameView : View {
 
     @State var ignoreGesture = false
     @State private var showOptionsPopover = false
+    @State private var showIosBackgroundImageSheet: Bool = false
 
     fileprivate struct LayoutTraits {
         let bannerOffset: CGSize
@@ -167,36 +168,32 @@ struct AnimatedGameView : View {
             }
         }
         .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
+        .sheet(isPresented: $showIosBackgroundImageSheet) {
+            BackgroundArtSettings(cardSize: CGSize(width: 550, height: 400), artistImageSize: 50, game: selectedGame)
+        }
         .toolbar {
-            ToolbarItem(placement: .automatic) {
+#if os(iOS)
+            ToolbarTitleMenu {
+                IosGameControllsView(showBackgroundImageSheet: $showIosBackgroundImageSheet)
+            }
+#endif
 #if os(macOS)
+            ToolbarItem(placement: .automatic) {
                 Button(action: {
                     showOptionsPopover = true
                 }, label: {
                     Image(systemName: "switch.2")
                 })
                 .popover(isPresented: $showOptionsPopover) {
-                    GameViewControllsView(game: selectedGame)
+                    MacOSGameControllsView(game: selectedGame)
                 }
-#elseif os(iOS)
-                HStack {
-                    if let game = gameLogic.selectedGame, game.canUndo {
-                        KeyboardKeyButton(keyLabel: ["arrow.uturn.backward.circle"]) {
-                            withTransaction(Transaction(animation: .spring())) {
-                                gameLogic.undoStep()
-                            }
-                        }
-                    }
-                    KeyboardKeyButton(keyLabel: ["switch.2"]) {
-                        showOptionsPopover = true
-                    }
-                }
-                .popover(isPresented: $showOptionsPopover) {
-                    GameViewControllsView(game: selectedGame)
-                }
-#endif
             }
+#endif
         }
+#if os(iOS)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(selectedGame.name)
+#endif
     }
     
     var body: some View {
@@ -208,8 +205,6 @@ struct AnimatedGameView : View {
             }
         }
     }
-    
-    func doNothing(val: Int) {}
 }
 
 #Preview {
