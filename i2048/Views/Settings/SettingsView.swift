@@ -11,13 +11,11 @@ struct SettingsView: View {
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
         
     var body: some View {
-        Group {
 #if os(iOS)
-            IosViewBuilder()
+        IosViewBuilder()
 #else
-            MacOSViewBuilder()
+        MacOSViewBuilder()
 #endif
-        }
     }
     
 #if os(iOS)
@@ -41,9 +39,9 @@ struct SettingsView: View {
                 Section {
                     TextField("Game name prefix", text: $userDefaultsManager.quick3GameNamePrefix)
                         .textInputAutocapitalization(.words)
-//                    Toggle(isOn: $userDefaultsManager.quickGameAllowUndo.animation()) {
-//                        Label("Allow Undo", systemImage: userDefaultsManager.quickGameAllowUndo ? "arrow.uturn.backward.square.fill" : "arrow.uturn.backward.square")
-//                    }
+                    Toggle(isOn: $userDefaultsManager.quick3GameAllowUndo.animation()) {
+                        Label("Allow Undo", systemImage: userDefaultsManager.quick3GameAllowUndo ? "arrow.uturn.backward.square.fill" : "arrow.uturn.backward.square")
+                    }
                     .toggleStyle(.switch)
                     Picker(selection: $userDefaultsManager.quick3GameNewBlocNum.animation()) {
                         Text("2")
@@ -88,9 +86,9 @@ struct SettingsView: View {
                 Section {
                     TextField("Game name prefix", text: $userDefaultsManager.quick4GameNamePrefix)
                         .textInputAutocapitalization(.words)
-//                    Toggle(isOn: $userDefaultsManager.quickGameAllowUndo.animation()) {
-//                        Label("Allow Undo", systemImage: userDefaultsManager.quickGameAllowUndo ? "arrow.uturn.backward.square.fill" : "arrow.uturn.backward.square")
-//                    }
+                    Toggle(isOn: $userDefaultsManager.quick4GameAllowUndo.animation()) {
+                        Label("Allow Undo", systemImage: userDefaultsManager.quick4GameAllowUndo ? "arrow.uturn.backward.square.fill" : "arrow.uturn.backward.square")
+                    }
                     .toggleStyle(.switch)
                     Picker(selection: $userDefaultsManager.quick4GameNewBlocNum.animation()) {
                         Text("2")

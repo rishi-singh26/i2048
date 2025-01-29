@@ -32,14 +32,14 @@ struct GeneralSettingsView: View {
                         .textFieldStyle(.roundedBorder)
                 }
                 Divider()
-//                HStack(alignment: .center) {
-//                    Text("Allow Undo")
-//                        .frame(width: 150, alignment: .leading)
-//                    Spacer()
-//                    Toggle("", isOn: $userDefaultsManager.quickGameAllowUndo)
-//                        .toggleStyle(.switch)
-//                }
-//                Divider()
+                HStack(alignment: .center) {
+                    Text("Allow Undo")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    Toggle("", isOn: $userDefaultsManager.quick4GameAllowUndo)
+                        .toggleStyle(.switch)
+                }
+                Divider()
                 HStack(alignment: .center) {
                     Text("New Block")
                         .frame(width: 150, alignment: .leading)
@@ -88,14 +88,14 @@ struct GeneralSettingsView: View {
                         .textFieldStyle(.roundedBorder)
                 }
                 Divider()
-//                HStack(alignment: .center) {
-//                    Text("Allow Undo")
-//                        .frame(width: 150, alignment: .leading)
-//                    Spacer()
-//                    Toggle("", isOn: $userDefaultsManager.quickGameAllowUndo)
-//                        .toggleStyle(.switch)
-//                }
-//                Divider()
+                HStack(alignment: .center) {
+                    Text("Allow Undo")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    Toggle("", isOn: $userDefaultsManager.quick4GameAllowUndo)
+                        .toggleStyle(.switch)
+                }
+                Divider()
                 HStack(alignment: .center) {
                     Text("New Block")
                         .frame(width: 150, alignment: .leading)

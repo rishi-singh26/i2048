@@ -19,36 +19,36 @@ struct IosGameControllsView: View {
                 userDefaultsManager.hapticsEnabled.toggle()
             } label: {
                 if (userDefaultsManager.hapticsEnabled) {
-                    Label("disable.haptics", systemImage: "hand.tap.fill")
+                    Label("Disable Haptics", systemImage: "hand.tap.fill")
                 } else {
                     Label("Enable Haptics", systemImage: "hand.tap")
                 }
             }
             Divider()
-            Picker("game.screen.theme", selection: Binding(
+            Picker("Game Screen Theme", selection: Binding(
                 get: { selectedGame.gameColorMode },
                 set: { newVal in
                     selectedGame.gameColorMode = newVal
                 }
             )) {
-                Label("light", systemImage: "warninglight.fill")
+                Label("Light", systemImage: "warninglight.fill")
                     .tag(true)
-                Label("dark", systemImage: "warninglight")
+                Label("Dark", systemImage: "warninglight")
                     .tag(false)
             }
             .pickerStyle(.menu)
             Button {
                 showBackgroundImageSheet.toggle()
             } label: {
-                Label("background.image", systemImage: "photo")
+                Label("Background Image", systemImage: "photo")
             }
             Divider()
             if selectedGame.canUndo && selectedGame.score > 0 {
-                Menu("undo.step") {
+                Menu("Undo Step") {
                     Button {
                         gameLogic.undoStep()
                     } label: {
-                        Label("undo.step", systemImage: "arrow.uturn.backward.circle")
+                        Label("Undo Step", systemImage: "arrow.uturn.backward.circle")
                             .foregroundStyle(.red)
                     }
                 }

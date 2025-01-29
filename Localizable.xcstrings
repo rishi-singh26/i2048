@@ -898,6 +898,7 @@
       }
     },
     "Camping on the beach" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1766,7 +1767,7 @@
         }
       }
     },
-    "If on, you will be allowed to undo one move at a time" : {
+    "If on, you will be able to undo one move at a time" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1795,6 +1796,7 @@
       }
     },
     "Krestovskaya Anna" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2186,6 +2188,9 @@
         }
       }
     },
+    "Remove this sheet" : {
+
+    },
     "Rename" : {
       "localizations" : {
         "de" : {
@@ -2299,6 +2304,7 @@
       }
     },
     "Set as Game Background" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

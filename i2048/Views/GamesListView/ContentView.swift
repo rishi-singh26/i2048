@@ -34,10 +34,6 @@ struct ContentView: View {
     /// **sortOrder** true -> Ascending; false -> descending
     @State private var sortOrder: Bool = false
     
-    init() {
-        _ = CacheManager.shared
-    }
-    
     var body: some View {
         Group {
 #if os(macOS)

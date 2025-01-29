@@ -7,15 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B0B4F692D157B80005AD427 /* NetworkAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F682D157B80005AD427 /* NetworkAvatar.swift */; };
-		5B0B4F6B2D158208005AD427 /* ArtDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F6A2D158208005AD427 /* ArtDetailView.swift */; };
 		5B0B4F6D2D15A712005AD427 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F6C2D15A712005AD427 /* CustomButton.swift */; };
-		5B0B4F712D167F53005AD427 /* MacOsCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F702D167F53005AD427 /* MacOsCarouselView.swift */; };
-		5B0B4F752D167FCA005AD427 /* CarouselCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F742D167FCA005AD427 /* CarouselCard.swift */; };
-		5B0B4F772D1680B0005AD427 /* NetworkImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F762D1680B0005AD427 /* NetworkImageView.swift */; };
 		5B0B4F792D168EEE005AD427 /* GameBackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B4F782D168EEE005AD427 /* GameBackgroundImageView.swift */; };
 		5B1421672D13D84700032861 /* BackgroundArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1421662D13D84700032861 /* BackgroundArt.swift */; };
-		5B14219D2D14443300032861 /* ParallaxCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B14219C2D14443300032861 /* ParallaxCarouselView.swift */; };
 		5B14219F2D147C1D00032861 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B14219E2D147C1D00032861 /* AboutView.swift */; };
 		5B1421A12D147CAF00032861 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1421A02D147CAF00032861 /* CustomLabel.swift */; };
 		5B18C5992D46C17D00985B40 /* MotionTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18C5982D46C17D00985B40 /* MotionTestView.swift */; };
@@ -47,10 +41,7 @@
 		5B75E7A12D11E43B009D2C80 /* keyboardReactionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7A02D11E43B009D2C80 /* keyboardReactionModifier.swift */; };
 		5B75E7A32D11E495009D2C80 /* wndAccessorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7A22D11E495009D2C80 /* wndAccessorModifier.swift */; };
 		5B75E7A52D11E4FE009D2C80 /* KeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7A42D11E4FE009D2C80 /* KeyCode.swift */; };
-		5BBA510D2D18446A00B4D169 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA510C2D18446A00B4D169 /* CacheManager.swift */; };
-		5BBA51102D18457300B4D169 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5BBA510F2D18457300B4D169 /* Kingfisher */; };
 		5BBA51122D18FB8C00B4D169 /* DateExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA51112D18FB8C00B4D169 /* DateExtenstion.swift */; };
-		5BBA511C2D1A4A7600B4D169 /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA511B2D1A4A7600B4D169 /* ArtistView.swift */; };
 		5BBA511E2D1B0EB700B4D169 /* GamesMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */; };
 		5BBB33552D3D117200259537 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5BBB33542D3D117200259537 /* Localizable.xcstrings */; };
 		5BE9A8BA2D2132B500B6945F /* AddGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9A8B92D2132B500B6945F /* AddGameView.swift */; };
@@ -61,7 +52,6 @@
 		5BED5FF42D130E140085968B /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FF32D130E140085968B /* GeneralSettingsView.swift */; };
 		5BED60002D1373E50085968B /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FFF2D1373E40085968B /* MotionManager.swift */; };
 		5BED60022D138F220085968B /* BackgroundArtManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED60012D138F220085968B /* BackgroundArtManager.swift */; };
-		5BED60042D138F870085968B /* BackgroundArtSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED60032D138F870085968B /* BackgroundArtSettings.swift */; };
 		5BF194062D2384A4006C6471 /* SwiftUIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF194052D2384A4006C6471 /* SwiftUIExtensions.swift */; };
 		5BF1940E2D238501006C6471 /* IdentifiedBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1940C2D238501006C6471 /* IdentifiedBlock.swift */; };
 		5BF1940F2D238501006C6471 /* BlockMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1940A2D238501006C6471 /* BlockMatrix.swift */; };
@@ -89,48 +79,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5B0B4F682D157B80005AD427 /* NetworkAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAvatar.swift; sourceTree = "<group>"; };
-		5B0B4F6A2D158208005AD427 /* ArtDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtDetailView.swift; sourceTree = "<group>"; };
 		5B0B4F6C2D15A712005AD427 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		5B0B4F702D167F53005AD427 /* MacOsCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOsCarouselView.swift; sourceTree = "<group>"; };
-		5B0B4F742D167FCA005AD427 /* CarouselCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCard.swift; sourceTree = "<group>"; };
-		5B0B4F762D1680B0005AD427 /* NetworkImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageView.swift; sourceTree = "<group>"; };
 		5B0B4F782D168EEE005AD427 /* GameBackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBackgroundImageView.swift; sourceTree = "<group>"; };
 		5B0B4F7A2D16AC06005AD427 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5B1421422D13D27700032861 /* ImageData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ImageData.json; sourceTree = "<group>"; };
-		5B1421472D13D3B700032861 /* Green-Valley.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Green-Valley.jpg"; sourceTree = "<group>"; };
-		5B1421482D13D3B700032861 /* Preview-Desert-Sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Desert-Sunset.jpg"; sourceTree = "<group>"; };
-		5B1421492D13D3B700032861 /* Autumn-in-the-mountains.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Autumn-in-the-mountains.jpg"; sourceTree = "<group>"; };
-		5B14214A2D13D3B700032861 /* Preview-Autumn-in-the-mountains.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Autumn-in-the-mountains.jpg"; sourceTree = "<group>"; };
-		5B14214B2D13D3B700032861 /* Antarctica-expedition.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Antarctica-expedition.jpg"; sourceTree = "<group>"; };
-		5B14214C2D13D3B700032861 /* Preview-Lake-House.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Lake-House.jpg"; sourceTree = "<group>"; };
-		5B14214D2D13D3B700032861 /* Preview-Life-on-Lake-Como.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Life-on-Lake-Como.jpg"; sourceTree = "<group>"; };
-		5B14214E2D13D3B700032861 /* Crop-duster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Crop-duster.jpg"; sourceTree = "<group>"; };
-		5B14214F2D13D3B700032861 /* Preview-Antarctica-expedition.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Antarctica-expedition.jpg"; sourceTree = "<group>"; };
-		5B1421502D13D3B700032861 /* Desert-Sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Desert-Sunset.jpg"; sourceTree = "<group>"; };
-		5B1421512D13D3B700032861 /* Tennis-court-at-the-villa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Tennis-court-at-the-villa.jpg"; sourceTree = "<group>"; };
-		5B1421522D13D3B700032861 /* Preview-Green-Valley.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Green-Valley.jpg"; sourceTree = "<group>"; };
-		5B1421532D13D3B700032861 /* Preview-Retro-Car.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Retro-Car.jpg"; sourceTree = "<group>"; };
-		5B1421542D13D3B700032861 /* Golden-Hour-in-Sicily.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Golden-Hour-in-Sicily.jpg"; sourceTree = "<group>"; };
-		5B1421552D13D3B700032861 /* Lake-Lugano's-landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lake-Lugano's-landscape.jpg"; sourceTree = "<group>"; };
-		5B1421562D13D3B700032861 /* Camping-on-the-beach.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Camping-on-the-beach.jpg"; sourceTree = "<group>"; };
-		5B1421572D13D3B700032861 /* Preview-Golf-Course.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Golf-Course.jpg"; sourceTree = "<group>"; };
-		5B1421582D13D3B700032861 /* Preview-Winery-in-Tuscany.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Winery-in-Tuscany.jpg"; sourceTree = "<group>"; };
-		5B1421592D13D3B700032861 /* Preview-Lake-Lugano's-landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Lake-Lugano's-landscape.jpg"; sourceTree = "<group>"; };
-		5B14215A2D13D3B700032861 /* Winery-in-Tuscany.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Winery-in-Tuscany.jpg"; sourceTree = "<group>"; };
-		5B14215B2D13D3B800032861 /* Golf-Course.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Golf-Course.jpg"; sourceTree = "<group>"; };
-		5B14215C2D13D3B800032861 /* Corn-Farm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Corn-Farm.jpg"; sourceTree = "<group>"; };
-		5B14215D2D13D3B800032861 /* Lake-House.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lake-House.jpg"; sourceTree = "<group>"; };
-		5B14215E2D13D3B800032861 /* Preview-Crop-duster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Crop-duster.jpg"; sourceTree = "<group>"; };
-		5B14215F2D13D3B800032861 /* Retro-Car.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Retro-Car.jpg"; sourceTree = "<group>"; };
-		5B1421602D13D3B800032861 /* Preview-Tennis-court-at-the-villa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Tennis-court-at-the-villa.jpg"; sourceTree = "<group>"; };
-		5B1421612D13D3B800032861 /* Life-on-Lake-Como.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Life-on-Lake-Como.jpg"; sourceTree = "<group>"; };
-		5B1421622D13D3B800032861 /* Preview-Camping-on-the-beach.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Camping-on-the-beach.jpg"; sourceTree = "<group>"; };
-		5B1421632D13D3B800032861 /* Preview-Golden-Hour-in-Sicily.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Golden-Hour-in-Sicily.jpg"; sourceTree = "<group>"; };
-		5B1421642D13D3B800032861 /* Preview-Corn-Farm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Preview-Corn-Farm.jpg"; sourceTree = "<group>"; };
-		5B1421652D13D47C00032861 /* ProfileImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ProfileImage.jpg; sourceTree = "<group>"; };
 		5B1421662D13D84700032861 /* BackgroundArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundArt.swift; sourceTree = "<group>"; };
-		5B14219C2D14443300032861 /* ParallaxCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallaxCarouselView.swift; sourceTree = "<group>"; };
 		5B14219E2D147C1D00032861 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		5B1421A02D147CAF00032861 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		5B18C5982D46C17D00985B40 /* MotionTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionTestView.swift; sourceTree = "<group>"; };
@@ -165,9 +118,7 @@
 		5B75E7A02D11E43B009D2C80 /* keyboardReactionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyboardReactionModifier.swift; sourceTree = "<group>"; };
 		5B75E7A22D11E495009D2C80 /* wndAccessorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wndAccessorModifier.swift; sourceTree = "<group>"; };
 		5B75E7A42D11E4FE009D2C80 /* KeyCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCode.swift; sourceTree = "<group>"; };
-		5BBA510C2D18446A00B4D169 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		5BBA51112D18FB8C00B4D169 /* DateExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtenstion.swift; sourceTree = "<group>"; };
-		5BBA511B2D1A4A7600B4D169 /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
 		5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesMigrationPlan.swift; sourceTree = "<group>"; };
 		5BBB33542D3D117200259537 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		5BE9A8B92D2132B500B6945F /* AddGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameView.swift; sourceTree = "<group>"; };
@@ -178,7 +129,6 @@
 		5BED5FF32D130E140085968B /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		5BED5FFF2D1373E40085968B /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		5BED60012D138F220085968B /* BackgroundArtManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundArtManager.swift; sourceTree = "<group>"; };
-		5BED60032D138F870085968B /* BackgroundArtSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundArtSettings.swift; sourceTree = "<group>"; };
 		5BF194052D2384A4006C6471 /* SwiftUIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtensions.swift; sourceTree = "<group>"; };
 		5BF1940A2D238501006C6471 /* BlockMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockMatrix.swift; sourceTree = "<group>"; };
 		5BF1940C2D238501006C6471 /* IdentifiedBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiedBlock.swift; sourceTree = "<group>"; };
@@ -195,7 +145,6 @@
 			files = (
 				5B48F3A02D3F387E00F57851 /* StoreKit.framework in Frameworks */,
 				5B6B2BD62D26CBA600278BE1 /* ConfettiSwiftUI in Frameworks */,
-				5BBA51102D18457300B4D169 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,16 +165,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B0B4F722D167F5C005AD427 /* Carousel */ = {
-			isa = PBXGroup;
-			children = (
-				5B0B4F762D1680B0005AD427 /* NetworkImageView.swift */,
-				5B14219C2D14443300032861 /* ParallaxCarouselView.swift */,
-				5B0B4F702D167F53005AD427 /* MacOsCarouselView.swift */,
-			);
-			path = Carousel;
-			sourceTree = "<group>";
-		};
 		5B0B4F732D167F73005AD427 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,56 +177,9 @@
 		5B1421432D13D27700032861 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5B1421442D13D28100032861 /* Krestovskaya-Anna */,
 				5B1421422D13D27700032861 /* ImageData.json */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		5B1421442D13D28100032861 /* Krestovskaya-Anna */ = {
-			isa = PBXGroup;
-			children = (
-				5B1421652D13D47C00032861 /* ProfileImage.jpg */,
-				5B1421452D13D28A00032861 /* Images */,
-			);
-			path = "Krestovskaya-Anna";
-			sourceTree = "<group>";
-		};
-		5B1421452D13D28A00032861 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				5B14214B2D13D3B700032861 /* Antarctica-expedition.jpg */,
-				5B1421492D13D3B700032861 /* Autumn-in-the-mountains.jpg */,
-				5B1421562D13D3B700032861 /* Camping-on-the-beach.jpg */,
-				5B14215C2D13D3B800032861 /* Corn-Farm.jpg */,
-				5B14214E2D13D3B700032861 /* Crop-duster.jpg */,
-				5B1421502D13D3B700032861 /* Desert-Sunset.jpg */,
-				5B1421542D13D3B700032861 /* Golden-Hour-in-Sicily.jpg */,
-				5B14215B2D13D3B800032861 /* Golf-Course.jpg */,
-				5B1421472D13D3B700032861 /* Green-Valley.jpg */,
-				5B14215D2D13D3B800032861 /* Lake-House.jpg */,
-				5B1421552D13D3B700032861 /* Lake-Lugano's-landscape.jpg */,
-				5B1421612D13D3B800032861 /* Life-on-Lake-Como.jpg */,
-				5B14214F2D13D3B700032861 /* Preview-Antarctica-expedition.jpg */,
-				5B14214A2D13D3B700032861 /* Preview-Autumn-in-the-mountains.jpg */,
-				5B1421622D13D3B800032861 /* Preview-Camping-on-the-beach.jpg */,
-				5B1421642D13D3B800032861 /* Preview-Corn-Farm.jpg */,
-				5B14215E2D13D3B800032861 /* Preview-Crop-duster.jpg */,
-				5B1421482D13D3B700032861 /* Preview-Desert-Sunset.jpg */,
-				5B1421632D13D3B800032861 /* Preview-Golden-Hour-in-Sicily.jpg */,
-				5B1421572D13D3B700032861 /* Preview-Golf-Course.jpg */,
-				5B1421522D13D3B700032861 /* Preview-Green-Valley.jpg */,
-				5B14214C2D13D3B700032861 /* Preview-Lake-House.jpg */,
-				5B1421592D13D3B700032861 /* Preview-Lake-Lugano's-landscape.jpg */,
-				5B14214D2D13D3B700032861 /* Preview-Life-on-Lake-Como.jpg */,
-				5B1421532D13D3B700032861 /* Preview-Retro-Car.jpg */,
-				5B1421602D13D3B800032861 /* Preview-Tennis-court-at-the-villa.jpg */,
-				5B1421582D13D3B700032861 /* Preview-Winery-in-Tuscany.jpg */,
-				5B14215F2D13D3B800032861 /* Retro-Car.jpg */,
-				5B1421512D13D3B700032861 /* Tennis-court-at-the-villa.jpg */,
-				5B14215A2D13D3B700032861 /* Winery-in-Tuscany.jpg */,
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		5B6B2BD92D27839F00278BE1 /* Statistics */ = {
@@ -377,7 +269,6 @@
 				5B75E70F2D109D45009D2C80 /* Game.swift */,
 				5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */,
 				5B1421662D13D84700032861 /* BackgroundArt.swift */,
-				5B0B4F742D167FCA005AD427 /* CarouselCard.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -410,7 +301,6 @@
 				5BED5FEE2D12F77B0085968B /* UserDefaultsManager.swift */,
 				5BED5FFF2D1373E40085968B /* MotionManager.swift */,
 				5BED60012D138F220085968B /* BackgroundArtManager.swift */,
-				5BBA510C2D18446A00B4D169 /* CacheManager.swift */,
 				5BF194172D23F092006C6471 /* GameLogic.swift */,
 				5B18C59A2D46C29900985B40 /* HeadphoneMotionManager.swift */,
 				5B18C59E2D46C37000985B40 /* DeviceType.swift */,
@@ -451,11 +341,8 @@
 			isa = PBXGroup;
 			children = (
 				5B0B4F732D167F73005AD427 /* Button */,
-				5B0B4F722D167F5C005AD427 /* Carousel */,
-				5B0B4F682D157B80005AD427 /* NetworkAvatar.swift */,
 				5B1421A02D147CAF00032861 /* CustomLabel.swift */,
 				5B6B2BCB2D246BA200278BE1 /* AnimatedIconsView.swift */,
-				5BBA511B2D1A4A7600B4D169 /* ArtistView.swift */,
 				5B6B2BC92D2433D900278BE1 /* MacCustomSection.swift */,
 			);
 			path = SharedViews;
@@ -466,8 +353,6 @@
 			children = (
 				5BED5FF02D12FD5E0085968B /* SettingsView.swift */,
 				5BED5FF32D130E140085968B /* GeneralSettingsView.swift */,
-				5BED60032D138F870085968B /* BackgroundArtSettings.swift */,
-				5B0B4F6A2D158208005AD427 /* ArtDetailView.swift */,
 				5B14219E2D147C1D00032861 /* AboutView.swift */,
 				5B18C5982D46C17D00985B40 /* MotionTestView.swift */,
 			);
@@ -579,7 +464,6 @@
 			);
 			mainGroup = 5B75E6D82D109D0D009D2C80;
 			packageReferences = (
-				5BBA510B2D18428500B4D169 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				5B6B2BD42D26CBA600278BE1 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			productRefGroup = 5B75E6E22D109D0D009D2C80 /* Products */;
@@ -626,18 +510,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BED60042D138F870085968B /* BackgroundArtSettings.swift in Sources */,
-				5BBA511C2D1A4A7600B4D169 /* ArtistView.swift in Sources */,
 				5B75E79F2D11D2DB009D2C80 /* GameCardView.swift in Sources */,
 				5B0B4F6D2D15A712005AD427 /* CustomButton.swift in Sources */,
 				5B75E7A12D11E43B009D2C80 /* keyboardReactionModifier.swift in Sources */,
-				5B0B4F752D167FCA005AD427 /* CarouselCard.swift in Sources */,
 				5BF194182D23F092006C6471 /* GameLogic.swift in Sources */,
 				5B1421672D13D84700032861 /* BackgroundArt.swift in Sources */,
 				5B6B2BCA2D2433D900278BE1 /* MacCustomSection.swift in Sources */,
 				5BE9A8BA2D2132B500B6945F /* AddGameView.swift in Sources */,
 				5B6B2BDF2D27843100278BE1 /* LineChartView.swift in Sources */,
-				5B0B4F6B2D158208005AD427 /* ArtDetailView.swift in Sources */,
 				5BF194142D238556006C6471 /* BlockView.swift in Sources */,
 				5BF194152D238556006C6471 /* BlockGridView.swift in Sources */,
 				5BF194162D238556006C6471 /* AnimatedGameView.swift in Sources */,
@@ -646,16 +526,13 @@
 				5B75E6E72D109D0D009D2C80 /* ContentView.swift in Sources */,
 				5B75E7102D109D46009D2C80 /* Game.swift in Sources */,
 				5B6B2BCC2D246BA200278BE1 /* AnimatedIconsView.swift in Sources */,
-				5BBA510D2D18446A00B4D169 /* CacheManager.swift in Sources */,
 				5B1421A12D147CAF00032861 /* CustomLabel.swift in Sources */,
 				5B75E7A52D11E4FE009D2C80 /* KeyCode.swift in Sources */,
 				5B6B2BE32D27900500278BE1 /* GameStatusView.swift in Sources */,
-				5B0B4F692D157B80005AD427 /* NetworkAvatar.swift in Sources */,
 				5B36F5DE2D20358300D318A6 /* GamesListView.swift in Sources */,
 				5BED60022D138F220085968B /* BackgroundArtManager.swift in Sources */,
 				5B0B4F792D168EEE005AD427 /* GameBackgroundImageView.swift in Sources */,
 				5B6B2BDD2D2783F300278BE1 /* PieChartView.swift in Sources */,
-				5B0B4F712D167F53005AD427 /* MacOsCarouselView.swift in Sources */,
 				5B18C5992D46C17D00985B40 /* MotionTestView.swift in Sources */,
 				5BED5FF12D12FD5E0085968B /* SettingsView.swift in Sources */,
 				5BED5FF42D130E140085968B /* GeneralSettingsView.swift in Sources */,
@@ -669,12 +546,10 @@
 				5B75E6E52D109D0D009D2C80 /* i2048App.swift in Sources */,
 				5B18C59F2D46C37000985B40 /* DeviceType.swift in Sources */,
 				5BED60002D1373E50085968B /* MotionManager.swift in Sources */,
-				5B0B4F772D1680B0005AD427 /* NetworkImageView.swift in Sources */,
 				5B75E7A32D11E495009D2C80 /* wndAccessorModifier.swift in Sources */,
 				5BBA511E2D1B0EB700B4D169 /* GamesMigrationPlan.swift in Sources */,
 				5BBA51122D18FB8C00B4D169 /* DateExtenstion.swift in Sources */,
 				5B6B2BD82D27836700278BE1 /* StatisticsView.swift in Sources */,
-				5B14219D2D14443300032861 /* ParallaxCarouselView.swift in Sources */,
 				5BE9A8BC2D213F0700B6945F /* ArrayExtension.swift in Sources */,
 				5B6B2BE12D27845C00278BE1 /* BarChartView.swift in Sources */,
 				5B6DD9522D43EDDB008F2EE2 /* MacOSGameControllsView.swift in Sources */,
@@ -1058,14 +933,6 @@
 				minimumVersion = 1.1.0;
 			};
 		};
-		5BBA510B2D18428500B4D169 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.1.3;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1073,11 +940,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5B6B2BD42D26CBA600278BE1 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
 			productName = ConfettiSwiftUI;
-		};
-		5BBA510F2D18457300B4D169 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5BBA510B2D18428500B4D169 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

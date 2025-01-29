@@ -32,85 +32,7 @@ struct AnimatedGameView : View {
 
     @State var ignoreGesture = false
     @State private var showOptionsPopover = false
-    @State private var showIosBackgroundImageSheet: Bool = false
-
-    fileprivate struct LayoutTraits {
-        let bannerOffset: CGSize
-        let showsBanner: Bool
-        let containerAlignment: Alignment
-    }
-    
-    var gesture: some Gesture {
-        let threshold: CGFloat = 44
-        let drag = DragGesture()
-            .onChanged { v in
-                guard !ignoreGesture else { return }
-                
-                guard abs(v.translation.width) > threshold ||
-                    abs(v.translation.height) > threshold else {
-                    return
-                }
-                
-                withTransaction(Transaction(animation: .spring())) {
-                    self.ignoreGesture = true
-                    
-                    if v.translation.width > threshold {
-                        // Move right
-                        gameLogic.move(.right)
-                    } else if v.translation.width < -threshold {
-                        // Move left
-                        gameLogic.move(.left)
-                    } else if v.translation.height > threshold {
-                        // Move down
-                        gameLogic.move(.down)
-                    } else if v.translation.height < -threshold {
-                        // Move up
-                        gameLogic.move(.up)
-                    }
-                }
-            }
-            .onEnded { _ in
-                self.ignoreGesture = false
-            }
-        return drag
-    }
-    
-    // MARK: - MacOS game controlls
-    @ViewBuilder
-    private func MacOSGameControlls() -> some View {
-        HStack {
-            if let game = gameLogic.selectedGame, game.canUndo {
-                KeyboardKeyButton(keyLabel: ["command", "z.square"]) {
-                    withTransaction(Transaction(animation: .spring())) {
-                        gameLogic.undoStep()
-                    }
-                }
-                Divider()
-                    .foregroundStyle(.gray)
-                    .frame(maxHeight: 20)
-            }
-            KeyboardKeyButton(keyLabel: ["command", "arrow.right"]) {
-                withTransaction(Transaction(animation: .spring())) {
-                    gameLogic.move(.right)
-                }
-            }
-            KeyboardKeyButton(keyLabel: ["command", "arrow.left"]) {
-                withTransaction(Transaction(animation: .spring())) {
-                    gameLogic.move(.left)
-                }
-            }
-            KeyboardKeyButton(keyLabel: ["command", "arrow.down"]) {
-                withTransaction(Transaction(animation: .spring())) {
-                    gameLogic.move(.down)
-                }
-            }
-            KeyboardKeyButton(keyLabel: ["command", "arrow.up"]) {
-                withTransaction(Transaction(animation: .spring())) {
-                    gameLogic.move(.up)
-                }
-            }
-        }
-    }
+    @State private var showIosBackgroundStyleSheet: Bool = false
     
     @ViewBuilder
     func GameViewBuilder(selectedGame: Game, proxy: GeometryProxy) -> some View {
@@ -168,13 +90,13 @@ struct AnimatedGameView : View {
             }
         }
         .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
-        .sheet(isPresented: $showIosBackgroundImageSheet) {
-            BackgroundArtSettings(cardSize: CGSize(width: 550, height: 400), artistImageSize: 50, game: selectedGame)
+        .sheet(isPresented: $showIosBackgroundStyleSheet) {
+            Text("Remove this sheet")
         }
         .toolbar {
 #if os(iOS)
             ToolbarTitleMenu {
-                IosGameControllsView(showBackgroundImageSheet: $showIosBackgroundImageSheet)
+                IosGameControllsView(showBackgroundImageSheet: $showIosBackgroundStyleSheet)
             }
 #endif
 #if os(macOS)
@@ -205,6 +127,80 @@ struct AnimatedGameView : View {
             }
         }
     }
+    
+    var gesture: some Gesture {
+        let threshold: CGFloat = 44
+        let drag = DragGesture()
+            .onChanged { v in
+                guard !ignoreGesture else { return }
+                
+                guard abs(v.translation.width) > threshold ||
+                    abs(v.translation.height) > threshold else {
+                    return
+                }
+                
+                withTransaction(Transaction(animation: .spring())) {
+                    self.ignoreGesture = true
+                    
+                    if v.translation.width > threshold {
+                        // Move right
+                        gameLogic.move(.right)
+                    } else if v.translation.width < -threshold {
+                        // Move left
+                        gameLogic.move(.left)
+                    } else if v.translation.height > threshold {
+                        // Move down
+                        gameLogic.move(.down)
+                    } else if v.translation.height < -threshold {
+                        // Move up
+                        gameLogic.move(.up)
+                    }
+                }
+            }
+            .onEnded { _ in
+                self.ignoreGesture = false
+            }
+        return drag
+    }
+    
+#if os(macOS)
+    // MARK: - MacOS game controlls
+    @ViewBuilder
+    private func MacOSGameControlls() -> some View {
+        HStack {
+            if let game = gameLogic.selectedGame, game.canUndo {
+                KeyboardKeyButton(keyLabel: ["command", "z.square"]) {
+                    withTransaction(Transaction(animation: .spring())) {
+                        gameLogic.undoStep()
+                    }
+                }
+                Divider()
+                    .foregroundStyle(.gray)
+                    .frame(maxHeight: 20)
+            }
+            KeyboardKeyButton(keyLabel: ["command", "arrow.right"]) {
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.right)
+                }
+            }
+            KeyboardKeyButton(keyLabel: ["command", "arrow.left"]) {
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.left)
+                }
+            }
+            KeyboardKeyButton(keyLabel: ["command", "arrow.down"]) {
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.down)
+                }
+            }
+            KeyboardKeyButton(keyLabel: ["command", "arrow.up"]) {
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.up)
+                }
+            }
+        }
+    }
+#endif
 }
 
 #Preview {

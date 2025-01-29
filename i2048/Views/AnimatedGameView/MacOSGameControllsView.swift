@@ -35,9 +35,6 @@ struct MacOSGameControllsView: View {
                     .toggleStyle(.switch)
                 }
             }
-            
-            BackgroundArtSettings(cardSize: CGSize(width: 130, height: 80), artistImageSize: 30, game: game, simpleCarousel: true)
-            .padding(.horizontal)
         }
         .frame(minWidth: 350, idealWidth: 400, maxWidth: 450, minHeight: 400, idealHeight: 450, alignment: .leading)
     }

@@ -168,7 +168,7 @@ import SwiftData
                     Text("3x3 grid is a lot more difficult than 4x4 grid")
                 }
                 
-                Section(footer: Text("If on, you will be allowd to undo one move at a time")) {
+                Section(footer: Text("If on, you will be able to undo one move at a time")) {
                     Toggle("Allow Undo", isOn: $allowUndo)
                         .disabled(editingGame != nil)
                 }
