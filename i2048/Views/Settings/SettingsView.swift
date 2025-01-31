@@ -167,6 +167,12 @@ struct SettingsView: View {
                 }
                 .tag(1)
             
+            MacOsKeyBindingsView()
+                .tabItem {
+                    Label("Key Bindings", systemImage: "keyboard")
+                }
+                .tag(1)
+            
             AboutView()
                 .tabItem {
                     Label("About", systemImage: "info.square")

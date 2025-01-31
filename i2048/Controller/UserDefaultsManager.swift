@@ -35,6 +35,10 @@ class UserDefaultsManager: ObservableObject {
     @AppStorage("quick4GameNewBlocNum") var quick4GameNewBlocNum: Int = 0
     @AppStorage("quick3GameTarget") var quick3GameTarget: Int = 256
     @AppStorage("quick4GameTarget") var quick4GameTarget: Int = 2048
+    
+    @AppStorage("arrowBindingsEnabled") var arrowBindingsEnabled: Bool = true // ⌘ + (↑ → ↓ ←)
+    @AppStorage("leftBindingsEnabled") var leftBindingsEnabled: Bool = false // W D S A
+    @AppStorage("rightBindingsEnabled") var rightBindingsEnabled: Bool = false // I L K J
         
     init() {
         if self.hapticsEnabled {

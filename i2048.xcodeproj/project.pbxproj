@@ -44,6 +44,7 @@
 		5BBA51122D18FB8C00B4D169 /* DateExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA51112D18FB8C00B4D169 /* DateExtenstion.swift */; };
 		5BBA511E2D1B0EB700B4D169 /* GamesMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */; };
 		5BBB33552D3D117200259537 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5BBB33542D3D117200259537 /* Localizable.xcstrings */; };
+		5BBFD87E2D4B1BAE000F7232 /* MacOsKeyBindingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFD87D2D4B1BAE000F7232 /* MacOsKeyBindingsView.swift */; };
 		5BE9A8BA2D2132B500B6945F /* AddGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9A8B92D2132B500B6945F /* AddGameView.swift */; };
 		5BE9A8BC2D213F0700B6945F /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9A8BB2D213F0700B6945F /* ArrayExtension.swift */; };
 		5BED5FEC2D12E4880085968B /* KeyboardKeyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */; };
@@ -121,6 +122,7 @@
 		5BBA51112D18FB8C00B4D169 /* DateExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtenstion.swift; sourceTree = "<group>"; };
 		5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesMigrationPlan.swift; sourceTree = "<group>"; };
 		5BBB33542D3D117200259537 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		5BBFD87D2D4B1BAE000F7232 /* MacOsKeyBindingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOsKeyBindingsView.swift; sourceTree = "<group>"; };
 		5BE9A8B92D2132B500B6945F /* AddGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameView.swift; sourceTree = "<group>"; };
 		5BE9A8BB2D213F0700B6945F /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardKeyButton.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				5BED5FF32D130E140085968B /* GeneralSettingsView.swift */,
 				5B14219E2D147C1D00032861 /* AboutView.swift */,
 				5B18C5982D46C17D00985B40 /* MotionTestView.swift */,
+				5BBFD87D2D4B1BAE000F7232 /* MacOsKeyBindingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				5BED5FEF2D12F77B0085968B /* UserDefaultsManager.swift in Sources */,
 				5B18C59B2D46C29900985B40 /* HeadphoneMotionManager.swift in Sources */,
 				5B75E6E52D109D0D009D2C80 /* i2048App.swift in Sources */,
+				5BBFD87E2D4B1BAE000F7232 /* MacOsKeyBindingsView.swift in Sources */,
 				5B18C59F2D46C37000985B40 /* DeviceType.swift in Sources */,
 				5BED60002D1373E50085968B /* MotionManager.swift in Sources */,
 				5B75E7A32D11E495009D2C80 /* wndAccessorModifier.swift in Sources */,

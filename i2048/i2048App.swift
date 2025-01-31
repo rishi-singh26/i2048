@@ -45,6 +45,7 @@ struct i2048App: App {
 #if os(macOS)
         .windowStyle(.hiddenTitleBar)
         .commands {
+            SidebarCommands()
             CommandMenu("Game") {
                 Button("New Game") {
                     openWindow(id: "newGame")

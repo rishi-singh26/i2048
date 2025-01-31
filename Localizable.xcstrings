@@ -813,6 +813,9 @@
         }
       }
     },
+    "Arrow Bindongs - ⌘ + (↑ → ↓ ←)" : {
+
+    },
     "Ascending" : {
       "localizations" : {
         "de" : {
@@ -1795,6 +1798,9 @@
         }
       }
     },
+    "Key Bindings" : {
+
+    },
     "Krestovskaya Anna" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1851,6 +1857,9 @@
           }
         }
       }
+    },
+    "Left Hand Binding - W D S A" : {
+
     },
     "Light" : {
       "localizations" : {
@@ -2219,6 +2228,9 @@
         }
       }
     },
+    "Right Hand Binding - I L K J" : {
+
+    },
     "Roll: %lf" : {
       "localizations" : {
         "de" : {
@@ -2274,6 +2286,9 @@
           }
         }
       }
+    },
+    "Search" : {
+
     },
     "Select grid size" : {
       "localizations" : {

@@ -154,7 +154,7 @@ import SwiftData
                 }
                 
                 Section {
-                    Picker("Grid Size", selection: $gridSize) {
+                    Picker("Grid Size", systemImage: "square.grid.3x3.square", selection: $gridSize) {
                         Text("3 x 3 grid")
                             .tag(3)
                         Text("4 x 4 grid")
@@ -169,7 +169,7 @@ import SwiftData
                 }
                 
                 Section(footer: Text("If on, you will be able to undo one move at a time")) {
-                    Toggle("Allow Undo", isOn: $allowUndo)
+                    Toggle("Allow Undo", systemImage: "arrow.uturn.backward.square", isOn: $allowUndo)
                         .disabled(editingGame != nil)
                 }
                 

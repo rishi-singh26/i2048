@@ -30,6 +30,7 @@ struct ContentView: View {
     @State private var addGameSheetOpen: Bool = false
     @State private var showStatisticsView: Bool = false
     @State private var searchText: String = ""
+    @State private var searchFieldPresented: Bool = false
     @State private var sortBy: SortOrder = .createdOn
     /// **sortOrder** true -> Ascending; false -> descending
     @State private var sortOrder: Bool = false
@@ -121,7 +122,7 @@ struct ContentView: View {
     }
     
     func gameHotKeys(_ event: NSEvent) -> NSEvent? {
-        if event.modifierFlags.contains(.command) && gameLogic.selectedGame != nil {
+        if userDefaultsManager.arrowBindingsEnabled && event.modifierFlags.contains(.command) && gameLogic.selectedGame != nil {
             switch event.keyCode {
             case KeyCode.upArrow:
                 withTransaction(Transaction(animation: .spring())) {
@@ -155,9 +156,60 @@ struct ContentView: View {
             default:
                 return event // beep sound will be here
             }
-        } else {
-            return event
         }
+        if userDefaultsManager.leftBindingsEnabled && gameLogic.selectedGame != nil {
+            switch event.keyCode {
+            case KeyCode.w:
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.up)
+                }
+                return nil // disable beep sound
+            case KeyCode.s:
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.down)
+                }
+                return nil // disable beep sound
+            case KeyCode.d:
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.right)
+                }
+                return nil // disable beep sound
+            case KeyCode.a:
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.left)
+                }
+                return nil // disable beep sound
+            default:
+                break // Ensure switch is exhaustive, but the function doesn't return here and continues to the next if statement
+            }
+        }
+        if userDefaultsManager.rightBindingsEnabled && gameLogic.selectedGame != nil {
+            switch event.keyCode {
+            case KeyCode.i:
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.up)
+                }
+                return nil // disable beep sound
+            case KeyCode.k:
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.down)
+                }
+                return nil // disable beep sound
+            case KeyCode.l:
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.right)
+                }
+                return nil // disable beep sound
+            case KeyCode.j:
+                withTransaction(Transaction(animation: .spring())) {
+                    gameLogic.move(.left)
+                }
+                return nil // disable beep sound
+            default:
+                return event // beep sound will be here
+            }
+        }
+        return event
     }
     #endif
     
@@ -172,7 +224,7 @@ struct ContentView: View {
         } detail: {
             DetailView()
         }
-        .searchable(text: $searchText)
+        .searchable(text: $searchText, isPresented: $searchFieldPresented, prompt: "Search")
     }
     
     @ToolbarContentBuilder
@@ -195,11 +247,12 @@ struct ContentView: View {
                 } primaryAction: {
                     addGameSheetOpen = true
                 }
+                
                 Spacer()
                 Button(action: {
-                    showStatisticsView.toggle()
+                    searchFieldPresented.toggle()
                 }, label: {
-                    Image(systemName: "chart.bar")
+                    Image(systemName: "magnifyingglass")
                 })
                 Divider().frame(height: 30)
                 Button(action: {
@@ -209,6 +262,19 @@ struct ContentView: View {
                 })
                 Divider().frame(height: 30)
                 Menu {
+                    Button(action: {
+                        showStatisticsView.toggle()
+                    }, label: {
+                        Label("Statistics", systemImage: "chart.bar")
+                    })
+                    Divider()
+                    Picker("Sort Order", selection: $sortOrder) {
+                        Text("Ascending")
+                        .tag(true)
+                        Text("Descending")
+                        .tag(false)
+                    }
+                    .pickerStyle(.inline)
                     Picker("Sort Games By", selection: $sortBy) {
                         Text("Name")
                             .tag(SortOrder.name)
@@ -218,13 +284,6 @@ struct ContentView: View {
                             .tag(SortOrder.createdOn)
                         Text("Last Played Time")
                             .tag(SortOrder.lastPlayedOn)
-                    }
-                    .pickerStyle(.inline)
-                    Picker("Sort Order", selection: $sortOrder) {
-                        Text("Ascending")
-                        .tag(true)
-                        Text("Descending")
-                        .tag(false)
                     }
                     .pickerStyle(.inline)
                 } label: {
