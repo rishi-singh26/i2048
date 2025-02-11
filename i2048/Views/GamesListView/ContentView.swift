@@ -250,7 +250,7 @@ struct ContentView: View {
                 
                 Spacer()
                 Button(action: {
-                    searchFieldPresented.toggle()
+                    searchFieldPresented = true
                 }, label: {
                     Image(systemName: "magnifyingglass")
                 })

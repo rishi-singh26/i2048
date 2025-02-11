@@ -69,4 +69,14 @@ class BackgroundArtManager: ObservableObject {
         }
         return nil
     }
+    
+    func getAllImages() -> [BackgroundArt] {
+        var result: [BackgroundArt] = []
+        backgroundImages.forEach { artist in
+            artist.images.forEach { art in
+                result.append(art)
+            }
+        }
+        return result
+    }
 }

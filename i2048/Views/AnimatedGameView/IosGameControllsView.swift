@@ -40,7 +40,7 @@ struct IosGameControllsView: View {
             Button {
                 showBackgroundImageSheet.toggle()
             } label: {
-                Label("Background Image", systemImage: "photo")
+                Label("Background Colors", systemImage: "paintpalette")
             }
             Divider()
             if selectedGame.canUndo && selectedGame.score > 0 {

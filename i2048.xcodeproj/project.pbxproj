@@ -45,6 +45,9 @@
 		5BBA511E2D1B0EB700B4D169 /* GamesMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */; };
 		5BBB33552D3D117200259537 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5BBB33542D3D117200259537 /* Localizable.xcstrings */; };
 		5BBFD87E2D4B1BAE000F7232 /* MacOsKeyBindingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFD87D2D4B1BAE000F7232 /* MacOsKeyBindingsView.swift */; };
+		5BE3D4362D52609E0088C5E8 /* IosGameBackgroundSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3D4352D52609E0088C5E8 /* IosGameBackgroundSelectionView.swift */; };
+		5BE3D43B2D52FEFC0088C5E8 /* PagingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3D4392D52FEFC0088C5E8 /* PagingSlider.swift */; };
+		5BE3D43D2D52FEFC0088C5E8 /* IosGameBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3D4372D52FEFC0088C5E8 /* IosGameBackgroundView.swift */; };
 		5BE9A8BA2D2132B500B6945F /* AddGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9A8B92D2132B500B6945F /* AddGameView.swift */; };
 		5BE9A8BC2D213F0700B6945F /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9A8BB2D213F0700B6945F /* ArrayExtension.swift */; };
 		5BED5FEC2D12E4880085968B /* KeyboardKeyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */; };
@@ -123,6 +126,9 @@
 		5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesMigrationPlan.swift; sourceTree = "<group>"; };
 		5BBB33542D3D117200259537 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		5BBFD87D2D4B1BAE000F7232 /* MacOsKeyBindingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOsKeyBindingsView.swift; sourceTree = "<group>"; };
+		5BE3D4352D52609E0088C5E8 /* IosGameBackgroundSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosGameBackgroundSelectionView.swift; sourceTree = "<group>"; };
+		5BE3D4372D52FEFC0088C5E8 /* IosGameBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosGameBackgroundView.swift; sourceTree = "<group>"; };
+		5BE3D4392D52FEFC0088C5E8 /* PagingSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingSlider.swift; sourceTree = "<group>"; };
 		5BE9A8B92D2132B500B6945F /* AddGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameView.swift; sourceTree = "<group>"; };
 		5BE9A8BB2D213F0700B6945F /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		5BED5FEB2D12E4880085968B /* KeyboardKeyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardKeyButton.swift; sourceTree = "<group>"; };
@@ -328,6 +334,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5BE3D43A2D52FEFC0088C5E8 /* IosGameBackgroundView */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3D4372D52FEFC0088C5E8 /* IosGameBackgroundView.swift */,
+				5BE3D4392D52FEFC0088C5E8 /* PagingSlider.swift */,
+			);
+			path = IosGameBackgroundView;
+			sourceTree = "<group>";
+		};
 		5BED5FE62D12DB440085968B /* GamesListView */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,12 +380,14 @@
 		5BF194102D238544006C6471 /* AnimatedGameView */ = {
 			isa = PBXGroup;
 			children = (
+				5BE3D43A2D52FEFC0088C5E8 /* IosGameBackgroundView */,
 				5BF194112D238556006C6471 /* BlockView.swift */,
 				5BF194122D238556006C6471 /* BlockGridView.swift */,
 				5BF194132D238556006C6471 /* AnimatedGameView.swift */,
 				5B0B4F782D168EEE005AD427 /* GameBackgroundImageView.swift */,
 				5B6DD94F2D43EC7D008F2EE2 /* IosGameControllsView.swift */,
 				5B6DD9512D43EDDB008F2EE2 /* MacOSGameControllsView.swift */,
+				5BE3D4352D52609E0088C5E8 /* IosGameBackgroundSelectionView.swift */,
 			);
 			path = AnimatedGameView;
 			sourceTree = "<group>";
@@ -517,6 +534,7 @@
 				5B0B4F6D2D15A712005AD427 /* CustomButton.swift in Sources */,
 				5B75E7A12D11E43B009D2C80 /* keyboardReactionModifier.swift in Sources */,
 				5BF194182D23F092006C6471 /* GameLogic.swift in Sources */,
+				5BE3D4362D52609E0088C5E8 /* IosGameBackgroundSelectionView.swift in Sources */,
 				5B1421672D13D84700032861 /* BackgroundArt.swift in Sources */,
 				5B6B2BCA2D2433D900278BE1 /* MacCustomSection.swift in Sources */,
 				5BE9A8BA2D2132B500B6945F /* AddGameView.swift in Sources */,
@@ -542,6 +560,8 @@
 				5B75E7972D11857D009D2C80 /* ColorExtension.swift in Sources */,
 				5BED5FEC2D12E4880085968B /* KeyboardKeyButton.swift in Sources */,
 				5BF194062D2384A4006C6471 /* SwiftUIExtensions.swift in Sources */,
+				5BE3D43B2D52FEFC0088C5E8 /* PagingSlider.swift in Sources */,
+				5BE3D43D2D52FEFC0088C5E8 /* IosGameBackgroundView.swift in Sources */,
 				5B14219F2D147C1D00032861 /* AboutView.swift in Sources */,
 				5B6DD9502D43EC7D008F2EE2 /* IosGameControllsView.swift in Sources */,
 				5BED5FEF2D12F77B0085968B /* UserDefaultsManager.swift in Sources */,

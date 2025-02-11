@@ -872,7 +872,11 @@
         }
       }
     },
+    "Background Colors" : {
+
+    },
     "Background Image" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1237,6 +1241,9 @@
           }
         }
       }
+    },
+    "Dismiss" : {
+
     },
     "Done" : {
       "localizations" : {
@@ -2197,9 +2204,6 @@
         }
       }
     },
-    "Remove this sheet" : {
-
-    },
     "Rename" : {
       "localizations" : {
         "de" : {
@@ -2288,6 +2292,9 @@
       }
     },
     "Search" : {
+
+    },
+    "Select a Category" : {
 
     },
     "Select grid size" : {

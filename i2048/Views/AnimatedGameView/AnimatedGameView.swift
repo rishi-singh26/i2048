@@ -29,6 +29,7 @@ extension Edge {
 struct AnimatedGameView : View {
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @EnvironmentObject var gameLogic: GameLogic
+    @EnvironmentObject var backgrounArtManager: BackgroundArtManager
 
     @State var ignoreGesture = false
     @State private var showOptionsPopover = false
@@ -91,7 +92,8 @@ struct AnimatedGameView : View {
         }
         .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
         .sheet(isPresented: $showIosBackgroundStyleSheet) {
-            Text("Remove this sheet")
+            IosGameBackgroundSelectionView(imagesData: backgrounArtManager.getAllImages())
+                .presentationBackground(.thinMaterial)
         }
         .toolbar {
 #if os(iOS)
