@@ -5,6 +5,7 @@
 //  Created by Rishi Singh on 04/02/25.
 //
 
+#if os(iOS)
 import SwiftUI
 
 struct IosGameBackgroundSelectionView: View {
@@ -43,7 +44,7 @@ struct IosGameBackgroundSelectionView: View {
                     Text("")
                     //                Text(item.name)
                     //                    .font(.title3.bold())
-                    //                    .padding(.bottom, 35)
+                    //                    .padding(.bottom, 35)x
                     //                    .frame(height: 100)
                 }
                 //            activeId: imagesData.last?.id ?? nil
@@ -67,7 +68,7 @@ struct IosGameBackgroundSelectionView: View {
     
     @ViewBuilder
     func BuildPlatfromBackground(imageData: BackgroundArt) -> some View {
-        if #available(iOS 18.0, macOS 15.0, *) {
+        if #available(iOS 18.0, *) {
             MeshGradient(
                 width: 3,
                 height: 4,
@@ -104,3 +105,4 @@ struct IosGameBackgroundSelectionView: View {
     IosGameBackgroundSelectionView(imagesData: BackgroundArtManager.shared.getAllImages())
         .environmentObject(BackgroundArtManager.shared)
 }
+#endif

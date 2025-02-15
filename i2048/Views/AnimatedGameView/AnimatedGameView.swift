@@ -91,10 +91,12 @@ struct AnimatedGameView : View {
             }
         }
         .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
+#if os(iOS)
         .sheet(isPresented: $showIosBackgroundStyleSheet) {
             IosGameBackgroundSelectionView(imagesData: backgrounArtManager.getAllImages())
                 .presentationBackground(.thinMaterial)
         }
+#endif
         .toolbar {
 #if os(iOS)
             ToolbarTitleMenu {
@@ -109,7 +111,7 @@ struct AnimatedGameView : View {
                     Image(systemName: "switch.2")
                 })
                 .popover(isPresented: $showOptionsPopover) {
-                    MacOSGameControllsView(game: selectedGame)
+                    MacOSGameControllsView(game: selectedGame, data: backgrounArtManager.getAllImages())
                 }
             }
 #endif

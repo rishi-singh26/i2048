@@ -41,6 +41,7 @@
 		5B75E7A12D11E43B009D2C80 /* keyboardReactionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7A02D11E43B009D2C80 /* keyboardReactionModifier.swift */; };
 		5B75E7A32D11E495009D2C80 /* wndAccessorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7A22D11E495009D2C80 /* wndAccessorModifier.swift */; };
 		5B75E7A52D11E4FE009D2C80 /* KeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E7A42D11E4FE009D2C80 /* KeyCode.swift */; };
+		5B9902492D5E28D7002EF6D3 /* MacOSCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9902482D5E28D7002EF6D3 /* MacOSCarouselView.swift */; };
 		5BBA51122D18FB8C00B4D169 /* DateExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA51112D18FB8C00B4D169 /* DateExtenstion.swift */; };
 		5BBA511E2D1B0EB700B4D169 /* GamesMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */; };
 		5BBB33552D3D117200259537 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5BBB33542D3D117200259537 /* Localizable.xcstrings */; };
@@ -122,6 +123,7 @@
 		5B75E7A02D11E43B009D2C80 /* keyboardReactionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyboardReactionModifier.swift; sourceTree = "<group>"; };
 		5B75E7A22D11E495009D2C80 /* wndAccessorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wndAccessorModifier.swift; sourceTree = "<group>"; };
 		5B75E7A42D11E4FE009D2C80 /* KeyCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCode.swift; sourceTree = "<group>"; };
+		5B9902482D5E28D7002EF6D3 /* MacOSCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSCarouselView.swift; sourceTree = "<group>"; };
 		5BBA51112D18FB8C00B4D169 /* DateExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtenstion.swift; sourceTree = "<group>"; };
 		5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesMigrationPlan.swift; sourceTree = "<group>"; };
 		5BBB33542D3D117200259537 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -326,6 +328,14 @@
 			path = HotKeys;
 			sourceTree = "<group>";
 		};
+		5B9902472D5E28C4002EF6D3 /* MacOSGameBacjground */ = {
+			isa = PBXGroup;
+			children = (
+				5B9902482D5E28D7002EF6D3 /* MacOSCarouselView.swift */,
+			);
+			path = MacOSGameBacjground;
+			sourceTree = "<group>";
+		};
 		5BBA510E2D18457300B4D169 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +390,7 @@
 		5BF194102D238544006C6471 /* AnimatedGameView */ = {
 			isa = PBXGroup;
 			children = (
+				5B9902472D5E28C4002EF6D3 /* MacOSGameBacjground */,
 				5BE3D43A2D52FEFC0088C5E8 /* IosGameBackgroundView */,
 				5BF194112D238556006C6471 /* BlockView.swift */,
 				5BF194122D238556006C6471 /* BlockGridView.swift */,
@@ -576,6 +587,7 @@
 				5B6B2BD82D27836700278BE1 /* StatisticsView.swift in Sources */,
 				5BE9A8BC2D213F0700B6945F /* ArrayExtension.swift in Sources */,
 				5B6B2BE12D27845C00278BE1 /* BarChartView.swift in Sources */,
+				5B9902492D5E28D7002EF6D3 /* MacOSCarouselView.swift in Sources */,
 				5B6DD9522D43EDDB008F2EE2 /* MacOSGameControllsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
