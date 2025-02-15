@@ -39,6 +39,9 @@ class UserDefaultsManager: ObservableObject {
     @AppStorage("arrowBindingsEnabled") var arrowBindingsEnabled: Bool = true // ⌘ + (↑ → ↓ ←)
     @AppStorage("leftBindingsEnabled") var leftBindingsEnabled: Bool = false // W D S A
     @AppStorage("rightBindingsEnabled") var rightBindingsEnabled: Bool = false // I L K J
+    
+    /// When user buys premium or restores purchase, set this to true
+    @AppStorage("isPremiumUser") var isPremiumUser: Bool = false
         
     init() {
         if self.hapticsEnabled {
@@ -98,5 +101,9 @@ class UserDefaultsManager: ObservableObject {
     
     func stopEngine() {
         hapticEngine?.stop()
+    }
+    
+    func unlockLifetimeAccess() {
+        isPremiumUser = true;
     }
 }

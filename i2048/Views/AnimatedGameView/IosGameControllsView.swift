@@ -15,13 +15,15 @@ struct IosGameControllsView: View {
 
     var body: some View {
         if let selectedGame = gameLogic.selectedGame {
-            Button {
-                userDefaultsManager.hapticsEnabled.toggle()
-            } label: {
-                if (userDefaultsManager.hapticsEnabled) {
-                    Label("Disable Haptics", systemImage: "hand.tap.fill")
-                } else {
-                    Label("Enable Haptics", systemImage: "hand.tap")
+            if userDefaultsManager.isPremiumUser {
+                Button {
+                    userDefaultsManager.hapticsEnabled.toggle()
+                } label: {
+                    if (userDefaultsManager.hapticsEnabled) {
+                        Label("Disable Haptics", systemImage: "hand.tap.fill")
+                    } else {
+                        Label("Enable Haptics", systemImage: "hand.tap")
+                    }
                 }
             }
             Divider()

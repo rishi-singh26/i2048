@@ -23,7 +23,8 @@ struct AboutView: View {
         ScrollView {
             MacCustomSection(header: "") {
                 HStack {
-                    RoundedRectangle(cornerRadius: 10)
+                    Image("PremiumScreenIcon")
+                        .resizable()
                         .frame(width: 70, height: 70)
                         .padding(.trailing, 15)
                     VStack(alignment: .leading) {
@@ -74,7 +75,8 @@ struct AboutView: View {
     func IosAboutViewBuilder() -> some View {
         List {
             HStack {
-                RoundedRectangle(cornerRadius: 10)
+                Image("PremiumScreenIcon")
+                    .resizable()
                     .frame(width: 70, height: 70)
                     .padding(.trailing, 15)
                 VStack(alignment: .leading) {

@@ -29,6 +29,7 @@ struct ContentView: View {
     @State private var settingsSheetOpen: Bool = false
     @State private var addGameSheetOpen: Bool = false
     @State private var showStatisticsView: Bool = false
+    @State private var showIAPSheet: Bool = false
     @State private var searchText: String = ""
     @State private var searchFieldPresented: Bool = false
     @State private var sortBy: SortOrder = .createdOn
@@ -39,6 +40,9 @@ struct ContentView: View {
         Group {
 #if os(macOS)
             MacOSViewBuilder()
+                .sheet(isPresented: $showIAPSheet, content: {
+                    IAPView()
+                })
 #elseif os(iOS)
             IosViewBuilder()
 #endif
@@ -52,6 +56,9 @@ struct ContentView: View {
         }
         .sheet(isPresented: $addGameSheetOpen, content: {
             AddGameView()
+        })
+        .sheet(isPresented: $showIAPSheet, content: {
+            IAPView()
         })
 #endif
     }
@@ -306,26 +313,30 @@ struct ContentView: View {
     }
     
     func addGame(_ gridSize: Int) {
-        var game: Game
-        if gridSize == 3 {
-            game = Game(
-                name: "\(userDefaultsManager.quick3GameNamePrefix) #\(gridSize)x\(gridSize)",
-                gridSize: gridSize,
-                allowUndo: userDefaultsManager.quick3GameAllowUndo,
-                newBlockNumber: userDefaultsManager.quick3GameNewBlocNum,
-                targetScore: userDefaultsManager.quick3GameTarget
-            )
+        if userDefaultsManager.isPremiumUser {
+            var game: Game
+            if gridSize == 3 {
+                game = Game(
+                    name: "\(userDefaultsManager.quick3GameNamePrefix) #\(gridSize)x\(gridSize)",
+                    gridSize: gridSize,
+                    allowUndo: userDefaultsManager.quick3GameAllowUndo,
+                    newBlockNumber: userDefaultsManager.quick3GameNewBlocNum,
+                    targetScore: userDefaultsManager.quick3GameTarget
+                )
+            } else {
+                game = Game(
+                    name: "\(userDefaultsManager.quick4GameNamePrefix) #\(gridSize)x\(gridSize)",
+                    gridSize: gridSize,
+                    allowUndo: userDefaultsManager.quick4GameAllowUndo,
+                    newBlockNumber: userDefaultsManager.quick4GameNewBlocNum,
+                    targetScore: userDefaultsManager.quick4GameTarget
+                )
+            }
+            modelContext.insert(game)
+            gameLogic.selectedGame = game
         } else {
-            game = Game(
-                name: "\(userDefaultsManager.quick4GameNamePrefix) #\(gridSize)x\(gridSize)",
-                gridSize: gridSize,
-                allowUndo: userDefaultsManager.quick4GameAllowUndo,
-                newBlockNumber: userDefaultsManager.quick4GameNewBlocNum,
-                targetScore: userDefaultsManager.quick4GameTarget
-            )
+            showIAPSheet = true
         }
-        modelContext.insert(game)
-        gameLogic.selectedGame = game
     }
 }
 

@@ -11,6 +11,7 @@ import SwiftUI
 struct MacOsKeyBindingsView: View {
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @EnvironmentObject var artManager: BackgroundArtManager
+    @State private var showIAPSheet: Bool = false
     
     var body: some View {
         ScrollView {
@@ -27,7 +28,15 @@ struct MacOsKeyBindingsView: View {
                     Text("Left Hand Binding - W D S A")
 //                        .frame(width: 150, alignment: .leading)
                     Spacer()
-                    Toggle("", isOn: $userDefaultsManager.leftBindingsEnabled)
+                    Toggle("", isOn: Binding(get: {
+                        userDefaultsManager.leftBindingsEnabled
+                    }, set: { newVal in
+                        if userDefaultsManager.isPremiumUser {
+                            userDefaultsManager.leftBindingsEnabled = newVal
+                        } else {
+                            showIAPSheet = true
+                        }
+                    }))
                         .toggleStyle(.switch)
                 }
                 Divider()
@@ -35,11 +44,22 @@ struct MacOsKeyBindingsView: View {
                     Text("Right Hand Binding - I L K J")
 //                        .frame(width: 150, alignment: .leading)
                     Spacer()
-                    Toggle("", isOn: $userDefaultsManager.rightBindingsEnabled)
+                    Toggle("", isOn: Binding(get: {
+                        userDefaultsManager.rightBindingsEnabled
+                    }, set: { newVal in
+                        if userDefaultsManager.isPremiumUser {
+                            userDefaultsManager.rightBindingsEnabled = newVal
+                        } else {
+                            showIAPSheet = true
+                        }
+                    }))
                         .toggleStyle(.switch)
                 }
             }
             .padding(.bottom)
+        }
+        .sheet(isPresented: $showIAPSheet) {
+            IAPView()
         }
     }
 }

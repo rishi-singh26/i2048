@@ -904,6 +904,12 @@
         }
       }
     },
+    "Buy Lifetime Premium" : {
+
+    },
+    "Buy Premium" : {
+
+    },
     "Camping on the beach" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2036,6 +2042,9 @@
         }
       }
     },
+    "Premium" : {
+
+    },
     "Privacy Policy" : {
       "localizations" : {
         "de" : {
@@ -2231,6 +2240,12 @@
           }
         }
       }
+    },
+    "Restore Purchases" : {
+
+    },
+    "Restore your subscription if it hasn't synced automatically" : {
+
     },
     "Right Hand Binding - I L K J" : {
 
@@ -2717,6 +2732,9 @@
           }
         }
       }
+    },
+    "Upgrade to Premium" : {
+
     },
     "Usage License" : {
       "localizations" : {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
+    @State private var showIAPSheet: Bool = false
         
     var body: some View {
 #if os(iOS)
@@ -23,8 +24,32 @@ struct SettingsView: View {
     func IosViewBuilder() -> some View {
         NavigationView {
             List {
+                Button {
+                    showIAPSheet = true
+                } label: {
+                    Label("Buy Premium", systemImage: "crown.fill")
+                }
+                .listItemTint(.yellow)
+                .listRowBackground(
+                    LinearGradient(
+                        gradient: Gradient(colors: [Color.red.opacity(0.6), Color.yellow]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                )
+                
                 Section {
-                    Toggle(isOn: $userDefaultsManager.hapticsEnabled.animation()) {
+                    Toggle(isOn: Binding(get: {
+                        userDefaultsManager.hapticsEnabled
+                    }, set: { newVal in
+                        if userDefaultsManager.isPremiumUser {
+                            withAnimation {
+                                userDefaultsManager.hapticsEnabled = newVal
+                            }
+                        } else {
+                            showIAPSheet = true
+                        }
+                    })) {
                         Label("Enable Haptics", systemImage: userDefaultsManager.hapticsEnabled ? "hand.tap.fill" : "hand.tap")
                     }
                     .toggleStyle(.switch)
@@ -145,6 +170,7 @@ struct SettingsView: View {
                         CustomLabel(leadingImageName: "lock.open.display", trailingImageName: "arrow.up.right", title: "Open Source Code")
                     }
                 }
+                .disabled(!userDefaultsManager.isPremiumUser)
                 
                 Section {
                     NavigationLink(destination: AboutView()) {
@@ -153,6 +179,9 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
+            .sheet(isPresented: $showIAPSheet, content: {
+                IAPView()
+            })
         }
     }
 #endif
@@ -171,7 +200,13 @@ struct SettingsView: View {
                 .tabItem {
                     Label("Key Bindings", systemImage: "keyboard")
                 }
-                .tag(1)
+                .tag(2)
+            
+            IAPView(isWindow: true)
+                .tabItem {
+                    Label("Premium", systemImage: "crown.fill")
+                }
+                .tag(4)
             
             AboutView()
                 .tabItem {

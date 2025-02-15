@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import StoreKit
 
 @main
 struct i2048App: App {
@@ -14,6 +15,10 @@ struct i2048App: App {
     @StateObject private var userDefaultsManager = UserDefaultsManager()
     @StateObject private var artManager = BackgroundArtManager()
     @StateObject private var gameLogic = GameLogic()
+    
+    init() {
+        SKPaymentQueue.default().add(InAppPurchaseObserver())
+    }
 
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -41,6 +46,7 @@ struct i2048App: App {
                 .environmentObject(artManager)
                 .environmentObject(gameLogic.updateUserDefaults(defaultsManager: userDefaultsManager))
         }
+        .commandsRemoved()
         .modelContainer(sharedModelContainer)
 #if os(macOS)
         .windowStyle(.hiddenTitleBar)
@@ -50,7 +56,7 @@ struct i2048App: App {
                 Button("New Game") {
                     openWindow(id: "newGame")
                 }
-                .keyboardShortcut("N", modifiers: [.command, .shift])
+                .keyboardShortcut("N", modifiers: [.command])
                 Divider()
                 Button("Quick 3x3 Game", systemImage: "3.square") {
                     addGame(3)
@@ -79,13 +85,22 @@ struct i2048App: App {
         
         Window("New Game", id: "newGame") {
             AddGameView()
+                .environmentObject(userDefaultsManager)
                 .environmentObject(gameLogic.updateUserDefaults(defaultsManager: userDefaultsManager))
         }
         .modelContainer(sharedModelContainer)
         .defaultSize(width: 400, height: 400)
         
+        Window("Buy Lifetime Premium", id: "lifetimePremium") {
+            IAPView(isWindow: true)
+        }
+        .modelContainer(sharedModelContainer)
+        .defaultSize(width: 350, height: 700)
+        .windowResizability(.contentSize)
+        
         WindowGroup("Edit Game", for: Game.ID.self) { $gameId in
             AddGameView(gameId: gameId)
+                .environmentObject(userDefaultsManager)
                 .environmentObject(gameLogic.updateUserDefaults(defaultsManager: userDefaultsManager))
         }
         .modelContainer(sharedModelContainer)
@@ -98,30 +113,34 @@ struct i2048App: App {
                 .environmentObject(artManager)
         }
         .windowStyle(.hiddenTitleBar)
-        .defaultSize(width: 400, height: 650)
+        .defaultSize(width: 400, height: 800)
 #endif
     }
     
     func addGame(_ gridSize: Int) {
-        var game: Game
-        if gridSize == 3 {
-            game = Game(
-                name: "\(userDefaultsManager.quick3GameNamePrefix) #\(gridSize)x\(gridSize)",
-                gridSize: gridSize,
-                allowUndo: userDefaultsManager.quick3GameAllowUndo,
-                newBlockNumber: userDefaultsManager.quick3GameNewBlocNum,
-                targetScore: userDefaultsManager.quick3GameTarget
-            )
+        if userDefaultsManager.isPremiumUser {
+            var game: Game
+            if gridSize == 3 {
+                game = Game(
+                    name: "\(userDefaultsManager.quick3GameNamePrefix) #\(gridSize)x\(gridSize)",
+                    gridSize: gridSize,
+                    allowUndo: userDefaultsManager.quick3GameAllowUndo,
+                    newBlockNumber: userDefaultsManager.quick3GameNewBlocNum,
+                    targetScore: userDefaultsManager.quick3GameTarget
+                )
+            } else {
+                game = Game(
+                    name: "\(userDefaultsManager.quick4GameNamePrefix) #\(gridSize)x\(gridSize)",
+                    gridSize: gridSize,
+                    allowUndo: userDefaultsManager.quick4GameAllowUndo,
+                    newBlockNumber: userDefaultsManager.quick4GameNewBlocNum,
+                    targetScore: userDefaultsManager.quick4GameTarget
+                )
+            }
+            sharedModelContainer.mainContext.insert(game)
+            gameLogic.selectedGame = game
         } else {
-            game = Game(
-                name: "\(userDefaultsManager.quick4GameNamePrefix) #\(gridSize)x\(gridSize)",
-                gridSize: gridSize,
-                allowUndo: userDefaultsManager.quick4GameAllowUndo,
-                newBlockNumber: userDefaultsManager.quick4GameNewBlocNum,
-                targetScore: userDefaultsManager.quick4GameTarget
-            )
+            openWindow(id: "lifetimePremium")
         }
-        sharedModelContainer.mainContext.insert(game)
-        gameLogic.selectedGame = game
     }
 }

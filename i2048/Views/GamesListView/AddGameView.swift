@@ -12,6 +12,7 @@ import SwiftData
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var gameLogic: GameLogic
+    @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     
     @Query() private var games: [Game]
     
@@ -19,24 +20,30 @@ import SwiftData
     @State private var gridSize: Int = 4
     @State private var allowUndo: Bool = false
     @State private var showGameNameError: Bool = false
-    @State private var newBlockNum: Int = 0
+    @State private var newBlockNum: Int = 2
     @State private var targetScore: Int = 2048
     @State private var editingGame: Game? = nil
+    @State private var showIAPSheet: Bool = false
     var gameId: UUID? = nil
     
     var body: some View {
+        Group {
 #if os(iOS)
-        IosNewGameFormBuilder()
-            .onAppear {
-                fetchGame()
-            }
+            IosNewGameFormBuilder()
+                .onAppear {
+                    fetchGame()
+                }
 #elseif os(macOS)
-        MacOSNewGameFormBuilder()
-            .onAppear {
-                fetchGame()
-            }
-            .frame(width: 400, height: 400)
+            MacOSNewGameFormBuilder()
+                .onAppear {
+                    fetchGame()
+                }
+                .frame(width: 400, height: 400)
 #endif
+        }
+        .sheet(isPresented: $showIAPSheet, content: {
+            IAPView()
+        })
     }
 
 #if os(macOS)
@@ -57,7 +64,15 @@ import SwiftData
                     Text("Grid Size")
                         .frame(width: 100, alignment: .leading)
                     Spacer()
-                    Picker("", selection: $gridSize) {
+                    Picker("", selection: Binding(get: {
+                        gridSize
+                    }, set: { newVal in
+                        if userDefaultsManager.isPremiumUser {
+                            gridSize = newVal
+                        } else {
+                            showIAPSheet = true
+                        }
+                    })) {
                         Text("3 x 3 grid")
                             .tag(3)
                         Text("4 x 4 grid")
@@ -73,7 +88,15 @@ import SwiftData
                     Text("Allow Undo")
                         .frame(width: 100, alignment: .leading)
                     Spacer()
-                    Toggle("", isOn: $allowUndo)
+                    Toggle("", isOn: Binding(get: {
+                        allowUndo
+                    }, set: { newVal in
+                        if userDefaultsManager.isPremiumUser {
+                            allowUndo = newVal
+                        } else {
+                            showIAPSheet = true
+                        }
+                    }))
                         .toggleStyle(.switch)
                         .disabled(editingGame != nil)
                 }
@@ -84,7 +107,15 @@ import SwiftData
                     Text("New Block")
                         .frame(width: 100, alignment: .leading)
                     Spacer()
-                    Picker("", selection: $newBlockNum) {
+                    Picker("", selection: Binding(get: {
+                        newBlockNum
+                    }, set: { newVal in
+                        if userDefaultsManager.isPremiumUser {
+                            withAnimation { newBlockNum = newVal }
+                        } else {
+                            showIAPSheet = true
+                        }
+                    })) {
                         Text("2")
                             .tag(2)
                         Text("4")
@@ -101,7 +132,15 @@ import SwiftData
                     Text("Game Target Score")
                         .frame(width: 100, alignment: .leading)
                     Spacer()
-                    Picker("", selection: $targetScore) {
+                    Picker("", selection: Binding(get: {
+                        targetScore
+                    }, set: { newVal in
+                        if userDefaultsManager.isPremiumUser {
+                            targetScore = newVal
+                        } else {
+                            showIAPSheet = true
+                        }
+                    })) {
                         Text("128")
                             .tag(128)
                         Text("256")
@@ -154,7 +193,15 @@ import SwiftData
                 }
                 
                 Section {
-                    Picker("Grid Size", systemImage: "square.grid.3x3.square", selection: $gridSize) {
+                    Picker("Grid Size", systemImage: "square.grid.3x3.square", selection: Binding(get: {
+                        gridSize
+                    }, set: { newVal in
+                        if userDefaultsManager.isPremiumUser {
+                            gridSize = newVal
+                        } else {
+                            showIAPSheet = true
+                        }
+                    })) {
                         Text("3 x 3 grid")
                             .tag(3)
                         Text("4 x 4 grid")
@@ -169,12 +216,28 @@ import SwiftData
                 }
                 
                 Section(footer: Text("If on, you will be able to undo one move at a time")) {
-                    Toggle("Allow Undo", systemImage: "arrow.uturn.backward.square", isOn: $allowUndo)
+                    Toggle("Allow Undo", systemImage: "arrow.uturn.backward.square", isOn: Binding(get: {
+                        allowUndo
+                    }, set: { newVal in
+                        if userDefaultsManager.isPremiumUser {
+                            allowUndo = newVal
+                        } else {
+                            showIAPSheet = true
+                        }
+                    }))
                         .disabled(editingGame != nil)
                 }
                 
                 Section {
-                    Picker(selection: $newBlockNum.animation()) {
+                    Picker(selection: Binding(get: {
+                        newBlockNum
+                    }, set: { newVal in
+                        if userDefaultsManager.isPremiumUser {
+                            withAnimation { newBlockNum = newVal }
+                        } else {
+                            showIAPSheet = true
+                        }
+                    })) {
                         Text("2")
                             .tag(2)
                         Text("4")
@@ -196,7 +259,15 @@ import SwiftData
                 }
                 
                 Section {
-                    Picker("Game Target Score", systemImage: "target", selection: $targetScore) {
+                    Picker("Game Target Score", systemImage: "target", selection: Binding(get: {
+                        targetScore
+                    }, set: { newVal in
+                        if userDefaultsManager.isPremiumUser {
+                            targetScore = newVal
+                        } else {
+                            showIAPSheet = true
+                        }
+                    })) {
                         Text("128")
                             .tag(128)
                         Text("256")
