@@ -48,6 +48,7 @@
 		5BBA511E2D1B0EB700B4D169 /* GamesMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */; };
 		5BBB33552D3D117200259537 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5BBB33542D3D117200259537 /* Localizable.xcstrings */; };
 		5BBFD87E2D4B1BAE000F7232 /* MacOsKeyBindingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFD87D2D4B1BAE000F7232 /* MacOsKeyBindingsView.swift */; };
+		5BD570A72D6E1A52002A10CD /* IconSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD570A62D6E1A52002A10CD /* IconSelectorView.swift */; };
 		5BE3D4362D52609E0088C5E8 /* IosGameBackgroundSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3D4352D52609E0088C5E8 /* IosGameBackgroundSelectionView.swift */; };
 		5BE3D43B2D52FEFC0088C5E8 /* PagingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3D4392D52FEFC0088C5E8 /* PagingSlider.swift */; };
 		5BE3D43D2D52FEFC0088C5E8 /* IosGameBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3D4372D52FEFC0088C5E8 /* IosGameBackgroundView.swift */; };
@@ -132,6 +133,7 @@
 		5BBA511D2D1B0EB700B4D169 /* GamesMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesMigrationPlan.swift; sourceTree = "<group>"; };
 		5BBB33542D3D117200259537 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		5BBFD87D2D4B1BAE000F7232 /* MacOsKeyBindingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOsKeyBindingsView.swift; sourceTree = "<group>"; };
+		5BD570A62D6E1A52002A10CD /* IconSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectorView.swift; sourceTree = "<group>"; };
 		5BE3D4352D52609E0088C5E8 /* IosGameBackgroundSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosGameBackgroundSelectionView.swift; sourceTree = "<group>"; };
 		5BE3D4372D52FEFC0088C5E8 /* IosGameBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosGameBackgroundView.swift; sourceTree = "<group>"; };
 		5BE3D4392D52FEFC0088C5E8 /* PagingSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingSlider.swift; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 				5B14219E2D147C1D00032861 /* AboutView.swift */,
 				5B18C5982D46C17D00985B40 /* MotionTestView.swift */,
 				5BBFD87D2D4B1BAE000F7232 /* MacOsKeyBindingsView.swift */,
+				5BD570A62D6E1A52002A10CD /* IconSelectorView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				5B0B4F792D168EEE005AD427 /* GameBackgroundImageView.swift in Sources */,
 				5B42609B2D60EF9400341E05 /* IAPView.swift in Sources */,
 				5B6B2BDD2D2783F300278BE1 /* PieChartView.swift in Sources */,
+				5BD570A72D6E1A52002A10CD /* IconSelectorView.swift in Sources */,
 				5B18C5992D46C17D00985B40 /* MotionTestView.swift in Sources */,
 				5BED5FF12D12FD5E0085968B /* SettingsView.swift in Sources */,
 				5BED5FF42D130E140085968B /* GeneralSettingsView.swift in Sources */,
