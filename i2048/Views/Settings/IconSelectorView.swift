@@ -10,7 +10,11 @@ import SwiftUI
 
 @MainActor
 struct IconSelectorView: View {
+    @EnvironmentObject var userDefaultsManager: UserDefaultsManager
+    
     @State private var currentIcon = UIApplication.shared.alternateIconName ?? Icon.primary.appIconName
+    @State private var showIAPSheet: Bool = false
+    
     private let columns = [GridItem(.adaptive(minimum: 125, maximum: 1024))]
     
     enum Icon: Int, CaseIterable, Identifiable {
@@ -88,17 +92,24 @@ struct IconSelectorView: View {
                 currentIcon = Icon.primary.appIconName
             }
         }
+        .sheet(isPresented: $showIAPSheet, content: {
+            IAPView()
+        })
     }
     
     private func makeIconGridView(icons: [Icon]) -> some View {
         LazyVGrid(columns: columns, spacing: 6) {
             ForEach(icons) { icon in
                 Button {
-                    currentIcon = icon.appIconName
-                    if icon.rawValue == Icon.primary.rawValue {
-                        setAppIcon(nil)
+                    if(userDefaultsManager.isPremiumUser) {
+                        currentIcon = icon.appIconName
+                        if icon.rawValue == Icon.primary.rawValue {
+                            setAppIcon(nil)
+                        } else {
+                            setAppIcon(icon.appIconName)
+                        }
                     } else {
-                        setAppIcon(icon.appIconName)
+                        showIAPSheet = true
                     }
                 } label: {
                     ZStack(alignment: .bottomTrailing) {
