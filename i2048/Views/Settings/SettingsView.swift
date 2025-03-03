@@ -39,6 +39,14 @@ struct SettingsView: View {
                 )
                 
                 Section {
+                    NavigationLink {
+                        IconSelectorView()
+                    } label: {
+                        Label("App Icon", systemImage: "command.square")
+                    }
+                }
+                
+                Section {
                     Toggle(isOn: Binding(get: {
                         userDefaultsManager.hapticsEnabled
                     }, set: { newVal in
@@ -170,7 +178,6 @@ struct SettingsView: View {
                         CustomLabel(leadingImageName: "lock.open.display", trailingImageName: "arrow.up.right", title: "Open Source Code")
                     }
                 }
-                .disabled(!userDefaultsManager.isPremiumUser)
                 
                 Section {
                     NavigationLink(destination: AboutView()) {

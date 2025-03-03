@@ -59,7 +59,7 @@ struct IAPView: View {
                     .resizable()
                     .frame(width: 150, height: 150)
                     .padding(.top)
-                    .shadow(color: Color(hex: "#FBAE2A"), radius: 50)
+                    .shadow(color: Color(hex: "#54F06F"), radius: 50)
                 
                 Text("Upgrade to Premium")
                     .font(.title.bold())

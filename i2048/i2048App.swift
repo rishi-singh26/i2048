@@ -46,7 +46,7 @@ struct i2048App: App {
                 .environmentObject(artManager)
                 .environmentObject(gameLogic.updateUserDefaults(defaultsManager: userDefaultsManager))
         }
-        .commandsRemoved()
+        .defaultSize(width: 1000, height: 700)
         .modelContainer(sharedModelContainer)
 #if os(macOS)
         .windowStyle(.hiddenTitleBar)
@@ -56,7 +56,7 @@ struct i2048App: App {
                 Button("New Game") {
                     openWindow(id: "newGame")
                 }
-                .keyboardShortcut("N", modifiers: [.command])
+                .keyboardShortcut("N", modifiers: [.command, .shift])
                 Divider()
                 Button("Quick 3x3 Game", systemImage: "3.square") {
                     addGame(3)

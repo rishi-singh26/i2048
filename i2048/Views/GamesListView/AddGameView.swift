@@ -326,6 +326,8 @@ import SwiftData
             gridSize = fetchedItem.gridSize
             newBlockNum = fetchedItem.newBlockNumber
             allowUndo = fetchedItem.allowUndo
+        } else {
+            gameName = "\(Date.now.formattedDate()) - 4x4"
         }
     }
     
