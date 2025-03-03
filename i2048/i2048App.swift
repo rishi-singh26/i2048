@@ -137,6 +137,9 @@ struct i2048App: App {
                     targetScore: userDefaultsManager.quick4GameTarget
                 )
             }
+            if let randomBackground = artManager.getAllImages().randomElement() {
+                game.selectNetworkImage(randomBackground)
+            }
             sharedModelContainer.mainContext.insert(game)
             gameLogic.selectedGame = game
         } else {

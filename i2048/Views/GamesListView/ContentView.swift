@@ -332,6 +332,9 @@ struct ContentView: View {
                     targetScore: userDefaultsManager.quick4GameTarget
                 )
             }
+            if let randomBackground = backgroundArtManager.getAllImages().randomElement() {
+                game.selectNetworkImage(randomBackground)
+            }
             modelContext.insert(game)
             gameLogic.selectedGame = game
         } else {

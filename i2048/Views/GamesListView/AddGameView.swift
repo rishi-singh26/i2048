@@ -13,6 +13,7 @@ import SwiftData
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var gameLogic: GameLogic
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
+    @EnvironmentObject var backgroundArtManager: BackgroundArtManager
     
     @Query() private var games: [Game]
     
@@ -344,6 +345,10 @@ import SwiftData
             newBlockNumber: newBlockNum,
             targetScore: targetScore
         )
+        
+        if let randomBackground = backgroundArtManager.getAllImages().randomElement() {
+            game.selectNetworkImage(randomBackground)
+        }
         modelContext.insert(game)
         gameLogic.selectedGame = game
         dismiss()
