@@ -34,6 +34,7 @@ struct AnimatedGameView : View {
     @State var ignoreGesture = false
     @State private var showOptionsPopover = false
     @State private var showIosBackgroundStyleSheet: Bool = false
+    @State private var showShareGameSheet: Bool = false
     
     @ViewBuilder
     func GameViewBuilder(selectedGame: Game, proxy: GeometryProxy) -> some View {
@@ -51,26 +52,7 @@ struct AnimatedGameView : View {
                         .font(.title)
                         .fontWeight(.bold)
                 }
-                HStack {
-                    VStack {
-                        Text("High Score")
-                        Text("\(userDefaultsManager.highScore)")
-                            .font(.title)
-                    }
-                    .frame(maxWidth: .infinity)
-                    Divider().frame(height: 60)
-                    VStack {
-                        Text("Score")
-                        Text("\(selectedGame.score)")
-                            .font(.title)
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-                .padding()
-                .frame(minWidth: 300, maxWidth: 350)
-                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
-                .environment(\.colorScheme, selectedGame.gameColorMode ? .light : .dark)
-                .cornerRadius(10)
+                BuildScoreCard(selectedGame: selectedGame)
                 
                 BlockGridView(
                     matrix: gameLogic.blockMatrix,
@@ -91,16 +73,18 @@ struct AnimatedGameView : View {
             }
         }
         .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
-#if os(iOS)
-        .sheet(isPresented: $showIosBackgroundStyleSheet) {
-            IosGameBackgroundSelectionView(imagesData: backgrounArtManager.getAllImages())
-                .presentationBackground(.thinMaterial)
+        .sheet(isPresented: $showShareGameSheet) {
+            ShareCardView()
+                .presentationBackground(alignment: .bottom) { GameBackgroundImageView(game: gameLogic.selectedGame) }
+                .presentationCornerRadius(40)
         }
-#endif
         .toolbar {
 #if os(iOS)
             ToolbarTitleMenu {
-                IosGameControllsView(showBackgroundImageSheet: $showIosBackgroundStyleSheet)
+                IosGameControllsView(
+                    showBackgroundImageSheet: $showIosBackgroundStyleSheet,
+                    showShareGameSheet: $showShareGameSheet
+                )
             }
 #endif
 #if os(macOS)
@@ -113,13 +97,50 @@ struct AnimatedGameView : View {
                 .popover(isPresented: $showOptionsPopover) {
                     MacOSGameControllsView(game: selectedGame, data: backgrounArtManager.getAllImages())
                 }
+                Button(action: {
+                    showOptionsPopover = true
+                }, label: {
+                    Image(systemName: "square.and.arrow.up")
+                })
+                .popover(isPresented: $showOptionsPopover) {
+                    MacOSGameControllsView(game: selectedGame, data: backgrounArtManager.getAllImages())
+                }
             }
 #endif
         }
 #if os(iOS)
+        .sheet(isPresented: $showIosBackgroundStyleSheet) {
+            IosGameBackgroundSelectionView(imagesData: backgrounArtManager.getAllImages())
+                .presentationBackground(.thinMaterial)
+                .presentationCornerRadius(40)
+        }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(selectedGame.name)
 #endif
+    }
+    
+    @ViewBuilder
+    func BuildScoreCard(selectedGame: Game) -> some View {
+        HStack {
+            VStack {
+                Text("High Score")
+                Text("\(userDefaultsManager.highScore)")
+                    .font(.title)
+            }
+            .frame(maxWidth: .infinity)
+            Divider().frame(height: 60)
+            VStack {
+                Text("Score")
+                Text("\(selectedGame.score)")
+                    .font(.title)
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .padding()
+        .frame(minWidth: 300, maxWidth: 350)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .environment(\.colorScheme, selectedGame.gameColorMode ? .light : .dark)
+        .cornerRadius(10)
     }
     
     var body: some View {

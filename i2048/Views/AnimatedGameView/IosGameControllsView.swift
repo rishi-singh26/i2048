@@ -12,6 +12,8 @@ struct IosGameControllsView: View {
     @EnvironmentObject var gameLogic: GameLogic
     
     @Binding var showBackgroundImageSheet: Bool
+    
+    @Binding var showShareGameSheet: Bool
 
     var body: some View {
         if let selectedGame = gameLogic.selectedGame {
@@ -55,10 +57,21 @@ struct IosGameControllsView: View {
                     }
                 }
             }
+            Divider()
+            //            if selectedGame.hasWon || selectedGame.isGameOver {
+            Button {
+                showShareGameSheet.toggle()
+            } label: {
+                Label("Share Game", systemImage: "square.and.arrow.up")
+            }
+            //            }
         }
     }
 }
 
 #Preview {
-    IosGameControllsView(showBackgroundImageSheet: .constant(false))
+    IosGameControllsView(
+        showBackgroundImageSheet: .constant(false),
+        showShareGameSheet: .constant(false)
+    )
 }

@@ -11,7 +11,7 @@ import SwiftUI
 import Combine
 
 final class GameLogic : ObservableObject {
-    
+    static let shared = GameLogic()
     enum Direction {
         case left
         case right

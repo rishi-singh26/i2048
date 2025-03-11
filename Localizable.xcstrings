@@ -113,6 +113,9 @@
         }
       }
     },
+    "/" : {
+
+    },
     "%lld" : {
       "localizations" : {
         "de" : {
@@ -1251,6 +1254,9 @@
         }
       }
     },
+    "Disabled" : {
+
+    },
     "Dismiss" : {
 
     },
@@ -1393,6 +1399,9 @@
           }
         }
       }
+    },
+    "Enabled" : {
+
     },
     "Game" : {
       "localizations" : {
@@ -2399,6 +2408,9 @@
           }
         }
       }
+    },
+    "Share Game" : {
+
     },
     "Sort Games By" : {
       "localizations" : {
