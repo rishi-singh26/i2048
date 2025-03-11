@@ -12,7 +12,6 @@ struct IosGameControllsView: View {
     @EnvironmentObject var gameLogic: GameLogic
     
     @Binding var showBackgroundImageSheet: Bool
-    
     @Binding var showShareGameSheet: Bool
 
     var body: some View {

@@ -72,39 +72,60 @@ struct i2048App: App {
                     openWindow(id: "statistics")
                 }
                 .keyboardShortcut(KeyEquivalent("S"), modifiers: .command)
+                Divider()
+                Button("Share Game", systemImage: "square.and.arrow.up") {
+                    openWindow(id: "shareGame")
+                }
+                .keyboardShortcut(KeyEquivalent("S"), modifiers: [.command, .shift])
+                .disabled(gameLogic.selectedGame == nil)
             }
         }
 #endif
         
 #if os(macOS)
-        Window("Statistics", id: "statistics") {
+        Window("i2048 - Statistics", id: "statistics") {
             StatisticsView()
         }
         .modelContainer(sharedModelContainer)
-        .defaultSize(width: 300, height: 650)
+        .defaultSize(width: 300, height: 750)
+        .windowResizability(.contentSize)
+        .windowStyle(.hiddenTitleBar)
         
-        Window("New Game", id: "newGame") {
+        Window("i2048 - New Game", id: "newGame") {
             AddGameView()
                 .environmentObject(userDefaultsManager)
                 .environmentObject(gameLogic.updateUserDefaults(defaultsManager: userDefaultsManager))
         }
         .modelContainer(sharedModelContainer)
         .defaultSize(width: 400, height: 400)
+        .windowResizability(.contentSize)
         
-        Window("Buy Lifetime Premium", id: "lifetimePremium") {
+        Window("i2048 - Buy Lifetime Premium", id: "lifetimePremium") {
             IAPView(isWindow: true)
         }
         .modelContainer(sharedModelContainer)
-        .defaultSize(width: 350, height: 700)
+        .defaultSize(width: 300, height: 720)
         .windowResizability(.contentSize)
+        .windowStyle(.hiddenTitleBar)
         
-        WindowGroup("Edit Game", for: Game.ID.self) { $gameId in
+        Window("i2048 - Share Game", id: "shareGame") {
+            ShareCardView()
+                .environmentObject(userDefaultsManager)
+                .environmentObject(gameLogic)
+        }
+        .modelContainer(sharedModelContainer)
+        .defaultSize(width: 350, height: 600)
+        .windowResizability(.contentSize)
+        .windowStyle(.hiddenTitleBar)
+        
+        WindowGroup("i2048 - Edit Game", for: Game.ID.self) { $gameId in
             AddGameView(gameId: gameId)
                 .environmentObject(userDefaultsManager)
                 .environmentObject(gameLogic.updateUserDefaults(defaultsManager: userDefaultsManager))
         }
         .modelContainer(sharedModelContainer)
         .defaultSize(width: 400, height: 400)
+        .windowResizability(.contentSize)
         .commandsRemoved()
         
         Settings {

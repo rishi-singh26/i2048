@@ -97,14 +97,6 @@ struct AnimatedGameView : View {
                 .popover(isPresented: $showOptionsPopover) {
                     MacOSGameControllsView(game: selectedGame, data: backgrounArtManager.getAllImages())
                 }
-                Button(action: {
-                    showOptionsPopover = true
-                }, label: {
-                    Image(systemName: "square.and.arrow.up")
-                })
-                .popover(isPresented: $showOptionsPopover) {
-                    MacOSGameControllsView(game: selectedGame, data: backgrounArtManager.getAllImages())
-                }
             }
 #endif
         }

@@ -10,6 +10,7 @@ import SwiftUI
 import SwiftData
 
 struct MacOSGameControllsView: View {
+    @Environment(\.openWindow) private var openWindow
     var game: Game
     var data: [BackgroundArt]
     
@@ -35,6 +36,15 @@ struct MacOSGameControllsView: View {
                         }).animation()
                     )
                     .toggleStyle(.switch)
+                }
+                Divider()
+                    .padding(.vertical, 3)
+                HStack {
+                    Label("Share Game", systemImage: "square.and.arrow.up")
+                    Spacer()
+                    Button("Share   ⇧⌘S") {
+                        openWindow(id: "shareGame")
+                    }
                 }
             }
             

@@ -11,15 +11,19 @@ import SwiftData
 struct ShareCardView: View {
     @EnvironmentObject var gameLogic: GameLogic
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
-    
+        
     var body: some View {
-        BuildGameInfo(selectedGame: gameLogic.selectedGame, showShareButton: true)
+#if os(iOS)
+        BuildIOSGameInfo(selectedGame: gameLogic.selectedGame, showShareButton: true)
+#elseif os(macOS)
+        BuildMacGameInfo(selectedGame: gameLogic.selectedGame)
+#endif
     }
     
-    // MARK: - Game data cards
+    // MARK: - iOS Game card
     @ViewBuilder
-    func BuildGameInfo(selectedGame: Game?, showShareButton: Bool = false) -> some View {
-        VStack(alignment: .leading) {
+    func BuildIOSGameInfo(selectedGame: Game?, showShareButton: Bool = false) -> some View {
+        VStack(alignment: .center) {
             if let selectedGame = gameLogic.selectedGame {
                 BlockGridView(
                     matrix: gameLogic.blockMatrix,
@@ -53,14 +57,13 @@ struct ShareCardView: View {
         .padding(30)
     }
     
+    // MARK: - MacOS Game card
     @ViewBuilder
-    func BuildGameInfoShareCard(selectedGame: Game?) -> some View {
-        ZStack(alignment: .top) {
+    func BuildMacGameInfo(selectedGame: Game?) -> some View {
+        ZStack(alignment: .center) {
             GameBackgroundImageView(game: selectedGame)
-            BuildGameInfo(selectedGame: selectedGame)
+            BuildIOSGameInfo(selectedGame: selectedGame)
         }
-        .cornerRadius(20)
-        .padding()
     }
     
     // MARK: - Score card builder
@@ -133,7 +136,7 @@ struct ShareCardView: View {
             .cornerRadius(10)
             HStack {
                 Image(systemName: "target")
-                Text("\(selectedGame.targetScore)")
+                Text(String(selectedGame.targetScore))
                     .frame(maxWidth: .infinity)
             }
             .font(.title2)
@@ -142,22 +145,12 @@ struct ShareCardView: View {
             .environment(\.colorScheme, selectedGame.gameColorMode ? .light : .dark)
             .cornerRadius(10)
         }
+        .frame(minWidth: 300, maxWidth: 350)
     }
 }
 
 #Preview {
-    SharedCardPreview()
+    ShareCardView()
         .environmentObject(GameLogic.shared)
-}
-
-struct SharedCardPreview: View {
-    @Query(sort: \Game.createdAt, order: .reverse) private var games: [Game]
-    @EnvironmentObject var gameLogic: GameLogic
-
-    var body: some View {
-        ShareCardView()
-            .onAppear {
-                gameLogic.selectedGame = games.first
-            }
-    }
+        .environmentObject(UserDefaultsManager.shared)
 }

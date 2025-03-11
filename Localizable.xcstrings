@@ -910,9 +910,6 @@
         }
       }
     },
-    "Buy Lifetime Premium" : {
-
-    },
     "Buy Premium" : {
 
     },
@@ -1795,6 +1792,21 @@
         }
       }
     },
+    "i2048 - Buy Lifetime Premium" : {
+
+    },
+    "i2048 - Edit Game" : {
+
+    },
+    "i2048 - New Game" : {
+
+    },
+    "i2048 - Share Game" : {
+
+    },
+    "i2048 - Statistics" : {
+
+    },
     "If on, you will be able to undo one move at a time" : {
       "localizations" : {
         "de" : {
@@ -2408,6 +2420,9 @@
           }
         }
       }
+    },
+    "Share   ⇧⌘S" : {
+
     },
     "Share Game" : {
 
