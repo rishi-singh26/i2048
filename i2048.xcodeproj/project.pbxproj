@@ -61,6 +61,7 @@
 		5BED5FF42D130E140085968B /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FF32D130E140085968B /* GeneralSettingsView.swift */; };
 		5BED60002D1373E50085968B /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FFF2D1373E40085968B /* MotionManager.swift */; };
 		5BED60022D138F220085968B /* BackgroundArtManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED60012D138F220085968B /* BackgroundArtManager.swift */; };
+		5BF174F42D802895003B84B9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5BF174F32D802895003B84B9 /* README.md */; };
 		5BF194062D2384A4006C6471 /* SwiftUIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF194052D2384A4006C6471 /* SwiftUIExtensions.swift */; };
 		5BF1940E2D238501006C6471 /* IdentifiedBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1940C2D238501006C6471 /* IdentifiedBlock.swift */; };
 		5BF1940F2D238501006C6471 /* BlockMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1940A2D238501006C6471 /* BlockMatrix.swift */; };
@@ -147,6 +148,7 @@
 		5BED5FF32D130E140085968B /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		5BED5FFF2D1373E40085968B /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		5BED60012D138F220085968B /* BackgroundArtManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundArtManager.swift; sourceTree = "<group>"; };
+		5BF174F32D802895003B84B9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5BF194052D2384A4006C6471 /* SwiftUIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtensions.swift; sourceTree = "<group>"; };
 		5BF1940A2D238501006C6471 /* BlockMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockMatrix.swift; sourceTree = "<group>"; };
 		5BF1940C2D238501006C6471 /* IdentifiedBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiedBlock.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		5B75E6D82D109D0D009D2C80 = {
 			isa = PBXGroup;
 			children = (
+				5BF174F32D802895003B84B9 /* README.md */,
 				5BBB33542D3D117200259537 /* Localizable.xcstrings */,
 				5B75E6E32D109D0D009D2C80 /* i2048 */,
 				5B75E6F52D109D0F009D2C80 /* i2048Tests */,
@@ -527,6 +530,7 @@
 			files = (
 				5B75E6ED2D109D0F009D2C80 /* Preview Assets.xcassets in Resources */,
 				5B75E6E92D109D0F009D2C80 /* Assets.xcassets in Resources */,
+				5BF174F42D802895003B84B9 /* README.md in Resources */,
 				5BBB33552D3D117200259537 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
