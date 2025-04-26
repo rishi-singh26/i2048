@@ -869,6 +869,34 @@
         }
       }
     },
+    "Arrow Bindings - ⌘ + (↑ → ↓ ←)" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pfeilbindungen - ⌘ + (↑ → ↓ ←)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arrow Bindings - ⌘ + (↑ → ↓ ←)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एरो बाइंडिंग - ⌘ + (↑ → ↓ ←)"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಬಾಣದ ಬೈಂಡಿಂಗ್ಸ್ - ⌘ + (↑ → ↓ ←)"
+          }
+        }
+      }
+    },
     "Ascending" : {
       "localizations" : {
         "de" : {
@@ -2769,35 +2797,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಗ್ರಿಡ್ ಗಾತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
-          }
-        }
-      }
-    },
-    "Set as Game Background" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Als Spielhintergrund festlegen"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Définir comme arrière-plan du jeu"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "खेल पृष्ठभूमि के रूप में सेट करें"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ಆಟದ ಹಿನ್ನೆಲೆಯಾಗಿ ಹೊಂದಿಸಿ"
           }
         }
       }
