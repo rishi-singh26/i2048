@@ -16,9 +16,9 @@ struct i2048App: App {
     @StateObject private var artManager = BackgroundArtManager()
     @StateObject private var gameLogic = GameLogic()
     
-    init() {
-        SKPaymentQueue.default().add(InAppPurchaseObserver())
-    }
+//    init() {
+//        SKPaymentQueue.default().add(InAppPurchaseObserver())
+//    }
 
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([

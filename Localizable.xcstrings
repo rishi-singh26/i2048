@@ -2038,6 +2038,9 @@
         }
       }
     },
+    "OK" : {
+
+    },
     "Pitch: %lf" : {
       "localizations" : {
         "de" : {
@@ -2268,7 +2271,7 @@
     "Restore Purchases" : {
 
     },
-    "Restore your subscription if it hasn't synced automatically" : {
+    "Restore your purchase if it hasn't synced automatically" : {
 
     },
     "Right Hand Binding - I L K J" : {
