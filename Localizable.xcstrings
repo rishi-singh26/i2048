@@ -114,7 +114,32 @@
       }
     },
     "/" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/"
+          }
+        }
+      }
     },
     "%lld" : {
       "localizations" : {
@@ -789,7 +814,32 @@
       }
     },
     "App Icon" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App-Symbol"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Icône de l'application"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऐप आइकन"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಅಪ್ಲಿಕೇಶನ್ ಐಕಾನ್"
+          }
+        }
+      }
     },
     "Are you sure you want to delete this game?" : {
       "localizations" : {
@@ -818,9 +868,6 @@
           }
         }
       }
-    },
-    "Arrow Bindongs - ⌘ + (↑ → ↓ ←)" : {
-
     },
     "Ascending" : {
       "localizations" : {
@@ -879,65 +926,57 @@
       }
     },
     "Background Colors" : {
-
-    },
-    "Background Image" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Image d'arrière-plan"
+            "value" : "Hintergrundfarben"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Image d'arrière-plan"
+            "value" : "Couleurs d'arrière-plan"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पृष्ठभूमि छवि"
+            "value" : "पृष्ठभूमि रंग"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಹಿನ್ನೆಲೆ ಚಿತ್ರ"
+            "value" : "ಹಿನ್ನೆಲೆ ಬಣ್ಣಗಳು"
           }
         }
       }
     },
     "Buy Premium" : {
-
-    },
-    "Camping on the beach" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Camping am Strand"
+            "value" : "Premium kaufen"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Camping sur la plage"
+            "value" : "Acheter Premium"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "समुद्र तट पर शिविर"
+            "value" : "प्रीमियम खरीदें"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಕಡಲತೀರದಲ್ಲಿ ಶಿಬಿರ"
+            "value" : "ಪ್ರೀಮಿಯಂ ಖರೀದಿಸಿ"
           }
         }
       }
@@ -1022,35 +1061,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಕೃತಿಸ್ವಾಮ್ಯ © 2025 ರಿಷಿ ಸಿಂಗ್. ಎಲ್ಲ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ."
-          }
-        }
-      }
-    },
-    "Customize game interface with Background Image and Colors" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Customize game interface with background image and colors"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Personnaliser l'interface du jeu avec l'image d'arrière-plan et les couleurs"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "पृष्ठभूमि छवि और रंगों के साथ गेम इंटरफ़ेस को अनुकूलित करें"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ಹಿನ್ನೆಲೆ ಚಿತ್ರ ಮತ್ತು ಬಣ್ಣಗಳೊಂದಿಗೆ ಆಟದ ಇಂಟರ್ಫೇಸ್ ಅನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಿ"
           }
         }
       }
@@ -1252,10 +1262,60 @@
       }
     },
     "Disabled" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deaktiviert"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Désactivé"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अक्षम"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"
+          }
+        }
+      }
     },
     "Dismiss" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurückweisen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rejeter"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रद्द करें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ವಜಾಗೊಳಿಸಿ"
+          }
+        }
+      }
     },
     "Done" : {
       "localizations" : {
@@ -1398,7 +1458,32 @@
       }
     },
     "Enabled" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ermöglicht"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activé"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सक्रिय"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"
+          }
+        }
+      }
     },
     "Game" : {
       "localizations" : {
@@ -1793,19 +1878,144 @@
       }
     },
     "i2048 - Buy Lifetime Premium" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - Lifetime Premium kaufen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - Acheter la prime à vie"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - लाइफटाइम प्रीमियम खरीदें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - ಜೀವಮಾನದ ಪ್ರೀಮಿಯಂ ಖರೀದಿಸಿ"
+          }
+        }
+      }
     },
     "i2048 - Edit Game" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - Spiel bearbeiten"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - Modifier le jeu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - गेम संपादित करें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - ಆಟವನ್ನು ಸಂಪಾದಿಸಿ"
+          }
+        }
+      }
     },
     "i2048 - New Game" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - Neues Spiel"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - Nouveau jeu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - नया गेम"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - ಹೊಸ ಆಟ"
+          }
+        }
+      }
     },
     "i2048 - Share Game" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - Spiel teilen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - Jeu partagé"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - गेम साझा करें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - ಆಟವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ"
+          }
+        }
+      }
     },
     "i2048 - Statistics" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - Statistik"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - Statistiques"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - सांख्यिकी"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i2048 - ಅಂಕಿಅಂಶಗಳು"
+          }
+        }
+      }
     },
     "If on, you will be able to undo one move at a time" : {
       "localizations" : {
@@ -1836,33 +2046,29 @@
       }
     },
     "Key Bindings" : {
-
-    },
-    "Krestovskaya Anna" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Krestovskaya Anna"
+            "value" : "Tastenkombinationen"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Krestovskaya Anna"
+            "value" : "Raccourcis de touches"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "क्रेस्टोव्स्काया अन्ना"
+            "value" : "कुंजी बाइंडिंग"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಕ್ರೆಸ್ಟೋವ್ಸ್ಕಯಾ ಅನ್ನಾ"
+            "value" : "ಕೀ ಬೈಂಡಿಂಗ್ಸ್"
           }
         }
       }
@@ -1896,7 +2102,32 @@
       }
     },
     "Left Hand Binding - W D S A" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bindung für die linke Hand - W S D A"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reliure à gauche - W D S A"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाएँ हाथ की बाइंडिंग - W D S A"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಎಡಗೈ ಬೈಂಡಿಂಗ್ - W D S A"
+          }
+        }
+      }
     },
     "Light" : {
       "localizations" : {
@@ -2039,7 +2270,32 @@
       }
     },
     "OK" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D'ACCORD"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ठीक है"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಸರಿ"
+          }
+        }
+      }
     },
     "Pitch: %lf" : {
       "localizations" : {
@@ -2070,7 +2326,32 @@
       }
     },
     "Premium" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prämie"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prime"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रीमियम"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಪ್ರೀಮಿಯಂ"
+          }
+        }
+      }
     },
     "Privacy Policy" : {
       "localizations" : {
@@ -2269,13 +2550,88 @@
       }
     },
     "Restore Purchases" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einkäufe wiederherstellen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurer les achats"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खरीदारी वापस लौटाएं"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಖರೀದಿಗಳನ್ನು ಮರುಸ್ಥಾಪಿಸಿ"
+          }
+        }
+      }
     },
     "Restore your purchase if it hasn't synced automatically" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stellen Sie Ihren Kauf wieder her, wenn er nicht automatisch synchronisiert wurde"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurez votre achat s'il n'a pas été synchronisé automatiquement"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यदि आपकी खरीदारी स्वचालित रूप से सिंक नहीं हुई है तो उसे पुनर्स्थापित करें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ನಿಮ್ಮ ಖರೀದಿಯು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸಿಂಕ್ ಆಗದಿದ್ದರೆ ಅದನ್ನು ಮರುಸ್ಥಾಪಿಸಿ"
+          }
+        }
+      }
     },
     "Right Hand Binding - I L K J" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechtshänderbindung - I L K J"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reliure à droite - I L K J"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दायाँ हाथ बाइंडिंग - I L K J"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಬಲಗೈ ಬೈಂಡಿಂಗ್ - I L K J"
+          }
+        }
+      }
     },
     "Roll: %lf" : {
       "localizations" : {
@@ -2334,10 +2690,60 @@
       }
     },
     "Search" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suchen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recherche"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोजें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಹುಡುಕು"
+          }
+        }
+      }
     },
     "Select Colors" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wählen Sie Farben aus"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionnez les couleurs"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रंग चुनें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಬಣ್ಣಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+          }
+        }
+      }
     },
     "Select grid size" : {
       "localizations" : {
@@ -2425,10 +2831,60 @@
       }
     },
     "Share   ⇧⌘S" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktie   ⇧⌘S"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partager   ⇧⌘S"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शेयर करें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಹಂಚಿಕೊಳ್ಳಿ   ⇧⌘S"
+          }
+        }
+      }
     },
     "Share Game" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spiel teilen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partager le jeu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खेल साझा करें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಆಟ ಹಂಚಿಕೊಳ್ಳಿ"
+          }
+        }
+      }
     },
     "Sort Games By" : {
       "localizations" : {
@@ -2767,7 +3223,32 @@
       }
     },
     "Upgrade to Premium" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upgrade auf Premium"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passer à Premium"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रीमियम में अपग्रेड करें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಪ್ರೀಮಿಯಂಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ"
+          }
+        }
+      }
     },
     "Usage License" : {
       "localizations" : {

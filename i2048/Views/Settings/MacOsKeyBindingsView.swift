@@ -17,7 +17,7 @@ struct MacOsKeyBindingsView: View {
         ScrollView {
             MacCustomSection(header: "Choose Key bindings", footer: "You can choose to enable all three key binding groups at ones") {
                 HStack(alignment: .center) {
-                    Text("Arrow Bindongs - ⌘ + (↑ → ↓ ←)")
+                    Text("Arrow Bindings - ⌘ + (↑ → ↓ ←)")
 //                        .frame(width: 150, alignment: .leading)
                     Spacer()
                     Toggle("", isOn: $userDefaultsManager.arrowBindingsEnabled)
