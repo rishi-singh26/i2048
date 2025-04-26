@@ -37,6 +37,7 @@ struct IosGameBackgroundSelectionView: View {
                         .onTapGesture {
                             if let selectedGame = gameLogic.selectedGame {
                                 selectedGame.selectNetworkImage(item)
+                                dismiss()
                             }
                         }
                 },
