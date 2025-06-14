@@ -2,12 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A modern browser-based implementation of the popular 2048 puzzle game. Move numbered tiles to combine them and reach the elusive 2048 tile!
-
 ![i2048 Game Screenshot](./screenshot.png)
-
-## Play Now ▶️
-[Live Demo](https://your-deployment-link.com) (Note: Replace with actual deployment link if available)
 
 ## Contributing 🤝
 
