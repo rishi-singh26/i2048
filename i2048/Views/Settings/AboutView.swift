@@ -30,37 +30,37 @@ struct AboutView: View {
                     VStack(alignment: .leading) {
                         Text("i2048")
                             .font(.largeTitle.bold())
-                        Text("Version 1.0.0")
+                        Text("Version 1.0.1")
                             .font(.callout)
                     }
                     Spacer()
                 }
             }
             
-            MacCustomSection(header: "Special Thanks") {
-                VStack(alignment: .leading) {
-                    ForEach(Array(artManager.backgroundImages.enumerated()), id: \.offset) { index, artist in
-                        Text(artist.name)
-                        if index < (artManager.backgroundImages.count - 1) {
-                            Divider()
-                        }
-                    }
-                }
-            }
+//            MacCustomSection(header: "Special Thanks") {
+//                VStack(alignment: .leading) {
+//                    ForEach(Array(artManager.backgroundImages.enumerated()), id: \.offset) { index, artist in
+//                        Text(artist.name)
+//                        if index < (artManager.backgroundImages.count - 1) {
+//                            Divider()
+//                        }
+//                    }
+//                }
+//            }
             
             MacCustomSection(header: "Acknowledgements") {
                 VStack(alignment: .leading) {
-                    Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
-                        CustomLabel(trailingImageName: "arrow.up.right", title: "Markdown Viewer")
+                    Link(destination: URL(string: "https://github.com/simibac/ConfettiSwiftUI")!) {
+                        CustomLabel(trailingImageName: "arrow.up.right", title: "ConfettiSwiftUI")
                     }
-                    Divider()
-                    Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
-                        CustomLabel(trailingImageName: "arrow.up.right", title: "Kingfisher")
-                    }
+//                    Divider()
+//                    Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
+//                        CustomLabel(trailingImageName: "arrow.up.right", title: "Kingfisher")
+//                    }
                 }
             }
             
-            MacCustomSection(header: "Copyright © 2025 Rishi Singh. All Rights Reserved.") {
+            MacCustomSection {
                 VStack(alignment: .leading) {
                     Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
                         CustomLabel(trailingImageName: "arrow.up.right", title: "i2048.rishisingh.in")
@@ -87,19 +87,19 @@ struct AboutView: View {
                 }
             }
             
-            Section("Special Thanks") {
-                ForEach(artManager.backgroundImages) { artist in
-                    Text(artist.name)
-                }
-            }
+//            Section("Special Thanks") {
+//                ForEach(artManager.backgroundImages) { artist in
+//                    Text(artist.name)
+//                }
+//            }
             
             Section("Acknowledgements") {
-                Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
-                    CustomLabel(trailingImageName: "arrow.up.right", title: "Markdown Viewer")
+                Link(destination: URL(string: "https://github.com/simibac/ConfettiSwiftUI")!) {
+                    CustomLabel(trailingImageName: "arrow.up.right", title: "ConfettiSwiftUI")
                 }
-                Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
-                    CustomLabel(trailingImageName: "arrow.up.right", title: "Kingfisher")
-                }
+//                Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
+//                    CustomLabel(trailingImageName: "arrow.up.right", title: "Kingfisher")
+//                }
             }
             
             Section("Copyright © 2025 Rishi Singh. All Rights Reserved.") {

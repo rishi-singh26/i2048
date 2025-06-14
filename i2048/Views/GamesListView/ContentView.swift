@@ -256,10 +256,15 @@ struct ContentView: View {
                 }
                 
                 Spacer()
+//                Button(action: {
+//                    searchFieldPresented = true
+//                }, label: {
+//                    Image(systemName: "magnifyingglass")
+//                })
                 Button(action: {
-                    searchFieldPresented = true
+                    showStatisticsView.toggle()
                 }, label: {
-                    Image(systemName: "magnifyingglass")
+                    Label("Statistics", systemImage: "chart.bar")
                 })
                 Divider().frame(height: 30)
                 Button(action: {
@@ -269,12 +274,6 @@ struct ContentView: View {
                 })
                 Divider().frame(height: 30)
                 Menu {
-                    Button(action: {
-                        showStatisticsView.toggle()
-                    }, label: {
-                        Label("Statistics", systemImage: "chart.bar")
-                    })
-                    Divider()
                     Picker("Sort Order", selection: $sortOrder) {
                         Text("Ascending")
                         .tag(true)

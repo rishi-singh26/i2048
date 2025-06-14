@@ -2942,6 +2942,7 @@
       }
     },
     "Special Thanks" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3329,6 +3330,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಆವೃತ್ತಿ 1.0.0"
+          }
+        }
+      }
+    },
+    "Version 1.0.1" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version 1.0.0"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version 1.0.0"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संस्करण 1.0.0"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಆವೃತ್ತಿ 1.0.1"
           }
         }
       }
