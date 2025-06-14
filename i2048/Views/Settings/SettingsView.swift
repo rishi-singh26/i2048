@@ -10,6 +10,10 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @State private var showIAPSheet: Bool = false
+    @Environment(\.dismiss) var dismiss
+    
+    private let privacyPolicyURL = "https://raw.githubusercontent.com/rishi-singh26/i2048/refs/heads/main/Assets/PrivacyPolicy.md"
+    private let termsOfuserURL = "https://raw.githubusercontent.com/rishi-singh26/i2048/refs/heads/main/Assets/TermsOfUse.md"
         
     var body: some View {
 #if os(iOS)
@@ -166,16 +170,18 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    NavigationLink(destination: Text("Destination")) {
+                    NavigationLink(destination: BuildSheetView(url: URL(string: privacyPolicyURL), navigationTitle: "Privacy Policy")) {
                         Label("Privacy Policy", systemImage: "bolt.shield")
                     }
-                    NavigationLink(destination: Text("Destination")) {
+                    NavigationLink(destination: BuildSheetView(url: URL(string: privacyPolicyURL), navigationTitle: "Terms of Use")) {
                         Label("Terms of Use", systemImage: "list.bullet.rectangle.portrait")
                     }
-                    NavigationLink(destination: Text("Destination")) {
-                        Label("Usage License", systemImage: "checkmark.seal")
+                }
+                
+                Section {
+                    Link(destination: URL(string: "https://letterbird.co/i2048-brain-tiles")!) {
+                        CustomLabel(leadingImageName: "text.bubble", trailingImageName: "arrow.up.right", title: "Help & Support")
                     }
-                    
                     Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
                         CustomLabel(leadingImageName: "lock.open.display", trailingImageName: "arrow.up.right", title: "Open Source Code")
                     }
@@ -188,6 +194,13 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+            }
             .sheet(isPresented: $showIAPSheet, content: {
                 IAPView()
             })
@@ -227,6 +240,12 @@ struct SettingsView: View {
         .frame(maxWidth: 640, minHeight: 600)
     }
 #endif
+    
+    @ViewBuilder
+    private func BuildSheetView(url: URL?, navigationTitle: String) -> some View {
+        MarkdownWebView(url: url!)
+            .navigationTitle(navigationTitle)
+    }
 }
 
 #Preview {

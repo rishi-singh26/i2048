@@ -12,6 +12,12 @@ struct GeneralSettingsView: View {
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @EnvironmentObject var artManager: BackgroundArtManager
     
+    @State private var showPrivacyPolicy: Bool = false
+    @State private var showTermsOfService: Bool = false
+    
+    private let privacyPolicyURL = "https://raw.githubusercontent.com/rishi-singh26/i2048/refs/heads/main/Assets/PrivacyPolicy.md"
+    private let termsOfuserURL = "https://raw.githubusercontent.com/rishi-singh26/i2048/refs/heads/main/Assets/TermsOfUse.md"
+    
     var body: some View {
         ScrollView {
 //            MacCustomSection(header: "Game Geedback", footer: "Enable game feedback with Sound") {
@@ -136,13 +142,28 @@ struct GeneralSettingsView: View {
             }
             
             MacCustomSection(header: "") {
-                CustomLabel(leadingImageName: "bolt.shield", trailingImageName: "chevron.right", title: "Privacy Policy")
+                HStack {
+                    Label("Privacy Policy", systemImage: "bolt.shield")
+                    Spacer()
+                    Button("View") {
+                        showPrivacyPolicy = true
+                    }
+                }
                 Divider()
                     .padding(.vertical, 2)
-                CustomLabel(leadingImageName: "list.bullet.rectangle.portrait", trailingImageName: "chevron.right", title: "Terms of Use")
-                Divider()
-                    .padding(.vertical, 2)
-                CustomLabel(leadingImageName: "checkmark.seal", trailingImageName: "chevron.right", title: "Usage License")
+                HStack {
+                    Label("Terms of Use", systemImage: "list.bullet.rectangle.portrait")
+                    Spacer()
+                    Button("View") {
+                        showTermsOfService = true
+                    }
+                }
+            }
+            
+            MacCustomSection(header: "") {
+                Link(destination: URL(string: "https://letterbird.co/i2048-brain-tiles")!) {
+                    CustomLabel(leadingImageName: "text.bubble", trailingImageName: "arrow.up.right", title: "Help & Support")
+                }
                 Divider()
                     .padding(.top, 2)
                 Link(destination: URL(string: "https://github.com/rishi-singh26/i2048")!) {
@@ -151,6 +172,20 @@ struct GeneralSettingsView: View {
             }
             .padding(.bottom)
         }
+        .sheet(isPresented: $showPrivacyPolicy) {
+            BuildSheetView(url: URL(string: privacyPolicyURL), navigationTitle: "Privacy Policy")
+        }
+        .sheet(isPresented: $showTermsOfService) {
+            BuildSheetView(url: URL(string: termsOfuserURL), navigationTitle: "Terms of Use")
+        }
+    }
+    
+    @ViewBuilder
+    private func BuildSheetView(url: URL?, navigationTitle: String) -> some View {
+        MarkdownWebView(url: url!)
+//            .toolbar {
+//                Button("Done")
+//            }
     }
 }
 

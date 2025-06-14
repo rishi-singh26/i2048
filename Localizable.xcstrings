@@ -1065,6 +1065,9 @@
         }
       }
     },
+    "Content not found" : {
+
+    },
     "Copyright © 2025 Rishi Singh. All Rights Reserved." : {
       "localizations" : {
         "de" : {
@@ -1234,6 +1237,7 @@
       }
     },
     "Destination" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1512,6 +1516,12 @@
           }
         }
       }
+    },
+    "Error loading content: %@" : {
+
+    },
+    "Export" : {
+
     },
     "Game" : {
       "localizations" : {
@@ -2184,6 +2194,9 @@
           }
         }
       }
+    },
+    "Loading..." : {
+
     },
     "Name" : {
       "localizations" : {
@@ -3251,6 +3264,7 @@
       }
     },
     "Usage License" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3361,6 +3375,9 @@
           }
         }
       }
+    },
+    "View" : {
+
     },
     "Yaw: %lf" : {
       "localizations" : {
