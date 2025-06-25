@@ -145,9 +145,10 @@ struct IAPView: View {
             .accessibilityElement(children: .contain)
             .storeProductsTask(for: ["in.rishisingh.i2048.lifetime"]) { taskState in
                 switch taskState {
-                case .loading, .success:
-                    userDefaultsManager.unlockLifetimeAccess()
+                case .loading:
                     break
+                case .success:
+                    userDefaultsManager.unlockLifetimeAccess()
                 case .failure(let error):
                     self.presentError(error)
                 @unknown default:
