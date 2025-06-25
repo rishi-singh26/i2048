@@ -6,7 +6,5 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
-	<key>NSMotionUsageDescription</key>
-	<string>Need access to motion data for headphone gestures</string>
 </dict>
 </plist>

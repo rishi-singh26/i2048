@@ -99,6 +99,7 @@ struct IAPView: View {
                     switch taskState {
                     case .loading, .success:
                         userDefaultsManager.unlockLifetimeAccess()
+                        dismiss()
                         break
                     case .failure(let error):
                         self.presentError(error)

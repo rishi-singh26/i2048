@@ -39,6 +39,16 @@ struct SettingsView: View {
                             endPoint: .trailing
                         )
                     )
+                } else {
+                    Label("Lifetime premium access", systemImage: "crown.fill")
+                    .listItemTint(.yellow)
+                    .listRowBackground(
+                        LinearGradient(
+                            gradient: Gradient(colors: [Color.red.opacity(0.6), Color.yellow]),
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
                 }
                 
                 Section {
