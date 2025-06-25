@@ -189,9 +189,15 @@ final class GameLogic : ObservableObject {
         
         if moved {
             generateNewBlocks(1)
-            defaultsManager?.triggerSimpleHaptic()
+            // Light haptic for movement
+            if defaultsManager?.hapticsEnabled == true {
+                HapticsManager.shared.playHapticPattern(intensity: 0.3, sharpness: 0.5)
+            }
         } else {
-            defaultsManager?.triggerCustomPattern()
+            // Stronger haptic for no movement
+            if defaultsManager?.hapticsEnabled == true {
+                HapticsManager.shared.playHapticPattern(intensity: 0.8, sharpness: 0.9, duration: 0.2)
+            }
         }
     }
     

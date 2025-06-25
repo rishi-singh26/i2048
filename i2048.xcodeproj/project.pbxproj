@@ -16,6 +16,7 @@
 		5B18C59B2D46C29900985B40 /* HeadphoneMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18C59A2D46C29900985B40 /* HeadphoneMotionManager.swift */; };
 		5B18C59F2D46C37000985B40 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18C59E2D46C37000985B40 /* DeviceType.swift */; };
 		5B36F5DE2D20358300D318A6 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B36F5DD2D20358300D318A6 /* GamesListView.swift */; };
+		5B3B8DEC2E0BC34D003ACF2B /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B8DEB2E0BC34D003ACF2B /* HapticsManager.swift */; };
 		5B4260992D60EC9800341E05 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4260982D60EC9800341E05 /* IAPManager.swift */; };
 		5B42609B2D60EF9400341E05 /* IAPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B42609A2D60EF9400341E05 /* IAPView.swift */; };
 		5B42609D2D60EFC800341E05 /* SKProductExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B42609C2D60EFC800341E05 /* SKProductExtension.swift */; };
@@ -101,6 +102,7 @@
 		5B18C59A2D46C29900985B40 /* HeadphoneMotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadphoneMotionManager.swift; sourceTree = "<group>"; };
 		5B18C59E2D46C37000985B40 /* DeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
 		5B36F5DD2D20358300D318A6 /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
+		5B3B8DEB2E0BC34D003ACF2B /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		5B4260982D60EC9800341E05 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		5B42609A2D60EF9400341E05 /* IAPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPView.swift; sourceTree = "<group>"; };
 		5B42609C2D60EFC800341E05 /* SKProductExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKProductExtension.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				5B18C59A2D46C29900985B40 /* HeadphoneMotionManager.swift */,
 				5B18C59E2D46C37000985B40 /* DeviceType.swift */,
 				5B4260982D60EC9800341E05 /* IAPManager.swift */,
+				5B3B8DEB2E0BC34D003ACF2B /* HapticsManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				5BE3D43B2D52FEFC0088C5E8 /* PagingSlider.swift in Sources */,
 				5BE3D43D2D52FEFC0088C5E8 /* IosGameBackgroundView.swift in Sources */,
 				5B14219F2D147C1D00032861 /* AboutView.swift in Sources */,
+				5B3B8DEC2E0BC34D003ACF2B /* HapticsManager.swift in Sources */,
 				5B6DD9502D43EC7D008F2EE2 /* IosGameControllsView.swift in Sources */,
 				5BED5FEF2D12F77B0085968B /* UserDefaultsManager.swift in Sources */,
 				5B4260992D60EC9800341E05 /* IAPManager.swift in Sources */,
@@ -779,7 +783,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = i2048/i2048.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"i2048/Preview Content\"";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -822,7 +826,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = i2048/i2048.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"i2048/Preview Content\"";
 				ENABLE_HARDENED_RUNTIME = YES;

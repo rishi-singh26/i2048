@@ -98,7 +98,7 @@ struct IAPView: View {
                 .storeProductsTask(for: ["in.rishisingh.i2048.lifetime"]) { taskState in
                     switch taskState {
                     case .loading, .success:
-                        userDefaultsManager.isPremiumUser = true
+                        userDefaultsManager.unlockLifetimeAccess()
                         break
                     case .failure(let error):
                         self.presentError(error)
