@@ -9,15 +9,10 @@ import SwiftUI
 import StoreKit
 
 struct IAPView: View {
-    var isWindow: Bool = false
-//    @StateObject private var iapManager = InAppPurchaseManager()
+    @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @Environment(\.dismiss) var dismiss
     
-#if SPARKLE
-    var isInAppPurchaseAvailable = false
-#else
-    var isInAppPurchaseAvailable = true
-#endif
+    var isWindow: Bool = false
         
     @State private var error: (any Error)?
     @State private var storeKitError: StoreKitError?
@@ -52,15 +47,9 @@ struct IAPView: View {
         NavigationView {
             IAPViewBuilder(desktopView: false, features: iOSPremiumFeatures)
         }
-//        .onAppear {
-//            iapManager.fetchProducts()
-//        }
 #elseif os(macOS)
         IAPViewBuilder(desktopView: true, features: macOSPremiumFeatures)
             .frame(width: 350, height: 700)
-//            .onAppear {
-//                iapManager.fetchProducts()
-//            }
 #endif
     }
     
@@ -68,7 +57,6 @@ struct IAPView: View {
     func IAPViewBuilder(desktopView: Bool, features: [String]) -> some View {
         ZStack(alignment: .top) {
             VStack {
-                // Product List
                 Image("PremiumScreenIcon")
                     .resizable()
                     .frame(width: 150, height: 150)
@@ -110,6 +98,7 @@ struct IAPView: View {
                 .storeProductsTask(for: ["in.rishisingh.i2048.lifetime"]) { taskState in
                     switch taskState {
                     case .loading, .success:
+                        userDefaultsManager.isPremiumUser = true
                         break
                     case .failure(let error):
                         self.presentError(error)

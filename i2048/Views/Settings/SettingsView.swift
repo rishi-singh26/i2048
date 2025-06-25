@@ -182,6 +182,7 @@ struct SettingsView: View {
             }
             .sheet(isPresented: $showIAPSheet, content: {
                 IAPView()
+                    .environmentObject(userDefaultsManager)
             })
         }
     }

@@ -1071,6 +1071,7 @@
 
     },
     "Copyright © 2025 Rishi Singh. All Rights Reserved." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3393,6 +3394,9 @@
       }
     },
     "View" : {
+
+    },
+    "Website" : {
 
     },
     "Yaw: %lf" : {
