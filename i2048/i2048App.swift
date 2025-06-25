@@ -102,6 +102,7 @@ struct i2048App: App {
         
         Window("i2048 - Buy Lifetime Premium", id: "lifetimePremium") {
             IAPView(isWindow: true)
+                .environmentObject(userDefaultsManager)
         }
         .modelContainer(sharedModelContainer)
         .defaultSize(width: 300, height: 720)

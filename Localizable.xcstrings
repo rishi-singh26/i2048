@@ -1837,6 +1837,9 @@
         }
       }
     },
+    "Great" : {
+
+    },
     "Grid Size" : {
       "localizations" : {
         "de" : {
@@ -2173,6 +2176,9 @@
         }
       }
     },
+    "Lifetime premium access" : {
+
+    },
     "Light" : {
       "localizations" : {
         "de" : {
@@ -2400,6 +2406,9 @@
           }
         }
       }
+    },
+    "Premium Features" : {
+
     },
     "Privacy Policy" : {
       "localizations" : {
@@ -3427,6 +3436,9 @@
           }
         }
       }
+    },
+    "You have lifelime premium access to i2048." : {
+
     },
     "You Won!" : {
       "localizations" : {

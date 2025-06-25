@@ -25,31 +25,19 @@ struct SettingsView: View {
     func IosViewBuilder() -> some View {
         NavigationView {
             List {
-                if(!userDefaultsManager.isPremiumUser) {
-                    Button {
-                        showIAPSheet = true
-                    } label: {
-                        Label("Buy Premium", systemImage: "crown.fill")
-                    }
-                    .listItemTint(.yellow)
-                    .listRowBackground(
-                        LinearGradient(
-                            gradient: Gradient(colors: [Color.red.opacity(0.6), Color.yellow]),
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
-                } else {
-                    Label("Lifetime premium access", systemImage: "crown.fill")
-                    .listItemTint(.yellow)
-                    .listRowBackground(
-                        LinearGradient(
-                            gradient: Gradient(colors: [Color.red.opacity(0.6), Color.yellow]),
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
+                Button {
+                    showIAPSheet = true
+                } label: {
+                    Label(userDefaultsManager.isPremiumUser ? "Lifetime premium access" : "Buy Premium", systemImage: "crown.fill")
                 }
+                .listItemTint(.yellow)
+                .listRowBackground(
+                    LinearGradient(
+                        gradient: Gradient(colors: [Color.red.opacity(0.6), Color.yellow]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                )
                 
                 Section {
                     NavigationLink {
