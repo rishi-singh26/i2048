@@ -17,18 +17,14 @@ struct CustomLabel: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 16) {
-            if let leadingImageName = leadingImageName, let title = title {
-                Label(title, systemImage: leadingImageName)
-            } else {
-                if let leadingImageName = leadingImageName {
-                    Image(systemName: leadingImageName)
-                        .font(.title3)
-                }
-                if let title = title {
-                    Text(title)
-                        .font(.body)
-                        .foregroundColor(.primary)
-                }
+            if let leadingImageName = leadingImageName {
+                Image(systemName: leadingImageName)
+                    .font(.title3)
+            }
+            if let title = title {
+                Text(title)
+                    .font(.body)
+                    .foregroundColor(.primary)
             }
             Spacer()
             if let trailingImageName = trailingImageName {

@@ -58,7 +58,12 @@ struct MarkdownWebView: View {
 #endif
             }
         }
-        .fileExporter(isPresented: $showingFileExporter, document: MarkdownDocument(markdownContent ?? ""), contentType: UTType(filenameExtension: "md")!, defaultFilename: url.lastPathComponent) { result in
+        .fileExporter(
+            isPresented: $showingFileExporter,
+            document: MarkdownDocument(markdownContent ?? ""),
+            contentType: UTType(filenameExtension: "md")!,
+            defaultFilename: url.lastPathComponent
+        ) { result in
 //            switch result {
 //            case .success(let url):
 //                fileExportURL = url

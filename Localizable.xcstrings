@@ -758,6 +758,7 @@
       }
     },
     "AirPods Pro" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -926,6 +927,7 @@
       }
     },
     "Attitude:" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1264,6 +1266,9 @@
           }
         }
       }
+    },
+    "Developed by [Rishi Singh](https://rishisingh.in)" : {
+
     },
     "Disable Haptics" : {
       "localizations" : {
@@ -2339,6 +2344,7 @@
       }
     },
     "Pitch: %lf" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2562,6 +2568,9 @@
         }
       }
     },
+    "Rate Us" : {
+
+    },
     "Rename" : {
       "localizations" : {
         "de" : {
@@ -2675,6 +2684,7 @@
       }
     },
     "Roll: %lf" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2984,6 +2994,7 @@
       }
     },
     "Start Recording" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3068,6 +3079,7 @@
       }
     },
     "Stop Recording" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3292,6 +3304,9 @@
         }
       }
     },
+    "v%@" : {
+
+    },
     "Value" : {
       "localizations" : {
         "de" : {
@@ -3349,6 +3364,7 @@
       }
     },
     "Version 1.0.1" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3380,6 +3396,7 @@
 
     },
     "Yaw: %lf" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

@@ -64,7 +64,6 @@
 		5BED60002D1373E50085968B /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED5FFF2D1373E40085968B /* MotionManager.swift */; };
 		5BED60022D138F220085968B /* BackgroundArtManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED60012D138F220085968B /* BackgroundArtManager.swift */; };
 		5BF174F42D802895003B84B9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5BF174F32D802895003B84B9 /* README.md */; };
-		5BF194062D2384A4006C6471 /* SwiftUIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF194052D2384A4006C6471 /* SwiftUIExtensions.swift */; };
 		5BF1940E2D238501006C6471 /* IdentifiedBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1940C2D238501006C6471 /* IdentifiedBlock.swift */; };
 		5BF1940F2D238501006C6471 /* BlockMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1940A2D238501006C6471 /* BlockMatrix.swift */; };
 		5BF194142D238556006C6471 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF194112D238556006C6471 /* BlockView.swift */; };
@@ -152,7 +151,6 @@
 		5BED5FFF2D1373E40085968B /* MotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		5BED60012D138F220085968B /* BackgroundArtManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundArtManager.swift; sourceTree = "<group>"; };
 		5BF174F32D802895003B84B9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		5BF194052D2384A4006C6471 /* SwiftUIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtensions.swift; sourceTree = "<group>"; };
 		5BF1940A2D238501006C6471 /* BlockMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockMatrix.swift; sourceTree = "<group>"; };
 		5BF1940C2D238501006C6471 /* IdentifiedBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiedBlock.swift; sourceTree = "<group>"; };
 		5BF194112D238556006C6471 /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
@@ -311,7 +309,6 @@
 		5B75E7982D118584009D2C80 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				5BF194052D2384A4006C6471 /* SwiftUIExtensions.swift */,
 				5B75E7962D11857D009D2C80 /* ColorExtension.swift */,
 				5BBA51112D18FB8C00B4D169 /* DateExtenstion.swift */,
 				5BE9A8BB2D213F0700B6945F /* ArrayExtension.swift */,
@@ -595,7 +592,6 @@
 				5BED5FF42D130E140085968B /* GeneralSettingsView.swift in Sources */,
 				5B75E7972D11857D009D2C80 /* ColorExtension.swift in Sources */,
 				5BED5FEC2D12E4880085968B /* KeyboardKeyButton.swift in Sources */,
-				5BF194062D2384A4006C6471 /* SwiftUIExtensions.swift in Sources */,
 				5BE3D43B2D52FEFC0088C5E8 /* PagingSlider.swift in Sources */,
 				5BE3D43D2D52FEFC0088C5E8 /* IosGameBackgroundView.swift in Sources */,
 				5B14219F2D147C1D00032861 /* AboutView.swift in Sources */,
@@ -783,7 +779,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = i2048/i2048.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"i2048/Preview Content\"";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -806,7 +802,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = in.rishisingh.i2048;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -826,7 +822,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = i2048/i2048.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"i2048/Preview Content\"";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -849,7 +845,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = in.rishisingh.i2048;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
