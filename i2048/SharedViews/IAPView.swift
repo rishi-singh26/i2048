@@ -206,7 +206,7 @@ struct IAPView: View {
                 rotationAngle = 360
             }
             
-            Text("You have lifelime premium access to i2048.")
+            Text("You have lifetime premium access to i2048.")
                 .font(.body.bold())
             
             Text("Premium Features")

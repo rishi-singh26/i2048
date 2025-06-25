@@ -757,35 +757,6 @@
         }
       }
     },
-    "AirPods Pro" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "AirPods Pro"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "AirPods Pro"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "एयरपॉड्स प्रो"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ಏರ್‌ಪಾಡ್ಸ್ ಪ್ರೊ"
-          }
-        }
-      }
-    },
     "Allow Undo" : {
       "localizations" : {
         "de" : {
@@ -926,35 +897,6 @@
         }
       }
     },
-    "Attitude:" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Attitüde:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Attitude:"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "एटीट्यूड:"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Attitude:"
-          }
-        }
-      }
-    },
     "Background Colors" : {
       "localizations" : {
         "de" : {
@@ -1068,33 +1010,29 @@
       }
     },
     "Content not found" : {
-
-    },
-    "Copyright © 2025 Rishi Singh. All Rights Reserved." : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Urheberrecht © 2025 Rishi Singh. Alle Rechte vorbehalten."
+            "value" : "Inhalt nicht gefunden"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Droits d'auteur © 2025 Rishi Singh. Tous droits réservés."
+            "value" : "Contenu non trouvé"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "कॉपीराइट © 2025 ऋषि सिंह। सर्वाधिकार सुरक्षित।"
+            "value" : "सामग्री नहीं मिली"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಕೃತಿಸ್ವಾಮ್ಯ © 2025 ರಿಷಿ ಸಿಂಗ್. ಎಲ್ಲ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ."
+            "value" : "ವಿಷಯ ಕಂಡುಬಂದಿಲ್ಲ."
           }
         }
       }
@@ -1239,37 +1177,33 @@
         }
       }
     },
-    "Destination" : {
-      "extractionState" : "stale",
+    "Developed by [Rishi Singh](https://rishisingh.in)" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bestimmungsort"
+            "value" : "Developed by [Rishi Singh](https://rishisingh.in)"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Destination"
+            "value" : "Developed by [Rishi Singh](https://rishisingh.in)"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "गंतव्य"
+            "value" : "Developed by [Rishi Singh](https://rishisingh.in)"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ತಲುಪಬೇಕಾದ ಸ್ಥಳ"
+            "value" : "Developed by [Rishi Singh](https://rishisingh.in)"
           }
         }
       }
-    },
-    "Developed by [Rishi Singh](https://rishisingh.in)" : {
-
     },
     "Disable Haptics" : {
       "localizations" : {
@@ -1524,10 +1458,60 @@
       }
     },
     "Error loading content: %@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error loading content: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error loading content: %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सामग्री लोड करने में त्रुटि: %@"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error: %@"
+          }
+        }
+      }
     },
     "Export" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporter"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेव"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ರಫ್ತು ಮಾಡಿ"
+          }
+        }
+      }
     },
     "Game" : {
       "localizations" : {
@@ -1838,7 +1822,32 @@
       }
     },
     "Great" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Großartig"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Super"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बहुत अच्छा"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ತುಂಬಾ ಚೆನ್ನಾಗಿದೆ"
+          }
+        }
+      }
     },
     "Grid Size" : {
       "localizations" : {
@@ -2177,7 +2186,32 @@
       }
     },
     "Lifetime premium access" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lebenslanger Premium-Zugang"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accès premium à vie"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आजीवन प्रीमियम एक्सेस"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಜೀವಮಾನದ ಪ್ರೀಮಿಯಂ ಪ್ರವೇಶ"
+          }
+        }
+      }
     },
     "Light" : {
       "localizations" : {
@@ -2208,7 +2242,32 @@
       }
     },
     "Loading..." : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laden…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chargement…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लोडिंग…"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading…"
+          }
+        }
+      }
     },
     "Name" : {
       "localizations" : {
@@ -2350,35 +2409,6 @@
         }
       }
     },
-    "Pitch: %lf" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nicken: %lf"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tangage: %lf"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "पिच: %lf"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ಪಿಚ್: %lf"
-          }
-        }
-      }
-    },
     "Premium" : {
       "localizations" : {
         "de" : {
@@ -2408,7 +2438,32 @@
       }
     },
     "Premium Features" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium-Funktionen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonctionnalités Premium"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रीमियम फीचर्स"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಪ್ರೀಮಿಯಂ ವೈಶಿಷ್ಟ್ಯಗಳು"
+          }
+        }
+      }
     },
     "Privacy Policy" : {
       "localizations" : {
@@ -2579,7 +2634,32 @@
       }
     },
     "Rate Us" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewerten Sie uns"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Évaluez-nous"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हमें रेट करें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ನಮಗೆ ರೇಟ್ ಮಾಡಿ"
+          }
+        }
+      }
     },
     "Rename" : {
       "localizations" : {
@@ -2689,35 +2769,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಬಲಗೈ ಬೈಂಡಿಂಗ್ - I L K J"
-          }
-        }
-      }
-    },
-    "Roll: %lf" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rollen: %lf"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Roulis: %lf"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "रॉल: %lf"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ಸುತ್ತಿಕೊಳ್ಳಿ: %lf"
           }
         }
       }
@@ -2974,64 +3025,6 @@
         }
       }
     },
-    "Special Thanks" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Besonderer Dank"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remerciements spéciaux"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "विशेष धन्यवाद"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ವಿಶೇಷ ಧನ್ಯವಾದಗಳು"
-          }
-        }
-      }
-    },
-    "Start Recording" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aufnahme starten"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Commencer l'enregistrement"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "रिकॉर्डिंग शुरू करें"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ರೆಕಾರ್ಡಿಂಗ್ ಪ್ರಾರಂಭಿಸಿ"
-          }
-        }
-      }
-    },
     "Statistics" : {
       "localizations" : {
         "de" : {
@@ -3084,35 +3077,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಸ್ಥಿತಿ"
-          }
-        }
-      }
-    },
-    "Stop Recording" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aufzeichnung beenden"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Arrêter l'enregistrement"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "रिकॉर्डिंग बंद करें"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ರೆಕಾರ್ಡಿಂಗ್ ನಿಲ್ಲಿಸಿ"
           }
         }
       }
@@ -3285,37 +3249,33 @@
         }
       }
     },
-    "Usage License" : {
-      "extractionState" : "stale",
+    "v%@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nutzungslizenz"
+            "value" : "v%@"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licence d'utilisation"
+            "value" : "v%@"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "उपयोग लाइसेंस"
+            "value" : "v%@"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಬಳಕೆಯ ಪರವಾನಗಿ"
+            "value" : "v%@"
           }
         }
       }
-    },
-    "v%@" : {
-
     },
     "Value" : {
       "localizations" : {
@@ -3345,100 +3305,89 @@
         }
       }
     },
-    "Version 1.0.0" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Version 1.0.0"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Version 1.0.0"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "संस्करण 1.0.0"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ಆವೃತ್ತಿ 1.0.0"
-          }
-        }
-      }
-    },
-    "Version 1.0.1" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Version 1.0.0"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Version 1.0.0"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "संस्करण 1.0.0"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ಆವೃತ್ತಿ 1.0.1"
-          }
-        }
-      }
-    },
     "View" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sicht"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "देखें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ವೀಕ್ಷಿಸಿ"
+          }
+        }
+      }
     },
     "Website" : {
-
-    },
-    "Yaw: %lf" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gieren: %lf"
+            "value" : "Webseite"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lacet: %lf"
+            "value" : "Website"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "यॉव: %lf"
+            "value" : "वेबसाइट"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಯಾವ್: %lf"
+            "value" : "Website"
           }
         }
       }
     },
-    "You have lifelime premium access to i2048." : {
-
+    "You have lifetime premium access to i2048." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sie haben lebenslangen Premium-Zugriff auf 2048."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous bénéficiez d'un accès premium à vie jusqu'en 2048."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपको आजीवन प्रीमियम एक्सेस है।"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ನೀವು i2048 ಗೆ ಜೀವಿತಾವಧಿಯ ಪ್ರೀಮಿಯಂ ಪ್ರವೇಶವನ್ನು ಹೊಂದಿದ್ದೀರಿ."
+          }
+        }
+      }
     },
     "You Won!" : {
       "localizations" : {

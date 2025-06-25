@@ -133,7 +133,7 @@ struct AboutView: View {
                 VStack(alignment: .leading) {
                     Text("i2048")
                         .font(.largeTitle.bold())
-                    Text("Version 1.0.0")
+                    Text("v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")")
                         .font(.callout)
                 }
             }
