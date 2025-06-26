@@ -141,6 +141,34 @@
         }
       }
     },
+    "%@ one time purchase" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ einmaliger Kauf"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ d'achat unique"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ एक बार की खरीद"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ಒಂದು ಬಾರಿ ಖರೀದಿ"
+          }
+        }
+      }
+    },
     "%lld" : {
       "localizations" : {
         "de" : {
@@ -753,6 +781,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಆಟವನ್ನು ಸೇರಿಸಿ"
+          }
+        }
+      }
+    },
+    "Alert!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alarm!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alerte!"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अलर्ट!"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಎಚ್ಚರಿಕೆ!"
           }
         }
       }
@@ -1933,30 +1989,30 @@
         }
       }
     },
-    "i2048 - Buy Lifetime Premium" : {
+    "i2048 - Buy Premium" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "i2048 - Lifetime Premium kaufen"
+            "value" : "i2048 - Premium kaufen"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "i2048 - Acheter la prime à vie"
+            "value" : "i2048 - Acheter Premium"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "i2048 - लाइफटाइम प्रीमियम खरीदें"
+            "value" : "i2048 - प्रीमियम खरीदें"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "i2048 - ಜೀವಮಾನದ ಪ್ರೀಮಿಯಂ ಖರೀದಿಸಿ"
+            "value" : "i2048 - ಪ್ರೀಮಿಯಂ ಖರೀದಿಸಿ"
           }
         }
       }
@@ -2185,34 +2241,6 @@
         }
       }
     },
-    "Lifetime premium access" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lebenslanger Premium-Zugang"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Accès premium à vie"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "आजीवन प्रीमियम एक्सेस"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ಜೀವಮಾನದ ಪ್ರೀಮಿಯಂ ಪ್ರವೇಶ"
-          }
-        }
-      }
-    },
     "Light" : {
       "localizations" : {
         "de" : {
@@ -2381,7 +2409,7 @@
         }
       }
     },
-    "OK" : {
+    "Ok" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2392,7 +2420,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "D'ACCORD"
+            "value" : "D'accord"
           }
         },
         "hi" : {
@@ -2461,6 +2489,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ಪ್ರೀಮಿಯಂ ವೈಶಿಷ್ಟ್ಯಗಳು"
+          }
+        }
+      }
+    },
+    "Premium features available" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium-Funktionen verfügbar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonctionnalités premium disponibles"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रीमियम सुविधाएँ उपलब्ध हैं"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಪ್ರೀಮಿಯಂ ವೈಶಿಷ್ಟ್ಯಗಳು ಲಭ್ಯವಿದೆ"
           }
         }
       }
@@ -2689,30 +2745,30 @@
         }
       }
     },
-    "Restore Purchases" : {
+    "Restore Purchase" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Einkäufe wiederherstellen"
+            "value" : "Kauf wiederherstellen"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Restaurer les achats"
+            "value" : "Restaurer l'achat"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "खरीदारी वापस लौटाएं"
+            "value" : "ख़रीद को रिफ्रेश करे"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಖರೀದಿಗಳನ್ನು ಮರುಸ್ಥಾಪಿಸಿ"
+            "value" : "ಖರೀದಿಯನ್ನು ಮರುಸ್ಥಾಪಿಸಿ"
           }
         }
       }
@@ -2969,6 +3025,34 @@
         }
       }
     },
+    "Something went wrong, please contact developer" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etwas ist schiefgelaufen. Bitte wenden Sie sich an den Entwickler."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une erreur s'est produite, veuillez contacter le développeur"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कुछ ग़लत हुआ, कृपया डेवलपर से संपर्क करें"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಏನೋ ತಪ್ಪಾಗಿದೆ, ದಯವಿಟ್ಟು ಡೆವಲಪರ್ ಅನ್ನು ಸಂಪರ್ಕಿಸಿ."
+          }
+        }
+      }
+    },
     "Sort Games By" : {
       "localizations" : {
         "de" : {
@@ -3221,34 +3305,6 @@
         }
       }
     },
-    "Upgrade to Premium" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Upgrade auf Premium"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Passer à Premium"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "प्रीमियम में अपग्रेड करें"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ಪ್ರೀಮಿಯಂಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ"
-          }
-        }
-      }
-    },
     "v%@" : {
       "localizations" : {
         "de" : {
@@ -3361,30 +3417,30 @@
         }
       }
     },
-    "You have lifetime premium access to i2048." : {
+    "You have premium access to i2048." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sie haben lebenslangen Premium-Zugriff auf 2048."
+            "value" : "Sie haben Premium-Zugriff auf i2048."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vous bénéficiez d'un accès premium à vie jusqu'en 2048."
+            "value" : "Vous avez un accès premium à i2048."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "आपको आजीवन प्रीमियम एक्सेस है।"
+            "value" : "आपके पास i2048 का प्रीमियम एक्सेस है।"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ನೀವು i2048 ಗೆ ಜೀವಿತಾವಧಿಯ ಪ್ರೀಮಿಯಂ ಪ್ರವೇಶವನ್ನು ಹೊಂದಿದ್ದೀರಿ."
+            "value" : "ನೀವು i2048 ಗೆ ಪ್ರೀಮಿಯಂ ಪ್ರವೇಶವನ್ನು ಹೊಂದಿದ್ದೀರಿ."
           }
         }
       }

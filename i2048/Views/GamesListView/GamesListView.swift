@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct GamesListView: View {
-    @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @EnvironmentObject var gameLogic: GameLogic
     @Query(sort: \Game.createdAt, order: .reverse) private var games: [Game]

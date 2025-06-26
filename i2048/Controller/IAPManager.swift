@@ -5,67 +5,99 @@
 //  Created by Rishi Singh on 15/02/25.
 //
 
-//import Foundation
-//import StoreKit
-//import SwiftUI
-//
-//let productIDs: Set<String> = ["in.rishisingh.i2048.lifetime"]
-//
-//class InAppPurchaseManager: NSObject, ObservableObject, SKProductsRequestDelegate {
-//    static let shared = InAppPurchaseManager()
-//    @Published var products: [SKProduct] = []
-//
-//    func fetchProducts() {
-//        let request = SKProductsRequest(productIdentifiers: productIDs)
-//        request.delegate = self
-//        request.start()
-//    }
-//
-//    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-//        DispatchQueue.main.async {
-//            self.products = response.products
-//        }
-//    }
-//    
-//    func purchaseProduct(_ product: SKProduct) {
-//        let payment = SKPayment(product: product)
-//        SKPaymentQueue.default().add(payment)
-//    }
-//    
-//    func restorePurchases() {
-//        SKPaymentQueue.default().restoreCompletedTransactions()
-//    }
-//}
-//
-//
-//// MARK: - IAP Purchase Observer
-//class InAppPurchaseObserver: NSObject, SKPaymentTransactionObserver {
-//    @ObservedObject var userDefaultsManager = UserDefaultsManager()
-//    
-//    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-//        for transaction in transactions {
-//            switch transaction.transactionState {
-//            case .purchased:
-//                // Handle successful purchase
-//                unlockFeature(for: transaction.payment.productIdentifier)
-//                SKPaymentQueue.default().finishTransaction(transaction)
-//            case .restored:
-//                // Handle restored purchase
-//                unlockFeature(for: transaction.payment.productIdentifier)
-//                SKPaymentQueue.default().finishTransaction(transaction)
-//            case .failed:
-//                SKPaymentQueue.default().finishTransaction(transaction)
-//            default:
-//                break
-//            }
-//        }
-//    }
-//
-//    private func unlockFeature(for productIdentifier: String) {
-//        // Unlock your feature here based on the product identifier
-//        if productIdentifier == productIDs.first {
-//            userDefaultsManager.unlockLifetimeAccess()
-//        }
-//    }
-//}
-//
+import SwiftUI
+import StoreKit
+
+@MainActor
+class IAPManager: ObservableObject {
+    static let shared = IAPManager()
+
+    @Published var premiumProduct: Product?
+    @Published var isLoading: Bool = false
+    
+    @Published var loadProductsError: String? = nil
+    @Published var purchaseError: String? = nil
+
+    private let productID = "in.rishisingh.i2048.premium"
+
+    init() {
+        Task {
+            await loadProduct()
+            await refreshPurchaseStatus()
+            await listenForTransactionUpdates()
+        }
+    }
+
+    func loadProduct() async {
+        isLoading = true
+        defer { isLoading = false }
+        do {
+            let products = try await Product.products(for: [productID])
+            premiumProduct = products.first
+        } catch {
+            loadProductsError = "Failed to load products"
+//            print("Failed to load product: \(error)")
+        }
+    }
+
+    func refreshPurchaseStatus() async {
+        isLoading = true
+        defer { isLoading = false }
+        for await result in Transaction.currentEntitlements {
+            if case .verified(let transaction) = result,
+               transaction.productID == productID,
+               transaction.revocationDate == nil {
+                UserDefaultsManager.shared.unlockPremiumAccess()
+                return
+            }
+        }
+        UserDefaultsManager.shared.resetPremiumAccess()
+    }
+
+    func purchasePremiumAccess() async {
+        isLoading = true
+        defer { isLoading = false }
+        guard let product = premiumProduct else {
+            loadProductsError = "Product not loaded."
+            return
+        }
+
+        do {
+            let result = try await product.purchase()
+
+            switch result {
+            case .success(let verification):
+                switch verification {
+                case .verified(let transaction):
+                    await transaction.finish()
+                    UserDefaultsManager.shared.unlockPremiumAccess()
+                case .unverified(_, let error):
+                    purchaseError = "Purchase failed: Could not verify transaction. \(error.localizedDescription)"
+//                    print("Transaction unverified: \(error)")
+                    UserDefaultsManager.shared.resetPremiumAccess()
+                }
+            case .userCancelled, .pending:
+                break
+            @unknown default:
+                break
+            }
+        } catch {
+            purchaseError = "Purchase failed"
+//            print("Purchase failed: \(error)")
+        }
+    }
+    
+    private func listenForTransactionUpdates() async {
+        for await result in Transaction.updates {
+            if case .verified(let transaction) = result,
+               transaction.productID == productID {
+                await transaction.finish()
+                UserDefaultsManager.shared.unlockPremiumAccess()
+            }
+        }
+    }
+
+    func restorePurchases() async {
+        await refreshPurchaseStatus()
+    }
+}

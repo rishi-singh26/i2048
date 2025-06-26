@@ -30,7 +30,7 @@ struct AboutView: View {
 #if os(macOS)
     @ViewBuilder
     func MacOSAboutViewBuilder() -> some View {
-        ScrollView {
+        List {
             MacCustomSection(header: "") {
                 HStack {
                     Image("PremiumScreenIcon")
@@ -48,6 +48,7 @@ struct AboutView: View {
                     Spacer()
                 }
             }
+            .listRowSeparator(.hidden)
             
             MacCustomSection(header: "") {
                 HStack {
@@ -67,6 +68,7 @@ struct AboutView: View {
                     }
                 }
             }
+            .listRowSeparator(.hidden)
             
             MacCustomSection {
                 Link(destination: URL(string: "https://letterbird.co/i2048-brain-tiles")!) {
@@ -88,6 +90,7 @@ struct AboutView: View {
                     CustomLabel(leadingImageName: "lock.open.display", trailingImageName: "arrow.up.right", title: "Open Source Code")
                 }
             }
+            .listRowSeparator(.hidden)
             
             MacCustomSection(header: "Acknowledgements") {
                 Link(destination: URL(string: "https://github.com/simibac/ConfettiSwiftUI")!) {
@@ -102,6 +105,7 @@ struct AboutView: View {
                     CustomLabel(trailingImageName: "arrow.up.right", title: "swift-markdown-ui")
                 }
             }
+            .listRowSeparator(.hidden)
             
             MacCustomSection(header: "Website") {
                 VStack(alignment: .leading) {
@@ -110,8 +114,10 @@ struct AboutView: View {
                     }
                 }
             }
+            .listRowSeparator(.hidden)
             .padding(.bottom)
         }
+        .listStyle(.plain)
         .sheet(isPresented: $showPrivacyPolicy) {
             BuildSheetView(url: URL(string: privacyPolicyURL), navigationTitle: "Privacy Policy")
         }

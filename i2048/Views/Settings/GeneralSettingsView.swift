@@ -13,7 +13,7 @@ struct GeneralSettingsView: View {
     @EnvironmentObject var artManager: BackgroundArtManager
     
     var body: some View {
-        ScrollView {
+        List {
             MacCustomSection(header: "Quick 3x3 Game Defaults", footer: "Select default values for quick game") {
                 HStack {
                     Text("Game name prefix")
@@ -69,6 +69,7 @@ struct GeneralSettingsView: View {
                     }
                 }
             }
+            .listRowSeparator(.hidden)
             
             MacCustomSection(header: "Quick 4x4 Game Defaults", footer: "Select default values for quick game") {
                 HStack {
@@ -125,8 +126,10 @@ struct GeneralSettingsView: View {
                     }
                 }
             }
+            .listRowSeparator(.hidden)
             .padding(.bottom)
         }
+        .listStyle(.plain)
     }
 }
 

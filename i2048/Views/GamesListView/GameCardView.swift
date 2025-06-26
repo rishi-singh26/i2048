@@ -114,7 +114,10 @@ struct GameCardView: View {
         if game.id == gameLogic.selectedGame?.id {
             gameLogic.selectedGame = nil
         }
-        modelContext.delete(game)
+        do {
+            modelContext.delete(game)
+            try modelContext.save()
+        } catch {}
     }
 }
 

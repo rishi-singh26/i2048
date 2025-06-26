@@ -14,7 +14,7 @@ struct MacOsKeyBindingsView: View {
     @State private var showIAPSheet: Bool = false
     
     var body: some View {
-        ScrollView {
+        List {
             MacCustomSection(header: "Choose Key bindings", footer: "You can choose to enable all three key binding groups at ones") {
                 HStack(alignment: .center) {
                     Text("Arrow Bindings - ⌘ + (↑ → ↓ ←)")
@@ -56,8 +56,10 @@ struct MacOsKeyBindingsView: View {
                         .toggleStyle(.switch)
                 }
             }
+            .listRowSeparator(.hidden)
             .padding(.bottom)
         }
+        .listStyle(.plain)
         .sheet(isPresented: $showIAPSheet) {
             IAPView()
         }

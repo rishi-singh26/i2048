@@ -46,7 +46,11 @@ class UserDefaultsManager: ObservableObject {
         }
     }
     
-    func unlockLifetimeAccess() {
+    func unlockPremiumAccess() {
         isPremiumUser = true;
+    }
+    
+    func resetPremiumAccess() {
+        isPremiumUser = false;
     }
 }

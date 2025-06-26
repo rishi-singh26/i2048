@@ -12,7 +12,8 @@ import StoreKit
 @main
 struct i2048App: App {
     @Environment(\.openWindow) var openWindow
-    @StateObject private var userDefaultsManager = UserDefaultsManager()
+    @StateObject private var userDefaultsManager = UserDefaultsManager.shared
+    @StateObject private var purchaseManager = IAPManager.shared
     @StateObject private var artManager = BackgroundArtManager()
     @StateObject private var gameLogic = GameLogic()
     
@@ -45,6 +46,10 @@ struct i2048App: App {
                 .environmentObject(userDefaultsManager)
                 .environmentObject(artManager)
                 .environmentObject(gameLogic.updateUserDefaults(defaultsManager: userDefaultsManager))
+                .environmentObject(purchaseManager)
+                .task {
+                    await purchaseManager.refreshPurchaseStatus()
+                }
         }
         .defaultSize(width: 1000, height: 700)
         .modelContainer(sharedModelContainer)
@@ -95,14 +100,16 @@ struct i2048App: App {
             AddGameView()
                 .environmentObject(userDefaultsManager)
                 .environmentObject(gameLogic.updateUserDefaults(defaultsManager: userDefaultsManager))
+                .environmentObject(artManager)
         }
         .modelContainer(sharedModelContainer)
         .defaultSize(width: 400, height: 400)
         .windowResizability(.contentSize)
         
-        Window("i2048 - Buy Lifetime Premium", id: "lifetimePremium") {
+        Window("i2048 - Buy Premium", id: "buyPremiumWindow") {
             IAPView(isWindow: true)
                 .environmentObject(userDefaultsManager)
+                .environmentObject(purchaseManager)
         }
         .modelContainer(sharedModelContainer)
         .defaultSize(width: 300, height: 720)
@@ -133,6 +140,7 @@ struct i2048App: App {
             SettingsView()
                 .environmentObject(userDefaultsManager)
                 .environmentObject(artManager)
+                .environmentObject(purchaseManager)
         }
         .windowStyle(.hiddenTitleBar)
         .defaultSize(width: 400, height: 800)
@@ -162,10 +170,13 @@ struct i2048App: App {
             if let randomBackground = artManager.getAllImages().randomElement() {
                 game.selectNetworkImage(randomBackground)
             }
-            sharedModelContainer.mainContext.insert(game)
-            gameLogic.selectedGame = game
+            do {
+                sharedModelContainer.mainContext.insert(game)
+                try sharedModelContainer.mainContext.save()
+                gameLogic.selectedGame = game
+            } catch {}
         } else {
-            openWindow(id: "lifetimePremium")
+            openWindow(id: "buyPremiumWindow")
         }
     }
 }

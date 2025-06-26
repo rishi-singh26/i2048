@@ -28,7 +28,7 @@ struct SettingsView: View {
                 Button {
                     showIAPSheet = true
                 } label: {
-                    Label(userDefaultsManager.isPremiumUser ? "Lifetime premium access" : "Buy Premium", systemImage: "crown.fill")
+                    Label(userDefaultsManager.isPremiumUser ? "Premium features available" : "Buy Premium", systemImage: "crown.fill")
                 }
                 .listItemTint(.yellow)
                 .listRowBackground(

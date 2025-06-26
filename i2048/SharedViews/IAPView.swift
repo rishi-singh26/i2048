@@ -10,6 +10,8 @@ import StoreKit
 
 struct IAPView: View {
     @EnvironmentObject var userDefaultsManager: UserDefaultsManager
+    @EnvironmentObject var purchaseManager: IAPManager
+    
     @Environment(\.dismiss) var dismiss
     @State private var rotationAngle: Double = 0
     
@@ -18,55 +20,72 @@ struct IAPView: View {
     var isWindow: Bool = false
         
     @State private var error: (any Error)?
-    @State private var storeKitError: StoreKitError?
+//    @State private var storeKitError: StoreKitError?
     @State private var showErrorAlert: Bool = false
     @State private var showStoreKitErrorAlert: Bool = false
     @State private var hasDonated = false
 
     
     let iOSPremiumFeatures: [String] = [
-        "App Icons",
-        "Create Quick Games",
-        "Play 3x3 Games",
-        "Undo Game Step",
-        "Enable Haptic Feedback",
-        "Choose Target Score for games",
-        "Choose the number on New Blocks",
-        "Share Game Score",
+        "App Icons:app.gift",
+        "Create Quick Games:bolt.circle",
+        "Play 3x3 Games:square.grid.3x3",
+        "Undo Game Step:arrow.uturn.backward.circle",
+        "Enable Haptic Feedback:hand.point.up.left.and.text",
+        "Choose Target Score for games:target",
+        "Choose the number on New Blocks:2.square",
     ]
     
     let macOSPremiumFeatures: [String] = [
-        "One hand keyboard shortcuts",
-        "Create Quick Games",
-        "Play 3x3 Games",
-        "Undo Game Step",
-        "Choose Target Score for games",
-        "Choose the number on New Blocks",
-        "Share Game Score",
+        "One hand keyboard shortcuts:keyboard",
+        "Create Quick Games:bolt.circle",
+        "Play 3x3 Games:square.grid.3x3",
+        "Undo Game Step:arrow.uturn.backward.circle",
+        "Choose Target Score for games:target",
+        "Choose the number on New Blocks:2.square",
     ]
 
     var body: some View {
+        Group {
 #if os(iOS)
-        NavigationView {
-            IAPViewBuilder(desktopView: false, features: iOSPremiumFeatures)
-        }
+            NavigationView {
+                IAPVIOSiewBuilder(features: iOSPremiumFeatures)
+            }
 #elseif os(macOS)
-        IAPViewBuilder(desktopView: true, features: macOSPremiumFeatures)
-            .frame(width: 350, height: 700)
+            IAPMacOSViewBuilder(features: macOSPremiumFeatures)
+                .frame(width: 400, height: 700)
 #endif
+        }
+        .onAppear(perform: {
+            Task {
+                await purchaseManager.refreshPurchaseStatus()
+            }
+        })
+        .alert("Alert!", isPresented: .constant(purchaseManager.loadProductsError != nil || purchaseManager.purchaseError != nil)) {
+            Button("Ok") {
+                purchaseManager.loadProductsError = nil
+                purchaseManager.purchaseError = nil
+            }
+        } message: {
+            Text(purchaseManager.purchaseError ?? purchaseManager.purchaseError ?? "")
+        }
     }
     
+#if os(iOS)
     @ViewBuilder
-    func IAPViewBuilder(desktopView: Bool, features: [String]) -> some View {
+    func IAPVIOSiewBuilder(features: [String]) -> some View {
         Group {
             if userDefaultsManager.isPremiumUser {
                 BuildPremiumUserView(features: features)
+            } else if let product = purchaseManager.premiumProduct {
+                BuildIOSBuyPremiumView(product: product)
             } else {
-                BuildBuyPremoimView(features: features, desktopView: desktopView)
+                VStack {
+                    Text(purchaseManager.isLoading ? "Loading..." : "Something went wrong, please contact developer")
+                }
             }
         }
         .navigationTitle("Premium")
-#if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -77,7 +96,104 @@ struct IAPView: View {
                 }
             }
         }
-#elseif os(macOS)
+    }
+    
+    @ViewBuilder
+    func BuildIOSBuyPremiumView(product: Product) -> some View {
+        ZStack(alignment: .bottom) {
+            List {
+                Section {
+                    VStack(alignment: .leading) {
+                        Image("PremiumScreenIcon")
+                            .resizable()
+                            .frame(width: 55, height: 55)
+                            .shadow(color: Color(hex: "#54F06F"), radius: 20)
+                        Text(product.displayName)
+                            .font(.title2.bold())
+                        Text(product.description)
+                            .font(.body.bold())
+                        Divider()
+                        HStack {
+                            Image(systemName: "creditcard")
+                            Text("\(product.displayPrice) one time purchase")
+                        }
+                        .padding(.top, 5)
+                    }
+                }
+                Section {
+                    VStack(alignment: .leading) {
+                        Text("Premium Features")
+                            .font(.title2.bold())
+                            .padding(.bottom, 5)
+                        ForEach(iOSPremiumFeatures, id: \.self) { feature in
+                            HStack {
+                                Image(systemName: String(feature.split(separator: ":")[1]))
+                                    .foregroundStyle(.blue)
+                                    .padding(.trailing, 8)
+                                Text(feature.split(separator: ":")[0])
+                            }
+                            .padding(.bottom, 1)
+                        }
+                    }
+                }
+            }
+            
+            VStack(alignment: .center) {
+                Text("\(product.displayPrice) one time purchase")
+                    .font(.footnote)
+                    .padding(.top, 8)
+                Button {
+                    Task {
+                        await purchaseManager.purchasePremiumAccess()
+                    }
+                } label: {
+                    HStack {
+                        Spacer()
+                        Text("Buy Premium")
+                            .font(.body.bold())
+                            .foregroundStyle(.white)
+                            .padding(.vertical, 12)
+                        Spacer()
+                    }
+                    .background(.blue)
+                    .cornerRadius(12)
+                    .padding(.horizontal, 15)
+                }
+                
+                Button {
+                    Task {
+                        await purchaseManager.restorePurchases()
+                    }
+                } label: {
+                    Text("Restore Purchase")
+                        .font(.body.bold())
+                        .foregroundColor(.blue)
+                        .padding(.vertical, 6)
+                }
+                Text("Restore your purchase if it hasn't synced automatically")
+                    .font(.caption)
+            }
+            .frame(height: 160)
+            .background(.thinMaterial)
+        }
+    }
+#endif
+    
+#if os(macOS)
+    @ViewBuilder
+    func IAPMacOSViewBuilder(features: [String]) -> some View {
+        Group {
+            if userDefaultsManager.isPremiumUser {
+                BuildPremiumUserView(features: features)
+            } else if let product = purchaseManager.premiumProduct {
+                BuildMacOSBuyPremiumView(product: product)
+            } else {
+                VStack {
+                    Text(purchaseManager.isLoading ? "Loading..." : "Something went wrong, please contact developer")
+                }
+            }
+        }
+        .navigationTitle("Premium")
         .toolbar {
             if !isWindow {
                 Button {
@@ -87,105 +203,92 @@ struct IAPView: View {
                 }
             }
         }
-#endif
     }
     
     @ViewBuilder
-    func DismissBtnBuilder() -> some View {
-        Button {
-            dismiss()
-        } label: {
-            Text("Great")
-                .font(.title3.bold())
-                .foregroundStyle(.white)
-                .padding(.horizontal, 40)
-                .padding(.vertical, 8)
-                .background(.blue)
-                .cornerRadius(12)
-        }
-    }
-    
-    @ViewBuilder
-    func BuildBuyPremoimView(features: [String], desktopView: Bool) -> some View {
-        VStack {
-            Image("PremiumScreenIcon")
-                .resizable()
-                .frame(width: 150, height: 150)
-                .padding(.top)
-                .shadow(color: Color(hex: "#54F06F"), radius: 50)
+    func BuildMacOSBuyPremiumView(product: Product) -> some View {
+        List {
+            MacCustomSection(header: "") {
+                VStack {
+                    Image("PremiumScreenIcon")
+                        .resizable()
+                        .frame(width: 55, height: 55)
+                        .shadow(color: Color(hex: "#54F06F"), radius: 20)
+                    Text(product.displayName)
+                        .font(.title2.bold())
+                    Text(product.description)
+                        .font(.body.bold())
+                    Divider()
+                    HStack {
+                        Image(systemName: "creditcard")
+                        Text("\(product.displayPrice) one time purchase")
+                    }
+                    .padding(.top, 5)
+                }
+            }
+            .listRowSeparator(.hidden)
             
-            Text("Upgrade to Premium")
-                .font(.title.bold())
-                .padding(.top)
-            
-            ScrollView {
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(features, id: \.self) { feature in
+            MacCustomSection {
+                VStack(alignment: .leading) {
+                    Text("Premium Features")
+                        .font(.title2.bold())
+                        .padding(.bottom, 5)
+                    Divider()
+                    ForEach(macOSPremiumFeatures, id: \.self) { feature in
                         HStack {
-                            Image(systemName: "checkmark.seal.fill")
+                            Image(systemName: String(feature.split(separator: ":")[1]))
                                 .foregroundStyle(.blue)
                                 .padding(.trailing, 8)
-                            Text(feature)
-                                .font(.headline)
+                            Text(feature.split(separator: ":")[0])
                         }
+                        .padding(.bottom, 1)
                     }
                 }
-                .padding(.leading, 20)
-                .padding(.trailing, 10)
             }
-            .padding(.vertical, 6)
+            .listRowSeparator(.hidden)
             
-            VStack(alignment: .leading) {
-                
-                ProductView(id: "in.rishisingh.i2048.lifetime", prefersPromotionalIcon: true) {
-//                        Label("Premium", systemImage: "crown.fill")
-//                            .labelStyle(.iconOnly)
-                }
-            }
-            .accessibilityElement(children: .contain)
-            .storeProductsTask(for: ["in.rishisingh.i2048.lifetime"]) { taskState in
-                switch taskState {
-                case .loading:
-                    break
-                case .success:
-                    userDefaultsManager.unlockLifetimeAccess()
-                case .failure(let error):
-                    self.presentError(error)
-                @unknown default:
-                    assertionFailure()
-                }
-            }
-            .alert(error?.localizedDescription ?? "", isPresented: $showErrorAlert, actions: {
-                Button("OK", role: .cancel) { }
-            })
-            .alert(storeKitError?.localizedDescription ?? "", isPresented: $showStoreKitErrorAlert, actions: {
-                Button("OK", role: .cancel) { }
-            })
-            
-            // Restore Purchases Button
-            Button(action: {
-                Task {
-                    do {
-                        try await AppStore.sync()
-                    } catch {
-                        self.presentError(error)
+            VStack(alignment: .center) {
+                Spacer()
+                Text("\(product.displayPrice) one time purchase")
+                    .font(.footnote)
+                Button {
+                    Task {
+                        await purchaseManager.purchasePremiumAccess()
                     }
-                }
-            }) {
-                Text("Restore Purchases")
-                    .font(.title3)
-                    .foregroundColor(.blue)
-                    .padding(.vertical, 2)
+                } label: {
+                    HStack {
+                        Spacer()
+                        Text("Buy Premium")
+                            .font(.body.bold())
+                            .foregroundStyle(.white)
+                            .padding(.vertical, 12)
+                        Spacer()
+                    }
+                    .background(.blue)
+                    .cornerRadius(12)
                     .padding(.horizontal, 15)
-                    .cornerRadius(10)
-                    .padding(.vertical, 10)
+                }
+                .buttonStyle(.plain)
+                
+                Button {
+                    Task {
+                        await purchaseManager.restorePurchases()
+                    }
+                } label: {
+                    Text("Restore Purchase")
+                        .font(.body.bold())
+                        .foregroundColor(.blue)
+                        .padding(.vertical, 6)
+                }
+                .buttonStyle(.plain)
+                Text("Restore your purchase if it hasn't synced automatically")
+                    .font(.caption)
             }
-            .buttonStyle(.plain)
-            Text("Restore your purchase if it hasn't synced automatically")
-                .font(.caption)
+            .padding(20)
         }
-        .padding(.vertical, desktopView ? 20 : 0)
+        .listStyle(.plain)
     }
+#endif
     
     @ViewBuilder
     func BuildPremiumUserView(features: [String]) -> some View {
@@ -207,7 +310,7 @@ struct IAPView: View {
                 rotationAngle = 360
             }
             
-            Text("You have lifetime premium access to i2048.")
+            Text("You have premium access to i2048.")
                 .font(.body.bold())
             
             Text("Premium Features")
@@ -218,10 +321,10 @@ struct IAPView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(features, id: \.self) { feature in
                         HStack {
-                            Image(systemName: "checkmark.seal.fill")
+                            Image(systemName: String(feature.split(separator: ":")[1]))
                                 .foregroundStyle(.blue)
                                 .padding(.trailing, 8)
-                            Text(feature)
+                            Text(feature.split(separator: ":")[0])
                                 .font(.headline)
                         }
                     }
@@ -240,21 +343,32 @@ struct IAPView: View {
         }
     }
     
-    private func presentError(_ error: any Error) {
-        switch error {
-        case StoreKitError.userCancelled:
-            break
-        case let error as StoreKitError:
-            self.storeKitError = error
-            self.showStoreKitErrorAlert = true
-        default:
-            self.error = error
-            self.showErrorAlert = true
+    @ViewBuilder
+    func DismissBtnBuilder() -> some View {
+        Button {
+            dismiss()
+        } label: {
+            HStack {
+                Spacer()
+                Text("Great")
+                    .font(.body.bold())
+                    .foregroundStyle(.white)
+                    .padding(.vertical, 12)
+                Spacer()
+            }
+            .background(.blue)
+            .cornerRadius(12)
+            .padding(.horizontal, 15)
         }
+        .padding(.bottom, 10)
+#if os(macOS)
+        .buttonStyle(.plain)
+#endif
     }
 }
 
 #Preview {
-    IAPView()
-//        .environmentObject(InAppPurchaseManager.shared)
+    IAPView(isWindow: false)
+        .environmentObject(UserDefaultsManager.shared)
+        .environmentObject(IAPManager.shared)
 }
